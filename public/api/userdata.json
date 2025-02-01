@@ -1,0 +1,18 @@
+{
+    "UserName": "test123",
+    "who": "tech_admin",
+    "status": "deactive",
+    "password": "4cfad7076129962ee70c36839a1e3e15",
+    "credit_referancev": "100000",
+    "Balance": 0,
+    "Clint": "",
+    "Exposure": 0,
+    "AvailableBalance": 0,
+    "ExposureLimit": 0,
+    "Default": 0,
+    "AccountType": "super_admin",
+    "CasinoTotal": "0.00",
+    "userbet": "active",
+    "userlogin": "active",
+    "transaction":"test6"
+}
