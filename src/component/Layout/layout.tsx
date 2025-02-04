@@ -8,8 +8,8 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => (
   <>
     <Header />
-    <main style={{ padding: '1rem' }}>{children}</main>
-    {/* <Footer /> */}
+    <main className='app-bg'>{children}</main>
+    <Footer />
   </>
 );
 
