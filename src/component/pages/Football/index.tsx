@@ -21,11 +21,13 @@ const Football: React.FC = () => {
   }
   const inPlayEvents =[{
     sportsName:"Football",
+    sportsId:"football",
     icon: <BiFootball  size={20}/>,
     eventSchedule: playingEvents,
   }]
   const upComingEvents =[{
     sportsName:"Football",
+    sportsId:"football",
     icon: <BiFootball  size={20}/>,
     eventSchedule: upComingScheduleEvents,
   }]

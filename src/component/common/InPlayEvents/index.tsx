@@ -1,34 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaCirclePlay } from "react-icons/fa6";
 import { BiSolidCricketBall } from "react-icons/bi";
 import { MdLiveTv } from "react-icons/md";
 import { extractEventDetails } from '../../../Framework/utils/constant';
 import LayBack from '../LayBack';
-
+import { useNavigate } from 'react-router-dom';
+import { useUI } from '../../../context/ui.context';
 interface Props{
     events:any
 }
 const InPlayEvents: React.FC<Props> = ({events}) => {
+    const {isLogin, setLoginModal} = useUI();
+     const Navigate =  useNavigate();
+     console.log(events,"mojjjjiiiii")
    
-    const cricketEvents: any = [
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ]
   return (
     
     <div className="w-full h-full">
@@ -93,7 +78,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                 </div>
                                 {
                                   ((val?.eventSchedule)||[]).map((item: any,i: any)=>{
-                                     const val = extractEventDetails(item?.eventName)
+                                     const detail = extractEventDetails(item?.eventName)
                                      console.log(item,"gwdjgwdg")
                                     return(
                                         <div className="col-span-12 grid grid-cols-12" key={`events${i}`}>
@@ -102,15 +87,22 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                             <span id="inPlayTime"
                                                 className="flex  items-center justify-center flex-col col-span-2 pl-[1px] pr-[1px] active:scale-[94%] transition-all ease-in-out duration-100">
                                                 <span
-                                                    className=" text-text_InPlayEventsScoreAndTime text-[6px] xs:text-[8px] md:text-[10px] font-semibold  w-full text-center">{val?.date}
+                                                    className=" text-text_InPlayEventsScoreAndTime text-[6px] xs:text-[8px] md:text-[10px] font-semibold  w-full text-center">{detail?.date}
                                                 </span>
                                                 <span
-                                                    className=" text-text_InPlayEventsScoreAndTime text-[6px] xs:text-[8px] md:text-[10px] font-semibold  w-full text-center uppercase">{val?.time}
+                                                    className=" text-text_InPlayEventsScoreAndTime text-[6px] xs:text-[8px] md:text-[10px] font-semibold  w-full text-center uppercase">{detail?.time}
                                                 </span>
                                             </span>
             
                                             <span id="inPlayTeamName"
-                                                className=" text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100">
+                                                className=" text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100 cursor-pointer" onClick={()=>{
+                                                   if(isLogin){
+                                                    Navigate(`/event-page/${val?.sportsId}/${item?.gameId}`);
+                                                   }
+                                                    else{
+                                                        setLoginModal(true)
+                                                    }
+                                                }}>
                                                
                                                 <span
                                                    
@@ -120,7 +112,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                                         <span
                                                             className=" w-[5px] h-[5px] p-[1px] mr-[2px]"></span>
                                                         <span
-                                                            className=" text-[11px] font-bold text-text_Ternary  truncate sm:text-xs md:text-sm">{val?.team1}</span>
+                                                            className=" text-[11px] font-bold text-text_Ternary  truncate sm:text-xs md:text-sm">{detail?.team1}</span>
                                                     </span>
                                                     <span
                                                         className=" text-selection-none w-full flex items-center justify-start">
@@ -128,7 +120,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                                         </span>
                                                         <span
                                                             className=" text-[11px] font-bold text-text_Ternary  truncate sm:text-xs md:text-sm">
-                                                            {val?.team2}
+                                                            {detail?.team2}
                                                         </span>
                                                     </span>
                                                 </span>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useProductById } from '../../../Framework/product';
-import { useCart } from '../../../context/cart.context';
+
 import Accordian from '../../common/Accordian';
 import LeftDeskSideBar from '../../common/LeftDeskSidebar';
 import InPlayEvents from '../../common/InPlayEvents';
@@ -28,12 +27,15 @@ const Tennis: React.FC = () => {
 
       const inPlayEvents =[{
         sportsName:"Tennis",
+        sportsId:"tennis",
+
         icon: <IoTennisball fill="#7FBA42" size={20}/>,
         eventSchedule:playingEvents,
       }]
 
       const upComingEvents =[{
         sportsName:"Tennis",
+        sportsId:"tennis",
         icon: <IoTennisball fill="#7FBA42" size={20}/>,
         eventSchedule:upComingScheduleEvents,
       }]

@@ -9,9 +9,11 @@ import { GiHound } from "react-icons/gi";
 
 import { GiCardKingDiamonds } from "react-icons/gi";
 import { IoIosJet } from "react-icons/io";
+import { useUI } from '../../../context/ui.context';
 
 const SidebarComp: React.FC = () => {
     const Navigate = useNavigate();
+    const {isLogin,setLoginModal} = useUI();
     const siderbar = [
  
   {
@@ -71,10 +73,19 @@ routing: "/casino-lobby/slot-games"
                  return(
                     <li
  className="text-sm cursor-pointer py-4 text-nowrap whitespace-nowrap autoAnimate font-semibold w-full border-b hover:bg-bg_MenuHoverColor hover:scale-[102%]">
- <a className="flex w-full items-center h-full px-6 justify-start gap-3"
-     href={item?.routing}>
+ <span className="flex w-full items-center h-full px-6 justify-start gap-3"
+ onClick={()=>{
+  if(isLogin){
+    Navigate(item?.routing);
+  }
+  else{
+  setLoginModal(true);
+  }
+
+}}
+     >
        {item?.icon}
-       <span className="font-medium text-start text-text_Ternary">{item?.title}</span></a>
+       <span className="font-medium text-start text-text_Ternary">{item?.title}</span></span>
 </li>
                  )
             })

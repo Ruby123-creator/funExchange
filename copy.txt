@@ -1,0 +1,17 @@
+  <div className="flex flex-col w-full">
+        <div className="ml-1 text-sm">Amount<span className="text-text_Primary">*</span></div><div className=" relative">
+            <span className="px-2 absolute top-1/2 -translate-y-1/2 w-max">₹</span>
+     <input id="amount" label="Amount" placeholder="Enter Amount" message="" startadornment="₹" endadornment="INR" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-10 pr-8 ml-0 mr-0 " autocomplete="off" type="number" name="amount" value=""/>
+     <span className="px-2 absolute top-1/2 -translate-y-1/2 right-0">INR</span></div><div className="text-xs  ml-1 text-text_Primary"></div></div>
+
+
+      <div className="flex flex-col w-full"><div className="ml-1 text-sm">IFSC Code<span className="text-text_Primary">*</span></div><div className=" relative"><input id="ifsc" label="IFSC Code" placeholder="Enter IFSC Code" messagecolor="text-text_Primary" message="" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-4 pr-4 ml-0 mr-0" autocomplete="off" type="text" name="ifsc" value=""></div><div className="text-xs  ml-1 text-text_Primary"></div></div></div>
+        
+        <div className="flex flex-col w-full"><div className="ml-1 text-sm">Account No<span className="text-text_Primary">*</span></div><div className=" relative"><input id="accountNo" label="Account No" placeholder="Enter Account Number" message="" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-4 pr-4 ml-0 mr-0" autocomplete="off" type="text" name="accountNumber" value=""></div><div className="text-xs  ml-1 text-text_Primary"></div></div>
+        
+        <div className="flex flex-col w-full"><div className="ml-1 text-sm">Confirm Account No<span className="text-text_Primary">*</span></div><div className=" relative"><input label="Confirm Account No" id="confirmAccountNo" placeholder="Re-enter Account Number" message="" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-4 pr-4 ml-0 mr-0" autocomplete="off" type="text" name="confirmAccountNumber" value=""></div><div className="text-xs  ml-1 text-text_Primary"></div></div>
+        
+        <div className="flex flex-col w-full"><div className="ml-1 text-sm">Account Name<span className="text-text_Primary">*</span></div><div className=" relative"><input id="accountName" label="Account Name" placeholder="Enter Account Name" message="" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-4 pr-4 ml-0 mr-0" autocomplete="off" type="text" name="accountName" value=""></div><div className="text-xs  ml-1 text-text_Primary"></div></div>
+        
+        <div className="flex flex-col w-full"><div className="ml-1 text-sm">Bank Name<span className="text-text_Primary">*</span></div><div className=" relative">
+            <input id="bankName" label={} placeholder="Enter Bank Name" message="" className="  block w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg  pl-4 pr-4 ml-0 mr-0" autocomplete="off" type="text" name="bankName" value=""></div><div className="text-xs  ml-1 text-text_Primary"></div></div></div>

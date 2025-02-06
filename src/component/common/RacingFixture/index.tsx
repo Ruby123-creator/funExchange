@@ -5,6 +5,7 @@ import { MdLiveTv } from 'react-icons/md';
  
 interface Props{
     data: any,
+    sportsId: string,
 }
 
 const transformRacingData = (data: any) => {

@@ -406,7 +406,7 @@ const AccountDrawer = () => {
                                             <path d="M18 15l3 -3"></path>
                                         </svg>
                                     </span>
-                                    <span className="font-medium text-sm xs:text-base">Sign Out
+                                    <span className="font-medium text-sm xs:text-base" onClick={()=>{ localStorage.removeItem('isLogin');}}>Sign Out
                                     </span>
                                 </div>
 

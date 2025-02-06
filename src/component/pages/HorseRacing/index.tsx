@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useProductById } from '../../../Framework/product';
-import { useCart } from '../../../context/cart.context';
+
 import Accordian from '../../common/Accordian';
 import LeftDeskSideBar from '../../common/LeftDeskSidebar';
 import InPlayEvents from '../../common/InPlayEvents';
@@ -30,7 +28,8 @@ const HorseRacing: React.FC = () => {
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
         <LeftDeskSideBar label={uiLabel}/>
         <div className=' flex items-center flex-col w-[50%]'>
-          <RacingFixture data={data}/>
+          <RacingFixture data={data}     sportsId="football"
+          />
        
        
         <div className="w-full md:mt-[0px] lg:overflow-auto"

@@ -1,35 +1,31 @@
+import { Modal } from 'antd';
 import React from 'react'
+import { useUI } from '../../context/ui.context';
 
 const LoginModal = () => {
+    const {loginModal, setLoginModal} = useUI();
     const logInWithDemo = () => {
         localStorage.setItem('isLogin', 'true');
-        const url = sessionStorage.getItem('url');
-        const isLoginRequired = Boolean(localStorage.getItem('isLogin')) || false
-        if(isLoginRequired){
-            // Redirect to login page
-            window.location.href = JSON.parse(url as any);
-        }else{
+        window.location.reload();
         
-        }
+        // const url = sessionStorage.getItem('url');
+        // const isLoginRequired = Boolean(localStorage.getItem('isLogin')) || false
+        // if(isLoginRequired){
+        //     // Redirect to login page
+        //     window.location.href = JSON.parse(url as any);
+        // }else{
+        
+        // }
     }
   return (
-    <div
+    <Modal
+    open={loginModal}
+    footer={null}
+    onCancel={() => setLoginModal(false)}
+  >
+   <div
             className="z-2 popUpOpenAnimation max-w-[450px] bg-bg_loginPopupBg rounded-md">
-            {/* <div onclick="closeModal('popupmodal')"
-                className="transition-all mb-2 ease-in-out duration-200 hover:scale-105 absolute top-2 right-2">
-                <svg height="24" width="24" fill="var(--color-quaternary)" aria-hidden="true" focusable="false"
-                    data-prefix="fad" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <g className="fa-duotone-group" id="closeform">
-                        <path fill="currentColor"
-                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z">
-                        </path>
-                        <path fill="white"
-                            d="M209 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47z">
-                        </path>
-                    </g>
-                </svg>
-            </div> */}
+           
             <div className="logo w-full hidden lg:flex items-center justify-center mb-4">
                 <img src="assets/images/form-logo.webp" alt="logo" className="w-72 h-auto" width="100" height="100" />
             </div>
@@ -151,6 +147,8 @@ const LoginModal = () => {
                 </div>
             </div>
         </div>
+  </Modal>
+    
   )
 }
 

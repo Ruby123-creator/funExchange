@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './component/Layout/layout';
 import Home from './component/pages/Home';
 import CricketDetails from './component/pages/Cricket/cricket';
-import Cart from './component/pages/cart';
+
 import './assets/css/style.css';
 import Football from './component/pages/Football';
 import Tennis from './component/pages/Tennis';
@@ -15,6 +15,9 @@ import CrashGames from './component/pages/CrashGames';
 import FishingGames from './component/pages/FishingGames';
 import AviatorComp from './component/pages/Aviator';
 import AuraComp from './component/pages/Aura';
+import SportsEventPage from './component/pages/SportsEventPage';
+import WithdrawComponent from './component/pages/withdraw';
+import DepositComponent from './component/pages/Deposit';
 const App: React.FC = () => (
   <Router>
     <Layout>
@@ -31,10 +34,11 @@ const App: React.FC = () => (
         <Route path="/casino-lobby/slot-games/Shooting" element={<FishingGames />} />
         <Route path="/aviator" element={<AviatorComp />} />
         <Route path="/aura" element={<AuraComp />} />
+         <Route path='/event-page/:sport/:eventId' element={<SportsEventPage/>}/>
 
+         <Route path='/withdraw' element={<WithdrawComponent/>}/>
+         <Route path='/deposit' element={<DepositComponent/>}/>
 
-
-        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Layout>
   </Router>

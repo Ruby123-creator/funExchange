@@ -27,6 +27,7 @@ const PanelComp: React.FC = () => {
 
     const inPlayEvents =[{
       sportsName:"Cricket",
+      sportsId:"cricket",
       icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
       eventSchedule:[
         {
@@ -49,6 +50,7 @@ const PanelComp: React.FC = () => {
        ],
     },{
       sportsName:"Football",
+      sportsId:"football",
       icon: <BiFootball  size={20}/>,
       eventSchedule:[
         {
@@ -71,6 +73,7 @@ const PanelComp: React.FC = () => {
        ],
     },{
       sportsName:"Tennis",
+      sportsId:"tennis",
       icon: <IoTennisball fill="#7FBA42" size={20}/>,
       eventSchedule:[
         {
@@ -96,6 +99,7 @@ const PanelComp: React.FC = () => {
 
     const upComingEvents =[{
       sportsName:"Cricket",
+      sportsId:"cricket",
       icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
       eventSchedule:[
         {
@@ -118,6 +122,7 @@ const PanelComp: React.FC = () => {
        ],
     },{
       sportsName:"Football",
+      sportsId:"football",
       icon: <BiFootball  size={20}/>,
       eventSchedule:[
         {
@@ -140,6 +145,7 @@ const PanelComp: React.FC = () => {
        ],
     },{
       sportsName:"Tennis",
+      sportsId:"tennis",
       icon: <IoTennisball fill="#7FBA42" size={20}/>,
       eventSchedule:[
         {

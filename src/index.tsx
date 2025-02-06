@@ -4,22 +4,22 @@ import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { CartProvider } from './context/cart.context';
+import { UIProvider } from './context/ui.context';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-     <App />
-     </CartProvider>
-     </QueryClientProvider>
+    {/* Remove value prop from UIProvider */}
+    <UIProvider>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </UIProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

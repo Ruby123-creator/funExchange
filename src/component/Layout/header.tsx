@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FiLogIn, FiShoppingCart } from "react-icons/fi";
-import { FaShopify } from "react-icons/fa";
-import { useCart } from "../../context/cart.context";
+
 import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { TbLogin } from "react-icons/tb";
@@ -13,13 +10,16 @@ import { format } from "date-fns";
 import { Drawer, Modal } from "antd";
 import LoginModal from "../modals/login";
 import AccountDrawer from "../Drawer/accountDrawer";
+import { useUI } from "../../context/ui.context";
 
 const Header: React.FC = () => {
+  const {isLogin,setLoginModal} = useUI();
+  console.log(isLogin,"Check::::::::::")
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+
   const [openDrawer, setOpenDrawer] = useState(false);
   const [active , setActive] = useState('Cricket');
   const showDrawer = () => {
@@ -29,10 +29,7 @@ const Header: React.FC = () => {
   const onClose = () => {
     setOpenDrawer(false);
   };
-  useEffect(() => {
-    const isLoginVal = Boolean(localStorage.getItem("isLogin")) || false;
-    setIsLogin(isLoginVal);
-  }, []);
+ 
 
   // Function to format the date and time using date-fns
   const getFormattedDateTime = (val: string) => {
@@ -401,7 +398,7 @@ const Header: React.FC = () => {
                     <div className="w-max items-center justify-center gap-1 lg:rounded-full flex -lg:rounded">
                       <button
                         id="loginButton"
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={() => setLoginModal(true)}
                         className="flex rounded-full border border-quaternary hover:opacity-100 w-max font-extrabold items-center justify-center py-2 bg-bg_Secondary lg:relative lg:gap-1 lg:pr-4 lg:pl-3 -lg:px-4"
                       >
                         <span className="w-max text-text_LoginTextColor hidden lg:block">
@@ -441,9 +438,14 @@ const Header: React.FC = () => {
                     return (
                         <a key={`header${i}`}>
                         <button  onClick={(e)=>{
-                            
-                            setActive(item?.title);
-                            Navigate(item?.routing);
+                            if(isLogin){
+                              setActive(item?.title);
+                              Navigate(item?.routing);
+                            }
+                            else{
+                              setLoginModal(true)
+                            }
+                          
 
                         }} className={`text-xs cursor-pointer uppercase mr-1 ${ item?.title === active ? 'border-primary':''}  rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9 border w-max px-3 py-1 text-text_HeaderDeskNavMenu hidden md:block`}>
                           <span className="font font-lato text-[12px]">
@@ -460,13 +462,7 @@ const Header: React.FC = () => {
           </div>
         </header>
       </div>
-      <Modal
-        open={isModalOpen}
-        footer={null}
-        onCancel={() => setIsModalOpen(false)}
-      >
-        <LoginModal />
-      </Modal>
+     <LoginModal/>
 
       <Drawer title="Demo" onClose={onClose} open={openDrawer}>
         <AccountDrawer />

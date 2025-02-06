@@ -19,3 +19,22 @@ export const useCricketFixture = () => {
     refetchOnWindowFocus: false, // Disable auto-refetch on window focus
   });
 };
+
+
+
+// Fetch Product by ID
+const fetchCricketDetailsById = async ({id,sport}:any) => {
+  const response = await axios.get(`/api/${sport}.json`);
+  return response.data;
+};
+
+// React Query Hook
+export const useCricketDetailsById = ({id,sport}:any) => {
+  return useQuery({
+    queryKey: ['cricket-detail', id,sport], // Include `id` for query uniqueness
+    queryFn: () => fetchCricketDetailsById({id,sport}), // Fetch function
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+    retry: 3,                 // Retry on failure
+    refetchOnWindowFocus: false, // No auto-refetch on focus
+  });
+};

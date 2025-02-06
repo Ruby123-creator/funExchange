@@ -2,14 +2,16 @@ import React from 'react'
 import { MdOutlineErrorOutline } from "react-icons/md";
 import { BiSolidCricketBall } from "react-icons/bi";
 import LayBack from '../LayBack';
+import { useNavigate } from 'react-router-dom';
 import { extractEventDetails } from '../../../Framework/utils/constant';
+import { useUI } from '../../../context/ui.context';
 interface Props{
     events:any
 }
 const UpcomingEvents: React.FC<Props> = ({events}) => {
     
-
-
+   const {isLogin ,setLoginModal} = useUI();
+    const Navigate = useNavigate();
       
     
   return (
@@ -51,24 +53,31 @@ const UpcomingEvents: React.FC<Props> = ({events}) => {
                         {
                             (val?.eventSchedule||[]).map((item:any,i:number)=>{
         
-                                const val = extractEventDetails(item?.eventName)
+                                const details = extractEventDetails(item?.eventName)
                                 return( <div className="col-span-12 grid grid-cols-12" key={`eventDetails${i}`}>
                                     <div
                                         className="col-span-6 h-12 lg:col-span-5 grid grid-cols-7 border-t border-borderColorOfMarket">
                                         <span id="inPlayTime"
                                             className="flex items-center justify-center flex-col col-span-2 pl-[1px] pr-[1px] active:scale-[94%] transition-all ease-in-out duration-100"><span
-                                                className="text-text_UpcomingEvents text-[6px] xs:text-[8px] md:text-[10px] font-semibold w-full text-center">{val?.date}</span><span
-                                                className="text-text_UpcomingEvents text-[6px] xs:text-[8px] md:text-[10px] font-semibold w-full text-center uppercase">{val?.time}</span></span><span
+                                                className="text-text_UpcomingEvents text-[6px] xs:text-[8px] md:text-[10px] font-semibold w-full text-center">{details?.date}</span><span
+                                                className="text-text_UpcomingEvents text-[6px] xs:text-[8px] md:text-[10px] font-semibold w-full text-center uppercase">{details?.time}</span></span>
+                                                <span
                                             id="inPlayTeamName"
-                                            className="text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100"><span
+                                            className="text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100 cursor-pointer" onClick={()=>{ 
+                                                if(isLogin){
+                                                Navigate(`/event-page/${val?.sportsId}/${item?.gameId}`);
+                                               }
+                                                else{
+                                                    setLoginModal(true)
+                                                }}}><span
                                                 className="flex flex-col items-center justify-start w-[87%]"><span
                                                     className="text-selection-none w-full flex items-center justify-start"><span
                                                         className="w-[5px] h-[5px] p-[1px] mr-[2px]"></span><span
-                                                        className="text-[11px] font-bold text-text_Ternary truncate sm:text-xs md:text-sm">{val?.team1}
+                                                        className="text-[11px] font-bold text-text_Ternary truncate sm:text-xs md:text-sm">{details?.team1}
                                                         </span></span><span
                                                     className="text-selection-none w-full flex items-center justify-start"><span
                                                         className="w-[5px] h-[5px] p-[1px] mr-[2px]"></span><span
-                                                        className="text-[11px] font-bold text-text_Ternary truncate sm:text-xs md:text-sm">{val?.team2}
+                                                        className="text-[11px] font-bold text-text_Ternary truncate sm:text-xs md:text-sm">{details?.team2}
                                                         </span></span></span></span>
                                     </div>
                                     <span
