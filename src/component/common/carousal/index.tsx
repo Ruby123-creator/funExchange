@@ -19,7 +19,7 @@ const contentStyle: React.CSSProperties = {
 const CarousalComp: React.FC<CarousalProp> = ({content,className}) =>{ 
     
     return(
-  <Carousel autoplay>
+  <Carousel autoplay dots={false}>
      {
                     (content||[]).map((item: any,i:number)=>{
                         return(

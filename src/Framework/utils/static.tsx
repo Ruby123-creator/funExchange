@@ -33,7 +33,7 @@ export const carousalImages = [
   title2: 'Sportsbook',
   bgUrl2: 'assets/images/Sportsbook-1705911352020.jpeg',
   iconUrl2:
-    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029&amp;w=600&amp;px=auto&amp;auto=format',
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
   altText3: 'Evolution-image',
 },
 {
@@ -78,7 +78,7 @@ export const carousalImages = [
 
     altText: 'Sportsbook-image',
     title2: "Color Game",
-    imageUrl2: "assets/images/SlotGames-1705912015298.jpeg",
+    imageUrl2: "assets/images/Sportsbook-1705911352020.jpeg",
     iconUrl2:
       "https://promomaterial.imgix.net/quickButtons/ColorGame-1718191763431?q=65&w=600&px=auto&auto=format",
 
@@ -328,3 +328,19 @@ export const casinoProviders = [{
          alt:"Banner Img 5"
         },
   ]
+
+
+ export const headerMenu = [
+  
+    { title: "Cricket", routing: "/sports-page/Cricket" },
+    { title: "Football", routing: "/sports-page/Football" },
+    { title: "Tennis", routing: "/sports-page/Tennis" },
+    { title: "Horse Racing", routing: "/sports-page/Horse-Racing" },
+    { title: "GreyHound Racing", routing: "/sports-page/GreyHound-Racing" },
+    { title: "Aura", routing: "/aura" },
+    { title: "Aviator", routing: "/aviator" },
+    { title: "Live Casino", routing: "/casino-lobby/casino" },
+    { title: "Slots", routing: "/casino-lobby/slot-games" },
+    { title: "Crash Games", routing: "/casino-lobby/slot-games/Crash" },
+    { title: "Fishing Games", routing: "/casino-lobby/slot-games/Shooting" },
+  ];

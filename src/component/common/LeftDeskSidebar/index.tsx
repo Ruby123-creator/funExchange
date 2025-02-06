@@ -7,7 +7,13 @@ import { FaChevronCircleLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { Color } from 'antd/es/color-picker';
-const LeftDeskSideBar: React.FC = () => {
+
+
+
+interface Props{
+  label: any
+}
+const LeftDeskSideBar: React.FC<Props> = ({label}) => {
        const Navigate = useNavigate();
   const siderbar = [{
     title: "Favourites",
@@ -24,8 +30,8 @@ const LeftDeskSideBar: React.FC = () => {
 
 },
 {
-  title: "Cricket",
-    icon: <BiSolidCricketBall fill="var(--color-quaternary)" size={20}/>,
+  title: label?.sportsName,
+    icon: label?.sidebarIcon,
     bg:"bg-bg_Secondary",
    color:"text-text_Quaternary"
 },
@@ -86,7 +92,7 @@ const LeftDeskSideBar: React.FC = () => {
                         <span className="flex w-full items-center h-full px-6 justify-start gap-3">
                           {item?.icon}
                          <span
-                                className={`font-medium text-start text-text_Ternary ${item?.color} `}>{item?.title}</span></span>
+                                className={`font-medium text-start ${item?.color} `}>{item?.title}</span></span>
                     </li>
                       )
                     })

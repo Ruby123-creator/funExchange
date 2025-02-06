@@ -3,12 +3,11 @@ import React from 'react';
 interface LayBackProps {
   lay: string;
   back: string;
-  laycount: string;
-  backcount: string;
+ 
   allowed?: boolean
 }
 
-const LayBack: React.FC<LayBackProps> = ({ lay, back, laycount, backcount ,allowed}) => {
+const LayBack: React.FC<LayBackProps> = ({ lay, back ,allowed}) => {
   return (
     <div className={`col-span-4 grid grid-cols-2 h-full ${!allowed ? 'cursor-not-allowed opacity-50':''} `}>
       <div className="w-full h-full">
@@ -20,14 +19,7 @@ const LayBack: React.FC<LayBackProps> = ({ lay, back, laycount, backcount ,allow
             >
               {back}
             </span>
-            <span
-              id="oddBtnSize"
-              className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal"
-            >
-              <span className="w-max break-all truncate">
-                <div className="odd-button__volume">{backcount}</div>
-              </span>
-            </span>
+           
           </div>
         </span>
       </div>
@@ -40,14 +32,7 @@ const LayBack: React.FC<LayBackProps> = ({ lay, back, laycount, backcount ,allow
             >
               {lay}
             </span>
-            <span
-              id="oddBtnSize"
-              className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal"
-            >
-              <span className="w-max break-all truncate">
-                <div className="odd-button__volume">{laycount}</div>
-              </span>
-            </span>
+            
           </div>
         </span>
       </div>

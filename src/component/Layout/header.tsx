@@ -8,25 +8,12 @@ import { IoIosSearch } from "react-icons/io";
 import { TbLogin } from "react-icons/tb";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { PiHandDepositLight } from "react-icons/pi";
-
+import { headerMenu } from "../../Framework/utils/static";
 import { format } from "date-fns";
 import { Drawer, Modal } from "antd";
 import LoginModal from "../modals/login";
 import AccountDrawer from "../Drawer/accountDrawer";
-const headerMenu = [
-  { title: "Home", routing: "/" },
-  { title: "Cricket", routing: "/cricket" },
-  { title: "Football", routing: "/football" },
-  { title: "Tennis", routing: "/tennis" },
-  { title: "Horse Racing", routing: "/horse-racing" },
-  { title: "GreyHound Racing", routing: "/greyhound-racing" },
-  { title: "Aura", routing: "/aura" },
-  { title: "Aviator", routing: "/aviator" },
-  { title: "Live Casino", routing: "/live-casion" },
-  { title: "Slots", routing: "/slots" },
-  { title: "Crash Games", routing: "/crash-games" },
-  { title: "Fishing Games", routing: "/fishing-games" },
-];
+
 const Header: React.FC = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");

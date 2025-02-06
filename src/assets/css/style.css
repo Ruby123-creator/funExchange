@@ -10461,6 +10461,7 @@ span.ripple {
     --tw-scale-y: 102%
 }
 
+
 .hover\:scale-\[103\%\]:hover {
     --tw-scale-x: 103%;
     --tw-scale-y: 103%;
@@ -10749,7 +10750,22 @@ span.ripple {
 .peer:checked~.peer-checked\:bg-bg_SwitchCheckedBg {
     background-color: var(--color-bg-switchCheckedBg)
 }
+.racing-fixture .ant-tabs-nav{
+    margin: 0px !important;
 
+    .ant-tabs-tab{
+        padding: 0px !important;
+
+        .ant-tabs-tab-btn{
+            background-color: #860a21;
+            color: #fff;
+            width: 35px;
+            padding: 2px 5px;
+            border-radius: 2px;
+            text-align: center;
+        }
+    }
+}
 @media (min-width:280px) {
     .xxs\:flex {
         display: flex
