@@ -39,7 +39,7 @@ const SidebarComp: React.FC = () => {
   {
     title: "Greyhound Racing",
       icon: <GiHound fill="#305765" size={20}/>,
-    routing: "/sports-page/GreyHound-Racing"
+    routing: "/sports-page/Greyhound-Racing"
   },
   {
     title: "Indian Card Games",

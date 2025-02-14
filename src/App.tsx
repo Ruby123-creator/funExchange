@@ -18,6 +18,12 @@ import AuraComp from './component/pages/Aura';
 import SportsEventPage from './component/pages/SportsEventPage';
 import WithdrawComponent from './component/pages/withdraw';
 import DepositComponent from './component/pages/Deposit';
+import TransactionPage from './component/pages/Transaction';
+import TransferStatement from './component/pages/TransferStatement';
+import OpenBets from './component/pages/OpenBets';
+import TimeSetting from './component/pages/Time-Setting';
+
+
 const App: React.FC = () => (
   <Router>
     <Layout>
@@ -27,7 +33,7 @@ const App: React.FC = () => (
         <Route path="/sports-page/Football" element={<Football />} />
         <Route path="/sports-page/Tennis" element={<Tennis />} />
         <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
-        <Route path="/sports-page/GreyHound-Racing" element={<GreyHoundRacing />} />
+        <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} />
         <Route path="/casino-lobby/casino" element={<LiveCasino />} />
         <Route path="/casino-lobby/slot-games" element={<SlotGameLobby />} />
         <Route path="/casino-lobby/slot-games/Crash" element={<CrashGames />} />
@@ -35,10 +41,14 @@ const App: React.FC = () => (
         <Route path="/aviator" element={<AviatorComp />} />
         <Route path="/aura" element={<AuraComp />} />
          <Route path='/event-page/:sport/:eventId' element={<SportsEventPage/>}/>
-
+            <Route path='/transactions' element={<TransactionPage/>}/>
+            <Route path='/transfer-statement' element={<TransferStatement/>}/>
+            <Route path='/betting-profit-loss' element={<TransferStatement/>}/>
          <Route path='/withdraw' element={<WithdrawComponent/>}/>
          <Route path='/deposit' element={<DepositComponent/>}/>
-
+         <Route path='/account-statement' element={<TransferStatement/>}/>
+         <Route path='/open-bets' element={<OpenBets/>}/>
+         <Route path='/settings' element={<TimeSetting/>}/>
       </Routes>
     </Layout>
   </Router>

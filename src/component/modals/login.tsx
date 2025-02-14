@@ -1,9 +1,53 @@
-import { Modal } from 'antd';
-import React from 'react'
+import { Dropdown, MenuProps, Modal } from 'antd';
+import React, { useState } from 'react'
 import { useUI } from '../../context/ui.context';
+import { FaMobileAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
+
+
+  
 const LoginModal = () => {
     const {loginModal, setLoginModal} = useUI();
+     const [login,setLogin] = useState("userId");
+    const [mobileNo,setMobileNo] = useState('');
+    const [password,setPassword] = useState('');
+    const [userId,setUserId] = useState('');
+    const items: MenuProps['items'] = [
+        {
+          key: '1',
+          label: <li className=" border-b-[1px] pb-1" onClick={()=>setLogin('mobile')}><button type="button" className="w-full py-1 grid grid-cols-4"><span className=" col-span-1 flex items-center justify-center ">
+            <FaMobileAlt fill={login === "userId" ? "#6B7280" :"var(--color-primary)"} size={20}/>
+         
+            </span><span className={` col-span-3 pl-2 font-normal f] font-lato text-start ${login === 'userId'?'text-gray-500':'text-text_Primary'}  text-red-600  `}>Mobile Number</span></button></li>,
+        },
+        {
+          key: '2',
+          label: <li className="pb-1" onClick={()=>setLogin('userId')}><button type="button" className="w-full py-1 grid grid-cols-4"><span className=" col-span-1 flex items-center justify-center ">
+            <FaUser  fill={login === "userId" ? "var(--color-primary)" :"#6B7280"} size={20}/>
+            </span><span className={ `col-span-3 pl-2 font-normal f] ${login === 'userId'?'text-text_Primary':' text-gray-500'} font-lato text-start text-red-600  `}>User Id</span></button></li>,
+        },
+       
+      ];
+    const handleLogin = (e:any) => {
+        e.preventDefault();
+        const envMobile = process.env.REACT_APP_MOBILE;
+        const envPassword = process.env.REACT_APP_PASSWORD;
+        const envUserId = process.env.REACT_APP_USERID;
+        console.log(envMobile,envPassword,mobileNo,password,"Majnuuu::::")
+        if ((login === 'userId'? envUserId === userId :mobileNo === envMobile) && password === envPassword) {
+            localStorage.setItem('isLogin', 'true');
+           localStorage.setItem('credential',JSON.stringify({
+            mobile:mobileNo,
+            userId:userId,
+            password:password
+           }))
+           window.location.reload();
+
+        } else {
+          alert("Invalid mobile number or password");
+        }
+      };
     const logInWithDemo = () => {
         localStorage.setItem('isLogin', 'true');
         window.location.reload();
@@ -37,32 +81,42 @@ const LoginModal = () => {
                     <div className="logo w-full lg:hidden flex items-center justify-center">
                         <img src="assets/images/form-logo.webp" alt="logo" />
                     </div>
-                    <form className="w-full gap-y-4 flex flex-col" autoComplete="on">
+                    <form className="w-full gap-y-4 flex flex-col" autoComplete="off">
                         <div title="loginFormMonileUserIdInput" className="w-full">
                             <div
                                 className="font-lato uppercase text-text_ResendOtpColor text-[10px] md:text-xs lg:text-sm ml-1">
-                                Phone Number
+                                    {
+                                        login === "userId" ? "USER ID":"PHONE NUMBER"
+                                    }
                             </div>
                             <div className="flex w-full items-center py-1 bg-bg_BgGray rounded-lg border">
-                                <span id="dropdown-phone-button"
-                                    className="flex-shrink-0 z-10 inline-flex items-center pl-2 pr-1 text-sm sm:text-md font-lato font-normal text-center">+91</span><input
+                                {
+                                    login === "userId" ? <input
+                                    id="mobile-no-input"
+                                    className="block focus:outline-none w-full font-lato px-2 bg-bg_BgGray text-text_Ternary pr-2 text-sm xs:text-md"
+                                    placeholder="USER ID" autoComplete="userId" type="text" maxLength={10}
+                                    name="userId" value={userId} onChange={(e)=>setUserId(e.target.value)} />:<>
+                                    <span id="dropdown-phone-button"
+                                    className="flex-shrink-0 z-10 inline-flex items-center pl-2 pr-1 text-sm sm:text-md font-lato font-normal text-center">+91</span>
+                                    <input
                                     id="mobile-no-input"
                                     className="block focus:outline-none w-full font-lato bg-bg_BgGray text-text_Ternary pr-2 text-sm xs:text-md"
-                                    placeholder="895XX6XXXX" autoComplete="phoneNo" type="tel" maxLength={10}
-                                    name="mobileNum" value="" /><span className="h-fit">
+                                    placeholder="895XX6XXXX" autoComplete="off" type="tel" maxLength={10}
+                                    name="mobileNum" value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)} />
+                                    
+                                  
+                                    </>
+                                }
+                                  <span className="h-fit">
                                     <div className="w-full h-full relative">
-                                        <div className="block z-100 h-full">
+                                    <Dropdown menu={{ items }} placement="bottom">
+                                    <div className="block z-100 h-full">
                                             <div id="dropdownDefaultButton"
                                                 className="w-full cursor-pointer relative hover:undefined font-medium rounded-r-sm min-h-[35px] text-sm pr-6 text-center inline-flex items-center bg-bg_BgGray text-text_Quaternary">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--color-primary)"
-                                                    width="23" height="23">
-                                                    <defs>
-                                                        <path id="5985a29c0f6a6c05c0e393b3593aa5c4"
-                                                            d="M15.5 1h-8A2.5 2.5 0 0 0 5 3.5v17A2.5 2.5 0 0 0 7.5 23h8a2.5 2.5 0 0 0 2.5-2.5v-17A2.5 2.5 0 0 0 15.5 1zm-4 21a1.5 1.5 0 1 1 0-3 1.5 1.5 0 1 1 0 3zm4.5-4H7V4h9v14z">
-                                                        </path>
-                                                    </defs>
-                                                    <use href="#5985a29c0f6a6c05c0e393b3593aa5c4"></use>
-                                                </svg><svg
+                                                    {
+                                                        login === 'userId' ?<FaUser size={20} fill="var(--color-primary)"/>:<FaMobileAlt size={20} fill="var(--color-primary)"/>
+                                                    }
+                                               <svg
                                                     className="w-5 h-5 ms-3 absolute right-1 transform transition-all ease-in-out duration-200"
                                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 10 6">
@@ -72,6 +126,8 @@ const LoginModal = () => {
                                                 </svg>
                                             </div>
                                         </div>
+      </Dropdown>
+                                        
                                     </div>
                                 </span>
                             </div>
@@ -85,7 +141,7 @@ const LoginModal = () => {
                                     <input id="password-input"
                                         className="block focus:outline-none w-full pr-2 rounded-none text-text_Ternary bg-bg_BgGray text-sm xs:text-md"
                                         placeholder="Password" autoComplete="off" type="password" name="password"
-                                        value="" data-nlok-ref-guid="32d7f6e0-ad2d-4ff8-ded5-6a486c5ecae5" />
+                                        value={password} onChange={(e)=>setPassword(e.target.value)} data-nlok-ref-guid="32d7f6e0-ad2d-4ff8-ded5-6a486c5ecae5" />
                                     <div id="norton-idsafe-field-styling-divId" 
                     //                 style="
                     //   height: 16px;
@@ -99,10 +155,7 @@ const LoginModal = () => {
                     //   z-index: 2147483646;
                     // "
                     >
-                                        <img id="norton-idsafe-field-logo-imgId"
-                                            src="chrome-extension://admmjipmmciaobhojoghlmleefbicajg/images/npw-badge-icon-locked.svg"
-                                            // style="height: 16px; width: 16px; display: block" 
-                                            />
+                                       
                                     </div>
                                     <span className="min-h-[30px] flex items-center justify-center"><svg
                                             xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -127,7 +180,9 @@ const LoginModal = () => {
                         <div title="loginButton" className="w-full">
                             <button type="submit"
                                 className="leading-normal relative overflow-hidden transition duration-150 ease-in-out w-full text-text_Quaternary bg-bg_LoginButtonColorAter shadow-lg rounded-md xs:text-[15px] px-5 py-2 flex items-center justify-center gap-x-2 font-lato-bold font-semibold text-base cursor-pointer"
-                                data-nlok-ref-guid="0face3d5-3c80-4b7a-e110-8802efec243d">
+                                data-nlok-ref-guid="0face3d5-3c80-4b7a-e110-8802efec243d" 
+                                onClick={(e)=>handleLogin(e)}
+                                >
                                 Login
                             </button>
                         </div>

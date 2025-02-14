@@ -28,7 +28,7 @@ const HorseRacing: React.FC = () => {
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
         <LeftDeskSideBar label={uiLabel}/>
         <div className=' flex items-center flex-col w-[50%]'>
-          <RacingFixture data={data}     sportsId="football"
+          <RacingFixture data={data}     sportsId="horse-racing"
           />
        
        

@@ -2,7 +2,7 @@ import { Card, Tabs } from 'antd';
 import TabPane from 'antd/es/tabs/TabPane';
 import React from 'react'
 import { MdLiveTv } from 'react-icons/md';
- 
+import { useNavigate } from 'react-router-dom';
 interface Props{
     data: any,
     sportsId: string,
@@ -28,10 +28,10 @@ const transformRacingData = (data: any) => {
 
   return Object.values(groupedData);
 };
-const RacingFixture: React.FC<Props> = ({data}) => {
+const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
     console.log(data,"Rubyyyyy")
       const uniqueCountries = transformRacingData(data);
-      
+      const Navigate = useNavigate();
      
        console.log(uniqueCountries,"jwsdhjwehdjh");
     return (
@@ -66,8 +66,10 @@ const RacingFixture: React.FC<Props> = ({data}) => {
                                 <div
                                     className="w-full h-full flex gap-2 py-2 px-5 flex-wrap">
                                       {
-                                        (item?.timing||[]).map((time:any,i:number)=>{
-                                            return <div className='w-[50px] h-[20px] flex items-center justify-center rounded font-medium   text-[12px] bg-bg_HeaderDepositBtnBgColor border-depositBtn text-text_Quaternary cursor-pointer'>{time?.time}</div>
+                                        (item?.timing||[]).map((event:any,i:number)=>{
+                                            return <div className='w-[50px] h-[20px] flex items-center justify-center rounded font-medium   text-[12px] bg-bg_HeaderDepositBtnBgColor border-depositBtn text-text_Quaternary cursor-pointer'  onClick={()=>{
+                                              Navigate(`/event-page/${sportsId}/${event?.gameId}`)
+                                            }}>{event?.time}</div>
                                         })
                                       }
                                    

@@ -5425,6 +5425,19 @@ video {
     background-color: var(--color-bg-backBtnBg)
 }
 
+.bg-bg_betmin {
+    background-color: var(--color-bg-betmin)
+}
+.bg-bg_betback {
+    background-color: var(--color-bg-betback)
+}
+.bg-bg_betlay {
+    background-color: var(--color-bg-betlay)
+}
+.bg-bg_betmax {
+    background-color: var(--color-bg-betmax)
+}
+
 .bg-bg_BackgroundColorForOddChange {
     background-color: var(--color-bg-backgroundColorForOddChange)
 }
@@ -6309,7 +6322,8 @@ video {
 }
 
 .pt-3 {
-    padding-top: .75rem
+    padding-top: .75rem;
+   
 }
 
 .pt-3\.5 {
@@ -7473,6 +7487,10 @@ video {
     --color-bg-menuHoverColor: #ecebeb;
     --color-bg-inPlayBlockBg1: #40af52;
     --color-bg-inPlayBlockBg2: #2e924b;
+    --color-bg-betmin: #e3f3fe;
+    --color-bg-betback: #a7d8fd;
+    --color-bg-betlay: #f9c9d4;
+    --color-bg-betmax:#fdeef2;
     --color-bg-backBtnBg: #a7d8fd;
     --color-bg-layBtnBg: #f9c9d4;
     --color-bg-suspendedFontColor: #1e3f5a;
@@ -8129,7 +8147,13 @@ input::placeholder {
 .toast-animation {
     animation: toast-animation .1s ease-in-out
 }
+.racing-result{
+    position: absolute;
+    top: 15px;
+    left:40%;
+    opacity: 60;
 
+}
 @keyframes toast-animation {
     0% {
         opacity: .5;
@@ -10755,17 +10779,44 @@ span.ripple {
 
     .ant-tabs-tab{
         padding: 0px !important;
-
+       
+        width: 35px;
+        padding: 2px 5px;
+        border-radius: 2px;
+        text-align: center;
+       
+    }
+    .ant-tabs-tab-active{
+        background-color: #860a21;
+        display: flex;
+        justify-content: center;
         .ant-tabs-tab-btn{
-            background-color: #860a21;
-            color: #fff;
-            width: 35px;
-            padding: 2px 5px;
-            border-radius: 2px;
+            color: #fff !important;
             text-align: center;
         }
     }
+    .ant-tabs-ink-bar .ant-tabs-ink-bar-animated{
+        width: 0 !important;
+    }
 }
+.ant-select-selector{
+    padding: 20px !important;
+}
+.bet-window{
+    .ant-collapse-header{
+        padding: 0px !important;
+    }
+    .ant-collapse-expand-icon{
+        display: none !important;
+    }
+    .ant-collapse-content .ant-collapse-content-active{
+        padding: 0 !important;
+    }
+    .ant-collapse-content-box{
+        padding: 0 !important;
+    }
+}
+
 @media (min-width:280px) {
     .xxs\:flex {
         display: flex
@@ -11896,6 +11947,7 @@ span.ripple {
 
 .datepicker-container {
     width: 48%
+    
 }
 
 .datepicker-container>div.react-datepicker-wrapper {

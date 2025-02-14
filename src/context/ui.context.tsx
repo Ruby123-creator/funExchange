@@ -6,6 +6,11 @@ const initialState = {
   ? (localStorage.getItem('isLogin'))
   : null,
   loginModal:false,
+  betOdds:{
+    odds:"",
+    amount:0,
+  },
+  stacks:[500,2000,5000,10000,20000,50000,100000,250000,500000,1000000]
 };
 
 // Create UIContext
@@ -21,6 +26,14 @@ function uiReducer(state: any, action: { type: string; data: any }) {
       return {...state, isLogin: action.data};
     case "SET_LOGIN_MODAL":
       return {...state, loginModal: action.data};
+    case "SET_MATCHED_BET":
+      return {
+        ...state, betOdds:action.data
+      }
+    case "SET_OPEN_STACKS":
+      return {
+        ...state, stacks:action.data
+      }
     default:
       return state; // Ensure the state is returned in case of unknown action type
   }
@@ -32,7 +45,9 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
 
   const authorize = (data: any) => dispatch({ type: "SET_USER_DATA", data });
   const setLoginModal = (data: any) => dispatch({ type: "SET_LOGIN_MODAL", data });
-  const value = useMemo(() => ({ ...state, authorize,setLoginModal }), [state]);
+  const setMatchedBets = (data: any) => dispatch({ type: "SET_MATCHED_BET", data });
+  const setStacks = (data: any)=>dispatch({type:"SET_OPEN_STACKS",data});
+  const value = useMemo(() => ({ ...state, authorize,setLoginModal,setMatchedBets,setStacks }), [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }

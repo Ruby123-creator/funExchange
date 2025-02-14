@@ -9,6 +9,7 @@ import RightDeskSidebar from "../../common/RightDeskSidebar.tsx";
 import EventPanel from "./EventPanel/eventPanel";
 import { useParams } from "react-router-dom";
 import { IoTennisball } from "react-icons/io5";
+import { GiHorseHead, GiHound } from "react-icons/gi";
 
 const SportsEventPage: React.FC = () => {
   const { sport, eventId }: any = useParams();
@@ -42,18 +43,18 @@ const SportsEventPage: React.FC = () => {
       case "horse-racing":
         return {
           sidebarIcon: (
-            <BiSolidCricketBall fill="var(--color-quaternary)" size={20} />
+            <GiHorseHead fill="var(--color-quaternary)" size={20} />
           ),
           sportsName: "Horse Racing",
-          icon: <BiSolidCricketBall fill="#8B191B" size={20} />,
+          icon: <GiHorseHead fill="#8B191B" size={20} />,
         };
-      case "greyhound-racing":
+      case "greyhound":
         return {
           sidebarIcon: (
-            <BiSolidCricketBall fill="var(--color-quaternary)" size={20} />
+            <GiHound fill="var(--color-quaternary)" size={20} />
           ),
           sportsName: "Greyhound Racing",
-          icon: <BiSolidCricketBall fill="#8B191B" size={20} />,
+          icon: <GiHound fill="#8B191B" size={20} />,
         };
 
       default:

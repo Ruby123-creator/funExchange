@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import SidebarComp from "../Home/sidebar";
 import RightDeskSidebar from "../../common/RightDeskSidebar.tsx";
 import BankDetails from "./bankInfo";
 
 const WithdrawComponent: React.FC = () => {
+  const [toggle,setToggle] = useState(0);
   return (
     <div className="flex flex-col transition-all lg:pt-[110px] ease-in-out duration-100 pt-[94px]">
       <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
@@ -34,34 +35,25 @@ const WithdrawComponent: React.FC = () => {
                   id="step-selectMode"
                   className="relative flex w-[100%] rounded-lg border shadow bg-bg_Quaternary overflow-clip undefined"
                 >
-                  <button
-                    className="flex items-center justify-center w-full gap-1.5 tracking-wider undefined p-3 text-sm font-semibold text-text_Quaternary text-text_Quaternary  undefined "
-                    style={{ zIndex: "10" }}
-                  >
-                    Use New Account
-                  </button>
-                  <button
-                    className="flex items-center justify-center w-full gap-1.5 tracking-wider undefined p-3 text-sm font-semibold text-text_Quinary undefined"
-                    style={{ zIndex: "10" }}
-                  >
-                    Use Previous Account
-                  </button>
-                  <div
-                    className="w-[48%] absolute z-10 h-full transition-all ease-in-out p-1"
-                    style={{
-                      zIndex: "9",
-                      width: "50%",
-                      left: "0%",
-                      bottom: "0px",
-                    }}
-                  >
-                    <div className="w-full h-full bg-bg_Primary rounded-lg"></div>
-                  </div>
+                  {
+                    ["Use New Account","Use Previous Account"].map((val,i)=>{
+                      return( <button
+                        className={`flex items-center justify-center w-full gap-1.5 tracking-wider undefined p-3 text-sm font-semibold   my-2 ${toggle === i ? 'bg-bg_Primary rounded-lg text-text_Quaternary':'text-text_Quinary'}   undefined `}
+                        style={{ zIndex: "10" }}
+                        onClick={()=>setToggle(i)}
+                      >
+                       
+                        {val}
+                      </button>)
+                    })
+                  }
+                 
+               
                 </div>
               </div>
             </div>
             <div className="w-full flex items-center gap-x-2 overflow-x-auto scroll-smooth no-scrollbar whitespace-nowrap cursor-pointer"></div>
-            <BankDetails/>
+            <BankDetails active={toggle}/>
           </div>
         </div>
         <RightDeskSidebar />

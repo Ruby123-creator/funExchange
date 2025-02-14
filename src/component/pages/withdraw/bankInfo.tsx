@@ -1,7 +1,11 @@
 import React from "react";
 import InputComp from "./input";
 
-const BankDetails = () => {
+interface Props{
+  active:any
+}
+const BankDetails:React.FC<Props> = ({active}) => {
+
   return (
     <form className="flex flex-col items-start justify-start w-full gap-y-2">
       <div className="rounded-lg bg-bg_Quaternary py-2 px-3.5 pb-5 flex flex-col items-start justify-start w-full gap-y-2 ">
@@ -29,6 +33,15 @@ const BankDetails = () => {
             value={""}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
+          {
+            !active ?  <InputComp
+            label="Confirm Account No"
+            placeholders="Enter Account Number"
+            value={""}
+            className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
+          />:""
+          }
+         
           <InputComp
             label="Account Name"
           
@@ -83,7 +96,7 @@ const BankDetails = () => {
       </div>
       <div className="w-full h-max">
         <button
-          disabled={true}
+          disabled={false}
           className=" relative overflow-hidden  transition duration-150 ease-in-out bg-bg_Primary w-full text-text_Quaternary h-10 text-base shadow-lg font-lato rounded-md font-[900] leading-4 disabled:opacity-70 flex gap-x-1 items-center justify-center cursor-pointer"
           type="submit"
         >

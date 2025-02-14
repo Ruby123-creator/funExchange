@@ -58,7 +58,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
               
             </div><span className=" max-w-[10%] min-w-[6%] mt-0.5">
                 {
-                    data?.inplay ? <FaRegCirclePlay size={20} fill="#C10B32"/>:<MdOutlineWatchLater size={20} fill="#C10B32"/>
+                    (data?.inplay||data?.status === "active") ? <FaRegCirclePlay size={20} fill="#C10B32"/>:<MdOutlineWatchLater size={20} fill="#C10B32"/>
                 }
             
             
@@ -67,7 +67,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 className=" flex flex-col items-start justify-start w-[95%] break-words gap-y-0">
                 <span
                     className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-sm font-bold"><span
-                        className=" capitalize break-words">{extractSportsDetails(data?.gametitle)?.teams}</span></span>
+                        className=" capitalize break-words">{extractSportsDetails(data?.gametitle)?.teams||data?.title}</span></span>
             </div>
         </div>
         <div className=" flex items-center justify-center gap-x-2">

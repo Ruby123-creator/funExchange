@@ -5,7 +5,7 @@ import { API_ENDPOINTS } from './utils/api-endpoints';
 
 // Function to fetch products
 const fetchFootballFixture = async () => {
-  const response = await axios.get("/api/cricket-matches.json");
+  const response = await axios.get("/api/soccermatches.json");
   return response.data;
 };
 

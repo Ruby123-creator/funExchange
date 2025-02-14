@@ -72,7 +72,7 @@ const LeftDeskSideBar: React.FC<Props> = ({label}) => {
 ]
   return (
     <div title="Menu" id="leftDeskSideBar"
-            className="hidden lg:flex p-2 overflow-y-auto z-10 w-[25%] h-[calc(100dvh-120px)] sticky top-[54px] lg:top-[110px]">
+            className="hidden lg:flex p-2 overflow-y-auto z-10 w-[20%] h-[calc(100dvh-120px)] sticky top-[54px] lg:top-[110px]">
               <div className='flex flex-col items-start border rounded-lg border-ternary3 overflow-x-hidden no-scrollbar'>
               <ul
                 className="flex bg-bg_Quaternary flex-col w-full border-b border-ternary2">

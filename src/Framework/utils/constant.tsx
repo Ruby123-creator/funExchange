@@ -1,3 +1,4 @@
+import { format } from "date-fns";
  export function extractEventDetails(eventName: String|any) {
        
         const eventParts = (eventName||"").split("/");
@@ -32,3 +33,30 @@
     
         return null; // Ignore events that are neither today nor tomorrow
     }
+
+
+    export const getFormattedDateTime = (val: string) => {
+        const now = new Date();
+    
+        // Format the date and time
+        const formattedDate = format(now, "MMM do, yyyy"); // e.g., "Dec 20th, 2024"
+        const formattedTime = format(now, "HH:mm:ss"); // e.g., "10:34:13"
+    
+        // Get the timezone offset in GMT format
+        const timezoneOffset = now.getTimezoneOffset();
+        const timezoneHours = Math.abs(Math.floor(timezoneOffset / 60));
+        const timezoneMinutes = Math.abs(timezoneOffset % 60);
+        const timezoneSign = timezoneOffset > 0 ? "-" : "+";
+        const timezone = `GMT ${timezoneSign}${timezoneHours}:${String(
+          timezoneMinutes
+        ).padStart(2, "0")}`;
+         const dateTime ={
+            headerDate: `${formattedDate} (${timezone})`,
+            haederTime:` ${formattedTime}`,
+            dateSetting: format(now, "MMMM do, yyyy")
+         }
+        // Combine everything into the desired format
+        return val === "date"
+          ? `${formattedDate} (${timezone})`
+          : ` ${formattedTime}`;
+      };

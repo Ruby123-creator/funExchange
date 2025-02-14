@@ -1,12 +1,13 @@
 
-const url = 'https://fakestoreapi.com/'
+const url = 'http://160.30.206.63:3000/get-json'
 
 export const API_ENDPOINTS = {
-    GET_PRODUCT: `
-    ${url}products`,
-    GET_PRODUCT_BY_CATEGORY:`${url}products/category`,
-    GET_CATEGORY:`${url}products/categories`,
-    GET_CART_PRODUCT:`${url}carts`,
+    SPORTS_MATCHES:`${url}?filepath=game-list`,
+    footbal:"get-json?filepath=game-list/cricketmatches",
+    tennis:"get-json?filepath=game-list/tennismatches",
+    MATCHES_DATA:`${url}?filepath`,
+    CRICKET_FANCY_DATA: `${url}?filepath=cricket/session`
+   
 
 
 }

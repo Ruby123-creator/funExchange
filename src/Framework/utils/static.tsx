@@ -336,7 +336,7 @@ export const casinoProviders = [{
     { title: "Football", routing: "/sports-page/Football" },
     { title: "Tennis", routing: "/sports-page/Tennis" },
     { title: "Horse Racing", routing: "/sports-page/Horse-Racing" },
-    { title: "GreyHound Racing", routing: "/sports-page/GreyHound-Racing" },
+    { title: "GreyHound Racing", routing: "/sports-page/Greyhound-Racing" },
     { title: "Aura", routing: "/aura" },
     { title: "Aviator", routing: "/aviator" },
     { title: "Live Casino", routing: "/casino-lobby/casino" },
@@ -344,3 +344,266 @@ export const casinoProviders = [{
     { title: "Crash Games", routing: "/casino-lobby/slot-games/Crash" },
     { title: "Fishing Games", routing: "/casino-lobby/slot-games/Shooting" },
   ];
+
+
+  export const casinoCards =[{
+    img:"/assets/1x2gaming-D40uNj3a.svg"
+  },
+{
+ img:"/assets/7mojos-Py1bIlTK.svg" 
+},{
+  img:"/assets/ad-lunam-b7fE7vWv.svg"
+},
+{
+  img:"https://luckmedia.link/providers/aux/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/btr/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/Bet_Games-DQk1EkcT.svg"
+},
+{
+  img:"https://luckmedia.link/providers/btg/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/blg/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/bng/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/cqc/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+
+{
+  img:"/assets/dragonsoft-CjyAhXve.svg"
+},
+{
+  img:"/assets/elk-provider-B53cQllv.svg"
+},
+{
+  img:"https://luckmedia.link/providers/end/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/evo/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/evo-play-B4a-CkvN.svg"
+},
+{
+  img:"https://luckmedia.link/providers/ezg/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/fa-chai-D6An2gCp.svg"
+},
+{
+  img:"https://luckmedia.link/providers/fnt/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/fgs/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/galaxsys-DOOEwUo_.svg"
+},
+{
+  img:"/assets/gameart-C8h1_IIc.svg"
+},
+{
+  img:"/assets/gamingCorps-CksWDq3n.svg"
+},
+{
+  img:"https://luckmedia.link/providers/gmz/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/hbn/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/hcw/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/ho-gaming-CAWkGdU2.svg"
+},
+{
+  img:"/assets/irondogstudio-qDFHAY_U.svg"
+},
+{
+  img:"/assets/kalamba-games-TZ5_nARA.svg"
+},
+{
+  img:"https://luckmedia.link/providers/kir/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/mnn/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/mbl/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/ntn/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/net-game-entertainment-BL5nhYPW.svg"
+},
+{
+  img:"https://luckmedia.link/providers/nlc/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/omi-gaming-C9z3wx9J.svg"
+},
+{
+  img:"/assets/onetouch-gaming-BSAfsh0z.svg"
+},
+{
+  img:"https://luckmedia.link/providers/onl/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/png/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/plt/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/pnt/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/prospect-gaming-B0R8Xne-.svg"
+},
+{
+  img:"https://luckmedia.link/providers/psh/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/qps/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/rtg/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/reg/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/revolver-gaming-D-XDe58E.svg"
+},
+{
+  img:"/assets/rival-powered-C0NPKyGi.svg"
+},
+{
+  img:"/assets/rtg-slots-D2KdxDUZ.svg"
+},
+{
+  img:"/assets/SA-Gaming-BUOAf51M.svg"
+},
+{
+  img:"/assets/skywind-gaming-DZg2XH3X.svg"
+},
+{
+  img:"/assets/slotmill-games-CzuoVJKU.svg"
+},
+{
+  img:"/assets/SpearheadStudios-CmYqcAbu.svg"
+},
+{
+  img:"https://luckmedia.link/providers/spb/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"https://luckmedia.link/providers/tdk/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/Triple-PG-DlqaSDFS.svg"
+},
+{
+  img:"/assets/turbo-games-BaS9dDhA.svg"
+},
+{
+  img:"/assets/vivo-gaming-DgqeW9vk.svg"
+},
+{
+  img:"https://luckmedia.link/providers/wzd/logo_3_2_cl_dark.svg?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format"
+},
+{
+  img:"/assets/woohoo-gaming-BXurIsks.svg"
+}
+]
+
+export const baccarats=[{
+  img:"https://client.qtlauncher.com/images/?id=EVO-always8baccarat_en_US&amp&type=logo-square&amp;version=1731473904011"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-bacbo_en_US&amp&type=logo-square&amp;version=1678359207526"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=BTV-baccarat_en_US&amp&type=logo-square&amp;version=1662976207439"
+},
+{
+ img:"https://client.qtlauncher.com/images/?id=EVO-baccarat_en_US&amp&type=logo-square&amp;version=1678359251397" 
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-baccarat_en_US&amp&type=logo-square&amp;version=1716211287452"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=L88-baccarat1_en_US&amp&type=logo-square&amp;version=1727968121327"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=L88-baccarat3_en_US&amp&type=logo-square&amp;version=1727875420320"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=L88-baccarat5_en_US&amp&type=logo-square&amp;version=1727875500599"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-baccarata_en_US&amp&type=logo-square&amp;version=1726028817311"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-baccarata_en_US&amp&type=logo-square&amp;version=1717130391537"
+}
+]
+
+export const roulette=[{
+  img:"https://client.qtlauncher.com/images/?id=VGL-americanautoroulette_en_US&amp&type=logo-square&amp;version=1701672928302"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-americanroulette_en_US&amp&type=logo-square&amp;version=1678358704943"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-autolightningroulette_en_US&amp&type=logo-square&amp;version=1701277574098"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=BTL-autoroulette_en_US&amp&type=logo-square&amp;version=1727274726306"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=BTL-autoroulette_en_US&amp&type=logo-square&amp;version=1727274726306"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-automaticroulette_en_US&amp&type=logo-square&amp;version=1716210438504"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=L88-autoroulette1_en_US&amp&type=logo-square&amp;version=1727875079920"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-autoroulette1_en_US&amp&type=logo-square&amp;version=1716214180331"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-autoroulette_en_US&amp&type=logo-square&amp;version=1726028196831"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-autoroulettelapartage_en_US&amp&type=logo-square&amp;version=1702450712159"
+}
+]
+
+export const andarbhar =[{
+  img:"https://client.qtlauncher.com/images/?id=EZU-andarbahar_en_US&amp&type=logo-square&amp;version=1678476979546"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=L88-andarbahar1_en_US&amp&type=logo-square&amp;version=1727874820295"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-casinomarinaandarbahar_en_US&amp&type=logo-square&amp;version=1685691014988"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=SAG-mandarbahar_en_US&amp&type=logo-square&amp;version=1702895346689"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EVO-superandarbahar_en_US&amp&type=logo-square&amp;version=1678388339595"
+},
+{
+  img:"https://client.qtlauncher.com/images/?id=EZU-ultimateandarbahar_en_US&amp&type=logo-square&amp;version=1669146546695"
+}]

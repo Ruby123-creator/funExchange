@@ -83,11 +83,13 @@ const UpcomingEvents: React.FC<Props> = ({events}) => {
                                     <span
                                         className="col-span-6 h-12 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket">
                                         <div
-                                            className="w-full grid grid-cols-12 grid-flow-col overflow-auto h-full">
-                                              <LayBack lay={item?.lay1} back={item?.back1} allowed={false} />
-                                              <LayBack lay={item?.lay11} back={item?.back11} allowed={false} />
-                                           
-                                              <LayBack lay={item?.lay12} back={item?.back12} allowed={false} />
+                                            className="w-full grid grid-cols-6 grid-flow-row overflow-auto h-full">
+                                                <LayBack val={item?.lay1} allowed={false} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back1} allowed={false} className={'bg-bg_LayBtnBg border-layBtn'}/>
+                                                     <LayBack val={item?.lay11} allowed={false} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back11} allowed={false} className={'bg-bg_LayBtnBg border-layBtn'}/>
+                                                     <LayBack val={item?.lay12} allowed={false} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back12} allowed={false} className={'bg-bg_LayBtnBg border-layBtn'}/>
                                             
                                            
                                         </div>

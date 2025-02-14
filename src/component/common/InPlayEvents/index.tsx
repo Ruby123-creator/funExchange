@@ -78,6 +78,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                 </div>
                                 {
                                   ((val?.eventSchedule)||[]).map((item: any,i: any)=>{
+                                    console.log(item,"huddaa");
                                      const detail = extractEventDetails(item?.eventName)
                                      console.log(item,"gwdjgwdg")
                                     return(
@@ -97,10 +98,11 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                             <span id="inPlayTeamName"
                                                 className=" text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100 cursor-pointer" onClick={()=>{
                                                    if(isLogin){
+
                                                     Navigate(`/event-page/${val?.sportsId}/${item?.gameId}`);
                                                    }
                                                     else{
-                                                        setLoginModal(true)
+                                                        setLoginModal(true);
                                                     }
                                                 }}>
                                                
@@ -135,12 +137,17 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                         <span
                                             className=" col-span-6 h-12 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket ">
                                             <div
-                                                className="w-full grid grid-cols-12 grid-flow-col overflow-auto h-full">
-                                                     <LayBack lay={item?.lay1} allowed={true} back={item?.back1}/>
-                                              <LayBack lay={item?.lay11} back={item?.back11} allowed={true}/>
-                                           
-                                              <LayBack lay={item?.lay12} allowed={true} back={item?.back12} />
-                                               
+                                                className="w-full grid grid-cols-6 grid-flow-row overflow-auto h-full">
+
+
+                                                     <LayBack val={item?.lay1} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back1} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
+                                                     <LayBack val={item?.lay11} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back11} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
+                                                     <LayBack val={item?.lay12} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
+                                                     <LayBack val={item?.back12} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
+                                             
+                                              
                                             </div>
                                         </span>
                                     </div>
