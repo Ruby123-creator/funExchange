@@ -44,6 +44,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
           <div className=" bg-bg_Quaternary rounded-[3px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] py-[1px] cursor-pointer">
             {(data || []).map((item: any, i: number) => {
               return (
+                <>
                 <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
                   <div className="w-full  md:col-span-5  col-span-7 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5 pr-[3px]">
                     <div className=" truncate col-span-12 flex items-start justify-center h-full flex-col">
@@ -120,6 +121,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                   </span>
                   <div className="col-span-12 h-max"></div>
                 </div>
+                </>
               );
             })}
           </div>

@@ -24,7 +24,7 @@ const SportsEventPage: React.FC = () => {
           sportsName: "Cricket",
           icon: <BiSolidCricketBall fill="#8B191B" size={20} />,
         };
-      case "football":
+      case "soccer":
         return {
           sidebarIcon: (
             <BiFootball fill="var(--color-quaternary)" size={20} />
@@ -61,13 +61,7 @@ const SportsEventPage: React.FC = () => {
         break;
     }
   };
-  const uiLabel = {
-    sidebarIcon: (
-      <BiSolidCricketBall fill="var(--color-quaternary)" size={20} />
-    ),
-    sportsName: "Cricket",
-    icon: <BiSolidCricketBall fill="#8B191B" size={20} />,
-  };
+ 
 
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">

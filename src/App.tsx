@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './component/Layout/layout';
 import Home from './component/pages/Home';
-import CricketDetails from './component/pages/Cricket/cricket';
+
 
 import './assets/css/style.css';
-import Football from './component/pages/Football';
-import Tennis from './component/pages/Tennis';
+
+
 import HorseRacing from './component/pages/HorseRacing';
 import GreyHoundRacing from './component/pages/GreyhoundRacing';
 import LiveCasino from './component/pages/LiveCasino';
@@ -22,6 +22,7 @@ import TransactionPage from './component/pages/Transaction';
 import TransferStatement from './component/pages/TransferStatement';
 import OpenBets from './component/pages/OpenBets';
 import TimeSetting from './component/pages/Time-Setting';
+import SportsDetail from './component/pages/SportsPage';
 
 
 const App: React.FC = () => (
@@ -29,11 +30,11 @@ const App: React.FC = () => (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sports-page/Cricket" element={<CricketDetails />} />
-        <Route path="/sports-page/Football" element={<Football />} />
-        <Route path="/sports-page/Tennis" element={<Tennis />} />
-        <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
-        <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} />
+        <Route path="/sports-page/:sportsName" element={<SportsDetail />} />
+        {/* <Route path="/sports-page/Football" element={<Football />} />
+        <Route path="/sports-page/Tennis" element={<Tennis />} /> */}
+        {/* <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
+        <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} /> */}
         <Route path="/casino-lobby/casino" element={<LiveCasino />} />
         <Route path="/casino-lobby/slot-games" element={<SlotGameLobby />} />
         <Route path="/casino-lobby/slot-games/Crash" element={<CrashGames />} />

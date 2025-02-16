@@ -4,16 +4,16 @@ import { Product } from '../types/Product';
 import { API_ENDPOINTS } from './utils/api-endpoints';
 
 // Function to fetch products
-const fetchCricketFixture = async () => {
-  const response = await axios.get(`${API_ENDPOINTS.SPORTS_MATCHES}/cricketmatches`);
+const fetchCricketFixture = async (sportsName:string|undefined) => {
+  const response = await axios.get(`${API_ENDPOINTS.SPORTS_MATCHES}/${sportsName}matches`);
   return response.data;
 };
 
 // React Query Hook
-export const useCricketFixture = () => {
+export const useCricketFixture = (sportsName:string|undefined) => {
   return useQuery({
-    queryKey: ['cricketFixture'], // Query Key
-    queryFn: fetchCricketFixture, // Query Function
+    queryKey: ['cricketFixture',sportsName], // Query Key
+    queryFn:()=>fetchCricketFixture(sportsName), // Query Function
     refetchInterval: 1000 * 10, // Cache for 5 minutes
       // Retry 3 times on failure
     refetchOnWindowFocus: false, // Disable auto-refetch on window focus

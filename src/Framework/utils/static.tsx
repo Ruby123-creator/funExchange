@@ -36,17 +36,17 @@ export const siderbarDrawer = [
   {
     title: "Cricket",
       icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
-     routing: "/sports-page/Cricket"
+     routing: "/sports-page/cricket"
   },
   {
     title: "Football",
       icon: <BiFootball  size={20}/>,
-   routing: "/sports-page/Football"
+   routing: "/sports-page/soccer"
   },
   {
     title: "Tennis",
       icon: <IoTennisball fill="#7FBA42" size={20}/>,
-     routing: "/sports-page/Tennis"
+     routing: "/sports-page/tennis"
   },
   {
     title: "Horse Racing",
@@ -411,9 +411,9 @@ export const casinoProviders = [{
 
  export const headerMenu = [
   
-    { title: "Cricket", routing: "/sports-page/Cricket" },
-    { title: "Football", routing: "/sports-page/Football" },
-    { title: "Tennis", routing: "/sports-page/Tennis" },
+    { title: "Cricket", routing: "/sports-page/cricket" },
+    { title: "Football", routing: "/sports-page/soccer" },
+    { title: "Tennis", routing: "/sports-page/tennis" },
     { title: "Horse Racing", routing: "/sports-page/Horse-Racing" },
     { title: "GreyHound Racing", routing: "/sports-page/Greyhound-Racing" },
     { title: "Aura", routing: "/aura" },

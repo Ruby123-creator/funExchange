@@ -70,7 +70,7 @@ const Header: React.FC = () => {
     </div> */}
 
       <div id="header" title="header" className="fixed top-0 w-full z-[100]">
-        <header>
+        
           
             <div className="flex flex-col autoAnimate">
               <div
@@ -353,7 +353,7 @@ const Header: React.FC = () => {
             
             </div>
          
-        </header>
+       
       </div>
      <LoginModal/>
 

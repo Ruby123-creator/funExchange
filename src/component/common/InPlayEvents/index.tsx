@@ -5,34 +5,22 @@ import { MdLiveTv } from "react-icons/md";
 import { extractEventDetails } from '../../../Framework/utils/constant';
 import LayBack from '../LayBack';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useUI } from '../../../context/ui.context';
+import NoFound from '../NoFound';
+import UpcomingEvents from '../UpComingEvents';
 interface Props{
     events:any
 }
 const InPlayEvents: React.FC<Props> = ({events}) => {
     const {isLogin, setLoginModal} = useUI();
+     const [active , setActive] = useState('In Play')
      const Navigate =  useNavigate();
-     console.log(events,"mojjjjiiiii")
+     const location = useLocation();
+     console.log(location,window.location,"mojjjjiiiii")
    
   return (
     
-    <div className="w-full h-full pt-[130px]" >
-    <div className="px-2 w-full lg:hidden">
-        <div
-            className="flex flex-row font-manrope-regular items-center justify-start gap-2.5 relative">
-            <div className="cursor-pointer flex flex-row items-center justify-center">
-                <span
-                    className="text-text_Quaternary px-[25px] py-2 text-[13px] md:text-sm lg:text-base font-bold leading-4 active:scale-95 block z-10">In
-                    Play</span>
-            </div>
-            <div className="cursor-pointer flex flex-row items-center justify-center">
-                <span
-                    className="text-text_Ternary bg-bg_Quaternary rounded-full border border-ternary6 px-[25px] py-2 text-[13px] md:text-sm lg:text-base font-bold leading-4 active:scale-95 block z-10">Competitions</span>
-            </div>
-            <div className="absolute z-1 w-full h-full transition-all ease-in-out duration-150 bg-bg_Primary text-sm bg-bg_Primary rounded-full border border-primary"
-                style={{width: "0px", top: "1px", left: '0px', height: '0px'}}></div>
-        </div>
-    </div>
     <div className="w-full mt-[15px]">
         <div className="py-1 px-[6px] w-full">
             <div className="w-full font-helvetica-neue">
@@ -158,8 +146,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                
             </div>
         </div>
-     
-    </div>
+       
     </div>
   )
 }

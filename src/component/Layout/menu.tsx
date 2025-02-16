@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { headerMenu, mobileHeaderMenu } from "../../Framework/utils/static";
 import { useUI } from "../../context/ui.context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const HeaderMenu = () => {
+  const {sportsName} = useParams();
   const Navigate = useNavigate();
   const { isLogin, setLoginModal } = useUI();
   const [active, setActive] = useState("Cricket");
+  console.log(sportsName,"ashu");
   return (
     <div className="flex flex-col">
       <div className="flex w-full overflow-x-auto no-scrollbar bg-bg_Quaternary p-1 items-start md:items-center md:justify-center">
@@ -39,9 +41,10 @@ const HeaderMenu = () => {
             </span>
           );
         })}
+       
         {(mobileHeaderMenu || []).map((item, i) => {
           return (
-            <span>
+            <span className="md:hidden">
               <button className="text-xs cursor-pointer uppercase border mr-1 active:border-primary rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9  w-max px-3  py-1  text-text_HeaderDeskNavMenu   "
                onClick={(e) => {
                 if (isLogin) {
@@ -54,7 +57,7 @@ const HeaderMenu = () => {
               >
                 <span className="flex w-full items-center h-full gap-3">
                   <span className=" flex flex-row items-center justify-center">
-                    <span className="md:hidden">{item?.icon}</span>
+                    <span className="">{item?.icon}</span>
                     <span className="font font-lato text-[12px] ml-[4px]">
                       {item?.title}
                     </span>
@@ -64,6 +67,8 @@ const HeaderMenu = () => {
             </span>
           );
         })}
+        
+        
       </div>
       <div className="lg:hidden flex flex-col  ">
         <div className="w-full h-[34px] pr-[4px] flex items-center justify-between gap-1  relative ">
@@ -91,7 +96,7 @@ const HeaderMenu = () => {
             </div>
             <span className=" w-full h-full capitalize ml-[4px] flex items-center  text-text_Ternary  font-lato font-bold text-[16px] leading-5 ">
               <span className="">
-                <span>Cricket</span>
+                <span>Cricket{sportsName}</span>
               </span>
             </span>
           </div>

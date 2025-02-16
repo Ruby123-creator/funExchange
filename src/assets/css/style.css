@@ -4764,7 +4764,9 @@ video {
 .gap-y-3 {
     row-gap: .75rem
 }
-
+.ant-drawer-content{
+    background: transparent !important;
+}
 .gap-y-4 {
     row-gap: 1rem
 }
@@ -11735,7 +11737,9 @@ span.ripple {
     .lg\:pt-\[110px\] {
         padding-top: 110px
     }
-
+    .lg\:pt-\[150px\] {
+        padding-top: 150px
+    }
     .lg\:text-\[12px\] {
         font-size: 12px
     }
