@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUI } from "../../../../context/ui.context";
 import LayBack from "../../../common/LayBack";
+import BetSlip from "../../../common/BettingWindow/betSlip";
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
 }
 const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
   const { setMatchedBets, betOdds } = useUI();
+  const [betwindow,setBetWindow] = useState(-1);
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
       <div className=" px-2 font-helvetica-neue">
@@ -58,7 +60,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                   </div>
                   <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
 
-                  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap">
+                  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap" onClick={()=>setBetWindow(i)}>
                     <LayBack
                       val={item?.BackPrice2}
                       allowed={true}
@@ -121,6 +123,14 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                   </span>
                   <div className="col-span-12 h-max"></div>
                 </div>
+                {
+                  (betOdds?.odds && i === betwindow) ?  <div className="col-span-12 h-max lg:hidden"><span className=" col-span-12 h-max w-full">
+
+                  <BetSlip/>
+
+           </span></div>:""
+                }
+               
                 </>
               );
             })}
