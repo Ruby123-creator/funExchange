@@ -73,7 +73,7 @@ const SportsEventPage: React.FC = () => {
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
       <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
         <LeftDeskSideBar label={pageName(sport)} />
-        <div className=" flex items-center flex-col w-[50%]">
+        <div className=" flex items-center flex-col w-full lg:w-[50%]">
           <EventPanel />
         </div>
 

@@ -55,16 +55,9 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                       <span className="text-[12px] font-bold text-text_Success"></span>
                     </div>
                   </div>
-                  <div className=" col-span-5 md:col-span-7  h-12 grid grid-cols-2 md:grid-cols-6 relative">
-                    <LayBack
-                      val={item?.BackPrice1}
-                      size={item?.BackSize1}
-                      max={item?.max}
-                      allowed={true}
-                      betTrue={true}
+                  <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
 
-                      className={"bg-bg_BackBtnBg border-backBtn"}
-                    />
+                  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap">
                     <LayBack
                       val={item?.BackPrice2}
                       allowed={true}
@@ -80,6 +73,15 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                       max={item?.max}
                        betTrue={true}
                       size={item?.BackSize3}
+                      className={"bg-bg_BackBtnBg border-backBtn"}
+                    />
+                     <LayBack
+                      val={item?.BackPrice1}
+                      size={item?.BackSize1}
+                      max={item?.max}
+                      allowed={true}
+                      betTrue={true}
+
                       className={"bg-bg_BackBtnBg border-backBtn"}
                     />
                     <LayBack
@@ -115,6 +117,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
 
                    
                   </div>
+                  </span>
                   <div className="col-span-12 h-max"></div>
                 </div>
               );

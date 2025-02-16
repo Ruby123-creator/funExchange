@@ -1,3 +1,13 @@
+import { BiFootball, BiSolidCricketBall } from "react-icons/bi";
+import { BsInstagram } from "react-icons/bs";
+import { FaTelegramPlane } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa6";
+import { GiCardKingDiamonds, GiHorseHead, GiHound } from "react-icons/gi";
+import { IoIosJet, IoIosMail, IoLogoWhatsapp } from "react-icons/io";
+import { IoTennisball } from "react-icons/io5";
+import { GiCirclingFish } from "react-icons/gi";
+import { icons } from "antd/es/image/PreviewGroup";
+
 export const bannerImages = [{
     imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
     alt:"Banner Img 1"
@@ -21,7 +31,76 @@ export const bannerImages = [{
 },
 
 ]
-
+export const siderbarDrawer = [
+ 
+  {
+    title: "Cricket",
+      icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
+     routing: "/sports-page/Cricket"
+  },
+  {
+    title: "Football",
+      icon: <BiFootball  size={20}/>,
+   routing: "/sports-page/Football"
+  },
+  {
+    title: "Tennis",
+      icon: <IoTennisball fill="#7FBA42" size={20}/>,
+     routing: "/sports-page/Tennis"
+  },
+  {
+    title: "Horse Racing",
+      icon: <GiHorseHead fill="#864D44" size={20}/>,
+    routing: "/sports-page/Horse-racing"
+  },
+  {
+    title: "Greyhound Racing",
+      icon: <GiHound fill="#305765" size={20}/>,
+    routing: "/sports-page/Greyhound-Racing"
+  },
+  {
+    title: "Indian Card Games",
+      icon: <GiCardKingDiamonds fill="#40424F" size={20}/>,
+      routing: "/sports-page/indian-card-games"
+  },
+  {
+    title: "Live Casino",
+      icon: <GiCardKingDiamonds fill="#40424F" size={20}/>,
+     routing: "/casino-lobby/casino"
+  },
+  {
+    title: "Aviator",
+      icon: <IoIosJet fill="#c10931" size={20}/>,
+       routing: "/aviator"
+  },
+  {
+    title: "Slot Games",
+      icon: <IoIosJet fill="#E84C4D" size={20}/>,
+routing: "/casino-lobby/slot-games"
+  },
+ 
+  ]
+export const socialLinks = [{
+      title:"",
+      icon: <FaTelegramPlane size={25} fill="var(--color-quaternary)" />
+    },
+    {
+      title:"",
+      icon: <IoLogoWhatsapp size={25} fill="var(--color-quaternary)"/>
+    },
+    {
+      title:"",
+      icon: <IoIosMail size={30} fill="var(--color-quaternary)"/>
+    },
+    {
+      title:"",
+      icon: <FaFacebook size={25} fill="var(--color-quaternary)"/>
+    },
+    {
+      title:"",
+      icon: <BsInstagram size={25} fill="var(--color-quaternary)"/>
+    },
+  ]
 
 export const carousalImages = [
 {
@@ -345,7 +424,16 @@ export const casinoProviders = [{
     { title: "Fishing Games", routing: "/casino-lobby/slot-games/Shooting" },
   ];
 
-
+  export const mobileHeaderMenu = [
+  
+    
+    { title: "Aviator", routing: "/aviator",icon:  <img src="/icons/aviator.svg" alt="My Icon" width={20} height={20} />
+     },
+    { title: "Live Casino", routing: "/casino-lobby/casino" ,icon:  <img src="/icons/casino.svg" alt="My Icon" width={20} height={20} />},
+    { title: "Slots", routing: "/casino-lobby/slot-games", icon: <img src="/icons/slot.svg" alt="My Icon" width={20} height={20} />},
+    { title: "Crash Games", routing: "/casino-lobby/slot-games/Crash" ,icon: <img src="/icons/aviator.svg" alt="My Icon" width={20} height={20} />},
+    { title: "Fishing Games", routing: "/casino-lobby/slot-games/Shooting" ,icon:<GiCirclingFish size={20} fill="#c10931"/>},
+  ];
   export const casinoCards =[{
     img:"/assets/1x2gaming-D40uNj3a.svg"
   },

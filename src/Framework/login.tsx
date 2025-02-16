@@ -22,7 +22,7 @@ const fetchUserDetails = async () => {
     return useQuery({
       queryKey: ['useDetail-detail'], // Include `id` for query uniqueness
       queryFn: () => fetchUserDetails(), // Fetch function
-      staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+      refetchInterval: 1000 * 10, // Cache for 5 minutes
       retry: 3,                 // Retry on failure
       refetchOnWindowFocus: false, // No auto-refetch on focus
     });

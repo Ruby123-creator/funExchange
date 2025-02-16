@@ -5,7 +5,7 @@ import { API_ENDPOINTS } from './utils/api-endpoints';
 
 // Function to fetch products
 const fetchHorseRacingFixture = async () => {
-  const response = await axios.get("/api/horse-matches.json");
+  const response = await axios.get(API_ENDPOINTS.HORSE_RACING);
   return response.data;
 };
 

@@ -14,8 +14,8 @@ export const useCricketFixture = () => {
   return useQuery({
     queryKey: ['cricketFixture'], // Query Key
     queryFn: fetchCricketFixture, // Query Function
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
-    retry: 3,                 // Retry 3 times on failure
+    refetchInterval: 1000 * 10, // Cache for 5 minutes
+      // Retry 3 times on failure
     refetchOnWindowFocus: false, // Disable auto-refetch on window focus
   });
 };
@@ -24,7 +24,7 @@ export const useCricketFixture = () => {
 
 // Fetch Product by ID
 const fetchCricketDetailsById = async ({id,sport}:any) => {
-  const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=cricket/607922341`);
+  const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${sport}/${id}`);
   return response.data;
 };
 
@@ -33,8 +33,9 @@ export const useCricketDetailsById = ({id,sport}:any) => {
   return useQuery({
     queryKey: ['cricket-detail', id,sport], // Include `id` for query uniqueness
     queryFn: () => fetchCricketDetailsById({id,sport}), // Fetch function
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
-    retry: 3,                 // Retry on failure
+    
+    retry: 3,  
+    refetchInterval:1000,               // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });
 };

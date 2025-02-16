@@ -7,6 +7,7 @@ interface Props{
     data:any
 }
 const RacingBet :React.FC<Props> = ({data}) => {
+    console.log(data,"apibindss::::")
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
     <div className=" px-2 font-helvetica-neue">
@@ -36,9 +37,10 @@ const RacingBet :React.FC<Props> = ({data}) => {
                             </div>
                             <div
                                 className={`col-span-5 md:col-span-7 ${item?.result ? '':''} relative h-12 grid grid-cols-2 md:grid-cols-6 relative`}>
-                              <BettingBtns data={{price:item?.b_price,size:item?.b_size , bg:"bg-bg_betmin ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
                               <BettingBtns data={{price:item?.l_price,size:item?.l_size , bg:"bg-bg_betmin",bg1:"bg-bg_Quaternary", result:item?.result}}/>
                               <BettingBtns data={{price:item?.b1_price,size:item?.b1_size , bg:"bg-bg_betback",bg1:"bg-bg_BackBtnBg bg-opacity-5", result:item?.result}}/>
+                              <BettingBtns data={{price:item?.b_price,size:item?.b_size , bg:"bg-bg_betmin ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
+                              
                               <BettingBtns data={{price:item?.b2_price,size:item?.b2_size , bg:"bg-bg_betlay",bg1:"bg-bg_LayBtnBg bg-opacity-5", result:item?.result}}/>
                               <BettingBtns data={{price:item?.l1_price,size:item?.l1_size , bg:"bg-bg_betmax ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
                               <BettingBtns data={{price:item?.l2_price,size:item?.l2_size , bg:"bg-bg_betmax ",bg1:"bg-bg_Quaternary", result:item?.result}}/>

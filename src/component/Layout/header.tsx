@@ -5,7 +5,8 @@ import { IoIosSearch } from "react-icons/io";
 import { TbLogin } from "react-icons/tb";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { PiHandDepositLight } from "react-icons/pi";
-import { headerMenu } from "../../Framework/utils/static";
+import { IoMenu } from "react-icons/io5";
+import { headerMenu, mobileHeaderMenu } from "../../Framework/utils/static";
 import { format } from "date-fns";
 import { Drawer, Modal } from "antd";
 import LoginModal from "../modals/login";
@@ -13,6 +14,8 @@ import AccountDrawer from "../Drawer/accountDrawer";
 import { useUI } from "../../context/ui.context";
 import { getFormattedDateTime } from "../../Framework/utils/constant";
 import { useAdminDetails } from "../../Framework/login";
+import MobileDrawer from "../Drawer/mobileDrawer";
+import HeaderMenu from "./menu";
 
 const Header: React.FC = () => {
   const {isLogin,setLoginModal} = useUI();
@@ -20,11 +23,12 @@ const Header: React.FC = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
+  const [mobileDrawer,setMobileDrawer] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
     const {data} = useAdminDetails();
     const [userData,setUserData] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [active , setActive] = useState('Cricket');
+ 
   const showDrawer = () => {
     setOpenDrawer(true);
   };
@@ -67,8 +71,8 @@ const Header: React.FC = () => {
 
       <div id="header" title="header" className="fixed top-0 w-full z-[100]">
         <header>
-          <div className="flex flex-col">
-            <div className="flex flex-col shadow-lg autoAnimate">
+          
+            <div className="flex flex-col autoAnimate">
               <div
                 id="beforelogin"
                 className="w-full bg-headerBg h-[54px] lg:h-[72px] pr-[4px] md:px-4 flex items-center justify-between gap-1   relative "
@@ -85,7 +89,8 @@ const Header: React.FC = () => {
                       className=" leading-normal relative overflow-hidden  transition duration-150 ease-in-out bg-none border-none h-full flex items-center justify-center active:scale-150  w-[100%] shadow-none px-1 cursor-pointer"
                       type="button"
                     >
-                      <span>
+                      <span onClick={()=>setMobileDrawer(true)}>
+                       
                         <svg
                           height="19"
                           width="16"
@@ -152,23 +157,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className="w-max flex items-center justify-center">
-                  <div
-                    id="mobileSearchIcon"
-                    className="lg:hidden mr-[2px] flex items-center justify-center"
-                  >
-                    <span className="bg-none border-none shadow-none px-1">
-                      <svg
-                        fill="#fff"
-                        className=""
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"></path>
-                      </svg>
-                    </span>
-                  </div>
+                 
 
                   {isLogin ? (
                     <>
@@ -294,6 +283,7 @@ const Header: React.FC = () => {
                             title="Balance"
                             className=" leading-normal relative overflow-hidden  transition duration-150 ease-in-out  rounded-full text-text_Quaternary  pl-3 bg-bg_Secondary flex items-center justify-center pr-1 py-1 xs:py-1 sm:py-2  gap-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)]  cursor-pointer"
                             type="button"
+                            onClick={()=>setOpenDrawer(true)}
                           >
                             <span className="text-xs sm:text-base font-semibold bg-transparent">
                               ₹0
@@ -359,41 +349,19 @@ const Header: React.FC = () => {
                   )}
                 </div>
               </div>
-
-              <div className="">
-                <div className="flex w-full overflow-x-auto no-scrollbar bg-bg_Quaternary p-1 items-start md:items-center md:justify-center">
-                  {(headerMenu || []).map((item, i) => {
-                    return (
-                        <a key={`header${i}`}>
-                        <button  onClick={(e)=>{
-                            if(isLogin){
-                              setActive(item?.title);
-                              Navigate(item?.routing);
-                            }
-                            else{
-                              setLoginModal(true)
-                            }
-                          
-
-                        }} className={`text-xs cursor-pointer uppercase mr-1 ${ item?.title === active ? 'border-primary':''}  rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9 border w-max px-3 py-1 text-text_HeaderDeskNavMenu hidden md:block`}>
-                          <span className="font font-lato text-[12px]">
-                            {item?.title}
-                          </span>
-                        </button>
-                      </a>
-                    );
-                  })}
-               
-                </div>
-              </div>
+               <HeaderMenu/>
+            
             </div>
-          </div>
+         
         </header>
       </div>
      <LoginModal/>
 
       <Drawer closeIcon={null} open={openDrawer}>
         <AccountDrawer openDrawer = {(e:any)=>setOpenDrawer(e)}/>
+      </Drawer>
+      <Drawer placement="left" onClose={()=>setMobileDrawer(false)}  open={mobileDrawer}>
+       <MobileDrawer setMobileDrawer = {(e:any)=>setMobileDrawer(e)}/>
       </Drawer>
     </div>
   );

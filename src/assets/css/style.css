@@ -1081,7 +1081,9 @@ video {
 .max-w-\[80px\] {
     max-width: 80px
 }
-
+.min-w-\[50px\] {
+    min-width: 50px
+}
 .flex-\[0_0_auto\] {
     flex: 0 0 auto
 }
@@ -4480,6 +4482,7 @@ video {
 .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr))
 }
+
 
 .grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr))

@@ -21,13 +21,13 @@ const Football: React.FC = () => {
   }
   const inPlayEvents =[{
     sportsName:"Football",
-    sportsId:"football",
+    sportsId:"soccer",
     icon: <BiFootball  size={20}/>,
     eventSchedule: playingEvents,
   }]
   const upComingEvents =[{
     sportsName:"Football",
-    sportsId:"football",
+    sportsId:"soccer",
     icon: <BiFootball  size={20}/>,
     eventSchedule: upComingScheduleEvents,
   }]
@@ -35,7 +35,7 @@ const Football: React.FC = () => {
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
         <LeftDeskSideBar label = {uiLabel}/>
-        <div className=' flex items-center flex-col w-[50%]'>
+        <div className=' flex items-center flex-col lg:w-[50%] w-full'>
         <InPlayEvents events={inPlayEvents}/>
         <UpcomingEvents events={upComingEvents}/>
         <div className="w-full md:mt-[0px] lg:overflow-auto"

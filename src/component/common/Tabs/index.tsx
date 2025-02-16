@@ -67,129 +67,120 @@ const imgArray = [{
 },
 ]
 
+
+
 const items: TabsProps['items'] = [
   {
     key: '1',
-    label:    
-    <span
-        className="text-sm capitalize whitespace-nowrap font-medium">Originals</span>
-,
-children: <div id="scrollShow"
-className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
-<div
-    className="grid grid-rows-1 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px] min-w-full overflow-x-auto no-scrollbar">
-  {
-    (imgArray||[]).slice(0,4).map((item,i)=>{
-        return(
-            <div className="w-[117px] md:w-[135px] aspect-square relative">
-                                            <div
-                                                className="w-[117px] md:w-[135px] flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
-                                                <div
-                                                    className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
-                                                    <img src={item?.imgPath} width="auto" height="auto"
-                                                        className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
-                                                        alt="casino-event-image" loading="lazy" title="MINES" />
-                                                </div>
-                                            </div>
-                                        </div>
-        )
-    })
-  }
-</div>
-</div>,
+    label: <span className="text-sm capitalize whitespace-nowrap font-medium">Originals</span>,
+    children: (
+      <div className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
+        <div className="w-full max-w-full overflow-x-auto no-scrollbar">
+          <div className="flex gap-2 flex-nowrap">
+            {(imgArray || []).slice(0, 4).map((item, i) => (
+              <div key={i} className="w-[117px] md:w-[135px] flex-shrink-0">
+                <div className="flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
+                  <div className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
+                    <img
+                      src={item?.imgPath}
+                      className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
+                      alt="casino-event-image"
+                      loading="lazy"
+                      title="MINES"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     key: '2',
-    label:    
-    <span
-        className="text-sm capitalize whitespace-nowrap font-medium">Crash Games</span>
-,
-    children: <div id="scrollShow"
-    className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
-    <div
-        className="grid grid-rows-1 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px] min-w-full overflow-x-auto no-scrollbar">
-      {
-        (imgArray||[]).slice(4,8).map((item,i)=>{
-            return(
-                <div className="w-[117px] md:w-[135px] aspect-square relative">
-                                                <div
-                                                    className="w-[117px] md:w-[135px] flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
-                                                    <div
-                                                        className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
-                                                        <img src={item?.imgPath} width="auto" height="auto"
-                                                            className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
-                                                            alt="casino-event-image" loading="lazy" title="MINES" />
-                                                    </div>
-                                                </div>
-                                            </div>
-            )
-        })
-      }
-    </div>
-</div>,
+    label: <span className="text-sm capitalize whitespace-nowrap font-medium">Crash Games</span>,
+    children: (
+      <div className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
+        <div className="flex gap-2 flex-nowrap w-full max-w-full overflow-x-auto no-scrollbar">
+          {(imgArray || []).slice(4, 8).map((item, i) => (
+            <div key={i} className="w-[117px] md:w-[135px] flex-shrink-0">
+              <div className="flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
+                <div className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
+                  <img
+                    src={item?.imgPath}
+                    className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
+                    alt="casino-event-image"
+                    loading="lazy"
+                    title="MINES"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
   },
   {
     key: '3',
-    label:  
-    <span
-        className="text-sm capitalize whitespace-nowrap font-medium">Lottery</span>
-,
-children: <div id="scrollShow"
-className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
-<div
-    className="grid grid-rows-1 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px] min-w-full overflow-x-auto no-scrollbar">
-  {
-    (imgArray||[]).slice(8,12).map((item,i)=>{
-        return(
-            <div className="w-[117px] md:w-[135px] aspect-square relative">
-                                            <div
-                                                className="w-[117px] md:w-[135px] flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
-                                                <div
-                                                    className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
-                                                    <img src={item?.imgPath} width="auto" height="auto"
-                                                        className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
-                                                        alt="casino-event-image" loading="lazy" title="MINES" />
-                                                </div>
-                                            </div>
-                                        </div>
-        )
-    })
-  }
-</div>
-</div>,
+    label: <span className="text-sm capitalize whitespace-nowrap font-medium">Lottery</span>,
+    children: (
+      <div className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
+        <div className="flex gap-2 flex-nowrap w-full max-w-full overflow-x-auto no-scrollbar">
+          {(imgArray || []).slice(8, 12).map((item, i) => (
+            <div key={i} className="w-[117px] md:w-[135px] flex-shrink-0">
+              <div className="flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
+                <div className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
+                  <img
+                    src={item?.imgPath}
+                    className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
+                    alt="casino-event-image"
+                    loading="lazy"
+                    title="MINES"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
   },
   {
     key: '4',
-    label: 
-    <span
-        className="text-sm capitalize whitespace-nowrap font-medium">Scratch Card</span>
-,
-children: <div id="scrollShow"
-className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
-<div
-    className="grid grid-rows-1 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px] min-w-full overflow-x-auto no-scrollbar">
-  {
-    (imgArray||[]).slice(12,16).map((item,i)=>{
-        return(
-            <div className="w-[117px] md:w-[135px] aspect-square relative">
-                                            <div
-                                                className="w-[117px] md:w-[135px] flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
-                                                <div
-                                                    className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
-                                                    <img src={item?.imgPath} width="auto" height="auto"
-                                                        className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
-                                                        alt="casino-event-image" loading="lazy" title="MINES" />
-                                                </div>
-                                            </div>
-                                        </div>
-        )
-    })
-  }
-</div>
-</div>,
+    label: <span className="text-sm capitalize whitespace-nowrap font-medium">Scratch Card</span>,
+    children: (
+      <div className="py-2.5 px-2.5 transition-all ease-in-out duration-200 w-full h-max overflow-x-auto">
+        <div className="flex gap-2 flex-nowrap w-full max-w-full overflow-x-auto no-scrollbar">
+          {(imgArray || []).slice(12, 16).map((item, i) => (
+            <div key={i} className="w-[117px] md:w-[135px] flex-shrink-0">
+              <div className="flex flex-col bg-bg_Quaternary1 items-start justify-center shadow-GameShadow rounded-[6px]">
+                <div className="relative rounded-[8px] w-full aspect-[0.75] overflow-hidden cursor-pointer shadow-sm md:hover:shadow-md">
+                  <img
+                    src={item?.imgPath}
+                    className="w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-110"
+                    alt="casino-event-image"
+                    loading="lazy"
+                    title="MINES"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
   },
 ];
 
-const TrendingGames: React.FC = () => <Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
+const TrendingGames: React.FC = () => (
+  <div className="w-full">
+    {/* Tab container should be scrollable on smaller screens */}
+    <div className="overflow-x-auto no-scrollbar">
+      <Tabs defaultActiveKey="1" items={items} />
+    </div>
+  </div>
+);
 
 export default TrendingGames;

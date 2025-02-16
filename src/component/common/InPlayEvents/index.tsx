@@ -16,7 +16,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
    
   return (
     
-    <div className="w-full h-full">
+    <div className="w-full h-full pt-[130px]" >
     <div className="px-2 w-full lg:hidden">
         <div
             className="flex flex-row font-manrope-regular items-center justify-start gap-2.5 relative">
@@ -134,22 +134,16 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                             </span>
                                         </div>
             
-                                        <span
-                                            className=" col-span-6 h-12 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket ">
-                                            <div
-                                                className="w-full grid grid-cols-6 grid-flow-row overflow-auto h-full">
-
-
-                                                     <LayBack val={item?.lay1} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
-                                                     <LayBack val={item?.back1} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
-                                                     <LayBack val={item?.lay11} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
-                                                     <LayBack val={item?.back11} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
-                                                     <LayBack val={item?.lay12} allowed={true} className={'bg-bg_BackBtnBg border-backBtn'}/>
-                                                     <LayBack val={item?.back12} allowed={true} className={'bg-bg_LayBtnBg border-layBtn'}/>
-                                             
-                                              
-                                            </div>
-                                        </span>
+                                        <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
+  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap">
+    <LayBack val={item?.lay1} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
+    <LayBack val={item?.back1} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
+    <LayBack val={item?.lay11} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
+    <LayBack val={item?.back11} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
+    <LayBack val={item?.lay12} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
+    <LayBack val={item?.back12} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
+  </div>
+</span>
                                     </div>
                                     )
                                   })

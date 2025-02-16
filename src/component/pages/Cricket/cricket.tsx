@@ -38,10 +38,10 @@ const CricketDetails: React.FC = () => {
       if (isLoading) return <p>Loading...</p>;
 if (isError) return <p>Error fetching data</p>;
   return (
-    <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
+    <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0" >
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
         <LeftDeskSideBar label={uiLabel}/>
-        <div className=' flex items-center flex-col w-[50%]'>
+        <div className=' flex items-center flex-col lg:w-[50%] w-full'>
         <InPlayEvents events={inPlayEvents}/>
         <UpcomingEvents events={upComingEvents}/>
         <div className="w-full md:mt-[0px] lg:overflow-auto"

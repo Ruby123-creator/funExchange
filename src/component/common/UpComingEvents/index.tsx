@@ -80,10 +80,8 @@ const UpcomingEvents: React.FC<Props> = ({events}) => {
                                                         className="text-[11px] font-bold text-text_Ternary truncate sm:text-xs md:text-sm">{details?.team2}
                                                         </span></span></span></span>
                                     </div>
-                                    <span
-                                        className="col-span-6 h-12 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket">
-                                        <div
-                                            className="w-full grid grid-cols-6 grid-flow-row overflow-auto h-full">
+                                    <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
+                                    <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap">
                                                 <LayBack val={item?.lay1} allowed={false} className={'bg-bg_BackBtnBg border-backBtn'}/>
                                                      <LayBack val={item?.back1} allowed={false} className={'bg-bg_LayBtnBg border-layBtn'}/>
                                                      <LayBack val={item?.lay11} allowed={false} className={'bg-bg_BackBtnBg border-backBtn'}/>
