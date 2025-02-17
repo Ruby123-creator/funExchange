@@ -33,8 +33,8 @@ const App: React.FC = () => (
         <Route path="/sports-page/:sportsName" element={<SportsDetail />} />
         {/* <Route path="/sports-page/Football" element={<Football />} />
         <Route path="/sports-page/Tennis" element={<Tennis />} /> */}
-        {/* <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
-        <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} /> */}
+        <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
+        <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} />
         <Route path="/casino-lobby/casino" element={<LiveCasino />} />
         <Route path="/casino-lobby/slot-games" element={<SlotGameLobby />} />
         <Route path="/casino-lobby/slot-games/Crash" element={<CrashGames />} />

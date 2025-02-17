@@ -9,7 +9,7 @@ const HeaderMenu = () => {
   const Navigate = useNavigate();
   const { isLogin, setLoginModal } = useUI();
   const [active, setActive] = useState("Cricket");
-  console.log(sportsName,"ashu");
+  console.log(sportsName,"GENZZZZZ");
   return (
     <div className="flex flex-col">
       <div className="flex w-full overflow-x-auto no-scrollbar bg-bg_Quaternary p-1 items-start md:items-center md:justify-center">

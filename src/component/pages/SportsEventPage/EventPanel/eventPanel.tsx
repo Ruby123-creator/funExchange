@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { LiveShowComp } from './liveshow'
 import { useCricketDetailsById } from '../../../../Framework/cricketFixture';
 import MatchOddBookmaker from './MatchOddBookmaker';
@@ -11,14 +11,29 @@ import { useRacingDetailsById } from '../../../../Framework/greyHound';
 
 const EventPanel: React.FC = () => {
   const { sport, eventId }: any = useParams();
-     const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport});
+  const [val,setValue] = useState('')
+  useEffect(()=>{
     
-     console.log(sport, eventId,"wirking::::")
+    if(sport === 'horseRacing_racecard'){
+     setValue("racecard") 
+    }else if(sport === 'greyhound_racecard'){
+      setValue("racecard/greyhound") 
+      
+    }
+    else{
+      setValue(sport);
+    }
+   },[sport])
+     const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport:val});
+    
+     console.log(sport, eventId,"ANDDDDD::::")
      console.log(data,"Home:::::::::::");
-     const {data:racingData,isLoading:loading,isError:error} = useRacingDetailsById({id:eventId,sport});
+    
+     
      const matchOdds = (((data?.market||[])[0])?.events);
-     const bookMaker = data?.bookmaker
-     console.log(bookMaker,matchOdds,"Rubyy")
+     const bookMaker = data?.bookmaker;
+    
+     console.log(data,sport,"Rubyy")
     //  if (isLoading) return <p>Loading...</p>;
     //  if (isError) return <p>Error fetching data</p>;
   return (
@@ -28,7 +43,7 @@ const EventPanel: React.FC = () => {
           <LiveShowComp data={(data?.market||[])[0]||data}/>
          
           {
-            (sport === 'horse-racing' || sport === 'greyhound') ? <>{(racingData?.data||[])?.length ? <RacingBet data={racingData}/>: ""}</>: <>
+            (sport === 'horseRacing_racecard' || sport === 'greyhound_racecard') ? <>{(data?.data||[])?.length ? <RacingBet data={data}/>: ""}</>: <>
             {
               (matchOdds||[])?.length ? <MatchOddBookmaker title="Match Odds" data={matchOdds}/>: ""
             }

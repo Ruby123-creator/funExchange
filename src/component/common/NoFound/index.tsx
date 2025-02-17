@@ -6,7 +6,7 @@ interface Props{
 }
 const NoFound : React.FC<Props> = ({text,image}) => {
   return (
-    <div className="w-full pt-[15px] px-2 block lg:hidden">
+    <div className="w-full pt-[15px] px-2 block">
       <div className="font-lato flex flex-col gap-y-[5px] pb-2 h-full">
         <div className="flex w-full ">
           <div className=" flex flex-col w-full items-center">

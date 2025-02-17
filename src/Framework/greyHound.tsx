@@ -23,12 +23,15 @@ export const useGreyhoundRacingFixture = () => {
 
 
 const fetchRacingDetailsById = async ({id,sport}:any) => {
+    console.log(sport,"GENZZZZZ")
   const response = await axios.get(`${API_ENDPOINTS.RACING_DATA}=${sport}/${id}`);
   return response.data;
 };
 
 // React Query Hook
 export const useRacingDetailsById = ({id,sport}:any) => {
+  
+
   return useQuery({
     queryKey: ['racing-detail', id,sport], // Include `id` for query uniqueness
     queryFn: () => fetchRacingDetailsById({id,sport}), // Fetch function

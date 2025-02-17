@@ -123,7 +123,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                         </div>
             
                                         <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
-  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap">
+  <div className="flex md:grid md:grid-cols-6 grid-flow-row h-full flex-nowrap">
     <LayBack val={item?.lay1} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
     <LayBack val={item?.back1} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
     <LayBack val={item?.lay11} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>

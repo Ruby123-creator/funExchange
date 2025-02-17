@@ -40,7 +40,7 @@ const SportsEventPage: React.FC = () => {
           sportsName: "Tennis",
           icon: <IoTennisball fill="#8B191B" size={20} />,
         };
-      case "horse-racing":
+      case "horseRacing_racecard":
         return {
           sidebarIcon: (
             <GiHorseHead fill="var(--color-quaternary)" size={20} />
@@ -48,7 +48,7 @@ const SportsEventPage: React.FC = () => {
           sportsName: "Horse Racing",
           icon: <GiHorseHead fill="#8B191B" size={20} />,
         };
-      case "greyhound":
+      case "greyhound_racecard":
         return {
           sidebarIcon: (
             <GiHound fill="var(--color-quaternary)" size={20} />
@@ -61,7 +61,7 @@ const SportsEventPage: React.FC = () => {
         break;
     }
   };
- 
+   console.log(sport,"Home")
 
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">

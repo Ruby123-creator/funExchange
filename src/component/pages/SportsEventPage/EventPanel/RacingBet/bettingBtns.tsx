@@ -8,12 +8,15 @@ const BettingBtns:React.FC<Props> = ({data}) => {
     console.log(data?.result,"ewgfjegfg")
     const {setMatchedBets, betOdds} = useUI();
   return (
-    <span className={`hidden md:block text-center min-h-12 hover:opacity-50 ${data?.result ? 'opacity-50':''}`}
+    <span className={` text-center min-w-[50px] min-h-12 hover:opacity-50 ${data?.result ? 'opacity-50 cursor-not-allowed':''}`}
     onClick={()=>{
-     setMatchedBets({
-        ...betOdds,
-        odds:data?.price
-     })
+        if(!(data?.result)){
+            setMatchedBets({
+                ...betOdds,
+                odds:data?.price
+             })
+        }
+     
     }}
     ><span
                                         className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden">

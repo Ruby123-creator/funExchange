@@ -62,7 +62,7 @@ const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
                             </div>
 
                             <span
-                                className=" col-span-12 h-14 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket ">
+                                className=" col-span-6 h-14 lg:col-span-7 w-full overflow-auto border-t border-borderColorOfMarket ">
                                 <div
                                     className="w-full h-full flex gap-2 py-2 px-5 flex-wrap">
                                       {

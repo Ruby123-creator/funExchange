@@ -9,7 +9,7 @@ interface Props {
 }
 const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
   const { setMatchedBets, betOdds } = useUI();
-  const [betwindow,setBetWindow] = useState(-1);
+  const [betwindow, setBetWindow] = useState(-1);
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
       <div className=" px-2 font-helvetica-neue">
@@ -47,90 +47,86 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
             {(data || []).map((item: any, i: number) => {
               return (
                 <>
-                <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
-                  <div className="w-full  md:col-span-5  col-span-7 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5 pr-[3px]">
-                    <div className=" truncate col-span-12 flex items-start justify-center h-full flex-col">
-                      <div className=" w-full flex flex-nowrap gap-x-2">
-                        <span className=" truncate w-full capitalize text-text_Ternary  text-[13px] md:text-sm  font-semibold">
-                          {item?.RunnerName}
-                        </span>
-                      </div>
-                      <span className="text-[12px] font-bold text-text_Success"></span>
+                  <div
+                    className="col-span-12 grid grid-cols-12 border-b border-borderColorOfMarket"
+                    key={`events${i}`}
+                  >
+                    <div className="col-span-4 h-12 lg:col-span-5 grid grid-cols-7 ">
+                      <span
+                        id="inPlayTeamName"
+                        className=" text-selection-none flex items-center justify-start col-span-5 px-1 relative active:scale-[94%] transition-all px-5 ease-in-out duration-100 cursor-pointer  truncate w-full capitalize text-text_Ternary  text-[13px] md:text-sm  font-semibold"
+                      >
+                       {item?.RunnerName}
+                      </span>
                     </div>
+                    <span className="col-span-8 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
+                      <div
+                        className="flex md:grid md:grid-cols-6 grid-flow-row h-full flex-nowrap"
+                        onClick={() => setBetWindow(i)}
+                      >
+                        <LayBack
+                          val={item?.BackPrice2}
+                          allowed={true}
+                          size={item?.BackSize2}
+                          max={item?.max}
+                          betTrue={true}
+                          className={"bg-bg_BackBtnBg border-backBtn"}
+                        />
+                        <LayBack
+                          val={item?.BackPrice3}
+                          allowed={true}
+                          max={item?.max}
+                          betTrue={true}
+                          size={item?.BackSize3}
+                          className={"bg-bg_BackBtnBg border-backBtn"}
+                        />
+                        <LayBack
+                          val={item?.BackPrice1}
+                          size={item?.BackSize1}
+                          max={item?.max}
+                          allowed={true}
+                          betTrue={true}
+                          className={"bg-bg_BackBtnBg border-backBtn"}
+                        />
+                        <LayBack
+                          val={item?.LayPrice1}
+                          allowed={true}
+                          max={item?.max}
+                          betTrue={true}
+                          size={item?.item?.LaySize1}
+                          className={"bg-bg_LayBtnBg border-layBtn"}
+                        />
+
+                        <LayBack
+                          val={item?.LayPrice2}
+                          size={item?.item?.LaySize2}
+                          max={item?.max}
+                          betTrue={true}
+                          allowed={true}
+                          className={"bg-bg_LayBtnBg border-layBtn"}
+                        />
+
+                        <LayBack
+                          val={item?.LayPrice3}
+                          size={item?.item?.LaySize3}
+                          max={item?.max}
+                          betTrue={true}
+                          allowed={true}
+                          className={"bg-bg_LayBtnBg border-layBtn"}
+                        />
+                      </div>
+                    </span>
                   </div>
-                  <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto border-t border-borderColorOfMarket no-scrollbar">
 
-                  <div className="flex md:grid md:grid-cols-6 grid-flow-row overflow-x-auto h-full flex-nowrap" onClick={()=>setBetWindow(i)}>
-                    <LayBack
-                      val={item?.BackPrice2}
-                      allowed={true}
-                      size={item?.BackSize2}
-                      max={item?.max}
-                      betTrue={true}
-
-                      className={"bg-bg_BackBtnBg border-backBtn"}
-                    />
-                    <LayBack
-                      val={item?.BackPrice3}
-                      allowed={true}
-                      max={item?.max}
-                       betTrue={true}
-                      size={item?.BackSize3}
-                      className={"bg-bg_BackBtnBg border-backBtn"}
-                    />
-                     <LayBack
-                      val={item?.BackPrice1}
-                      size={item?.BackSize1}
-                      max={item?.max}
-                      allowed={true}
-                      betTrue={true}
-
-                      className={"bg-bg_BackBtnBg border-backBtn"}
-                    />
-                    <LayBack
-                      val={item?.LayPrice1}
-                      allowed={true}
-                      max={item?.max}
-                      betTrue={true}
-
-                      size={item?.item?.LaySize1}
-                      className={"bg-bg_LayBtnBg border-layBtn"}
-                    />
-
-                    <LayBack
-                      val={item?.LayPrice2}
-                      size={item?.item?.LaySize2}
-                      max={item?.max}
-                      betTrue={true}
-
-                      allowed={true}
-                      className={"bg-bg_LayBtnBg border-layBtn"}
-                    />
-
-                    <LayBack
-                      val={item?.LayPrice3}
-                      size={item?.item?.LaySize3}
-                      max={item?.max}
-                      betTrue={true}
-
-                      allowed={true}
-                      className={"bg-bg_LayBtnBg border-layBtn"}
-                    />
-                   
-
-                   
-                  </div>
-                  </span>
-                  <div className="col-span-12 h-max"></div>
-                </div>
-                {
-                  (betOdds?.odds && i === betwindow) ?  <div className="col-span-12 h-max lg:hidden"><span className=" col-span-12 h-max w-full">
-
-                  <BetSlip/>
-
-           </span></div>:""
-                }
-               
+                  {betOdds?.odds && i === betwindow ? (
+                    <div className="col-span-12 h-max lg:hidden">
+                      <span className=" col-span-12 h-max w-full">
+                        <BetSlip />
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </>
               );
             })}

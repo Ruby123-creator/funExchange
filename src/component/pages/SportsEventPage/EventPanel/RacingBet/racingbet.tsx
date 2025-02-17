@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CiStar } from "react-icons/ci";
 import BettingBtns from './bettingBtns';
 import { Result } from 'antd';
+import { useUI } from '../../../../../context/ui.context';
+import BetSlip from '../../../../common/BettingWindow/betSlip';
 
 interface Props{
     data:any
 }
 const RacingBet :React.FC<Props> = ({data}) => {
+    
     console.log(data,"apibindss::::")
+     const { setMatchedBets, betOdds } = useUI();
+      const [betwindow, setBetWindow] = useState(-1);
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
     <div className=" px-2 font-helvetica-neue">
@@ -25,9 +30,10 @@ const RacingBet :React.FC<Props> = ({data}) => {
                 {
                     (data?.data||[]).map((item: any,i: number)=>{
                         return( (item?.nation && item?.nation !== '-') ?
+                        <>
                             <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
                             <div
-                                className="w-full  md:col-span-5  col-span-7 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5 pr-[3px]">
+                                className="w-full col-span-4 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5">
                                 <div
                                     className=" truncate col-span-12 flex items-start justify-center h-full flex-col">
                                     <div className=" w-full flex flex-nowrap gap-x-2"><span
@@ -36,7 +42,7 @@ const RacingBet :React.FC<Props> = ({data}) => {
                                 </div>
                             </div>
                             <div
-                                className={`col-span-5 md:col-span-7 ${item?.result ? '':''} relative h-12 grid grid-cols-2 md:grid-cols-6 relative`}>
+                                className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid grid-cols-6 relative overflow-x-auto no-scrollbar`} onClick={()=>setBetWindow(i)}>
                               <BettingBtns data={{price:item?.l_price,size:item?.l_size , bg:"bg-bg_betmin",bg1:"bg-bg_Quaternary", result:item?.result}}/>
                               <BettingBtns data={{price:item?.b1_price,size:item?.b1_size , bg:"bg-bg_betback",bg1:"bg-bg_BackBtnBg bg-opacity-5", result:item?.result}}/>
                               <BettingBtns data={{price:item?.b_price,size:item?.b_size , bg:"bg-bg_betmin ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
@@ -53,6 +59,16 @@ const RacingBet :React.FC<Props> = ({data}) => {
                            
                             <div className="col-span-12 h-max"></div>
                         </div>
+                        {betOdds?.odds && i === betwindow ? (
+                    <div className="col-span-12 h-max lg:hidden">
+                      <span className=" col-span-12 h-max w-full">
+                        <BetSlip />
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                        </>
                         :""
                         )
                     })
