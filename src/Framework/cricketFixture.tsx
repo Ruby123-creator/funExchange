@@ -35,23 +35,23 @@ export const useCricketDetailsById = ({id,sport}:any) => {
     queryFn: () => fetchCricketDetailsById({id,sport}), // Fetch function
     
     retry: 3,  
-    refetchInterval:1000,               // Retry on failure
+    refetchInterval:5000,               // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });
 };
 
 
-const fetchCricketFancyData = async ({id,sport}:any) => {
-  const response = await axios.get(`${API_ENDPOINTS.CRICKET_FANCY_DATA}/607922341`);
+const fetchCricketFancyData = async (eventId:any) => {
+  const response = await axios.get(`${API_ENDPOINTS.CRICKET_FANCY_DATA}/${eventId}`);
   return response.data;
 };
 
 // React Query Hook
-export const useCricketFancyData = ({id,sport}:any) => {
+export const useCricketFancyData = (eventId:any) => {
   return useQuery({
-    queryKey: ['cricket-detail', id,sport], // Include `id` for query uniqueness
-    queryFn: () => fetchCricketFancyData({id,sport}), // Fetch function
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+    queryKey: ['cricket-fancy-detail', eventId], // Include `id` for query uniqueness
+    queryFn: () => fetchCricketFancyData(eventId), // Fetch function
+    refetchInterval:1000, 
     retry: 3,                 // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });

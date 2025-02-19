@@ -3,13 +3,20 @@ import { IoMdHome } from "react-icons/io";
 import { headerMenu, mobileHeaderMenu } from "../../Framework/utils/static";
 import { useUI } from "../../context/ui.context";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { FaAngleLeft } from "react-icons/fa6";
+const formatText = (text:string) => {
+  return text
+    .replace(/[^a-zA-Z0-9]+/g, ' ') // Replace special characters with space
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize each word
+};
 const HeaderMenu = () => {
   const {sportsName} = useParams();
   const Navigate = useNavigate();
   const { isLogin, setLoginModal } = useUI();
   const [active, setActive] = useState("Cricket");
-  console.log(sportsName,"GENZZZZZ");
+  const pathlocation = (window.location?.pathname||"").split('/');
+
+  console.log(pathlocation,window.location,"GENZZZZZ::::");
   return (
     <div className="flex flex-col">
       <div className="flex w-full overflow-x-auto no-scrollbar bg-bg_Quaternary p-1 items-start md:items-center md:justify-center">
@@ -31,7 +38,7 @@ const HeaderMenu = () => {
                   }
                 }}
                 className={`text-xs cursor-pointer uppercase mr-1 ${
-                  item?.title === active ? "border-primary" : ""
+                  (item?.title === active) ? "border-primary" : ""
                 }  rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9 border w-max px-3 py-1 text-text_HeaderDeskNavMenu hidden md:block`}
               >
                 <span className="font font-lato text-[12px]">
@@ -70,38 +77,30 @@ const HeaderMenu = () => {
         
         
       </div>
-      <div className="lg:hidden flex flex-col  ">
+      {
+        ((pathlocation||[])[1] !== "event-page" && window.location.pathname !== "/") ? <div className="lg:hidden flex flex-col  ">
         <div className="w-full h-[34px] pr-[4px] flex items-center justify-between gap-1  relative ">
           <div className="app-bg flex-row w-full h-full flex cursor-pointer ">
             <div className="w-[34px] h-full flex items-center justify-center   ">
               <button
                 className=" leading-normal relative overflow-hidden  transition duration-150 ease-in-out w-8 rounded-sm h-6 flex ml-[4px] items-center justify-center bg-bg_Primary2 active:scale-150 cursor-pointer"
                 type="button"
+                onClick={()=>Navigate("/")}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="var(--color-primary)"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M15 6l-6 6l6 6"></path>
-                </svg>
+                <FaAngleLeft size={16} fill="#C10B32"/>
+              
               </button>
             </div>
-            <span className=" w-full h-full capitalize ml-[4px] flex items-center  text-text_Ternary  font-lato font-bold text-[16px] leading-5 ">
+            <span className=" w-full h-full capitalize ml-[4px] flex items-center  text-text_Ternary  font-lato font-bold text-[14px] leading-5 ">
               <span className="">
-                <span>Cricket{sportsName}</span>
+                <span>{formatText((pathlocation||[])[2]||(pathlocation||[])[1])}</span>
               </span>
             </span>
           </div>
         </div>
-      </div>
+      </div>:""
+      }
+      
     </div>
   );
 };

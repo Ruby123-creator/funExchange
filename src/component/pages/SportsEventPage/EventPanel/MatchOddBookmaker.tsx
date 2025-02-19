@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUI } from "../../../../context/ui.context";
 import LayBack from "../../../common/LayBack";
 import BetSlip from "../../../common/BettingWindow/betSlip";
@@ -7,9 +7,71 @@ interface Props {
   title: string;
   data: any;
 }
+// Define the expected API response type
+interface DataItem {
+  RunnerName: string;
+  status: string;
+  title: string;
+  max: string;
+  min: number;
+  BackPrice1: string;
+  BackPrice2: string;
+  BackPrice3: string;
+  BackSize1: string;
+  BackSize2: string;
+  BackSize3: string;
+  LayPrice1: string;
+  LayPrice2: string;
+  LayPrice3: string;
+  LaySize1: string;
+  LaySize2: string;
+  LaySize3: string;
+}
+
+// Type to track which fields should blink
+type BlinkState = Record<string, boolean>;
 const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
   const { setMatchedBets, betOdds } = useUI();
   const [betwindow, setBetWindow] = useState(-1);
+
+  const [prevData, setPrevData] = useState<DataItem[]>([]);
+  const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
+
+  useEffect(() => {
+    if (data && prevData.length === data.length) {
+      let newBlinkFields = data.map((item:any, index:number) => {
+        let changes: BlinkState = {};
+
+        Object.keys(item).forEach((key) => {
+          if (item[key as keyof DataItem] !== prevData[index]?.[key as keyof DataItem]) {
+            changes[key] = true;
+          } else {
+            changes[key] = false;
+          }
+        });
+        console.log(changes,"GONOPP:::::::::");
+
+        return changes;
+      });
+      console.log(newBlinkFields ,"GONOPP");
+
+      setBlinkFields(newBlinkFields);
+
+      // Reset blinking effect after 1 second
+      setTimeout(() => {
+        setBlinkFields(data.map(() => ({})));
+      }, 6000);
+    }
+
+    if (data) {
+      setPrevData([...data]); // Store a new reference to avoid shallow comparison issues
+    }
+  }, [data]);
+
+
+
+  console.log(blinkFields,":::::CHECKKK")
+
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
       <div className=" px-2 font-helvetica-neue">
@@ -60,8 +122,10 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                       </span>
                     </div>
                     <span className="col-span-8 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
-                      <div
-                        className="flex md:grid md:grid-cols-6 grid-flow-row h-full flex-nowrap"
+                      {
+                        item?.status === "ACTIVE" ? 
+                        <div
+                        className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"
                         onClick={() => setBetWindow(i)}
                       >
                         <LayBack
@@ -70,7 +134,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           size={item?.BackSize2}
                           max={item?.max}
                           betTrue={true}
-                          className={"bg-bg_BackBtnBg border-backBtn"}
+                          className={`bg-bg_BackBtnBg border-backBtn ${blinkFields[i]?.BackPrice2||blinkFields[i]?.BackSize2 ? "blink" : ""} md:block hidden`}
                         />
                         <LayBack
                           val={item?.BackPrice3}
@@ -78,7 +142,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           max={item?.max}
                           betTrue={true}
                           size={item?.BackSize3}
-                          className={"bg-bg_BackBtnBg border-backBtn"}
+                          className={`bg-bg_BackBtnBg border-backBtn md:block hidden ${(blinkFields[i]?.BackPrice3||blinkFields[i]?.BackSize3) ? "blink" : ""}`}
                         />
                         <LayBack
                           val={item?.BackPrice1}
@@ -86,35 +150,43 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           max={item?.max}
                           allowed={true}
                           betTrue={true}
-                          className={"bg-bg_BackBtnBg border-backBtn"}
+                          className={`bg-bg_BackBtnBg border-backBtn ${(blinkFields[i]?.BackPrice1||blinkFields[i]?.BackSize1) ? "blink" : ""}`}
                         />
                         <LayBack
                           val={item?.LayPrice1}
                           allowed={true}
                           max={item?.max}
                           betTrue={true}
-                          size={item?.item?.LaySize1}
-                          className={"bg-bg_LayBtnBg border-layBtn"}
+                          size={item?.LaySize1}
+                          className={`bg-bg_LayBtnBg border-layBtn ${(blinkFields[i]?.LayPrice1||blinkFields[i]?.LaySize1) ? "blink" : ""}`}
                         />
 
                         <LayBack
                           val={item?.LayPrice2}
-                          size={item?.item?.LaySize2}
+                          size={item?.LaySize2}
                           max={item?.max}
                           betTrue={true}
                           allowed={true}
-                          className={"bg-bg_LayBtnBg border-layBtn"}
+                          className={`bg-bg_LayBtnBg border-layBtn md:block hidden ${(blinkFields[i]?.LayPrice2||blinkFields[i]?.LaySize2) ? "blink" : ""}`}
                         />
 
                         <LayBack
                           val={item?.LayPrice3}
-                          size={item?.item?.LaySize3}
+                          size={item?.LaySize3}
                           max={item?.max}
                           betTrue={true}
                           allowed={true}
-                          className={"bg-bg_LayBtnBg border-layBtn"}
+                          className={`bg-bg_LayBtnBg border-layBtn md:block hidden ${(blinkFields[i]?.LayPrice1||blinkFields[i]?.LaySize1) ? "blink" : ""}`}
                         />
-                      </div>
+                      </div>: 
+                      <div
+                                                    className=" col-span-5 md:col-span-7  h-12 grid grid-cols-2 md:grid-cols-6 relative">
+                                                    <span
+                                                        className=" col-span-6 text-center min-h-12 py-[1px] px-[1px]"><span
+                                                            className="  text-center bg-bg_ballRunning cursor-not-allowed w-full h-full rounded-sm flex text-xs flex-col items-center justify-center">SUSPENDED</span></span>
+                                                </div>
+                      }
+                      
                     </span>
                   </div>
 

@@ -17,7 +17,7 @@ const RacingSport: React.FC = () => {
   
 
     const uiLabel = {
-        sidebarIcon:<GiHorseHead fill="var(--color-quaternary)" size={20}/>,
+        sidebarIcon:<img alt="horse" src="/icons/white-horse.svg" width={20} height={20}/>,
         sportsName: "Horse Racing",
       
       icon: <GiHorseHead fill="#864D44" size={20}/>,

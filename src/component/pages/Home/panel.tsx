@@ -17,6 +17,7 @@ import InPlayEvents from "../../common/InPlayEvents";
 import { BiFootball, BiSolidCricketBall } from "react-icons/bi";
 import { IoTennisball } from "react-icons/io5";
 import CasinoProvider from "../../common/casinoProvider";
+import { useCricketFixture } from "../../../Framework/cricketFixture";
 const PanelComp: React.FC = () => {
    const uiLabel = {
       sidebarIcon:<BiSolidCricketBall fill="var(--color-quaternary)" size={20}/>,
@@ -24,76 +25,32 @@ const PanelComp: React.FC = () => {
        icon: <BiFootball  size={20}/>,
   
     }
+  const { data:cricket, isLoading:loading, isError:error } = useCricketFixture("cricket");
+  const { data:football, isLoading:l, isError:e } = useCricketFixture("soccer");
+  const { data:tennis, isLoading, isError } = useCricketFixture("tennis");
+
 
     const inPlayEvents =[{
       sportsName:"Cricket",
       sportsId:"cricket",
       icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(cricket || []).filter(
+        (item: any) => item?.inPlay === "True"
+      ),
     },{
       sportsName:"Football",
       sportsId:"football",
       icon: <BiFootball  size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(football || []).filter(
+        (item: any) => item?.inPlay === "True"
+      ),
     },{
       sportsName:"Tennis",
       sportsId:"tennis",
       icon: <IoTennisball fill="#7FBA42" size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(tennis || []).filter(
+        (item: any) => item?.inPlay === "True"
+      ),
     }]
 
 
@@ -101,71 +58,23 @@ const PanelComp: React.FC = () => {
       sportsName:"Cricket",
       sportsId:"cricket",
       icon: <BiSolidCricketBall fill="#8B191B" size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(cricket || []).filter(
+        (item: any) => item?.inPlay === "False"
+      ),
     },{
       sportsName:"Football",
       sportsId:"football",
       icon: <BiFootball  size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(football || []).filter(
+        (item: any) => item?.inPlay === "False"
+      ),
     },{
       sportsName:"Tennis",
       sportsId:"tennis",
       icon: <IoTennisball fill="#7FBA42" size={20}/>,
-      eventSchedule:[
-        {
-         "gameId": "596854126",
-         "marketId": "4.596854126",
-         "eid": "4",
-         "eventName": "Sri Lanka v Australia\u00a0/\u00a029/01/2025 10:00:00",
-         "inPlay": "False",
-         "tv": "False",
-         "back1": "410",
-         "lay1": "500",
-         "back11": "3.7",
-         "lay11": "3.75",
-         "back12": "1.37",
-         "lay12": "1.38",
-         "m1": "False",
-         "f": "False",
-         "vir": 10
-        }
-       ],
+      eventSchedule:(tennis || []).filter(
+        (item: any) => item?.inPlay === "False"
+      ),
     }]
   return (
     <div
@@ -216,11 +125,11 @@ const PanelComp: React.FC = () => {
         <span title="Color Game" className="px-[3px] py-[3px]">
           <div
             className="relative w-full active:scale-95 cursor-pointer bg-bg_SkeletonBgLoaderColor transition-all ease-in-out duration-150 shadow-quickAccessBtnBoxShadows min-h-9 bg-cover bg-center bg-no-repeat rounded-[4px] overflow-hidden"
-            style={{ backgroundImage: `url(${item?.bgUrl2})` }}
+            style={{ backgroundImage: `url(${item?.bgUrl3})` }}
           >
             <div className="flex justify-center w-full h-full min-h-9 relative z-10 items-center min-w-[175px] sm:min-w-[240px] md:min-w-[280px] pl-[5px] pt-[2px] pb-[2px] pr-1 opacity-100">
               <img
-                src={item?.iconUrl2}
+                src={item?.iconUrl3}
                 width="16"
                 height="16"
                 className="w-4 h-4 sm:w-5 sm:h-5 ml-1 autoAnimate"
@@ -229,7 +138,7 @@ const PanelComp: React.FC = () => {
                 title="Color Game"
               />
               <span className="ml-1 autoAnimate text-text_Quaternary text-xs capitalize pr-[2px] md:text-sm text-nowrap w-full truncate font-lato-bold font-semibold md:font-semibold">
-                {item?.title2}
+                {item?.title3}
               </span>
             </div>
           </div>
@@ -239,27 +148,6 @@ const PanelComp: React.FC = () => {
         <span title="Fishing games" className="px-[3px] py-[3px]">
           <div
             className="relative w-full active:scale-95 cursor-pointer bg-bg_SkeletonBgLoaderColor transition-all ease-in-out duration-150 shadow-quickAccessBtnBoxShadows min-h-9 bg-cover bg-center bg-no-repeat rounded-[4px] overflow-hidden"
-            style={{ backgroundImage: `url(${item?.bgUrl1})` }}
-          >
-            <div className="flex justify-center w-full h-full min-h-9 relative z-10 items-center min-w-[175px] sm:min-w-[240px] md:min-w-[280px] pl-[5px] pt-[2px] pb-[2px] pr-1 opacity-100">
-              <img
-                src={item?.iconUrl1}
-                width="16"
-                height="16"
-                className="w-4 h-4 sm:w-5 sm:h-5 ml-1 autoAnimate"
-                alt="Fishing games-image"
-                loading="lazy"
-                title="Fishing games"
-              />
-              <span className="ml-1 autoAnimate text-text_Quaternary text-xs capitalize pr-[2px] md:text-sm text-nowrap w-full truncate font-lato-bold font-semibold md:font-semibold">
-                {item?.title1}
-              </span>
-            </div>
-          </div>
-        </span>
-        <span title="Color Game" className="px-[3px] py-[3px]">
-          <div
-            className="relative w-full active:scale-95 cursor-pointer bg-bg_SkeletonBgLoaderColor transition-all ease-in-out duration-150 shadow-quickAccessBtnBoxShadows min-h-9 bg-cover bg-center bg-no-repeat rounded-[4px] overflow-hidden"
             style={{ backgroundImage: `url(${item?.bgUrl2})` }}
           >
             <div className="flex justify-center w-full h-full min-h-9 relative z-10 items-center min-w-[175px] sm:min-w-[240px] md:min-w-[280px] pl-[5px] pt-[2px] pb-[2px] pr-1 opacity-100">
@@ -268,12 +156,33 @@ const PanelComp: React.FC = () => {
                 width="16"
                 height="16"
                 className="w-4 h-4 sm:w-5 sm:h-5 ml-1 autoAnimate"
+                alt="Fishing games-image"
+                loading="lazy"
+                title="Fishing games"
+              />
+              <span className="ml-1 autoAnimate text-text_Quaternary text-xs capitalize pr-[2px] md:text-sm text-nowrap w-full truncate font-lato-bold font-semibold md:font-semibold">
+                {item?.title2}
+              </span>
+            </div>
+          </div>
+        </span>
+        <span title="Color Game" className="px-[3px] py-[3px]">
+          <div
+            className="relative w-full active:scale-95 cursor-pointer bg-bg_SkeletonBgLoaderColor transition-all ease-in-out duration-150 shadow-quickAccessBtnBoxShadows min-h-9 bg-cover bg-center bg-no-repeat rounded-[4px] overflow-hidden"
+            style={{ backgroundImage: `url(${item?.bgUrl4})` }}
+          >
+            <div className="flex justify-center w-full h-full min-h-9 relative z-10 items-center min-w-[175px] sm:min-w-[240px] md:min-w-[280px] pl-[5px] pt-[2px] pb-[2px] pr-1 opacity-100">
+              <img
+                src={item?.iconUrl4}
+                width="16"
+                height="16"
+                className="w-4 h-4 sm:w-5 sm:h-5 ml-1 autoAnimate"
                 alt="Color Game-image"
                 loading="lazy"
                 title="Color Game"
               />
               <span className="ml-1 autoAnimate text-text_Quaternary text-xs capitalize pr-[2px] md:text-sm text-nowrap w-full truncate font-lato-bold font-semibold md:font-semibold">
-                {item?.title2}
+                {item?.title4}
               </span>
             </div>
           </div>

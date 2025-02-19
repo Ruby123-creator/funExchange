@@ -9,27 +9,30 @@ import { GiCirclingFish } from "react-icons/gi";
 import { icons } from "antd/es/image/PreviewGroup";
 
 export const bannerImages = [{
-    imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
+    imgPath:"assets/images/banner/banner-1-unicon-SCJtuYQ9.jpg",
     alt:"Banner Img 1"
 },
 
 {
-    imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
+    imgPath:"assets/images/banner/banner-2-unicon-_c1DIV87.jpg",
      alt:"Banner Img 2"
 },
 {
-    imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
+    imgPath:"assets/images/banner/banner-3-unicon-ggHzAQpn.jpg",
      alt:"Banner Img 3"
 },
 {
-    imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
+    imgPath:"assets/images/banner/banner-4-unicon-B1kiJQ_E.jpg",
      alt:"Banner Img 4"
 },
 {
-    imgPath:"assets/images/banner-8-unicon-B_UwWRVU.webp",
+    imgPath:"assets/images/banner/banner-5-unicon-DgIV6Wle.jpg",
      alt:"Banner Img 5"
 },
-
+{
+  imgPath:"assets/images/banner/banner-6-unicon-CBpczhu1.jpg",
+   alt:"Banner Img 5"
+},
 ]
 export const siderbarDrawer = [
  
@@ -50,32 +53,32 @@ export const siderbarDrawer = [
   },
   {
     title: "Horse Racing",
-      icon: <GiHorseHead fill="#864D44" size={20}/>,
+      icon: <img alt="horse" src="/icons/horseicon.svg" width={20} height={20}/>,
     routing: "/sports-page/Horse-racing"
   },
   {
     title: "Greyhound Racing",
-      icon: <GiHound fill="#305765" size={20}/>,
+      icon: <img alt="horse" src="/icons/greyhound.svg" width={20} height={20}/>,
     routing: "/sports-page/Greyhound-Racing"
   },
   {
     title: "Indian Card Games",
-      icon: <GiCardKingDiamonds fill="#40424F" size={20}/>,
+      icon: <img alt="horse" src="/icons/card.svg" width={20} height={20}/>,
       routing: "/sports-page/indian-card-games"
   },
   {
     title: "Live Casino",
-      icon: <GiCardKingDiamonds fill="#40424F" size={20}/>,
+      icon: <img alt="horse" src="/icons/casino.svg" width={20} height={20}/>,
      routing: "/casino-lobby/casino"
   },
   {
     title: "Aviator",
-      icon: <IoIosJet fill="#c10931" size={20}/>,
+      icon:<img alt="horse" src="/icons/aviator.svg" width={20} height={20}/>,
        routing: "/aviator"
   },
   {
     title: "Slot Games",
-      icon: <IoIosJet fill="#E84C4D" size={20}/>,
+      icon: <img alt="horse" src="/icons/slot.svg" width={20} height={20}/>,
 routing: "/casino-lobby/slot-games"
   },
  
@@ -105,98 +108,48 @@ export const socialLinks = [{
 export const carousalImages = [
 {
   title1: 'Evolution',
-  bgUrl1: 'assets/images/Evolution-1705911275808.jpeg',
+  bgUrl1: 'assets/images/gaming/Evolution-1705911275808.jpeg',
   iconUrl1:
     'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Evolution-1705911275817?q=65&amp;w=600&amp;px=auto&amp;auto=format',
   altText1: 'Evolution-image',
   title2: 'Sportsbook',
-  bgUrl2: 'assets/images/Sportsbook-1705911352020.jpeg',
+  bgUrl2: 'assets/images/gaming/Sportsbook-1705911352020.jpeg',
   iconUrl2:
     'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText2: 'Evolution-image',
+  title3: 'Live Casinos',
+  bgUrl3: 'assets/images/gaming/LiveCasinos-1705911704269.jpeg',
+  iconUrl3:
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
   altText3: 'Evolution-image',
+  title4: 'E-Cricket',
+  bgUrl4: 'assets/images/gaming/e-Cricket-1705911799120.jpeg',
+  iconUrl4:
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText4: 'Evolution-image',
 },
 {
-  title1: 'Live Casinos',
-  bgUrl1: 'assets/images/LiveCasinos-1705911704269.jpeg',
+  title1: 'Multiplayer Games',
+  bgUrl1: 'assets/images/gaming/MultiplayerGames-1705912077487.jpeg',
   iconUrl1:
-    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/LiveCasinos-1705911704279?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-  altText1: 'Sportsbook-image',
-  title2: 'e-Cricket',
-  bgUrl2: 'assets/images/e-Cricket-1705911799120.jpeg',
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Evolution-1705911275817?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText1: 'Evolution-image',
+  title2: 'Slot Games',
+  bgUrl2: 'assets/images/gaming/SlotGames-1705912015298.jpeg',
   iconUrl2:
-    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/e-Cricket-1705911799122?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-  altText2: 'Sportsbook-image',
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText2: 'Evolution-image',
+  title3: 'Fishing Games',
+  bgUrl3: 'assets/images/gaming/Fishinggames-1705912252625.jpeg',
+  iconUrl3:
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText3: 'Evolution-image',
+  title4: 'Color Game',
+  bgUrl4: 'assets/images/gaming/SlotGames-1705912015298.jpeg',
+  iconUrl4:
+    'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&amp;w=600&amp;px=auto&amp;auto=format',
+  altText4: 'Evolution-image',
 },
-{
-    title: 'CardGames',
-    bgUrl: 'assets/images/CardGames-1705911853715.jpeg',
-    iconUrl:
-      'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/CardGames-1705911853726?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-    altText: 'Sportsbook-image',
-    title1: 'Slot Games',
-    bgUrl1: 'assets/images/SlotGames-1705912015298.jpeg',
-    iconUrl1:
-      'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/SlotGames-1705912015300?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-    altText1: 'Sportsbook-image',
-  },{
-    title1: 'Multiplayer Games',
-    bgUrl1: 'assets/images/MultiplayerGames-1705912077487.jpeg',
-    iconUrl1:
-      'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/MultiplayerGames-1705912077489?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-    altText1: 'Sportsbook-image',
-    title2: 'Aura',
-    bgUrl2: 'assets/images/Aura-1705912199645.jpeg',
-    iconUrl2:
-      'https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Aura-1705912199647?q=65&amp;w=600&amp;px=auto&amp;auto=format',
-    altText2: 'Sportsbook-image',
-  },{
-    title: "Fishing games",
-  imageUrl: "assets/images/Fishinggames-1705912252625.jpeg",
-  iconUrl:
-    "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Fishinggames-1705912252627?q=65&w=600&px=auto&auto=format",
-
-    altText: 'Sportsbook-image',
-    title2: "Color Game",
-    imageUrl2: "assets/images/Sportsbook-1705911352020.jpeg",
-    iconUrl2:
-      "https://promomaterial.imgix.net/quickButtons/ColorGame-1718191763431?q=65&w=600&px=auto&auto=format",
-
-  },{
-    title: "Evolution",
-  imageUrl: "assets/images/Evolution-1705911275808.jpeg",
-  iconUrl:
-    "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Evolution-1705911275817?q=65&w=600&px=auto&auto=format",
-    title2: "Sportsbook",
-    imageUrl2: "assets/images/Sportsbook-1705911352020.jpeg",
-    iconUrl2:
-      "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/Sportsbook-1705911352029?q=65&w=600&px=auto&auto=format",
- 
-    altText: 'Sportsbook-image',
-  },{
-    title: "Live Casinos",
-  imageUrl: "assets/images/LiveCasinos-1705911704269.jpeg",
-  iconUrl:
-    "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/LiveCasinos-1705911704279?q=65&w=600&px=auto&auto=format",
-    title2: "e-Cricket",
-    imageUrl2: "assets/images/e-Cricket-1705911799120.jpeg",
-    iconUrl2:
-      "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/e-Cricket-1705911799122?q=65&w=600&px=auto&auto=format",
- 
-    altText: 'Sportsbook-image',
-  },{
-    
-    title: "Card Games",
-  imageUrl: "assets/images/CardGames-1705911853715.jpeg",
-  iconUrl:
-    "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/CardGames-1705911853726?q=65&w=600&px=auto&auto=format",
-    title2: "Slot Games",
-    imageUrl2: "assets/images/SlotGames-1705912015298.jpeg",
-    iconUrl2:
-      "https://promotions-material.s3.ap-south-1.amazonaws.com/quickButtons/SlotGames-1705912015300?q=65&w=600&px=auto&auto=format",
-
-
-    altText: 'Sportsbook-image',
-  },
 // Add more button objects here
 ];
 
@@ -261,7 +214,7 @@ imgPath:"https://auraimgs.imgix.net/indian%20games%20posters-29.webp?q=65&amp;am
 imgPath:"https://auraimgs.imgix.net/indian%20games%20posters-22.webp?q=65&amp;amp;w=600&amp;amp;px=auto&amp;amp;auto=format",
  alt:"Banner Img 5"
 },{
-imgPath:"https://winbuzz360.com/assets/images/casino/livecasino/Casino+Meter.webp",
+imgPath:"https://Playfunexch.com/assets/images/casino/livecasino/Casino+Meter.webp",
  alt:"Banner Img 5"
 },
 
@@ -294,7 +247,7 @@ imgPath:"https://auraimgs.imgix.net/indian%20games%20posters-06.webp?q=65&amp;am
  alt:"Banner Img 5"
 },
 {
-imgPath:"https://winbuzz360.com/assets/images/casino/livecasino/The+Trap.webp",
+imgPath:"https://Playfunexch.com/assets/images/casino/livecasino/The+Trap.webp",
  alt:"Banner Img 5"
 },
 {
@@ -695,3 +648,5 @@ export const andarbhar =[{
 {
   img:"https://client.qtlauncher.com/images/?id=EZU-ultimateandarbahar_en_US&amp&type=logo-square&amp;version=1669146546695"
 }]
+
+

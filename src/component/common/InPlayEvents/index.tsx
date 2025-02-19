@@ -40,8 +40,10 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                 </div>
                 {
                     events.map((val: any,i: number)=>{
-                        return(
-                            <div
+                        return(<>
+
+                        {
+                            (val?.eventSchedule||[]).length ? <div
                             className="bg-bg_Quaternary rounded-b border border-ternary4 border-t-0 border-b-0 shadow-lg">
                             <div className="eventHeadName grid grid-cols-12">
                                 <div
@@ -126,8 +128,8 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
   <div className="flex md:grid md:grid-cols-6 grid-flow-row h-full flex-nowrap">
     <LayBack val={item?.lay1} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
     <LayBack val={item?.back1} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
-    <LayBack val={item?.lay11} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
-    <LayBack val={item?.back11} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
+    <LayBack val={item?.lay11} allowed={false} className="bg-bg_BackBtnBg border-backBtn "/>
+    <LayBack val={item?.back11} allowed={false} className="bg-bg_LayBtnBg border-layBtn "/>
     <LayBack val={item?.lay12} allowed={true} className="bg-bg_BackBtnBg border-backBtn "/>
     <LayBack val={item?.back12} allowed={true} className="bg-bg_LayBtnBg border-layBtn "/>
   </div>
@@ -139,7 +141,10 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                
                                
                             </div>
-                        </div>
+                        </div>:""
+                        }
+                        </>
+                            
                         )
                     })
                 }

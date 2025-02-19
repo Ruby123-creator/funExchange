@@ -41,23 +41,29 @@ const RacingBet :React.FC<Props> = ({data}) => {
                                         className="text-[12px] font-bold text-text_Success"></span>
                                 </div>
                             </div>
-                            <div
-                                className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid grid-cols-6 relative overflow-x-auto no-scrollbar`} onClick={()=>setBetWindow(i)}>
-                              <BettingBtns data={{price:item?.b2_price,size:item?.b2_size , bg:"bg-bg_betmin",bg1:"bg-bg_Quaternary", result:item?.result}}/>
-                              <BettingBtns data={{price:item?.b1_price,size:item?.b1_size , bg:"bg-bg_betback",bg1:"bg-bg_BackBtnBg bg-opacity-5", result:item?.result}}/>
+                            {
+                                item?.result ? <div
+                                className=" col-span-8  h-12 grid grid-cols-2 md:grid-cols-6 relative">
+                                <span
+                                    className=" col-span-8 text-center min-h-12 py-[1px] px-[1px]"><span
+                                        className="  text-center bg-bg_ballRunning cursor-not-allowed w-full h-full rounded-sm flex text-xs flex-col items-center justify-center capitalize">{item?.result}</span></span>
+                            </div> :<div
+                                className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid md:grid-cols-6 grid-cols-2 relative`} onClick={()=>setBetWindow(i)}>
+                              <BettingBtns data={{price:item?.b2_price,size:item?.b2_size , bg:"bg-bg_betmin md:block hidden",bg1:"bg-bg_Quaternary md:block hidden", result:item?.result}} />
+                              <BettingBtns data={{price:item?.b1_price,size:item?.b1_size , bg:"bg-bg_betback md:block hidden",bg1:"bg-bg_BackBtnBg bg-opacity-5 md:block hidden", result:item?.result}}/>
                               <BettingBtns data={{price:item?.b_price,size:item?.b_size , bg:"bg-bg_betmin ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
                               
                               <BettingBtns data={{price:item?.l_price,size:item?.l_size , bg:"bg-bg_betlay",bg1:"bg-bg_LayBtnBg bg-opacity-5", result:item?.result}}/>
-                              <BettingBtns data={{price:item?.l1_price,size:item?.l1_size , bg:"bg-bg_betmax ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
-                              <BettingBtns data={{price:item?.l2_price,size:item?.l2_size , bg:"bg-bg_betmax ",bg1:"bg-bg_Quaternary", result:item?.result}}/>
+                              <BettingBtns data={{price:item?.l1_price,size:item?.l1_size , bg:"bg-bg_betmax md:block hidden",bg1:"bg-bg_Quaternary md:block hidden", result:item?.result}}/>
+                              <BettingBtns data={{price:item?.l2_price,size:item?.l2_size , bg:"bg-bg_betmax md:block hidden",bg1:"bg-bg_Quaternary md:block hidden", result:item?.result}}/>
                              
-                              {
-                                item?.result ? <span className='racing-result text-[12px] text-text_Ternary font-lato'>{item?.result}</span> :''
-                               }
+                             
                                    
                             </div>
+                               }
+                            
                            
-                            <div className="col-span-12 h-max"></div>
+                            
                         </div>
                         {betOdds?.odds && i === betwindow ? (
                     <div className="col-span-12 h-max lg:hidden">

@@ -11,6 +11,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import NoFound from "../../common/NoFound";
 import { IoTennisball } from "react-icons/io5";
 import { GiHorseHead, GiHound } from "react-icons/gi";
+import PageLoader from "../../common/pageLoader";
 
 const SportsDetail: React.FC = () => {
   const { sportsName } = useParams();
@@ -42,7 +43,7 @@ const SportsDetail: React.FC = () => {
           sidebarIcon: <BiFootball fill="var(--color-quaternary)" size={20} />,
           sportsId: "soccer",
           sportsName: "Football",
-          icon: <BiFootball fill="#8B191B" size={20} />,
+          icon: <BiFootball fill="#000" size={20} />,
           img: "/icons/football.svg",
         };
       case "tennis":
@@ -52,24 +53,10 @@ const SportsDetail: React.FC = () => {
           ),
           sportsId: "tennis",
           sportsName: "Tennis",
-          icon: <IoTennisball fill="#8B191B" size={20} />,
+          icon: <IoTennisball fill="#7FBA42" size={20} />,
           img: "/icons/cricket.svg",
         };
-      // case "horse-racing":
-      //   return {
-      //     sidebarIcon: <GiHorseHead fill="var(--color-quaternary)" size={20} />,
-      //     sportsName: "Horse Racing",
-      //     icon: <GiHorseHead fill="#8B191B" size={20} />,
-      //     img: "/icons/cricket.svg",
-      //   };
-
-      // case "greyhound":
-      //   return {
-      //     sidebarIcon: <GiHound fill="var(--color-quaternary)" size={20} />,
-      //     sportsName: "Greyhound Racing",
-      //     icon: <GiHound fill="#8B191B" size={20} />,
-      //     img: "/icons/cricket.svg",
-      //   };
+     
 
       default:
         break;
@@ -89,7 +76,7 @@ const SportsDetail: React.FC = () => {
     },
   ];
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <PageLoader/>;
   if (isError) return <p>Error fetching data</p>;
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">

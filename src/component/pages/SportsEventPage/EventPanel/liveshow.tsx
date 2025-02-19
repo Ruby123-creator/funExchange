@@ -8,14 +8,18 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import GeneralRules from '../../../modals/generalRules';
 import MatchedBets from '../../../common/BettingWindow/matchedBet';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface Props{
     data:any;
 }
 export const LiveShowComp: React.FC<Props> = ({data}) => {
     const [open,setOpen] = useState(true);
+    const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
+    const pathlocation = (window.location?.pathname||"").split('/');
+    const Navigate = useNavigate();
     const extractSportsDetails = (event: string) => {
         if (!event) return null;
     
@@ -46,7 +50,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
 
   return (
     <>
-    <div className="w-full sticky top-0 flex items-center justify-start flex-col"
+    <div className="w-full flex items-center justify-start flex-col"
     id="eventDetails1-33869620" style={{zIndex: "20"}}>
      <div className=" w-full pl-[4px] pr-[4px] py-1.5 bg-bg_Quaternary flex flex-col items-center"
     id="eventPageHeader">
@@ -54,6 +58,20 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
         <div id="playIcon"
             className="flex items-start justify-center gap-x-3  w-max max-w-[92%]">
             <div
+            onClick={()=>{
+                if(sport === "greyhound_racecard"){
+                    Navigate(`/sports-page/Greyhound-Racing`)
+
+                }
+                else if(sport === "horseRacing_racecard"){
+                    Navigate(`/sports-page/Horse-Racing`)
+
+                }
+                else{
+                    Navigate(`/sports-page/${sport}`)
+
+                }
+            }}
                 className="w-8 cursor-pointer rounded-sm h-6 flex items-center justify-center bg-bg_Primary2 active:scale-110 active:opacity-90">
               <FaAngleLeft size={14} fill="#C10B32"/>
              

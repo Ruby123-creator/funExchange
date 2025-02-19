@@ -25,8 +25,9 @@ import TimeSetting from './component/pages/Time-Setting';
 import SportsDetail from './component/pages/SportsPage';
 
 
-const App: React.FC = () => (
-  <Router>
+const App: React.FC = () => {
+
+  return(<Router>
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,6 +54,6 @@ const App: React.FC = () => (
       </Routes>
     </Layout>
   </Router>
-);
+)};
 
 export default App;

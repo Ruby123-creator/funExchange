@@ -15,9 +15,9 @@ const GreyHoundRacing: React.FC = () => {
     const {data,isLoading,isError} = useGreyhoundRacingFixture();
   
     const uiLabel = {
-        sidebarIcon:<GiHound fill="var(--color-quaternary)" size={20}/>,
+        sidebarIcon:<img alt="horse" src="/icons/white_greyhound.svg" width={20} height={20}/>,
         sportsName: "Greyhound Racing",
-      icon: <GiHound fill="#305765" size={20}/>,
+      icon: <GiHound fill="var(--color-quaternary)" size={20}/>,
     
       }
 

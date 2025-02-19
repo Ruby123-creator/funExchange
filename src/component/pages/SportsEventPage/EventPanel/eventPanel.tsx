@@ -11,7 +11,8 @@ import { useRacingDetailsById } from '../../../../Framework/greyHound';
 
 const EventPanel: React.FC = () => {
   const { sport, eventId }: any = useParams();
-  const [val,setValue] = useState('')
+  const [val,setValue] = useState('');
+
   useEffect(()=>{
     
     if(sport === 'horseRacing_racecard'){
@@ -51,7 +52,7 @@ const EventPanel: React.FC = () => {
               (bookMaker||[])?.length ? <MatchOddBookmaker title="Bookmaker" data={bookMaker}/>: ""
             }
             
-            {/* <FancyComp/> */}
+            <FancyComp/>
             
             </>
           }
