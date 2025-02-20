@@ -1,6 +1,7 @@
 
-const url = 'http://160.30.206.63:3000/get-json'
-
+const url1 = 'http://160.30.206.63:3000/get-json'
+const url2 = 'https://api.lionkingpanel.com/get-json'
+const url = url2;
 export const API_ENDPOINTS = {
     SPORTS_MATCHES:`${url}?filepath=game-list`,
     footbal:"get-json?filepath=game-list/cricketmatches",

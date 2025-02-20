@@ -8,9 +8,10 @@ interface LayBackProps {
   allowed?: boolean;
   max?: any;
   betTrue?:boolean;
+  type?:string;
 }
 
-const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, betTrue }) => {
+const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, betTrue,type }) => {
   const { setMatchedBets, betOdds } = useUI();
 
   return (
@@ -18,7 +19,7 @@ const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, b
       <span
         className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
         onClick={() => {
-          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max });
+          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max ,type,betType:""});
         }}
       >
         <div

@@ -132,6 +132,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           val={item?.BackPrice2}
                           allowed={true}
                           size={item?.BackSize2}
+                          type={'back'}
                           max={item?.max}
                           betTrue={true}
                           className={`bg-bg_BackBtnBg border-backBtn ${blinkFields[i]?.BackPrice2||blinkFields[i]?.BackSize2 ? "blink" : ""} md:block hidden`}
@@ -141,6 +142,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           allowed={true}
                           max={item?.max}
                           betTrue={true}
+                          type={'back'}
+
                           size={item?.BackSize3}
                           className={`bg-bg_BackBtnBg border-backBtn md:block hidden ${(blinkFields[i]?.BackPrice3||blinkFields[i]?.BackSize3) ? "blink" : ""}`}
                         />
@@ -148,6 +151,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           val={item?.BackPrice1}
                           size={item?.BackSize1}
                           max={item?.max}
+                          type={'back'}
+
                           allowed={true}
                           betTrue={true}
                           className={`bg-bg_BackBtnBg border-backBtn ${(blinkFields[i]?.BackPrice1||blinkFields[i]?.BackSize1) ? "blink" : ""}`}
@@ -157,6 +162,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           allowed={true}
                           max={item?.max}
                           betTrue={true}
+                          type={'lay'}
+
                           size={item?.LaySize1}
                           className={`bg-bg_LayBtnBg border-layBtn ${(blinkFields[i]?.LayPrice1||blinkFields[i]?.LaySize1) ? "blink" : ""}`}
                         />
@@ -166,6 +173,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           size={item?.LaySize2}
                           max={item?.max}
                           betTrue={true}
+                          type={'lay'}
+
                           allowed={true}
                           className={`bg-bg_LayBtnBg border-layBtn md:block hidden ${(blinkFields[i]?.LayPrice2||blinkFields[i]?.LaySize2) ? "blink" : ""}`}
                         />
@@ -174,6 +183,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
                           val={item?.LayPrice3}
                           size={item?.LaySize3}
                           max={item?.max}
+                          type={'lay'}
+                          
                           betTrue={true}
                           allowed={true}
                           className={`bg-bg_LayBtnBg border-layBtn md:block hidden ${(blinkFields[i]?.LayPrice1||blinkFields[i]?.LaySize1) ? "blink" : ""}`}
