@@ -37,14 +37,17 @@ const FancyComp: React.FC = () => {
                               {item?.RunnerName}
                             </span>
                           </div>
-                          <div className=" w-full flex items-center">
-                            <span className="text-[10px] md:text-[12px] font-bold from-neutral-600">
+                          {
+                            (betOdds?.amount && i === betwindow) ?  <div className=" w-full flex items-center text-[10px] md:text-[12px]">
+                            <span className=" from-neutral-600">
                               Max exposure:{" "}
                             </span>
-                            <div className="text-[10px] md:text-[12px] font-bold text-text_Success">
-                              &nbsp; &gt;&gt; 60,000
+                            <div className=" text-text_Success">
+                              &nbsp; &gt;&gt; {betOdds?.amount}
                             </div>
-                          </div>
+                          </div>: ""
+                          }
+                         
                         </div>
                         <span className=" col-span-3 md:col-span-1 flex flex-row items-center justify-center gap-x-[2px]">
                          <CiStopwatch size={20}/>
@@ -195,64 +198,7 @@ const FancyComp: React.FC = () => {
                             </div>
                           </span>
                         </div>
-                        // <div
-                        // onClick={() => setBetWindow(i)}
-                        // className="col-span-5 md:col-span-6  h-12 grid grid-cols-2 md:grid-cols-6 relative"
-                        // >
-                        //   <span
-                        //     className=" text-center min-h-12 cols-span-1 md:col-span-2"
-                        //     onClick={() => {
-                        //       setMatchedBets({
-                        //         ...betOdds,
-                        //         odds: item?.BackPrice1,
-                        //         type:"back"
-                        //       });
-                        //     }}
-                        //   >
-                        //     <span className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden">
-                        //       <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_LayBtnBg border border-layBtn  undefined">
-                        //         <span
-                        //           id="oddBtnPrice"
-                        //           className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold "
-                        //         >
-                        //           {item?.LayPrice1}
-                        //         </span>
-                        //         <span
-                        //           id="oddBtnSize"
-                        //           className=" relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal "
-                        //         >
-                        //           <span className="w-max break-all truncate">
-                        //             <div className="odd-button__volume">
-                        //               {item?.LaySize1}
-                        //             </div>
-                        //           </span>
-                        //         </span>
-                        //       </div>
-                        //     </span>
-                        //   </span>
-                        //   <span className=" text-center min-h-12 cols-span-1 md:col-span-2">
-                        //     <span className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden">
-                        //       <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_BackBtnBg border border-backBtn  undefined">
-                        //         <span
-                        //           id="oddBtnPrice"
-                        //           className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold "
-                        //         >
-                        //           {item?.BackPrice1}
-                        //         </span>
-                        //         <span
-                        //           id="oddBtnSize"
-                        //           className=" relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal "
-                        //         >
-                        //           <span className="w-max break-all truncate">
-                        //             <div className="odd-button__volume">
-                        //               {item?.BackSize1}
-                        //             </div>
-                        //           </span>
-                        //         </span>
-                        //       </div>
-                        //     </span>
-                        //   </span>
-                        // </div>
+                        
                       )}
                     </div>
 

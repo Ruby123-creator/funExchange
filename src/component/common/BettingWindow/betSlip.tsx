@@ -125,6 +125,7 @@ const BetSlip = () => {
                     type="button"
                     onClick={() => {
                       setSum((e) => e + val);
+                      setMatchedBets({...betOdds,amount:sum})
                     }}
                   >
                     <span>+ {val}</span>
