@@ -39,7 +39,7 @@ const PanelComp: React.FC = () => {
       ),
     },{
       sportsName:"Football",
-      sportsId:"football",
+      sportsId:"soccer",
       icon: <BiFootball  size={20}/>,
       eventSchedule:(football || []).filter(
         (item: any) => item?.inPlay === "True"
