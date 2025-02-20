@@ -8,7 +8,7 @@ const BettingBtns:React.FC<Props> = ({data}) => {
     console.log(data?.result,"ewgfjegfg")
     const {setMatchedBets, betOdds} = useUI();
   return (
-    <span className={` text-center min-w-[50px] min-h-12 hover:opacity-50 ${data?.result ? 'opacity-50 cursor-not-allowed':''}`}
+    <span className={` text-center min-w-[50px] min-h-12 hover:opacity-50 `}
     onClick={()=>{
         if(!(data?.result)){
             setMatchedBets({
@@ -21,7 +21,7 @@ const BettingBtns:React.FC<Props> = ({data}) => {
     ><span
                                         className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden">
                                         <div
-                                            className={`overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center  ${data?.result === "" ?` ${data?.bg}`:data?.bg1} border  undefined`}>
+                                            className={`overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center  ${data?.bg} border  undefined`}>
                                             <span id="oddBtnPrice"
                                                 className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold ">{data?.price}</span><span
                                                 id="oddBtnSize"
