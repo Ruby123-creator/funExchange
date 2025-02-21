@@ -24,8 +24,13 @@ export const useCricketFixture = (sportsName:string|undefined) => {
 
 // Fetch Product by ID
 const fetchCricketDetailsById = async ({id,sport}:any) => {
-  const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${sport}/${id}`);
+  try {
+    const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${sport}/${id}`);
   return response.data;
+  } catch (error) {
+      console.log(error,"ERROR::::::::::::::::::::")
+  }
+  
 };
 
 // React Query Hook
@@ -42,8 +47,13 @@ export const useCricketDetailsById = ({id,sport}:any) => {
 
 
 const fetchCricketFancyData = async (eventId:any) => {
-  const response = await axios.get(`${API_ENDPOINTS.CRICKET_FANCY_DATA}/${eventId}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${API_ENDPOINTS.CRICKET_FANCY_DATA}/${eventId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error,"ERROR::::::::::")
+  }
+ 
 };
 
 // React Query Hook

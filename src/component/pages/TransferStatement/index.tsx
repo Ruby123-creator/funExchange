@@ -8,7 +8,6 @@ import type { DatePickerProps } from 'antd';
 import { DatePicker, Space } from 'antd';
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  console.log(date, dateString);
 };
 
 const TransferStatement: React.FC = () => {

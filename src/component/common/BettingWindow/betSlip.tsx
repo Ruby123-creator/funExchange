@@ -5,15 +5,9 @@ import { Modal } from "antd";
 import { CiStopwatch } from "react-icons/ci";
 const BetSlip = () => {
   const { betOdds, setMatchedBets, stacks } = useUI();
-  console.log(betOdds, "MInkaiiii hosting");
   const [sum, setSum] = useState(0);
   const [edit, setEdit] = useState(false);
-  console.log(
-    Number(betOdds?.odds) * sum - sum,
-    betOdds?.odds,
-    parseInt(betOdds?.odds),
-    "HOME::::::::::::::SICK"
-  );
+ 
   return (
     <div className="relative">
       <div

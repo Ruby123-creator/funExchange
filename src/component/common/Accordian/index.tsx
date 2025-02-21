@@ -426,7 +426,6 @@ const items: CollapseProps['items'] = [
 
 const Accordian: React.FC = () => {
   const onChange = (key: string | string[]) => {
-    console.log(key);
   };
 
   return <Collapse items={items} defaultActiveKey={[]} onChange={onChange} />;

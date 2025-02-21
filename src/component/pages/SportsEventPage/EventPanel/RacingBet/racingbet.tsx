@@ -32,7 +32,6 @@ interface DataItem {
 type BlinkState = Record<string, boolean>;
 const RacingBet :React.FC<Props> = ({data}) => {
     
-    console.log(data,"apibindss::::")
      const { setMatchedBets, betOdds } = useUI();
       const [betwindow, setBetWindow] = useState(-1);
 
@@ -51,11 +50,9 @@ const RacingBet :React.FC<Props> = ({data}) => {
                   changes[key] = false;
                 }
               });
-              console.log(changes,"GONOPP:::::::::");
       
               return changes;
             });
-            console.log(newBlinkFields ,"GONOPP");
       
             setBlinkFields(newBlinkFields);
       

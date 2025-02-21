@@ -14,15 +14,14 @@ interface Props{
 }
 const InPlayEvents: React.FC<Props> = ({events}) => {
     const {isLogin, setLoginModal} = useUI();
-     const [active , setActive] = useState('In Play')
      const Navigate =  useNavigate();
-     const location = useLocation();
-     console.log(location,window.location,"mojjjjiiiii")
+     const isAllEmpty = (events||[]).every((event: { eventSchedule: string | any[]; }) => event.eventSchedule.length === 0);
    
   return (
     
     <div className="w-full mt-[15px]">
-        <div className="py-1 px-[6px] w-full">
+        {
+            !isAllEmpty ? <div className="py-1 px-[6px] w-full">
             <div className="w-full font-helvetica-neue">
                 <div
                     className="w-full flex items-center justify-between rounded-t-[3px] py-1.5 px-[7px] bg-inPlayBlockBg">
@@ -68,9 +67,7 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                 </div>
                                 {
                                   ((val?.eventSchedule)||[]).map((item: any,i: any)=>{
-                                    console.log(item,"huddaa");
                                      const detail = extractEventDetails(item?.eventName)
-                                     console.log(item,"gwdjgwdg")
                                     return(
                                         <div className="col-span-12 grid grid-cols-12" key={`events${i}`}>
                                         <div
@@ -150,7 +147,9 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                 }
                
             </div>
-        </div>
+        </div>: ""
+        }
+        
        
     </div>
   )

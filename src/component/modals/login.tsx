@@ -34,7 +34,6 @@ const LoginModal = () => {
         const envMobile = process.env.REACT_APP_MOBILE;
         const envPassword = process.env.REACT_APP_PASSWORD;
         const envUserId = process.env.REACT_APP_USERID;
-        console.log(envMobile,envPassword,mobileNo,password,"Majnuuu::::")
         if ((login === 'userId'? envUserId === userId :mobileNo === envMobile) && password === envPassword) {
             localStorage.setItem('isLogin', 'true');
            localStorage.setItem('credential',JSON.stringify({

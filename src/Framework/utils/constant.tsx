@@ -21,7 +21,6 @@ import { format } from "date-fns";
         } else {
             displayDate = (dateTime||"").split(" ")[0]; // Ignore events that are neither today nor tomorrow
         }
-        console.log(eventName,teams,eventDate,eventParts ,displayDate,"Rubyyys")
         if (displayDate) {
             return {
                 team1: teams[0],      // Sri Lanka

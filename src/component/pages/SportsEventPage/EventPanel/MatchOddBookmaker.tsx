@@ -49,11 +49,9 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
             changes[key] = false;
           }
         });
-        console.log(changes,"GONOPP:::::::::");
 
         return changes;
       });
-      console.log(newBlinkFields ,"GONOPP");
 
       setBlinkFields(newBlinkFields);
 
@@ -70,7 +68,6 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data }) => {
 
 
 
-  console.log(blinkFields,":::::CHECKKK")
 
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">

@@ -21,7 +21,6 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 const Header: React.FC = () => {
   const {isLogin,setLoginModal} = useUI();
-  console.log(isLogin,"Check::::::::::")
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
@@ -43,10 +42,8 @@ const Header: React.FC = () => {
 
   useEffect(()=>{
     if(typeof window !== "undefined"){
-      console.log(localStorage.getItem('credential'),"Majn");
 
         if(localStorage.getItem('credential')){
-          console.log(localStorage.getItem('credential'));
           setUserData(true);
         }
        
@@ -63,7 +60,6 @@ const Header: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(currentDate, "gfjerfr");
   return (
     <div className="header">
       

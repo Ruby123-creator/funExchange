@@ -10,7 +10,6 @@ interface Props{
 
 const transformRacingData = (data: any) => {
     const groupedData: any={};
-    console.log(data,"jwsdhjwehdjh:::::::::");
 
   (data||[]).forEach((item:any) => {
     if (!groupedData[item?.country]) {
@@ -29,11 +28,9 @@ const transformRacingData = (data: any) => {
   return Object.values(groupedData);
 };
 const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
-    console.log(data,"Rubyyyyy")
       const uniqueCountries = transformRacingData(data);
       const Navigate = useNavigate();
      
-       console.log(uniqueCountries,"jwsdhjwehdjh");
     return (
         <div className="py-3 px-[6px] w-full">
     <div className="w-full font-helvetica-neue racing-fixture">

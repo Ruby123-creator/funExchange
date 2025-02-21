@@ -450,7 +450,6 @@ const items: CollapseProps['items'] = [
 ];
 const GeneralRules: React.FC = () => {
     const onChange = (key: string | string[]) => {
-        console.log(key);
       };
   return (
     <div className=" bg-light overflow-y-auto no-scrollbar">

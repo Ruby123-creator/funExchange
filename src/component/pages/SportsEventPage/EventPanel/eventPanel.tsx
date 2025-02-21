@@ -27,14 +27,12 @@ const EventPanel: React.FC = () => {
    },[sport])
      const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport:val});
     
-     console.log(sport, eventId,"ANDDDDD::::")
-     console.log(data,"Home:::::::::::");
+     
     
      
      const matchOdds = (((data?.market||[])[0])?.events);
      const bookMaker = data?.bookmaker;
     
-     console.log(data,sport,"Rubyy")
     //  if (isLoading) return <p>Loading...</p>;
     //  if (isError) return <p>Error fetching data</p>;
   return (

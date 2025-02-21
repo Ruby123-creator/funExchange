@@ -61,7 +61,6 @@ const SportsEventPage: React.FC = () => {
         break;
     }
   };
-   console.log(sport,"Home")
 
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
