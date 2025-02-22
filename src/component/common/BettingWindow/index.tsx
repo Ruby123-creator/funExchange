@@ -118,7 +118,7 @@ const BettingWindow: React.FC = () => {
           </div>
           <div className=" w-full flex items-center  gap-1">
             {
-                (betOdds?.odds) ?  <BetSlip/>:<MatchedBets/>
+                betOdds?.odds ?  <BetSlip/>:<MatchedBets/>
             }
          
           </div>

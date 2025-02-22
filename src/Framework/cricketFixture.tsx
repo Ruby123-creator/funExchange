@@ -61,7 +61,7 @@ export const useCricketFancyData = (eventId:any) => {
   return useQuery({
     queryKey: ['cricket-fancy-detail', eventId], // Include `id` for query uniqueness
     queryFn: () => fetchCricketFancyData(eventId), // Fetch function
-    refetchInterval:1000, 
+    refetchInterval:5000, 
     retry: 3,                 // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });

@@ -1,0 +1,107 @@
+[
+    {
+        "userName": "demo123",
+        "eventName": "Afghanistan v South Africa\u00a0\/\u00a021\/02\/2025 14:30:00",
+        "profitloss": "380",  // back- profit , lay - stack value
+        "betTypes": "back",
+        "amount": "100",
+        "placeDate": "2025-02-21 06:41:36pm",
+        "MatchDate": "2025-02-21",
+        "accountType": "User",
+        "userRate": "4.8",
+        "ip": "160.30.206.63", // ip address 
+        "exposure": 100,   //lay- liability , back-stack value
+        "time": "February 21, 2025 06:41:36 PM",
+        "gameid": "523676466",
+        "evetsType": "odd",
+        "nation": "Afghanistan",
+        "section": "cricket"
+    },
+    {
+        "userName": "demo123",
+        "eventName": "Afghanistan v South Africa\u00a0\/\u00a021\/02\/2025 14:30:00",
+        "profitloss": "370",
+        "betTypes": "back",
+        "amount": "100",
+        "placeDate": "2025-02-21 06:41:41pm",
+        "MatchDate": "2025-02-21",
+        "accountType": "User",
+        "userRate": "370",
+        "ip": "160.30.206.63",
+        "exposure": 100,
+        "time": "February 21, 2025 06:41:41 PM",
+        "gameid": "523676466",
+        "evetsType": "bookmaker",
+        "nation": "Afghanistan",
+        "section": "cricket"
+    },
+    {
+        "userName": "demo123",
+        "eventName": "Afghanistan v South Africa\u00a0\/\u00a021\/02\/2025 14:30:00",
+        "profitloss": "100",
+        "betTypes": "lay",
+        "amount": "100",
+        "placeDate": "2025-02-21 06:41:48pm",
+        "MatchDate": "2025-02-21",
+        "accountType": "User",
+        "userRate": "50",
+        "ip": "160.30.206.63",
+        "exposure": 100,
+        "time": "February 21, 2025 06:41:48 PM",
+        "gameid": "523676466",
+        "evetsType": "session",
+        "nation": "10 over run AFG",
+        "section": "cricket"
+    },
+    {
+        "userName": "demo123",
+        "eventName": "Afghanistan v South Africa\u00a0\/\u00a021\/02\/2025 14:30:00",
+        "profitloss": "100",
+        "betTypes": "lay",
+        "amount": "100",
+        "placeDate": "2025-02-21 06:51:31pm",
+        "MatchDate": "2025-02-21",
+        "accountType": "User",
+        "userRate": "37",
+        "ip": "160.30.206.63",
+        "exposure": 110,
+        "time": "February 21, 2025 06:51:31 PM",
+        "gameid": "523676466",
+        "evetsType": "session",
+        "nation": "How many balls face by I Zadran(AFG vs SA)adv",
+        "section": "cricket"
+    },
+    {
+        "userName": "demo123",
+        "eventName": "Afghanistan v South Africa\u00a0\/\u00a021\/02\/2025 14:30:00",
+        "profitloss": "100",
+        "betTypes": "lay",
+        "amount": "100",
+        "placeDate": "2025-02-21 06:52:07pm",
+        "MatchDate": "2025-02-21",
+        "accountType": "User",
+        "userRate": "18",
+        "ip": "160.30.206.63",
+        "exposure": 100,
+        "time": "February 21, 2025 06:52:07 PM",
+        "gameid": "523676466",
+        "evetsType": "session",
+        "nation": "4 over run AFG",
+        "section": "cricket"
+    }
+]
+
+
+
+backcase: <= current bet (value)
+
+laycase >= current bet (value)
+
+time to check  ---- 1 sec
+
+time difference <= 10 second
+time difference = update time in data - bet placed time
+
+check availabble balance and exposurelimit >= betAmount
+status = active
+

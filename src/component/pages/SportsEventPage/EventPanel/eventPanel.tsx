@@ -44,10 +44,10 @@ const EventPanel: React.FC = () => {
           {
             (sport === 'horseRacing_racecard' || sport === 'greyhound_racecard') ? <>{(data?.data||[])?.length ? <RacingBet data={data}/>: ""}</>: <>
             {
-              (matchOdds||[])?.length ? <MatchOddBookmaker title="Match Odds" data={matchOdds}/>: ""
+              (matchOdds||[])?.length ? <MatchOddBookmaker title="Match Odds" data={matchOdds} updatedTime={data?.updateTime}/>: ""
             }
             {
-              (bookMaker||[])?.length ? <MatchOddBookmaker title="Bookmaker" data={bookMaker}/>: ""
+              (bookMaker||[])?.length ? <MatchOddBookmaker title="Bookmaker" data={bookMaker} updatedTime={data?.updateTime}/>: ""
             }
             
             <FancyComp/>

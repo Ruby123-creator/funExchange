@@ -8003,7 +8003,10 @@ input::placeholder {
     transition-property: all;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1)
 }
-
+.ant-modal-content{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 .ant-modal{
     width: 450px !important;
 }
@@ -12866,3 +12869,68 @@ span.ripple {
         font-weight: 800
     }
 }
+
+.ant-notification-notice-wrapper{
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.ant-notification{
+    margin: 15px !important;
+    }
+    .ant-notification-bottom {
+     
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      bottom: 20px; /* Ensure it's at the bottom */
+      
+    }
+    
+    
+    .ant-notification-notice{
+        margin: 10px;
+      padding: 10px 20px !important;
+      border-radius: 30px;
+      color: white;
+      .anticon{
+        color: white !important;
+      }
+      .ant-notification-notice-message{
+        color: white;
+      }
+      .anticon.ant-notification-notice-icon-success{
+        color: white;
+      }
+      .ant-notification-notice-close{
+        color: white;
+      }
+    }
+    .ant-notification-notice-message{
+        color: white !important;
+    }
+    .ant-notification-notice.error{
+      background-color: #F85353;
+      
+    }
+    
+    .ant-notification-notice.success{
+      background-color: #1CB980;
+    }
+    
+    .ant-notification-notice.warning{
+      background-color: #ffcc00;
+    }
+    .custom-notification .ant-notification-notice {
+     
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      bottom: 0;
+      
+      
+      margin-bottom: 20px; /* Adjust as needed */
+    }

@@ -1,4 +1,6 @@
-import { format } from "date-fns";
+import { notification } from "antd";
+import { NotificationPlacement } from "antd/es/notification/interface";
+import { differenceInSeconds, format, parseISO } from "date-fns";
  export function extractEventDetails(eventName: String|any) {
        
         const eventParts = (eventName||"").split("/");
@@ -59,3 +61,37 @@ import { format } from "date-fns";
           ? `${formattedDate} (${timezone})`
           : ` ${formattedTime}`;
       };
+
+
+
+      export const checkTimeDifference = (updatedTime: string) => {
+        const updatedDate = parseISO(updatedTime); // Convert string to Date object
+        const currentDate = new Date(); // Get the current time
+      
+        const diffInSeconds = differenceInSeconds(currentDate, updatedDate); // Get difference in seconds
+       console.log(updatedTime,updatedDate,currentDate,diffInSeconds,"MANJUUU")
+        return diffInSeconds <= 10; // Return true if difference is ≤ 10 seconds
+      };
+
+
+      export const showToasterMessage = (payload:{messageType:string,description:string}) => {
+        if(!payload.messageType){
+          payload.messageType = 'error';
+        }
+        // notification[payload.messageType || 'error'](
+      
+        notification.open({
+            message: payload.description,
+            // description:
+            // (payload.messageType === "error" ? 'Error' : (payload.messageType === "success" ? 'Success': 'Warning'))+ " ! " +(payload.description || 'Error'),
+            onClick: () => {
+              console.log('Notification Clicked!');
+            },
+            duration: 2,
+           
+            className: payload.messageType +" "+ 'custom-notification'
+          });
+
+
+        
+      }
