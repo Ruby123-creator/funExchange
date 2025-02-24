@@ -7,7 +7,7 @@ interface Props{
 const BettingBtns:React.FC<Props> = ({data}) => {
     const {setMatchedBets, betOdds} = useUI();
   return (
-    <span className={` text-center min-w-[50px] min-h-12 hover:opacity-50 `}
+    <span className={` text-center min-w-[50px] hover:opacity-50 `}
     onClick={()=>{
         if(!(data?.result)){
             setMatchedBets({

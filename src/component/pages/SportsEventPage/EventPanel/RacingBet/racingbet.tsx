@@ -39,8 +39,8 @@ const RacingBet :React.FC<Props> = ({data}) => {
         const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
       
         useEffect(() => {
-          if (data && prevData.length === data.length) {
-            let newBlinkFields = data.map((item:any, index:number) => {
+          if (data && prevData.length === (data?.data||[]).length) {
+            let newBlinkFields = (data?.data||[]).map((item:any, index:number) => {
               let changes: BlinkState = {};
       
               Object.keys(item).forEach((key) => {
@@ -58,12 +58,12 @@ const RacingBet :React.FC<Props> = ({data}) => {
       
             // Reset blinking effect after 1 second
             setTimeout(() => {
-              setBlinkFields(data.map(() => ({})));
+              setBlinkFields((data?.data||[]).map(() => ({})));
             }, 6000);
           }
       
-          if (data) {
-            setPrevData([...data]); // Store a new reference to avoid shallow comparison issues
+          if (data?.data) {
+            setPrevData([...(data?.data)]); // Store a new reference to avoid shallow comparison issues
           }
         }, [data]);
   return (

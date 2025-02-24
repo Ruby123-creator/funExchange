@@ -212,13 +212,13 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     )}
                   </span>
                 </div>
-                {betOdds?.odds && i === betWindow && (
+                {(betOdds?.odds && i === betWindow) ? (
                   <div className="col-span-12 h-max lg:hidden">
                     <span className="col-span-12 h-max w-full">
                       <BetSlip />
                     </span>
                   </div>
-                )}
+                ):""}
               </React.Fragment>
             ))}
           </div>

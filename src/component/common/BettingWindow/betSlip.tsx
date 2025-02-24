@@ -6,9 +6,9 @@ import { CiStopwatch } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import { useCricketDetailsById, useCricketFancyData } from "../../../Framework/cricketFixture";
 import { fetchIPAdress, useAdminDetails, useIPDetails } from "../../../Framework/login";
-import { checkTimeDifference, showToasterMessage } from "../../../Framework/utils/constant";
+import { checkTimeDifference, extractEventDetails, showToasterMessage } from "../../../Framework/utils/constant";
 import { usePlaceBet } from "../../../Framework/placeBet";
-import { format } from "date-fns";
+import { format, isToday, isTomorrow, parse } from "date-fns";
 
 interface BetOdds {
   betType: string;
@@ -40,7 +40,7 @@ const BetSlip: React.FC = () => {
   console.log(ipAddress,"IPAddresss");
   const { mutate: placingBet, isError: error } = usePlaceBet();
   const { data: userData } = useAdminDetails();
-
+   console.log(data?.market[0].gametitle ,data?.market,data,"CHECKEDDD")
   const [sum, setSum] = useState<number>(0);
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
@@ -50,10 +50,10 @@ const BetSlip: React.FC = () => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const checkCurrentBet = eventData?.find((item) => item?.RunnerName === betOdds?.runnerName);
-
+     console.log(checkCurrentBet,"reachedd")
   const checkBetCondition = (): boolean => {
     if (!userData || !betOdds || !checkCurrentBet) return false;
-    
+
     // Check user status and balance
     if (userData.status === "deactive" || userData?.Balance < sum || userData.ExposureLimit < sum) {
       showToasterMessage({ messageType: "error", description: "User error" });
@@ -63,61 +63,125 @@ const BetSlip: React.FC = () => {
     // Check odds validity
     const currentOdds = parseFloat(checkCurrentBet[`${betOdds?.key}`]);
     const betOddsValue = parseFloat(betOdds.odds);
-  
-    if (
-      (betOdds.type === "lay" && currentOdds < betOddsValue) ||
-      (betOdds.type === "back" && currentOdds > betOddsValue)
-    ) {
-      showToasterMessage({ messageType: "error", description: "Odds invalid" });
-      return false;
+     const currentsize = parseFloat(checkCurrentBet[`${betOdds?.sizeKey}`])
+     console.log(betOdds?.size,currentsize,"reachedd")
+
+   
+    console.log(betOdds?.size,currentsize,betOdds?.sizeKey,checkCurrentBet,"vibuhiii::::")
+
+    if(betOdds?.betType === 'fancy'){
+        if(Number(betOdds?.size) !== Number(currentsize)){
+          showToasterMessage({ messageType: "error", description: "size invalid" });
+
+          return false;
+        }
+
+        if((betOdds.type === "lay" && currentOdds < betOddsValue) ||
+        (betOdds.type === "back" && currentOdds > betOddsValue)){
+          showToasterMessage({ messageType: "error", description: "Odds invalid" });
+
+          return false;
+        }
     }
-  
+    else{
+      if (
+        (betOdds.type === "lay" && currentOdds > betOddsValue) ||
+        (betOdds.type === "back" && currentOdds < betOddsValue)
+      ) {
+        showToasterMessage({ messageType: "error", description: "Odds invalid" });
+        return false;
+      }
+    }
     // Check timeout condition
     const updatedTime = (betOdds.time||"").replace(" ", "T"); // Convert to ISO format
     const isWithin10Seconds = checkTimeDifference(updatedTime);
   
-    if (!isWithin10Seconds) {
-      showToasterMessage({ messageType: "error", description: "Timeout" });
-      return false;
-    }
+    // if (!isWithin10Seconds) {
+    //   showToasterMessage({ messageType: "error", description: "Timeout" });
+    //   return false;
+    // }
 
 
-    const time = data.time.replace(" ", "T"); // Convert to ISO format
-    const isWithin10Second = checkTimeDifference(time);
+    // const time = (data.updateTime||"").replace(" ", "T"); // Convert to ISO format
+    // const isWithin10Second = checkTimeDifference(time);
   
-    if (!isWithin10Second) {
-      showToasterMessage({ messageType: "error", description: "Timeout" });
-      return false;
-    }
+    // if (!isWithin10Second) {
+    //   showToasterMessage({ messageType: "error", description: "data odds" });
+    //   return false;
+    // }
   
     return true; // All conditions are valid
   };
-  
+    const calculateProfitLoss = (type:string)=>{
+
+      if(type === "fancy"){
+          return(
+            (Number(betOdds.size) * sum)/100
+          )
+      }
+      else if( type === "bookmaker"){
+        return(
+          (Number(betOdds.odds) * sum)/100
+        )  
+      }
+      else{
+         return (betOdds.type === "lay" ? sum : Number(betOdds.odds) * sum - sum);  
+      }
+
+    }
+     const extractSportsDetails = (event: string) => {
+            if (!event) return null;
+        
+            const [teams, dateTime] = event.split("\n"); // Split teams and date-time
+            if (!dateTime) return null; // Handle invalid input
+        
+            const [dateStr, time] = dateTime.split(" "); // Extract date and time
+            const eventTime = format(parse(time, "HH:mm:ss", new Date()), "HH:mm");
+            // Parse the date string into a Date object
+            const eventDate = parse(dateStr, "dd/MM/yyyy", new Date());
+        
+            // Determine display date
+            let displayDate;
+            if (isToday(eventDate)) {
+                displayDate = "Today";
+            } else if (isTomorrow(eventDate)) {
+                displayDate = "Tomorrow";
+            } else {
+                displayDate = format(eventDate, "dd/MM/yyyy"); // Keep original date format
+            }
+        
+            return {
+                teams,
+                date: displayDate,
+                time: eventTime,
+            };
+        };
   // Helper function to place a bet
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
-  
+      console.log(extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams,((data?.match||[])[0])?.gametitle,data?.market,data,"EATTTT")
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
-      eventName: data.eventName,
-      profitloss: betOdds.type === "lay" ? sum : Number(betOdds.odds) * sum - sum,
+      eventName: extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams ,
+      profitloss: betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum,
       betTypes: betOdds.type,
       amount: sum,
       placeDate: format(now, "yyyy-MM-dd hh:mm:ssa"),
       MatchDate: "2025-02-21",
       accountType: "User",
       userRate: betOdds.odds,
-      ip: ipAddress?.ipAddress, // IP address
-      exposure: betOdds.type === "back" ? sum : Number(betOdds.odds) * sum - sum,
+      ip: ipAddress?.ip, // IP address
+      exposure:  betOdds.type === "back" ? sum :calculateProfitLoss(betOdds?.betType),
       time: format(now, "yyyy-MM-dd hh:mm:ssa"),
       gameid: eventId,
       evetsType: betOdds.betType,
       nation: betOdds.runnerName,
       section: sport,
     };
-  
+    console.log(bettingData, ipAddress ,"CHECKEDDD::::")
     placingBet(bettingData);
+    setMatchedBets({...betOdds,odds:0})
     showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
   };
   
@@ -161,7 +225,7 @@ const BetSlip: React.FC = () => {
 
   // Helper function to handle stack button click
   const handleStackClick = (val: number) => {
-    setSum((prevSum) => prevSum + val);
+    setSum((prevSum) => Number(prevSum) + val);
     setMatchedBets({ ...betOdds, amount: sum + val });
   };
 
@@ -243,7 +307,7 @@ const BetSlip: React.FC = () => {
               placeholder="Max : 5,000"
               autoComplete="off"
               pattern="d*"
-              type="number"
+              type="text"
               onChange={handleStakeChange}
               value={sum || betOdds?.max}
             />
@@ -271,10 +335,16 @@ const BetSlip: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-12 gap-x-1 gap-y-1 pt-[15px]">
-            <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] min-h-[26px] font-semibold rounded-[4px] bg-minBtnGrd text-text_Quaternary py-2 cursor-pointer">
+            <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] min-h-[26px] font-semibold rounded-[4px] bg-minBtnGrd text-text_Quaternary py-2 cursor-pointer"
+              onClick={() => setSum(betOdds?.min)}
+            
+            >
               MIN
             </button>
-            <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer">
+            <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer"
+              onClick={() => setSum(betOdds?.max)}
+            
+            >
               MAX
             </button>
             <button
@@ -306,7 +376,7 @@ const BetSlip: React.FC = () => {
           <div className="w-[50%] max-w-[170px] h-max">
             <button
               disabled={!sum}
-              onClick={handleConfirmBet}
+              onClick={()=>handleConfirmBet()}
               type="button"
               className={`leading-normal overflow-hidden transition duration-150 ease-in-out py-1 relative w-full flex min-h-[46px] px-2.5 rounded-md font-medium border flex-row items-center justify-between ${
                 sum
@@ -318,7 +388,8 @@ const BetSlip: React.FC = () => {
                 <span className="font-bold text-xs sm:text-sm">Place Bet</span>
                 <span className="font-semibold text-[10px] sm:text-xs">
                   {betOdds?.type === "lay" ? "Liability" : "Profit"} :{" "}
-                  {betOdds?.betType === "fancy" ? Number(betOdds?.odds) : Number(betOdds?.odds) * sum - sum}
+                  {betOdds?.type === "back" ? sum:calculateProfitLoss(betOdds?.betType)}
+                  {/* {betOdds?.betType === "fancy" ? Number(betOdds?.odds) : Number(betOdds?.odds) * sum - sum} */}
                 </span>
               </div>
               <span className="text-[10px] flex items-center justify-center gap-x-[1px]">

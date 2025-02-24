@@ -109,39 +109,7 @@ const FancyComp: React.FC = () => {
                           className=" col-span-5 md:col-span-6  h-12 grid grid-cols-2 md:grid-cols-6 relative"
                           onClick={() => setBetWindow(i)}
                         >
-                          <span className=" text-center min-h-12 cols-span-1 md:col-span-2">
-                            <span
-                              className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
-                              onClick={() => {
-                                setMatchedBets({
-                                  ...betOdds,
-                                  odds: item?.BackPrice1,
-                                  size: item?.BackSize1,
-                                  type: "back",
-                                  betType: "fancy",
-                                });
-                              }}
-                            >
-                              <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_LayBtnBg border border-layBtn  undefined">
-                                <span
-                                  id="oddBtnPrice"
-                                  className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold "
-                                >
-                                  {item?.BackPrice1}
-                                </span>
-                                <span
-                                  id="oddBtnSize"
-                                  className=" relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal "
-                                >
-                                  <span className="w-max break-all truncate">
-                                    <div className="odd-button__volume">
-                                      {item?.BackSize1}
-                                    </div>
-                                  </span>
-                                </span>
-                              </div>
-                            </span>
-                          </span>
+                           
                           <span className=" text-center min-h-12 cols-span-1 md:col-span-2">
                             <span
                               className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
@@ -150,12 +118,17 @@ const FancyComp: React.FC = () => {
                                   ...betOdds,
                                   odds: item?.LayPrice1,
                                   size: item?.LaySize1,
+                                  key: "LayPrice1",
+                                  sizeKey:"LaySize1",
                                   type: "lay",
                                   betType: "fancy",
+                                  min: item?.min,
+                                  max: item?.max,
+                                  runnerName: item?.RunnerName,
                                 });
                               }}
                             >
-                              <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_BackBtnBg border border-backBtn  undefined">
+                              <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_LayBtnBg border border-layBtn   undefined">
                                 <span
                                   id="oddBtnPrice"
                                   className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold "
@@ -169,6 +142,45 @@ const FancyComp: React.FC = () => {
                                   <span className="w-max break-all truncate">
                                     <div className="odd-button__volume">
                                       {item?.LaySize1}
+                                    </div>
+                                  </span>
+                                </span>
+                              </div>
+                            </span>
+                          </span>
+                          <span className=" text-center min-h-12 cols-span-1 md:col-span-2">
+                            <span
+                              className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
+                              onClick={() => {
+                                setMatchedBets({
+                                  ...betOdds,
+                                  odds: item?.BackPrice1,
+                                  size: item?.BackSize1,
+                                  key: "BackPrice1",
+                                  sizeKey:"BackSize1",
+                                  type: "back",
+                                  betType: "fancy",
+                                  min: item?.min,
+                                  max: item?.max,
+                                  runnerName: item?.RunnerName,
+                                });
+                               
+                              }}
+                            >
+                              <div className=" overflow-hidden relative    opacity-100 cursor-pointer active:scale-95    w-full h-full px-1 py-[1px] rounded-sm flex flex-col items-center justify-center bg-bg_BackBtnBg border border-backBtn   undefined">
+                                <span
+                                  id="oddBtnPrice"
+                                  className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold "
+                                >
+                                  {item?.BackPrice1}
+                                </span>
+                                <span
+                                  id="oddBtnSize"
+                                  className=" relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal "
+                                >
+                                  <span className="w-max break-all truncate">
+                                    <div className="odd-button__volume">
+                                      {item?.BackSize1}
                                     </div>
                                   </span>
                                 </span>

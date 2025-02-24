@@ -67,7 +67,7 @@ const LoginModal = () => {
     onCancel={() => setLoginModal(false)}
   >
    <div
-            className="z-2 popUpOpenAnimation max-w-[450px] bg-bg_loginPopupBg rounded-md">
+            className="z-2 popUpBoxShadow popUpOpenAnimation  absolute  w-[90%] sm:w-[85%] md:w-[70%] lg:w-[450px] max-w-[450px]  bg-bg_loginPopupBg p-2 xs:p-5  rounded-md">
            
             <div className="logo w-full hidden lg:flex items-center justify-center mb-4">
                 <img src="assets/images/form-logo.webp" alt="logo" className="w-72 h-auto" width="100" height="100" />

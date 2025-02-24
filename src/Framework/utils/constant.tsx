@@ -1,12 +1,11 @@
 import { notification } from "antd";
-import { NotificationPlacement } from "antd/es/notification/interface";
 import { differenceInSeconds, format, parseISO } from "date-fns";
  export function extractEventDetails(eventName: String|any) {
-       
-        const eventParts = (eventName||"").split("/");
+        const eventTitle = (eventName||"").replace(/\u00a0/g, " ")
+        const eventParts = (eventTitle||"").split(" / ");
         const teams = (eventParts[0]||"").split(" v ");
         const dateTime = eventParts[1];
-    
+       console.log(eventParts,eventTitle,"CHECKEDDD::::")
         const [day, month, year] = ((dateTime||"").split(" ")[0]||"").split("/"); // Extract date parts
         const [hours, minutes] = ((dateTime||"").split(" ")[1]||"").split(":"); // Extract time parts
     
@@ -27,13 +26,15 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
             return {
                 team1: teams[0],      // Sri Lanka
                 team2: teams[1],      // Australia
-                date: "01/02/2025",    // Today or Tomorrow
-                time: `${'12'}:${'00'}` // HH:MM format
+                date: displayDate,    // Today or Tomorrow
+                time: `${hours}:${minutes}` // HH:MM format
             };
         }
     
         return null; // Ignore events that are neither today nor tomorrow
     }
+
+
 
 
     export const getFormattedDateTime = (val: string) => {
