@@ -48,7 +48,7 @@ const items: CollapseProps["items"] = [
   },
 ];
 const BettingWindow: React.FC = () => {
-  const [toggle, setToggle] = useState(1);
+  const [toggle, setToggle] = useState(0);
   const [editStack, setEditStack] = useState(false);
   const {betOdds,isLogin,setLoginModal} = useUI();
   return (
