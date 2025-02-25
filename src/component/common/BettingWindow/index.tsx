@@ -50,7 +50,7 @@ const items: CollapseProps["items"] = [
 const BettingWindow: React.FC = () => {
   const [toggle, setToggle] = useState(1);
   const [editStack, setEditStack] = useState(false);
-  const {betOdds} = useUI();
+  const {betOdds,isLogin,setLoginModal} = useUI();
   return (
     <div
       title="Menu 2"
@@ -58,7 +58,8 @@ const BettingWindow: React.FC = () => {
       className="hidden lg:flex p-2 overflow-y-auto no-scrollbar z-10 h-[calc(100dvh-120px)] sticky top-[54px] lg:top-[110px] w-[25%]"
     >
       <div className=" flex p-2 overflow-x-hidden relative no-scrollbar border flex-col w-full rounded-lg bg-bg_Quaternary ">
-        <div className="flex flex-col w-full gap-1 select-none bet-window">
+        {
+          isLogin ?  <div className="flex flex-col w-full gap-1 select-none bet-window">
           <Collapse items={items} defaultActiveKey={["0"]} />
 
           <div
@@ -89,7 +90,9 @@ const BettingWindow: React.FC = () => {
               <div title="sWalletInfo"></div>
             </div>
           </div>
-        </div>
+        </div>:""
+        }
+       
         <div className=" w-full   flex flex-col gap-y-1 py-2">
           <div className=" w-full flex items-center gap-1">
             <div className="flex gap-1 w-3/4 border rounded-lg p-0.5">
@@ -108,17 +111,29 @@ const BettingWindow: React.FC = () => {
                 )
               })}
             </div>
-            <button
+            {
+              isLogin ?  <button
               className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out text-xs  capitalize whitespace-nowrap rounded py-2 px-3 bg-bg_Secondary text-text_Quaternary cursor-pointer"
               type="button"
-              onClick={()=>setEditStack(true)}
+              onClick={()=>
+                
+                setEditStack(true)
+               }
             >
               Edit Stakes
-            </button>
+            </button>: ""
+            }
+           
           </div>
           <div className=" w-full flex items-center  gap-1">
             {
-                betOdds?.odds ?  <BetSlip/>:<MatchedBets/>
+              isLogin ?  (betOdds?.odds&& toggle ===0) ?  <BetSlip/>:<MatchedBets/> : <h4 className=" text-sm font-lato text-center py-4">Please login to see your open bets.<span
+              
+              onClick={()=>{
+                setLoginModal(true);
+
+              }}
+              className=" text-text_Secondary cursor-pointer hover:underline">Login</span></h4>
             }
          
           </div>

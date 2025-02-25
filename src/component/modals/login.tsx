@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useUI } from '../../context/ui.context';
 import { FaMobileAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { IoIosCloseCircle } from 'react-icons/io';
 
 
 
@@ -64,21 +65,28 @@ const LoginModal = () => {
     <Modal
     open={loginModal}
     footer={null}
+    closeIcon={false}
     onCancel={() => setLoginModal(false)}
   >
    <div
             className="z-2 popUpBoxShadow popUpOpenAnimation  absolute  w-[90%] sm:w-[85%] md:w-[70%] lg:w-[450px] max-w-[450px]  bg-bg_loginPopupBg p-2 xs:p-5  rounded-md">
-           
+             <div className="transition-all mb-2 ease-in-out duration-200 hover:scale-105 absolute top-2 right-2 cursor-pointer"
+             onClick={()=>setLoginModal(false)}
+             >
+                    <IoIosCloseCircle size={25} 
+                     />
+                 
+                 </div>
             <div className="logo w-full hidden lg:flex items-center justify-center mb-4">
-                <img src="assets/images/form-logo.webp" alt="logo" className="w-72 h-auto" width="100" height="100" />
+                <img src="assets/images/lion_king.svg" alt="logo" className="w-72 h-auto" width="100" height="100" />
             </div>
             <div className="flex gap-10 items-start h-[95%] lg:h-auto w-full">
                 <div className="hidden lg:w-[50%] rounded-lg overflow-hidden">
-                    <img src="assets/images/form-logo.webp" alt="register banner" />
+                    <img src="assets/images/lion_king.svg" alt="register banner" />
                 </div>
                 <div title="mobileLogin" className="flex flex-col items-start gap-y-4 w-full">
                     <div className="logo w-full lg:hidden flex items-center justify-center">
-                        <img src="assets/images/form-logo.webp" alt="logo" />
+                        <img src="assets/images/lion_king.svg" alt="logo" />
                     </div>
                     <form className="w-full gap-y-4 flex flex-col" autoComplete="off">
                         <div title="loginFormMonileUserIdInput" className="w-full">

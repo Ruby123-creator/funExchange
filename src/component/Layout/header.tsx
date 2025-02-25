@@ -18,6 +18,7 @@ import MobileDrawer from "../Drawer/mobileDrawer";
 import HeaderMenu from "./menu";
 import PageLoader from "../common/pageLoader";
 import { FaRegUserCircle } from "react-icons/fa";
+import SignUp_Modal from "../modals/signup";
 
 const Header: React.FC = () => {
   const {isLogin,setLoginModal} = useUI();
@@ -98,23 +99,24 @@ const Header: React.FC = () => {
                 </button>
               </div>
               <div className="flex items-center">
-                <a href="/">
-                  <div className="cursor-pointer">
-                    <img
-                      src="/assets/images/logo.webp"
-                      width="124"
-                      alt=""
-                      className="hidden sm:block"
-                    />
-                    <img
-                      src="/assets/images/logo.webp"
-                      width="100"
-                      className="sm:hidden mobileLogoHeight"
-                      alt=""
-                    />
-                  </div>
-                </a>
-              </div>
+  <a href="/">
+    <div className="cursor-pointer flex items-center justify-center bg-white rounded-full py-2 px-5 sm:p-3 shadow-md">
+      <img
+        src="/assets/images/lion_king.svg"
+        width="124"
+        alt=""
+        className="hidden sm:block"
+      />
+      <img
+        src="/assets/images/lion_king.svg"
+        width="100"
+        className="sm:hidden mobileLogoHeight"
+        alt=""
+      />
+    </div>
+  </a>
+</div>
+
             </div>
             <div
               id="searchBox"
@@ -311,7 +313,11 @@ const Header: React.FC = () => {
                       Log In
                     </span>
                   </button>
-                  <button className="flex rounded-full lg:border lg:border-secondary gap-1 hover:opacity-100 w-max font-extrabold items-center justify-center lg:pr-4 lg:pl-3 py-2 -lg:px-4 bg-bg_Quaternary">
+                  <button className="flex rounded-full lg:border lg:border-secondary gap-1 hover:opacity-100 w-max font-extrabold items-center justify-center lg:pr-4 lg:pl-3 py-2 -lg:px-4 bg-bg_Quaternary"
+                  onClick={()=>{
+                    setIsModalOpen(true);
+                  }}
+                  >
                     <span className="w-max hidden lg:block">
                       <AiOutlineUserAdd
                         color="var(--color-primary)"
@@ -338,7 +344,10 @@ const Header: React.FC = () => {
 
       
      <LoginModal/>
-
+      <Modal open={isModalOpen} footer={null} closeIcon={false}     onCancel={() => setIsModalOpen(false)}
+      >
+        <SignUp_Modal closeModal={setIsModalOpen}/>
+      </Modal>
       <Drawer closeIcon={null} onClose={()=>setOpenDrawer(false)} maskClosable={true} open={openDrawer}>
         <AccountDrawer openDrawer = {(e:any)=>setOpenDrawer(e)}/>
       </Drawer>
