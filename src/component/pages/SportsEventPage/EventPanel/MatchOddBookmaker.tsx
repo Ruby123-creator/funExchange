@@ -141,7 +141,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                   <div className="col-span-4 h-12 lg:col-span-5 grid grid-cols-7">
                     <span
                       id="inPlayTeamName"
-                      className="text-selection-none flex items-center justify-start col-span-5 px-1 relative active:scale-[94%] transition-all px-5 ease-in-out duration-100 cursor-pointer truncate w-full capitalize text-text_Ternary text-[13px] md:text-sm font-semibold"
+                      className="text-selection-none flex items-center justify-start col-span-8 px-1 relative active:scale-[94%] transition-all px-5 ease-in-out duration-100 cursor-pointer truncate w-full capitalize text-text_Ternary text-[13px] md:text-sm font-semibold"
                     >
                       {item.RunnerName}
                     </span>

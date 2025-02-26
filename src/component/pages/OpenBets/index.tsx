@@ -10,7 +10,7 @@ const OpenBets = () => {
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
 <SidebarComp/>
 <div className='w-full lg:w-[50%] px-2 py-4 pt-[18px] my-[13px] lg:pt-0 lg:my-0'>
-<MatchedBets/>
+<MatchedBets render={1}/>
 </div>
 
 <RightDeskSidebar/>

@@ -37,7 +37,6 @@ export const useCurrentBetsData = () => {
   return useQuery({
     queryKey: ['currentbets-detail'], // Include `id` for query uniqueness
     queryFn: () => fetchCurrentBetsData(), // Fetch function
-    refetchInterval:1000, 
     retry: 3,                 // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });

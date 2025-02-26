@@ -23,6 +23,7 @@ import TransferStatement from './component/pages/TransferStatement';
 import OpenBets from './component/pages/OpenBets';
 import TimeSetting from './component/pages/Time-Setting';
 import SportsDetail from './component/pages/SportsPage';
+import Chnage_Password from './component/pages/ChangePasword';
 
 
 const App: React.FC = () => {
@@ -49,6 +50,8 @@ const App: React.FC = () => {
          <Route path='/withdraw' element={<WithdrawComponent/>}/>
          <Route path='/deposit' element={<DepositComponent/>}/>
          <Route path='/account-statement' element={<TransferStatement/>}/>
+         <Route path='/change-password' element={<Chnage_Password/>}/>
+
          <Route path='/open-bets' element={<OpenBets/>}/>
          <Route path='/settings' element={<TimeSetting/>}/>
       </Routes>

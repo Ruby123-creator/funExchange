@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useCurrentBetsData } from '../../../Framework/placeBet';
 
-const MatchedBets : React.FC = () => {
+interface Props{
+  render?:number
+}
+const MatchedBets : React.FC<Props> = ({render}) => {
   const [open,setOpen] = useState(true);
   const {data} = useCurrentBetsData();
   return (
@@ -31,8 +34,73 @@ const MatchedBets : React.FC = () => {
       {
         open ?  <div className="w-full origin-top scaleVerticalOpen">
           {
-            (data||[])?.length ? <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
-            You have no Matched Bets.
+            (data||[])?.length ?   <div className="overflow-x-auto no-scrollbar">
+            <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+              
+              <thead className=" text-text_Quaternary text-xs bg-bg_Secondary">
+                <tr>
+                <th className="p-2 text-left">Nation</th>
+                  <th className="p-2 text-left">Event Name</th>
+                  {
+                    render ?<> <th className="p-2 text-left w-auto whitespace-nowrap">Bet Type</th>
+                  <th className="p-2 text-left w-full w-auto whitespace-nowra">Market Type</th></> : ""
+                  }
+                 
+                  <th className="p-2 text-left w-auto whitespace-nowrap">User Rate</th>
+                  <th className="p-2 text-left">Amount</th>
+                  {
+                    render ? <> <th className="p-2 text-left w-auto whitespace-nowrap">Profit/Loss</th>
+                    <th className="p-2 text-left w-auto whitespace-nowra">Place Date</th>
+                    <th className="p-2 text-left w-auto whitespace-nowra">Match Date</th>
+  
+                    <th className="p-2 text-left w-auto whitespace-nowra">Section</th></>:""
+                  }
+                 
+                 
+                
+                </tr>
+              </thead>
+              <tbody>
+                {(data||[]).map((bet:any, index:number) => (
+                  <tr
+                    key={index}
+                    className="border-b border-gray-200 hover:bg-gray-50 text-xs"
+                  >
+                    <td className="p-2">{bet.nation}</td>
+                    <td className=" p-2">{bet.eventName}</td>
+                    {
+                      render ? <> <td className="p-2 capitalize">{bet.betTypes}</td>
+                    <td className="p-2 capitalize">{bet.evetsType}</td></>:""
+                    }
+                   
+                    <td className="p-2">{bet.userRate}</td>
+                    <td className="p-2">{bet.amount}</td>
+                    {
+                      render ? <>  <td
+                      className={`p-2 font-semibold ${
+                        bet.profitloss >= 0 ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {bet.profitloss}
+                    </td>
+                    <td className="p-2 whitespace-nowrap">
+                      {bet.placeDate}
+                    </td>
+                    <td className="p-2 whitespace-nowrap">
+                      {bet.MatchDate}
+                    </td>
+                    <td className="p-2 capitalize">{bet.section}</td>
+                    
+                    </>:""
+                    }
+                  
+                  
+                   
+                   
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>: <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
             You have no Matched Bets.
           </div>

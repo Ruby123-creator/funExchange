@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
 import { format, isToday, isTomorrow, parse } from 'date-fns';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import { IoInformationCircleOutline } from "react-icons/io5";
@@ -9,7 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import GeneralRules from '../../../modals/generalRules';
 import MatchedBets from '../../../common/BettingWindow/matchedBet';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import iFrameResize from "iframe-resizer/js/iframeResizer";
 interface Props{
     data:any;
 }
@@ -18,7 +18,14 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
-    const pathlocation = (window.location?.pathname||"").split('/');
+    
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+
+    useEffect(() => {
+      if (iframeRef.current) {
+        iFrameResize({ log: false }, iframeRef.current);
+      }
+    }, []);
     const Navigate = useNavigate();
     const extractSportsDetails = (event: string) => {
         if (!event) return null;
@@ -126,10 +133,21 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
         className="  grid grid-cols-1   min-h-[124px]   sm:grid-cols-2 lg:grid-cols-1 sm:gap-x-1 sm:px-0.5 lg:gap-x-0 lg:px-0 w-full  flex-grow">
         <div className=" col-span-1 w-full h-max">
             <div className="h-max rounded-sm w-full">
-                <iframe
+            <iframe
+        ref={iframeRef}
+        src="https://lmt.ss8055.com/index?Id=53562949&t=d"
+        id="iFrameResizer2"
+        scrolling="no"
+        style={{width: "100%",height:"550px",overflow:"auto"}}
+
+        className="w-full"
+      ></iframe>
+                {/* <iframe
                     src="https://lmt.ss8055.com/index?Id=53562949&amp;t=d" id="iFrameResizer2"
                     scrolling="no"
-                    style={{width: "100%", overflow: "hidden", height: "142px"}}></iframe></div>
+                    style={{width: "100%",height:"550px",overflow:"auto"}}
+                    ></iframe> */}
+                    </div>
         </div>
         <div className=" col-span-1 h-full" style={{display: "block"}}>
             {

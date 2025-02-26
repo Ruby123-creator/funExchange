@@ -127,7 +127,7 @@ const BettingWindow: React.FC = () => {
           </div>
           <div className=" w-full flex items-center  gap-1">
             {
-              isLogin ?  (betOdds?.odds&& toggle ===0) ?  <BetSlip/>:<MatchedBets/> : <h4 className=" text-sm font-lato text-center py-4">Please login to see your open bets.<span
+              isLogin ?  (betOdds?.odds&& toggle ===0) ?  <BetSlip/>:<MatchedBets render={0}/> : <h4 className=" text-sm font-lato text-center py-4">Please login to see your open bets.<span
               
               onClick={()=>{
                 setLoginModal(true);

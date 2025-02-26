@@ -38,12 +38,12 @@ const drawerElement = [
         id:11,
         route:"/"
     },
-    {
-        title:"Download APK",
-        icon: <GoDownload stroke="var(--color-iconsColor)" size={20}/>,
-        id:12,
-        route:"/"
-    },
+    // {
+    //     title:"Download APK",
+    //     icon: <GoDownload stroke="var(--color-iconsColor)" size={20}/>,
+    //     id:12,
+    //     route:"/"
+    // },
 ]
 },
 
@@ -63,12 +63,12 @@ const drawerElement = [
         id:22,
         route:"/open-bets"
     },
-    {
-        title:"Betting Profit & Loss",
-        icon: <CgSpaceBetween stroke="var(--color-iconsColor)" size={20}/>,
-        id:23,
-        route:"/betting-profit-loss"
-    },
+    // {
+    //     title:"Betting Profit & Loss",
+    //     icon: <CgSpaceBetween stroke="var(--color-iconsColor)" size={20}/>,
+    //     id:23,
+    //     route:"/betting-profit-loss"
+    // },
     {
         title:"Account Statement",
         icon: <GoProjectRoadmap stroke="var(--color-iconsColor)" size={20}/>,
@@ -83,54 +83,54 @@ const drawerElement = [
     },
 ]
 },
-{
-    title:"Account Settings",
-    id:3,
-    items:[
-    //     {
-    //     title:"Time Settings",
-    //     icon: <LuTimerReset stroke="var(--color-iconsColor)" size={20}/>,
-    //     id:31,
-    //     route:"/time-setting"
-    // },
-    {
-        title:"Settings",
-        icon: <AiOutlineSetting stroke="var(--color-iconsColor)" size={20}/>,
-        id:32,
-        route:"/settings"
-    },
-]
-},
-{
-    title:"Legal & Compliance",
-    id:4,
-    items:[
-        {
-        title:"Rules & Regulations",
-        icon: <MdOutlineRule stroke="var(--color-iconsColor)" size={20}/>,
-        id:41,
-        route:"/rules-regulations"
-    },
-    {
-        title:"Exclusion Policy",
-        icon: <FaRegHand stroke="var(--color-iconsColor)" size={20}/>,
-        id:42,
-        route:"/exclusion-policy"
-    },
-    {
-        title:"Responsible Gambling",
-        icon: <IoIosCheckmarkCircleOutline stroke="var(--color-iconsColor)" size={20}/>,
-        id:43,
-        route:"/responsible-gambling"
-    },
-    {
-        title:"Privacy Policy",
-        icon: <MdOutlinePolicy stroke="var(--color-iconsColor)" size={20}/>,
-        id:44,
-        route:"/privacy-policy"
-    },
-]
-},
+// {
+//     title:"Account Settings",
+//     id:3,
+//     items:[
+//     //     {
+//     //     title:"Time Settings",
+//     //     icon: <LuTimerReset stroke="var(--color-iconsColor)" size={20}/>,
+//     //     id:31,
+//     //     route:"/time-setting"
+//     // },
+//     {
+//         title:"Settings",
+//         icon: <AiOutlineSetting stroke="var(--color-iconsColor)" size={20}/>,
+//         id:32,
+//         route:"/settings"
+//     },
+// ]
+// },
+// {
+//     title:"Legal & Compliance",
+//     id:4,
+//     items:[
+//         {
+//         title:"Rules & Regulations",
+//         icon: <MdOutlineRule stroke="var(--color-iconsColor)" size={20}/>,
+//         id:41,
+//         route:"/rules-regulations"
+//     },
+//     {
+//         title:"Exclusion Policy",
+//         icon: <FaRegHand stroke="var(--color-iconsColor)" size={20}/>,
+//         id:42,
+//         route:"/exclusion-policy"
+//     },
+//     {
+//         title:"Responsible Gambling",
+//         icon: <IoIosCheckmarkCircleOutline stroke="var(--color-iconsColor)" size={20}/>,
+//         id:43,
+//         route:"/responsible-gambling"
+//     },
+//     {
+//         title:"Privacy Policy",
+//         icon: <MdOutlinePolicy stroke="var(--color-iconsColor)" size={20}/>,
+//         id:44,
+//         route:"/privacy-policy"
+//     },
+// ]
+// },
 {
     title:"Account Actions",
     id:5,
@@ -139,7 +139,7 @@ const drawerElement = [
         title:"Change Password",
         icon: <RiLockPasswordLine stroke="var(--color-iconsColor)" size={20}/>,
         id:51,
-        route:"/"
+        route:"/change-password"
     },
     {
         title:"Sign Out",

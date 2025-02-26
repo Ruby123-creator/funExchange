@@ -56,7 +56,7 @@ const BetSlip: React.FC = () => {
 
     // Check user status and balance
     if (userData.status === "deactive" || userData?.Balance < sum || userData.ExposureLimit < sum) {
-      showToasterMessage({ messageType: "error", description: "User error" });
+      showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
       return false;
     }
   
@@ -159,16 +159,17 @@ const BetSlip: React.FC = () => {
   // Helper function to place a bet
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
+    const eventInfo = extractSportsDetails(((data?.market||[])[0])?.gametitle)
       console.log(extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams,((data?.match||[])[0])?.gametitle,data?.market,data,"EATTTT")
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
-      eventName: extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams ,
+      eventName: eventInfo?.teams ,
       profitloss: betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum,
       betTypes: betOdds?.type,
       amount: sum,
       placeDate: format(now, "yyyy-MM-dd hh:mm:ssa"),
-      MatchDate: "2025-02-21",
+      MatchDate: eventInfo?.date,
       accountType: "User",
       userRate: betOdds?.odds,
       ip: ipAddress?.ip, // IP address
