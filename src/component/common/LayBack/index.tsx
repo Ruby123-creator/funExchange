@@ -7,6 +7,7 @@ interface LayBackProps {
    size?: string;
   allowed?: boolean;
   max?: any;
+  min?: number;
   betTrue?:boolean;
   type?:string;
   betType?:string;
@@ -15,7 +16,7 @@ interface LayBackProps {
   time?: string;
 }
 
-const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, betTrue,type,betType , runnerName,eventKey, time}) => {
+const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, betTrue,type,betType , runnerName,eventKey, time,min}) => {
   const { setMatchedBets, betOdds } = useUI();
 
   return (
@@ -23,7 +24,7 @@ const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, b
       <span
         className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
         onClick={() => {
-          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max, runnerName,key:eventKey ,type,betType: betType === "Bookmaker" ? "bookmaker":"market",time});
+          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max, runnerName,key:eventKey ,type,betType: betType === "Bookmaker" ? "bookmaker":"market",time,min});
         }}
       >
         <div

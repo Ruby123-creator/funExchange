@@ -32,8 +32,7 @@ interface Props {
 }
 
 const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
-  const { betOdds } = useUI();
-  const [betWindow, setBetWindow] = useState<number>(-1);
+  const { betOdds, betWindow, setBetWindow } = useUI();
   const [prevData, setPrevData] = useState<DataItem[]>([]);
   const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
 
@@ -89,7 +88,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
       <LayBack
         val={price}
         size={size}
-        max={item.max}
+        max={Number(item.max)}
         type={type}
         eventKey={priceKey}
         runnerName={item.RunnerName}
@@ -97,6 +96,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
         betType={title}
         allowed={true}
         betTrue={true}
+        min={Number(item?.min)}
         className={`${className} ${isBlinking ? "blink" : ""}`}
       />
     );
@@ -150,7 +150,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     {item.status === "ACTIVE" ? (
                       <div
                         className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"
-                        onClick={() => setBetWindow(i)}
+                        onClick={() => setBetWindow(item?.RunnerName)}
                       >
                         {renderLayBack(
                           item,
@@ -212,7 +212,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     )}
                   </span>
                 </div>
-                {(betOdds?.odds && i === betWindow) ? (
+                {(betOdds?.odds && (item?.RunnerName === betWindow)) ? (
                   <div className="col-span-12 h-max lg:hidden">
                     <span className="col-span-12 h-max w-full">
                       <BetSlip />

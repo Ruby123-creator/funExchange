@@ -96,19 +96,19 @@ const BetSlip: React.FC = () => {
     const updatedTime = (betOdds.time||"").replace(" ", "T"); // Convert to ISO format
     const isWithin10Seconds = checkTimeDifference(updatedTime);
   
-    // if (!isWithin10Seconds) {
-    //   showToasterMessage({ messageType: "error", description: "Timeout" });
-    //   return false;
-    // }
+    if (!isWithin10Seconds) {
+      showToasterMessage({ messageType: "error", description: "Timeout" });
+      return false;
+    }
 
 
-    // const time = (data.updateTime||"").replace(" ", "T"); // Convert to ISO format
-    // const isWithin10Second = checkTimeDifference(time);
+    const time = (data.updateTime||"").replace(" ", "T"); // Convert to ISO format
+    const isWithin10Second = checkTimeDifference(time);
   
-    // if (!isWithin10Second) {
-    //   showToasterMessage({ messageType: "error", description: "data odds" });
-    //   return false;
-    // }
+    if (!isWithin10Second) {
+      showToasterMessage({ messageType: "error", description: "data odds" });
+      return false;
+    }
   
     return true; // All conditions are valid
   };
@@ -125,7 +125,7 @@ const BetSlip: React.FC = () => {
         )  
       }
       else{
-         return (betOdds.type === "lay" ? sum : Number(betOdds.odds) * sum - sum);  
+         return ( Number(betOdds.odds) * sum - sum);  
       }
 
     }
@@ -336,13 +336,13 @@ const BetSlip: React.FC = () => {
           {/* Action Buttons */}
           <div className="grid grid-cols-12 gap-x-1 gap-y-1 pt-[15px]">
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] min-h-[26px] font-semibold rounded-[4px] bg-minBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              onClick={() => setSum(betOdds?.min)}
+              onClick={() => setSum(Number(betOdds?.min))}
             
             >
               MIN
             </button>
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              onClick={() => setSum(betOdds?.max)}
+              onClick={() => setSum(Number(betOdds?.max))}
             
             >
               MAX
@@ -388,8 +388,8 @@ const BetSlip: React.FC = () => {
                 <span className="font-bold text-xs sm:text-sm">Place Bet</span>
                 <span className="font-semibold text-[10px] sm:text-xs">
                   {betOdds?.type === "lay" ? "Liability" : "Profit"} :{" "}
-                  { betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum}
-                  {/* {betOdds?.betType === "fancy" ? Number(betOdds?.odds) : Number(betOdds?.odds) * sum - sum} */}
+                  {/* { betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum} */}
+                  {betOdds?.betType === "fancy" ? calculateProfitLoss(betOdds?.betType) : (betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum)}
                 </span>
               </div>
               <span className="text-[10px] flex items-center justify-center gap-x-[1px]">

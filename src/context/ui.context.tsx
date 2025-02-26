@@ -10,6 +10,7 @@ const initialState = {
     odds:"",
     amount:0,
   },
+  betWindow:'',
   stacks:[500,2000,5000,10000,20000,50000,100000,250000,500000,1000000]
 };
 
@@ -30,6 +31,10 @@ function uiReducer(state: any, action: { type: string; data: any }) {
       return {
         ...state, betOdds:action.data
       }
+    case "SET_BET_WINDOW":
+      return {
+        ...state, betWindow:action.data
+      }
     case "SET_OPEN_STACKS":
       return {
         ...state, stacks:action.data
@@ -47,7 +52,9 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
   const setLoginModal = (data: any) => dispatch({ type: "SET_LOGIN_MODAL", data });
   const setMatchedBets = (data: any) => dispatch({ type: "SET_MATCHED_BET", data });
   const setStacks = (data: any)=>dispatch({type:"SET_OPEN_STACKS",data});
-  const value = useMemo(() => ({ ...state, authorize,setLoginModal,setMatchedBets,setStacks }), [state]);
+  const setBetWindow = (data: any)=>dispatch({type:"SET_BET_WINDOW",data});
+
+  const value = useMemo(() => ({ ...state, authorize,setLoginModal,setMatchedBets,setStacks,setBetWindow }), [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }
