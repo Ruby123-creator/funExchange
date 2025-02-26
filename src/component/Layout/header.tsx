@@ -346,7 +346,7 @@ const Header: React.FC = () => {
      <LoginModal/>
       <Modal open={isModalOpen} footer={null} closeIcon={false}     onCancel={() => setIsModalOpen(false)}
       >
-        <SignUp_Modal closeModal={setIsModalOpen}/>
+        <SignUp_Modal openModal={setIsModalOpen}/>
       </Modal>
       <Drawer closeIcon={null} onClose={()=>setOpenDrawer(false)} maskClosable={true} open={openDrawer}>
         <AccountDrawer openDrawer = {(e:any)=>setOpenDrawer(e)}/>

@@ -1,14 +1,16 @@
 import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
+import { useUI } from "../../context/ui.context";
 
 interface Props{
-  closeModal:any;
+  openModal:any;
 }
-const SignUp_Modal:React.FC<Props> = ({closeModal}) => {
+const SignUp_Modal:React.FC<Props> = ({openModal}) => {
+  const {setLoginModal} = useUI();
   return (
     <div className="z-2 popUpBoxShadow popUpOpenAnimation  absolute  w-[90%] sm:w-[85%] md:w-[70%] lg:w-[450px] max-w-[450px]  bg-bg_loginPopupBg p-2 xs:p-5  rounded-md">
       <div className="transition-all mb-2 ease-in-out duration-200 hover:scale-105 absolute top-2 right-2 cursor-pointer"
-      onClick={()=>closeModal(true)}
+      onClick={()=>openModal(false)}
       >
          <IoIosCloseCircle size={25} 
           />
@@ -263,7 +265,10 @@ const SignUp_Modal:React.FC<Props> = ({closeModal}) => {
               >
                 <div className="text-text_LoginWith">
                   Already have an account?{" "}
-                  <span className="text-text_LoginWith cursor-pointer">
+                  <span className="text-text_LoginWith cursor-pointer" onClick={()=>{
+                    openModal(false);
+                    setLoginModal(true);
+                  }}>
                     Login
                   </span>
                 </div>

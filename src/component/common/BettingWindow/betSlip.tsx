@@ -40,7 +40,7 @@ const BetSlip: React.FC = () => {
   console.log(ipAddress,"IPAddresss");
   const { mutate: placingBet, isError: error } = usePlaceBet();
   const { data: userData } = useAdminDetails();
-   console.log(data?.market[0].gametitle ,data?.market,data,"CHECKEDDD")
+   console.log((data?.market[0]||[])?.gametitle ,data?.market,data,"CHECKEDDD")
   const [sum, setSum] = useState<number>(0);
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
@@ -336,13 +336,13 @@ const BetSlip: React.FC = () => {
           {/* Action Buttons */}
           <div className="grid grid-cols-12 gap-x-1 gap-y-1 pt-[15px]">
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] min-h-[26px] font-semibold rounded-[4px] bg-minBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              onClick={() => setSum(betOdds?.min)}
+              // onClick={() => setSum(betOdds?.min)}
             
             >
               MIN
             </button>
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              onClick={() => setSum(betOdds?.max)}
+              // onClick={() => setSum(betOdds?.max)}
             
             >
               MAX
