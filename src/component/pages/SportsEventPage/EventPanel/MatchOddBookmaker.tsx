@@ -32,10 +32,10 @@ interface Props {
 }
 
 const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
-  const { betOdds, betWindow, setBetWindow } = useUI();
+  const { betOdds} = useUI();
   const [prevData, setPrevData] = useState<DataItem[]>([]);
   const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
-
+  const[betWindow,setBetWindow] = useState('')
   // Helper function to compare previous and current data
   const getBlinkFields = (
     currentData: DataItem[],
@@ -150,7 +150,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     {item.status === "ACTIVE" ? (
                       <div
                         className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"
-                        onClick={() => setBetWindow(item?.RunnerName)}
+                        onClick={() => setBetWindow(`${title}${i}`)}
                       >
                         {renderLayBack(
                           item,
@@ -212,7 +212,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     )}
                   </span>
                 </div>
-                {(betOdds?.odds && (item?.RunnerName === betWindow)) ? (
+                {(betOdds?.odds && (`${title}${i}` === betWindow)) ? (
                   <div className="col-span-12 h-max lg:hidden">
                     <span className="col-span-12 h-max w-full">
                       <BetSlip />

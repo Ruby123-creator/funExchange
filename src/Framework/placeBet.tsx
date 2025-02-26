@@ -22,3 +22,23 @@ export const usePlaceBet = () => {
 };
 
 
+const fetchCurrentBetsData = async () => {
+  try {
+    const response = await axios.get(`/api/currentbets.json`);
+    return response.data;
+  } catch (error) {
+    console.log(error,"ERROR::::::::::")
+  }
+ 
+};
+
+// React Query Hook
+export const useCurrentBetsData = () => {
+  return useQuery({
+    queryKey: ['currentbets-detail'], // Include `id` for query uniqueness
+    queryFn: () => fetchCurrentBetsData(), // Fetch function
+    refetchInterval:1000, 
+    retry: 3,                 // Retry on failure
+    refetchOnWindowFocus: false, // No auto-refetch on focus
+  });
+};

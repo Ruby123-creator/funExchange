@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useCurrentBetsData } from '../../../Framework/placeBet';
 
 const MatchedBets : React.FC = () => {
   const [open,setOpen] = useState(true);
+  const {data} = useCurrentBetsData();
   return (
     
     <div className=" flex flex-col w-full  gap-1">
@@ -28,9 +30,14 @@ const MatchedBets : React.FC = () => {
       </div>
       {
         open ?  <div className="w-full origin-top scaleVerticalOpen">
-        <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
-          You have no Matched Bets.
-        </div>
+          {
+            (data||[])?.length ? <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
+            You have no Matched Bets.
+          </div>: <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
+            You have no Matched Bets.
+          </div>
+          }
+        
       </div> : ""
       }
      

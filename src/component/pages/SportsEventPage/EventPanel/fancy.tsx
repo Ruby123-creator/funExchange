@@ -7,7 +7,9 @@ import { CiStopwatch } from "react-icons/ci";
 
 const FancyComp: React.FC = () => {
   const { sport, eventId }: any = useParams();
-  const { setMatchedBets, betOdds,betWindow, setBetWindow } = useUI();
+  const { setMatchedBets, betOdds } = useUI();
+    const[betWindow,setBetWindow] = useState('')
+  
   const { data } = useCricketFancyData(eventId);
   return (
     <div>
@@ -106,8 +108,8 @@ const FancyComp: React.FC = () => {
                       ) : (
                         <div
                           className=" col-span-5 md:col-span-6  h-12 grid grid-cols-2 md:grid-cols-6 relative"
-                          onClick={() => setBetWindow(item?.RunnerName)}
-                        >
+                          onClick={() => setBetWindow(`session${i}`)}
+                          >
                            
                           <span className=" text-center min-h-12 cols-span-1 md:col-span-2">
                             <span
@@ -120,9 +122,9 @@ const FancyComp: React.FC = () => {
                                   key: "LayPrice1",
                                   sizeKey:"LaySize1",
                                   type: "lay",
-                                  betType: "fancy",
-                                  min: Number(item?.min),
-                                  max: Number(item?.max),
+                                  betType: "session",
+                                  min: item?.min,
+                                  max: item?.max,
                                   runnerName: item?.RunnerName,
                                 });
                               }}
@@ -158,7 +160,7 @@ const FancyComp: React.FC = () => {
                                   key: "BackPrice1",
                                   sizeKey:"BackSize1",
                                   type: "back",
-                                  betType: "fancy",
+                                  betType: "session",
                                   min: Number(item?.min),
                                   max: Number(item?.max),
                                   runnerName: item?.RunnerName,
@@ -213,7 +215,7 @@ const FancyComp: React.FC = () => {
                       )}
                     </div>
 
-                    {betOdds?.odds && item?.RunnerName === betWindow ? (
+                    {betOdds?.odds && `session${i}` === betWindow ? (
                       <div className="col-span-12 h-max lg:hidden">
                         <span className=" col-span-12 h-max w-full">
                           <BetSlip />

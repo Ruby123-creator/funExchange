@@ -24,7 +24,7 @@ const LayBack: React.FC<LayBackProps> = ({ val, className, size, allowed, max, b
       <span
         className="flex items-center justify-center w-full h-full p-[1px] md:p-[2px] overflow-hidden"
         onClick={() => {
-          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max, runnerName,key:eventKey ,type,betType: betType === "Bookmaker" ? "bookmaker":"market",time,min});
+          if (betTrue) setMatchedBets({ ...betOdds, odds: val, max: max, runnerName,key:eventKey ,type,betType: betType === "Bookmaker" ? "bookmaker":"odd",time,min});
         }}
       >
         <div

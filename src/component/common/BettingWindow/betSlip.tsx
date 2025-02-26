@@ -45,12 +45,12 @@ const BetSlip: React.FC = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(2);
-   const matchData = (data[`${betOdds?.betType}`] || [])
-  const eventData = betOdds?.betType === "fancy" ? fancyData?.session as EventData[] :(betOdds?.betType === "market" ? (matchData[0]?.events) as EventData[]:matchData as EventData[]);
+   const matchData = (data[`${betOdds?.betType === "odd" ? "market":betOdds?.betType}`] || [])
+  const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const checkCurrentBet = eventData?.find((item) => item?.RunnerName === betOdds?.runnerName);
-     console.log(checkCurrentBet,"reachedd")
+     console.log(checkCurrentBet,eventData,betOdds,matchData,"reachedd")
   const checkBetCondition = (): boolean => {
     if (!userData || !betOdds || !checkCurrentBet) return false;
 
@@ -69,7 +69,7 @@ const BetSlip: React.FC = () => {
    
     console.log(betOdds?.size,currentsize,betOdds?.sizeKey,checkCurrentBet,"vibuhiii::::")
 
-    if(betOdds?.betType === 'fancy'){
+    if(betOdds?.betType === 'session'){
         if(Number(betOdds?.size) !== Number(currentsize)){
           showToasterMessage({ messageType: "error", description: "size invalid" });
 
@@ -93,20 +93,20 @@ const BetSlip: React.FC = () => {
       }
     }
     // Check timeout condition
-    const updatedTime = (betOdds.time||"").replace(" ", "T"); // Convert to ISO format
-    const isWithin10Seconds = checkTimeDifference(updatedTime);
+    // const updatedTime = (betOdds.time||"").replace(" ", "T"); // Convert to ISO format
+    // const isWithin10Seconds = checkTimeDifference(updatedTime);
   
-    if (!isWithin10Seconds) {
-      showToasterMessage({ messageType: "error", description: "Timeout" });
-      return false;
-    }
+    // if (!isWithin10Seconds) {
+    //   showToasterMessage({ messageType: "error", description: "Timeout" });
+    //   return false;
+    // }
 
 
     const time = (data.updateTime||"").replace(" ", "T"); // Convert to ISO format
     const isWithin10Second = checkTimeDifference(time);
   
     if (!isWithin10Second) {
-      showToasterMessage({ messageType: "error", description: "data odds" });
+      showToasterMessage({ messageType: "error", description: "data Timeout!!" });
       return false;
     }
   
@@ -114,7 +114,7 @@ const BetSlip: React.FC = () => {
   };
     const calculateProfitLoss = (type:string)=>{
 
-      if(type === "fancy"){
+      if(type === "session"){
           return(
             (Number(betOdds.size) * sum)/100
           )
@@ -165,19 +165,20 @@ const BetSlip: React.FC = () => {
       userName: userData.UserName,
       eventName: extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams ,
       profitloss: betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum,
-      betTypes: betOdds.type,
+      betTypes: betOdds?.type,
       amount: sum,
       placeDate: format(now, "yyyy-MM-dd hh:mm:ssa"),
       MatchDate: "2025-02-21",
       accountType: "User",
-      userRate: betOdds.odds,
+      userRate: betOdds?.odds,
       ip: ipAddress?.ip, // IP address
-      exposure:  betOdds.type === "back" ? sum :calculateProfitLoss(betOdds?.betType),
+      exposure:  betOdds?.type === "back" ? sum :calculateProfitLoss(betOdds?.betType),
       time: format(now, "yyyy-MM-dd hh:mm:ssa"),
       gameid: eventId,
-      evetsType: betOdds.betType,
-      nation: betOdds.runnerName,
+      evetsType: betOdds?.betType,
+      nation: betOdds?.runnerName,
       section: sport,
+      bhav: betOdds?.size
     };
     console.log(bettingData, ipAddress ,"CHECKEDDD::::")
     placingBet(bettingData);
@@ -238,7 +239,7 @@ const BetSlip: React.FC = () => {
       >
         {/* Top Part of Bet Slip */}
         <div id="topPartOfBetSlip" title="Bet Slip Top Part" className="grid grid-cols-12 pt-[2px] gap-x-[15px]">
-          {betOdds?.betType === "fancy" ? (
+          {betOdds?.betType === "session" ? (
             <>
               <span className="col-span-3 text-[10px] text-text_Ternary font-normal text-center">ODDS(H-J)</span>
               <span className="col-span-3 text-[10px] text-text_Ternary font-normal text-center">RUNS</span>
@@ -254,7 +255,7 @@ const BetSlip: React.FC = () => {
             </span>
           </div>
 
-          {betOdds?.betType === "fancy" ? (
+          {betOdds?.betType === "session" ? (
             <span title="Odds" className="col-span-6 pt-1.5 w-full">
               <div className="w-full grid grid-cols-2 gap-x-2 min-h-[35px]">
                 <span className="col-span-1 overflow-hidden h-full">
@@ -389,7 +390,7 @@ const BetSlip: React.FC = () => {
                 <span className="font-semibold text-[10px] sm:text-xs">
                   {betOdds?.type === "lay" ? "Liability" : "Profit"} :{" "}
                   {/* { betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum} */}
-                  {betOdds?.betType === "fancy" ? calculateProfitLoss(betOdds?.betType) : (betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum)}
+                  { calculateProfitLoss(betOdds?.betType)  }
                 </span>
               </div>
               <span className="text-[10px] flex items-center justify-center gap-x-[1px]">
