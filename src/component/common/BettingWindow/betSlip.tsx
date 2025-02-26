@@ -307,9 +307,9 @@ const BetSlip: React.FC = () => {
               placeholder="Max : 5,000"
               autoComplete="off"
               pattern="d*"
-              type="text"
+              type="number"
               onChange={handleStakeChange}
-              value={sum || betOdds?.max}
+              value={sum}
             />
           </span>
         </div>
@@ -336,13 +336,13 @@ const BetSlip: React.FC = () => {
           {/* Action Buttons */}
           <div className="grid grid-cols-12 gap-x-1 gap-y-1 pt-[15px]">
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] min-h-[26px] font-semibold rounded-[4px] bg-minBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              // onClick={() => setSum(betOdds?.min)}
+              onClick={() => setSum(betOdds?.min)}
             
             >
               MIN
             </button>
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              // onClick={() => setSum(betOdds?.max)}
+              onClick={() => setSum(betOdds?.max)}
             
             >
               MAX
@@ -388,7 +388,7 @@ const BetSlip: React.FC = () => {
                 <span className="font-bold text-xs sm:text-sm">Place Bet</span>
                 <span className="font-semibold text-[10px] sm:text-xs">
                   {betOdds?.type === "lay" ? "Liability" : "Profit"} :{" "}
-                  {betOdds?.type === "back" ? sum:calculateProfitLoss(betOdds?.betType)}
+                  { betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum}
                   {/* {betOdds?.betType === "fancy" ? Number(betOdds?.odds) : Number(betOdds?.odds) * sum - sum} */}
                 </span>
               </div>

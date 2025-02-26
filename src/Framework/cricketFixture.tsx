@@ -40,7 +40,7 @@ export const useCricketDetailsById = ({id,sport}:any) => {
     queryFn: () => fetchCricketDetailsById({id,sport}), // Fetch function
     
     retry: 3,  
-    refetchInterval:5000,               // Retry on failure
+    refetchInterval:1000,               // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });
 };
@@ -61,7 +61,7 @@ export const useCricketFancyData = (eventId:any) => {
   return useQuery({
     queryKey: ['cricket-fancy-detail', eventId], // Include `id` for query uniqueness
     queryFn: () => fetchCricketFancyData(eventId), // Fetch function
-    refetchInterval:5000, 
+    refetchInterval:1000, 
     retry: 3,                 // Retry on failure
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });
