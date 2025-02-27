@@ -141,7 +141,7 @@ const BettingWindow: React.FC = () => {
         
         </div>
       </div>
-      <Modal open={editStack} footer={ <div className=" flex item-center justify-center gap-x-2 mt-2">
+      <Modal open={editStack} className="popUpBoxShadow relative origin-center popUpOpenAnimation bg-bg_Quaternary w-[86%] py-3 px-2 rounded " footer={ <div className=" flex item-center justify-center gap-x-2 mt-2">
             <button
               className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out  px-2 py-1.5 h-full text-[13px] min-w-16 rounded bg-bg_Quaternary border border-disableBackGroundColorfForPlaceBetBtn text-text_Ternary  font-lato-bold active:scale-75 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  cursor-pointer"
               type="button"
@@ -149,6 +149,7 @@ const BettingWindow: React.FC = () => {
               Cancel
             </button>
             <button
+            onClick={()=>setEditStack(false)}
               className="  leading-normal relative overflow-hidden  transition duration-150 ease-in-out  px-2 py-1.5 h-full text-[13px] min-w-16 flex items-center justify-center gap-x-1 border border-secondary  rounded bg-bg_Secondary text-text_Quaternary font-lato-bold active:scale-75 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  cursor-pointer"
               type="button"
             >

@@ -131,24 +131,20 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     {
         active === "live" ?  <div title="Live Score"
         className="  grid grid-cols-1   min-h-[124px]   sm:grid-cols-2 lg:grid-cols-1 sm:gap-x-1 sm:px-0.5 lg:gap-x-0 lg:px-0 w-full  flex-grow">
-        <div className=" col-span-1 w-full h-max">
+        {/* <div className=" col-span-1 w-full h-max">
             <div className="h-max rounded-sm w-full">
             <iframe
         ref={iframeRef}
         src="https://lmt.ss8055.com/index?Id=53562949&t=d"
         id="iFrameResizer2"
         scrolling="no"
-        style={{width: "100%",height:"550px",overflow:"auto"}}
+        style={{width: "100%",height:"140px",overflow:"auto"}}
 
         className="w-full"
       ></iframe>
-                {/* <iframe
-                    src="https://lmt.ss8055.com/index?Id=53562949&amp;t=d" id="iFrameResizer2"
-                    scrolling="no"
-                    style={{width: "100%",height:"550px",overflow:"auto"}}
-                    ></iframe> */}
+       
                     </div>
-        </div>
+        </div> */}
         <div className=" col-span-1 h-full" style={{display: "block"}}>
             {
                 open ?  <div

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { IoEyeOutline } from "react-icons/io5";
+import { showToasterMessage } from "../../../Framework/utils/constant";
+import { useAdminDetails, useChangePassword } from "../../../Framework/login";
 
 const Password = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -9,7 +11,8 @@ const Password = () => {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const {data} = useAdminDetails();
+  const { mutate: changePassword, isError: error } = useChangePassword();
   const togglePasswordVisibility = (setter: { (value: React.SetStateAction<boolean>): void; (arg0: (prev: any) => boolean): void; }) => {
     setter((prev: any) => !prev);
   };
@@ -17,19 +20,29 @@ const Password = () => {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (!oldPassword || !newPassword || !confirmPassword) {
-      alert("Fields are required");
+      showToasterMessage({messageType:"error",description:"Fields are required"})
+     
       return;
     }
     if (oldPassword !== process.env.REACT_APP_PASSWORD) {
-      alert("Incorrect old password!");
+      showToasterMessage({messageType:"error",description:"Incorrect old password!"})
+
+     
       return;
     }
     if (newPassword !== confirmPassword) {
-      alert("New password and confirm password do not match!");
+      showToasterMessage({messageType:"error",description:"New password and confirm password do not match!"})
+
+    
       return;
     }
-    alert("Password changed successfully");
-    console.log("Password Changed Successfully");
+
+    showToasterMessage({messageType:"success",description:"Password Changed Successfully"})
+    const val = {
+      userName: data?.UserName,
+      password:newPassword,
+    }
+     changePassword(val);
   };
 
   return (

@@ -45,17 +45,40 @@ const BetSlip: React.FC = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(2);
-   const matchData = betOdds?.betType !== "session" ? (data[`${betOdds?.betType === "odd" ? "market":betOdds?.betType}`] || []):[]
-  const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
+ 
+   
+   const getEventData = () =>{
+    let eventData: EventData[] =[]; 
+         if(sport === "greyhound_racecard" || sport === "horseRacing_racecard"){
+            eventData = data?.data;
+           
+         }
+         else{
+            if(betOdds?.betType === "session"){
+              eventData = fancyData?.session;
+            }
+            else{
+              if(betOdds?.type === "odd"){
+                 eventData = data?.market;
+              }
+              else{
+                eventData = data?.bookmaker;
+              }
+            }
+         }
+
+         return eventData;
+   }
+  // const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const checkCurrentBet = eventData?.find((item) => item?.RunnerName === betOdds?.runnerName);
-     console.log(checkCurrentBet,eventData,betOdds,matchData,"reachedd")
+  const checkCurrentBet = (getEventData()||[])?.find((item) => item?.RunnerName === betOdds?.runnerName);
+     console.log(checkCurrentBet,betOdds,"reachedd")
   const checkBetCondition = (): boolean => {
     if (!userData || !betOdds || !checkCurrentBet) return false;
 
     // Check user status and balance
-    if (userData.status === "deactive" || userData?.Balance < sum || userData.ExposureLimit < sum) {
+    if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum || userData.ExposureLimit < sum) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
       return false;
     }
@@ -191,7 +214,7 @@ const BetSlip: React.FC = () => {
   const handleConfirmBet = () => {
     // Check bet conditions before proceeding
     const canPlaceBet = checkBetCondition();
-     console.log(canPlaceBet,eventData,"RUBYYYYY")
+     console.log(canPlaceBet,"RUBYYYYY")
     if (!canPlaceBet) {
       return; // Stop if conditions are not met
     }
@@ -205,9 +228,14 @@ const BetSlip: React.FC = () => {
         if (prevTimer <= 0) {
           clearInterval(intervalRef.current!);
           setBetProcessed(false);
-  
+          if(prevTimer === 0){
+          const canPlaceBet = checkBetCondition();
+          if (canPlaceBet) {
+            placeBet();
+
+          }
+          }
           // Place the bet only once when the timer reaches 0
-          placeBet();
           return 0;
         }
         return prevTimer - 1;
@@ -252,7 +280,7 @@ const BetSlip: React.FC = () => {
           <div className="col-span-6 w-full flex items-center justify-between">
             <span className="text-[10px] text-text_Ternary font-normal text-start pl-1">STAKE</span>
             <span className="text-[10px] float-right capitalize text-text_Ternary font-normal text-center">
-              Max Mkt : 0
+              Max Mkt : {betOdds?.max}
             </span>
           </div>
 

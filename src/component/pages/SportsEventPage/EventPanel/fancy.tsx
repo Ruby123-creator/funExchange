@@ -31,8 +31,8 @@ const FancyComp: React.FC = () => {
                 return (
                   <>
                     <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
-                      <div className="w-full  md:col-span-6  col-span-7 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5 pr-[3px]">
-                        <div className=" col-span-7 md:col-span-8 flex items-start justify-center h-full flex-col">
+                      <div className="w-full  md:col-span-6  col-span-7 h-12 pl-2.5 md:pl-2 py-0.5 pr-[3px]">
+                        <div className=" flex items-start justify-center h-full flex-col">
                           <div className=" w-full flex flex-nowrap gap-x-2">
                             <span className=" truncate w-full capitalize text-text_Ternary  text-[13px] md:text-sm  font-semibold">
                               {item?.RunnerName}
@@ -50,51 +50,13 @@ const FancyComp: React.FC = () => {
                           }
                          
                         </div>
-                        <span className=" col-span-3 md:col-span-1 flex flex-row items-center justify-center gap-x-[2px]">
+                        {/* <span className=" col-span-3 md:col-span-1 flex flex-row items-center justify-center gap-x-[2px]">
                          <CiStopwatch size={20}/>
                           <span className=" font-[480] text-sm text-text_Ternary ">
                             1s
                           </span>
-                        </span>
-                        <span className=" col-span-2 md:col-span-1 flex flex-row items-center justify-center">
-                          <div className=" opacity-50 cursor-not-allowed">
-                            <svg
-                              height="18"
-                              width="18"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g id="63d691358b4e4026f6539708_stairs 1">
-                                <path
-                                  id="Vector"
-                                  d="M5.21875 3.13672V13.1367"
-                                  stroke="var(--color-ternary4)"
-                                ></path>
-                                <path
-                                  id="Vector_2"
-                                  d="M5.21875 5.48047H10.5312"
-                                  stroke="var(--color-ternary4)"
-                                ></path>
-                                <path
-                                  id="Vector_3"
-                                  d="M5.21875 8.13672H10.5312"
-                                  stroke="var(--color-ternary4)"
-                                ></path>
-                                <path
-                                  id="Vector_4"
-                                  d="M5.21875 11.1055H10.5312"
-                                  stroke="var(--color-ternary4)"
-                                ></path>
-                                <path
-                                  id="Vector_5"
-                                  d="M10.5312 3.13672V13.1367"
-                                  stroke="var(--color-ternary4)"
-                                ></path>
-                              </g>
-                            </svg>
-                          </div>
-                        </span>
+                        </span> */}
+                       
                       </div>
 
                       {item?.GameStatus ? (

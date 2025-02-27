@@ -138,15 +138,15 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
             {(data || []).map((item, i) => (
               <React.Fragment key={`events${i}`}>
                 <div className="col-span-12 grid grid-cols-12 border-b border-borderColorOfMarket">
-                  <div className="col-span-4 h-12 lg:col-span-5 grid grid-cols-7">
+                  <div className="col-span-6 h-12 lg:col-span-5 grid grid-cols-7">
                     <span
                       id="inPlayTeamName"
-                      className="text-selection-none flex items-center justify-start col-span-8 px-1 relative active:scale-[94%] transition-all px-5 ease-in-out duration-100 cursor-pointer truncate w-full capitalize text-text_Ternary text-[13px] md:text-sm font-semibold"
+                      className="text-selection-none flex items-center justify-start col-span-8 px-1 relative active:scale-[94%] transition-all px-1 md:px-5 ease-in-out duration-100 cursor-pointer truncate w-full capitalize text-text_Ternary text-[13px] md:text-sm font-semibold"
                     >
                       {item.RunnerName}
                     </span>
                   </div>
-                  <span className="col-span-8 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
+                  <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
                     {item.status === "ACTIVE" ? (
                       <div
                         className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"

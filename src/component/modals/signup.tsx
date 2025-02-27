@@ -84,13 +84,13 @@ const SignUp_Modal: React.FC<Props> = ({ openModal }) => {
                   </button>
                 </div>
               </div>
-              <div
+              {/* <div
                 id="phoneNumberValidations"
                 className=" flex w-full items-center justify-between mt-1 px-1"
               >
                 <span className=" text-xs text-text_Danger"></span>
                 <span className=" text-xs text-text_Primary">0/10</span>
-              </div>
+              </div> */}
              
               {/* OTP Input */}
               <div className="flex w-full items-center border p-1 bg-bg_BgGray rounded-lg mt-2">

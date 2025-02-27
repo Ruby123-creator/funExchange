@@ -49,8 +49,10 @@ const EventPanel: React.FC = () => {
             {
               (bookMaker||[])?.length ? <MatchOddBookmaker title="Bookmaker" data={bookMaker} updatedTime={data?.updateTime}/>: ""
             }
-            
-            <FancyComp/>
+            {
+              sport === "cricket" ?            <FancyComp/>
+              :""
+            }
             
             </>
           }
