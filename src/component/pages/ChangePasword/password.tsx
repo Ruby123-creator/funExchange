@@ -16,10 +16,19 @@ const Password = () => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      alert("Fields are required");
+      return;
+    }
+    if (oldPassword !== process.env.REACT_APP_PASSWORD) {
+      alert("Incorrect old password!");
+      return;
+    }
     if (newPassword !== confirmPassword) {
       alert("New password and confirm password do not match!");
       return;
     }
+    alert("Password changed successfully");
     console.log("Password Changed Successfully");
   };
 
@@ -55,7 +64,7 @@ const Password = () => {
                 <div>
               <div className="w-full h-full">
               <div className=" relative">
-                    <span className="px-2 absolute top-1/2 -translate-y-1/2 w-max">
+                    <span className="px-2 absolute top-1/2 -translate-y-1/2 w-max"  onClick={() => togglePasswordVisibility(setShow)}>
                     <RiLockPasswordFill  fill="var(--color-secondary)" size={20}/>
                     
                     </span>

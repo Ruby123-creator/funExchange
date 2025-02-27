@@ -45,7 +45,7 @@ const BetSlip: React.FC = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(2);
-   const matchData = (data[`${betOdds?.betType === "odd" ? "market":betOdds?.betType}`] || [])
+   const matchData = betOdds?.betType !== "session" ? (data[`${betOdds?.betType === "odd" ? "market":betOdds?.betType}`] || []):[]
   const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 

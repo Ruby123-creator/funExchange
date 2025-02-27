@@ -182,7 +182,7 @@ const Header: React.FC = () => {
                     <div className="flex gap-0.5 text-white/80  xl:text-nowrap whitespace-nowrap">
                       Available balance:
                       <span className="font-medium text-text_Quaternary">
-                        ₹ 0
+                        ₹ {(data?.Balance||0).toFixed(2)}
                       </span>
                     </div>
                   </div>

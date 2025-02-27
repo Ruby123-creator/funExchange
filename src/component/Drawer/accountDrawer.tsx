@@ -23,6 +23,7 @@ import { CiLogout } from "react-icons/ci";
 import { FaTelegramPlane } from 'react-icons/fa';
 import { BsInstagram } from 'react-icons/bs';
 import {useNavigate } from 'react-router-dom';
+import { useAdminDetails } from '../../Framework/login';
 
 interface Props{
     openDrawer:any
@@ -172,6 +173,7 @@ const drawerElement = [
   },
 ]
 const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
+    const {data} = useAdminDetails();
     const Navigate = useNavigate();
   return (
     <div
@@ -201,7 +203,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-2">
                                 <span className="uppercase font-normal text-xxs">Balance</span><span
-                                    className=" font-lato text-sm font-medium text-text_Success">₹ 0.00</span>
+                                    className=" font-lato text-sm font-medium text-text_Success">₹ {(data?.Balance||0).toFixed(2)}</span>
                             </div>
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-1">
@@ -211,7 +213,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-1">
                                 <span className="uppercase font-normal text-xxs">Net Exposure</span><span
-                                    className=" font-lato text-sm font-medium text-text_Danger">₹ 0.00</span>
+                                    className=" font-lato text-sm font-medium text-text_Danger">₹ {(data?.Exposure||0).toFixed(2)}</span>
                             </div>
                         </div>
                         <div className="flex col-span-2 items-center justify-center  w-full ">
