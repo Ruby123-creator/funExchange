@@ -48,7 +48,7 @@ const Password = () => {
   return (
     <div className="w-full md:mt-0 lg:overflow-auto lg:w-[54%]" style={{ minHeight: "calc(-110px + 100dvh)" }}>
       <div title="Change Password" className="p-2 space-y-2 mx-2 my-2 rounded-lg bg-bg_Quaternary shadow">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div className="flex flex-col gap-2 font-lato">
             {[{
               label: "Old Password",
@@ -77,7 +77,7 @@ const Password = () => {
                 <div>
               <div className="w-full h-full">
               <div className=" relative">
-                    <span className="px-2 absolute top-1/2 -translate-y-1/2 w-max"  onClick={() => togglePasswordVisibility(setShow)}>
+                    <span className="px-2 absolute top-1/2 -translate-y-1/2 w-max"  >
                     <RiLockPasswordFill  fill="var(--color-secondary)" size={20}/>
                     
                     </span>
@@ -85,6 +85,8 @@ const Password = () => {
                     placeholder={label}
                     name={name}
                     className="block w-full focus:outline-none py-2 bg-bg_BgGray border rounded-lg pl-10 pr-8"
+                    readOnly
+  onFocus={(e) => e.target.removeAttribute('readOnly')}
                     autoComplete="off"
                     type={show ? "text" : "password"}
                     value={value}
@@ -94,6 +96,7 @@ const Password = () => {
                       <button
                         type="button"
                         className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out undefined  cursor-pointer"
+                        onClick={() => togglePasswordVisibility(setShow)}
                       >
                       <IoEyeOutline  fill="var(--color-secondary)" size={20}/>
                       </button>

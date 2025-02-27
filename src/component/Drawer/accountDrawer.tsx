@@ -64,6 +64,12 @@ const drawerElement = [
         id:22,
         route:"/open-bets"
     },
+    {
+        title:"Declare Bets",
+        icon: <TbStars stroke="var(--color-iconsColor)" size={20}/>,
+        id:22,
+        route:"/open-bets"
+    },
     // {
     //     title:"Betting Profit & Loss",
     //     icon: <CgSpaceBetween stroke="var(--color-iconsColor)" size={20}/>,

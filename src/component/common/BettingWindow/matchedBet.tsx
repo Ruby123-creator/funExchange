@@ -43,7 +43,7 @@ const MatchedBets : React.FC<Props> = ({render}) => {
                   <th className="p-2 text-left">Event Name</th>
                   {
                     render ?<> <th className="p-2 text-left w-auto whitespace-nowrap">Bet Type</th>
-                  <th className="p-2 text-left w-full w-auto whitespace-nowra">Market Type</th></> : ""
+                  <th className="p-2 text-left w-full w-auto whitespace-nowrap">Market Type</th></> : ""
                   }
                  
                   <th className="p-2 text-left w-auto whitespace-nowrap">User Rate</th>
@@ -74,14 +74,14 @@ const MatchedBets : React.FC<Props> = ({render}) => {
                     }
                    
                     <td className="p-2">{bet.userRate}</td>
-                    <td className="p-2">{bet.amount}</td>
+                    <td className="p-2">₹ {bet.amount}</td>
                     {
                       render ? <>  <td
                       className={`p-2 font-semibold ${
-                        bet.profitloss >= 0 ? "text-green-600" : "text-red-600"
+                        bet.profitloss >= 0 ? "text-text_Profit" : "text-red-600"
                       }`}
                     >
-                      {bet.profitloss}
+                      ₹ {bet.profitloss}
                     </td>
                     <td className="p-2 whitespace-nowrap">
                       {bet.placeDate}
