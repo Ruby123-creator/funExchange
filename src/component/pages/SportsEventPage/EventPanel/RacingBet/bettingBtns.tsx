@@ -4,7 +4,7 @@ import { useUI } from '../../../../../context/ui.context';
 interface BettingData {
   key?: string;
   price: string;
-  max?: number;
+  max?: string;
   min?: number;
   size?: string;
   bg?: string;

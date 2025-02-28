@@ -93,8 +93,14 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
             <div
                 className=" flex flex-col items-start justify-start w-[95%] break-words gap-y-0">
                 <span
-                    className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-sm font-bold"><span
-                        className=" capitalize break-words">{extractSportsDetails(data?.gametitle)?.teams||data?.title}</span></span>
+                    className=" w-full bg-titleGrd flex flex-col text-transparent text-start bg-clip-text font-lato text-sm font-bold">
+                        <span
+                        className=" capitalize break-words">{extractSportsDetails(data?.gametitle)?.teams||data?.title}</span>
+                        {
+                            data?.race_card ? <span
+                            className=" capitalize break-words text-xs">{(data?.race_card||"").split(" ").slice(0,-2).join(" ")}</span>:""
+                        }
+                        </span>
             </div>
         </div>
         <div className=" flex items-center justify-center gap-x-2">
@@ -103,7 +109,12 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 {extractSportsDetails(data?.gametitle)?.date} {extractSportsDetails(data?.gametitle)?.time} 
                     </span>
             }
-        
+                        {data?.time ? 
+                        <span  className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-[12px] font-semibold">
+                        {data.time}
+                         </span>
+                         :""}
+
             <span onClick={()=>setIsModalOpen(true)}>
             <IoInformationCircleOutline stroke="#C10B32" fill="#C10B32" size={20}/>
             </span></div>

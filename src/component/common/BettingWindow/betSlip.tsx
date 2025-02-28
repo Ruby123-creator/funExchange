@@ -100,8 +100,13 @@ const BetSlip: React.FC = () => {
     if (!userData || !betOdds || !checkCurrentBet) return false;
     console.log(checkCurrentBet,betOdds,"reachedd")
     // Check user status and balance
-    if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum || userData.ExposureLimit < sum) {
+    if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum ) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
+      return false;
+    }
+
+    if((sum<Number(betOdds?.min))|| sum>Number(calculateMaxAmount(betOdds?.max))){
+      showToasterMessage({ messageType: "error", description: "INVALID BET AMOUNT" });
       return false;
     }
   
@@ -467,7 +472,7 @@ const BetSlip: React.FC = () => {
                 <span className="font-semibold text-[10px] sm:text-xs">
                   {betOdds?.type === "lay" ? "Liability" : "Profit"} :{" "}
                   {/* { betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum} */}
-                  { calculateProfitLoss(betOdds?.betType)  }
+                  { (calculateProfitLoss(betOdds?.betType)||0).toFixed(2)  }
                 </span>
               </div>
               <span className="text-[10px] flex items-center justify-center gap-x-[1px]">
