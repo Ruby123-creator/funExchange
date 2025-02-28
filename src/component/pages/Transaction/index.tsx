@@ -62,7 +62,7 @@ const TransactionPage: React.FC = () => {
                             <div className=" px-2 w-full mt-2.5 flex flex-1 gap-2 items-center justify-center">
                                 <div className=" w-full rounded-md bg-bg_Quaternary  font-lato">
                                     <div className="font-lato font-bold text-base leading-5"></div>
-                                    <div className=" relative shadow-md">
+                                    <div className="statement relative shadow-md">
                                     <Select
    className="w-full rounded-[5px] bg-bg_Quaternary  items-center justify-center border border-ternary6"
     placeholder="Select a person"

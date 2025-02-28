@@ -9,7 +9,7 @@ const FancyComp: React.FC = () => {
   const { sport, eventId }: any = useParams();
   const { setMatchedBets, betOdds } = useUI();
     const[betWindow,setBetWindow] = useState('')
-  
+ 
   const { data } = useCricketFancyData(eventId);
   return (
     <div>
@@ -177,7 +177,7 @@ const FancyComp: React.FC = () => {
                       )}
                     </div>
 
-                    {betOdds?.odds && `session${i}` === betWindow ? (
+                    {(betOdds?.odds && `session${i}` === betWindow) ? (
                       <div className="col-span-12 h-max lg:hidden">
                         <span className=" col-span-12 h-max w-full">
                           <BetSlip />

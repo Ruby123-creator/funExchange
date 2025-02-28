@@ -71,7 +71,7 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
       
         const diffInSeconds = differenceInSeconds(currentDate, updatedDate); // Get difference in seconds
        console.log(updatedTime,updatedDate,currentDate,diffInSeconds,"MANJUUU")
-        return diffInSeconds <= 10; // Return true if difference is ≤ 10 seconds
+        return diffInSeconds <= 12; // Return true if difference is ≤ 10 seconds
       };
 
 

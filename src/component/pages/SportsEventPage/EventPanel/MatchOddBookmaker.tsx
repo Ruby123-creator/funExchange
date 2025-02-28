@@ -72,6 +72,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
 
   // Helper function to render LayBack components
   const renderLayBack = (
+    title:string,
     item: DataItem,
     type: "back" | "lay",
     priceKey: keyof DataItem,
@@ -88,7 +89,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
       <LayBack
         val={price}
         size={size}
-        max={Number(item.max)}
+        max={(item.max)}
         type={type}
         eventKey={priceKey}
         runnerName={item.RunnerName}
@@ -101,7 +102,6 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
       />
     );
   };
-
   return (
     <div className="w-full text-selection-none pb-3 lg:pb-0">
       <div className="px-2 font-helvetica-neue">
@@ -135,7 +135,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
             </div>
           </div>
           <div className="bg-bg_Quaternary rounded-[3px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] py-[1px] cursor-pointer">
-            {(data || []).map((item, i) => (
+            {(data || []).filter((val:DataItem)=>!((val?.RunnerName||"").includes("1 to 10"))).map((item, i) => (
               <React.Fragment key={`events${i}`}>
                 <div className="col-span-12 grid grid-cols-12 border-b border-borderColorOfMarket">
                   <div className="col-span-6 h-12 lg:col-span-5 grid grid-cols-7">
@@ -147,12 +147,16 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     </span>
                   </div>
                   <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
-                    {item.status === "ACTIVE" ? (
+                    {(item.status === "ACTIVE"|| item?.status === "OPEN") ? (
                       <div
                         className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"
-                        onClick={() => setBetWindow(`${title}${i}`)}
+                        onClick={() => {setBetWindow(`${title}${i}`)
+                        console.log(betWindow,`${title}${i}`,"12344")
+
+                      }}
                       >
                         {renderLayBack(
+                          title,
                           item,
                           "back",
                           "BackPrice2",
@@ -161,6 +165,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                           i
                         )}
                         {renderLayBack(
+                          title,
                           item,
                           "back",
                           "BackPrice3",
@@ -169,6 +174,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                           i
                         )}
                         {renderLayBack(
+                          title,
                           item,
                           "back",
                           "BackPrice1",
@@ -177,6 +183,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                           i
                         )}
                         {renderLayBack(
+                          title,
                           item,
                           "lay",
                           "LayPrice1",
@@ -185,6 +192,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                           i
                         )}
                         {renderLayBack(
+                          title,
                           item,
                           "lay",
                           "LayPrice2",
@@ -193,6 +201,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                           i
                         )}
                         {renderLayBack(
+                          title,
                           item,
                           "lay",
                           "LayPrice3",

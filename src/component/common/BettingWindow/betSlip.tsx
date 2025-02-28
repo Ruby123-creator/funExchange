@@ -33,14 +33,29 @@ interface UserData {
 
 const BetSlip: React.FC = () => {
   const { betOdds, stacks ,setMatchedBets} = useUI();
-  const { sport, eventId } = useParams<{ sport: string; eventId: string }>();
-  const { data, isLoading, isError } = useCricketDetailsById({ id: eventId, sport });
+  const { sport, eventId }: any = useParams();
+   const [val,setValue] = useState('');
+ 
+   useEffect(()=>{
+     
+     if(sport === 'horseRacing_racecard'){
+      setValue("racecard") 
+     }else if(sport === 'greyhound_racecard'){
+       setValue("racecard/greyhound") 
+       
+     }
+     else{
+       setValue(sport);
+     }
+    },[sport])
+      const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport:val});
+     
   const {data:fancyData} = useCricketFancyData(eventId);
   const { data:ipAddress} = useIPDetails();
   console.log(ipAddress,"IPAddresss");
   const { mutate: placingBet, isError: error } = usePlaceBet();
   const { data: userData } = useAdminDetails();
-   console.log((data?.market[0]||[])?.gametitle ,data?.market,data,"CHECKEDDD")
+  
   const [sum, setSum] = useState<number>(0);
   const [edit, setEdit] = useState<boolean>(false);
   const [betProcessed, setBetProcessed] = useState<boolean>(false);
@@ -48,6 +63,7 @@ const BetSlip: React.FC = () => {
  
    
    const getEventData = () =>{
+    console.log("Bookmaker:::::::::::::::::::::::::::::::::::",betOdds,data,sport)
     let eventData: EventData[] =[]; 
          if(sport === "greyhound_racecard" || sport === "horseRacing_racecard"){
             eventData = data?.data;
@@ -58,11 +74,13 @@ const BetSlip: React.FC = () => {
               eventData = fancyData?.session;
             }
             else{
-              if(betOdds?.type === "odd"){
-                 eventData = data?.market;
+              if(betOdds?.betType === "odd"){
+                 eventData = ((data?.market||[])[0])?.events;
               }
               else{
+                
                 eventData = data?.bookmaker;
+               
               }
             }
          }
@@ -71,12 +89,16 @@ const BetSlip: React.FC = () => {
    }
   // const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const checkCurrentBet = (getEventData()||[])?.find((item) => item?.RunnerName === betOdds?.runnerName);
-     console.log(checkCurrentBet,betOdds,"reachedd")
+   
+ 
+   
   const checkBetCondition = (): boolean => {
-    if (!userData || !betOdds || !checkCurrentBet) return false;
+    
+    const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
+    console.log(checkCurrentBet,betOdds,"reachedd")
 
+    if (!userData || !betOdds || !checkCurrentBet) return false;
+    console.log(checkCurrentBet,betOdds,"reachedd")
     // Check user status and balance
     if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum || userData.ExposureLimit < sum) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
@@ -124,9 +146,17 @@ const BetSlip: React.FC = () => {
     //   return false;
     // }
 
+    const givenTimestamp = ( data?.update_time) * 1000;
 
-    const time = (data.updateTime||"").replace(" ", "T"); // Convert to ISO format
+    // Format the date
+    const formattedDate = data?.update_time ?  format(new Date(givenTimestamp||""), 'yyyy-MM-dd HH:mm:ss'): data?.updateTime;
+    const time =  (formattedDate||"").replace(" ", "T"); // Convert to ISO format
+    
+
+// Current timestamp
+
     const isWithin10Second = checkTimeDifference(time);
+    console.log(isWithin10Second,time,"Matchingggggg")
   
     if (!isWithin10Second) {
       showToasterMessage({ messageType: "error", description: "data Timeout!!" });
@@ -242,7 +272,24 @@ const BetSlip: React.FC = () => {
       });
     }, 1000);
   };
-
+  const calculateMaxAmount = (val: string | number): number => {
+    if (typeof val === "number") {
+      return val;
+    }
+  
+    if (typeof val === "string") {
+      let num = parseFloat(val);
+      
+      if (val.toUpperCase().includes("L")) {
+        return num * 100000; // Convert Lakh to numeric value
+      } 
+      if (val.toUpperCase().includes("K")) {
+        return num * 1000; // Convert Thousand to numeric value
+      }
+    }
+  
+    return 0; // Default return value
+  };
   // Cleanup interval on unmount
   useEffect(() => {
     return () => {
@@ -258,6 +305,7 @@ const BetSlip: React.FC = () => {
     setSum((prevSum) => Number(prevSum) + val);
     setMatchedBets({ ...betOdds, amount: sum + val });
   };
+
 
   return (
     <div className="relative">
@@ -280,7 +328,7 @@ const BetSlip: React.FC = () => {
           <div className="col-span-6 w-full flex items-center justify-between">
             <span className="text-[10px] text-text_Ternary font-normal text-start pl-1">STAKE</span>
             <span className="text-[10px] float-right capitalize text-text_Ternary font-normal text-center">
-              Max Mkt : {betOdds?.max}
+              Max Mkt : {calculateMaxAmount(betOdds?.max)}
             </span>
           </div>
 
@@ -372,7 +420,7 @@ const BetSlip: React.FC = () => {
               MIN
             </button>
             <button className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-maxBtnGrd text-text_Quaternary py-2 cursor-pointer"
-              onClick={() => setSum(Number(betOdds?.max))}
+              onClick={() => setSum(calculateMaxAmount(betOdds?.max))}
             
             >
               MAX

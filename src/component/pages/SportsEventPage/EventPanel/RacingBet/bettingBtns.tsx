@@ -2,7 +2,7 @@ import React from 'react';
 import { useUI } from '../../../../../context/ui.context';
 
 interface BettingData {
-  price: number;
+  price: string;
   max?: number;
   min?: number;
   size?: string;
@@ -24,12 +24,13 @@ const BettingBtns: React.FC<Props> = ({ data }) => {
     if (!data.result) {
       setMatchedBets({
         ...betOdds,
-        odds: data.price,
-        max: data.max,
+        odds:(data?.price||"").trim(),
+        max: data?.max,
         min: data.min,
         runnerName: data.runnerName,
         type: data.type,
         time: data.time,
+        betTrue: true,
         betType:"odd"
       });
     }
@@ -48,14 +49,14 @@ const BettingBtns: React.FC<Props> = ({ data }) => {
             id="oddBtnPrice"
             className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-text_OddValue leading-5 text-sm md:text-[15px] font-semibold"
           >
-            {data.price}
+            {(data.price )? data.price: ""}
           </span>
           <span
             id="oddBtnSize"
             className="relative z-10 transition-all ease-in-out duration-300 origin-center flex items-center justify-center w-full text-[10px] text-text_OddValue leading-3 text-center whitespace-normal font-normal"
           >
             <span className="w-max break-all truncate">
-              <div className="odd-button__volume">{data.size}</div>
+              <div className="odd-button__volume">{ data?.size !== "-" ? data.size :""}</div>
             </span>
           </span>
         </div>

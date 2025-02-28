@@ -66,6 +66,7 @@ const RacingBet :React.FC<Props> = ({data}) => {
             setPrevData([...(data?.data)]); // Store a new reference to avoid shallow comparison issues
           }
         }, [data]);
+           console.log(betOdds,"oddssssss::::::::::")
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
     <div className=" px-2 font-helvetica-neue">
@@ -102,13 +103,13 @@ const RacingBet :React.FC<Props> = ({data}) => {
                                         className="  text-center bg-bg_ballRunning cursor-not-allowed w-full h-full rounded-sm flex text-xs flex-col items-center justify-center capitalize">{item?.result}</span></span>
                             </div> :<div
                                 className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid md:grid-cols-6 grid-cols-2 relative`} onClick={()=>setBetWindow(i)}>
-                              <BettingBtns data={{price:0,size:"",runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"back" , bg:`bg-bg_betmin md:block hidden ${blinkFields[i]?.b2_price||blinkFields[i]?.b2_size ? "blink" : ""}`, }} />
-                              <BettingBtns data={{price:0,size:"",runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"back" , bg:`bg-bg_betback md:block hidden ${blinkFields[i]?.b1_price||blinkFields[i]?.b1_size ? "blink" : ""}`, }}/>
-                              <BettingBtns data={{price:item?.b_price,size:item?.b_size ,runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"back", bg:`bg-bg_betmin ${blinkFields[i]?.b_price||blinkFields[i]?.b_size ? "blink" : ""}`, }}/>
+                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:item?.max,min:item?.min,type:"back" , bg:`bg-bg_betmin md:block hidden ${blinkFields[i]?.b2_price||blinkFields[i]?.b2_size ? "blink" : ""}`, }} />
+                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:item?.max,min:item?.min,type:"back" , bg:`bg-bg_betback md:block hidden ${blinkFields[i]?.b1_price||blinkFields[i]?.b1_size ? "blink" : ""}`, }}/>
+                              <BettingBtns data={{price:item?.b_price,size:item?.b_size ,runnerName:item?.nation,max:item?.max,min:item?.min,type:"back", bg:`bg-bg_betmin ${blinkFields[i]?.b_price||blinkFields[i]?.b_size ? "blink" : ""}`, }}/>
                               
-                              <BettingBtns data={{price:item?.l_price,size:item?.l_size,runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"lay" , bg:`bg-bg_betlay ${blinkFields[i]?.l_price||blinkFields[i]?.l_size ? "blink" : ""}`,}}/>
-                              <BettingBtns data={{price:0,size:"",runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"lay" , bg:`bg-bg_betmax md:block hidden ${blinkFields[i]?.l1_price||blinkFields[i]?.l1_size ? "blink" : ""}`, }}/>
-                              <BettingBtns data={{price:0,size:"" ,runnerName:item?.RunnerName,max:item?.max,min:item?.min,type:"lay", bg:`bg-bg_betmax md:block hidden ${blinkFields[i]?.l2_price||blinkFields[i]?.l2_size ? "blink" : ""}`, }}/>
+                              <BettingBtns data={{price:item?.l_price,size:item?.l_size,runnerName:item?.nation,max:item?.max,min:item?.min,type:"lay" , bg:`bg-bg_betlay ${blinkFields[i]?.l_price||blinkFields[i]?.l_size ? "blink" : ""}`,}}/>
+                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:item?.max,min:item?.min,type:"lay" , bg:`bg-bg_betmax md:block hidden ${blinkFields[i]?.l1_price||blinkFields[i]?.l1_size ? "blink" : ""}`, }}/>
+                              <BettingBtns data={{price:"",size:"" ,runnerName:item?.nation,max:item?.max,min:item?.min,type:"lay", bg:`bg-bg_betmax md:block hidden ${blinkFields[i]?.l2_price||blinkFields[i]?.l2_size ? "blink" : ""}`, }}/>
                              
                              
                                    
