@@ -2,6 +2,7 @@ import React from 'react';
 import { useUI } from '../../../../../context/ui.context';
 
 interface BettingData {
+  key?: string;
   price: string;
   max?: number;
   min?: number;
@@ -29,6 +30,7 @@ const BettingBtns: React.FC<Props> = ({ data }) => {
         min: data.min,
         runnerName: data.runnerName,
         type: data.type,
+        key:data?.key,
         time: data.time,
         betTrue: true,
         betType:"odd"

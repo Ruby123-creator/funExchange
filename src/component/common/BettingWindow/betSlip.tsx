@@ -112,7 +112,7 @@ const BetSlip: React.FC = () => {
      console.log(betOdds?.size,currentsize,"reachedd")
 
    
-    console.log(betOdds?.size,currentsize,betOdds?.sizeKey,checkCurrentBet,"vibuhiii::::")
+    console.log(currentOdds,betOddsValue,"vibuhiii::::")
 
     if(betOdds?.betType === 'session'){
         if(Number(betOdds?.size) !== Number(currentsize)){
@@ -231,7 +231,7 @@ const BetSlip: React.FC = () => {
       gameid: eventId,
       evetsType: betOdds?.betType,
       nation: betOdds?.runnerName,
-      section: sport,
+      section: sport === "greyhound_racecard"? "greyhound" : sport === "horseRacing_racecard" ? "horserace" : sport,
       bhav: betOdds?.size
     };
     console.log(bettingData, ipAddress ,"CHECKEDDD::::")
