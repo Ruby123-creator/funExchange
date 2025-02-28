@@ -36,7 +36,7 @@ const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
     <div className="w-full font-helvetica-neue racing-fixture">
         <Tabs defaultActiveKey="0" >
           {(uniqueCountries||[]).map((val:any, index:number) => (
-            <TabPane tab={val?.country} >
+            <TabPane tab={val?.country}  key={'uniqueCountries'+index}>
                 {
                     (val?.nationArr||[]).map((item:any,i:number)=>{
                         return(

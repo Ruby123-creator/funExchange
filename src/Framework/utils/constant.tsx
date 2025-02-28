@@ -14,13 +14,9 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
         tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
     
         let displayDate;
-        if (eventDate.toDateString() === today.toDateString()) {
-            displayDate = "Today";
-        } else if (eventDate.toDateString() === tomorrow.toDateString()) {
-            displayDate = "Tomorrow";
-        } else {
+       
             displayDate = (dateTime||"").split(" ")[0]; // Ignore events that are neither today nor tomorrow
-        }
+        
         if (displayDate) {
             return {
                 team1: teams[0],      // Sri Lanka

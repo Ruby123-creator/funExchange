@@ -33,13 +33,9 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     
         // Determine display date
         let displayDate;
-        if (isToday(eventDate)) {
-            displayDate = "Today";
-        } else if (isTomorrow(eventDate)) {
-            displayDate = "Tomorrow";
-        } else {
+       
             displayDate = format(eventDate, "dd/MM/yyyy"); // Keep original date format
-        }
+        
     
         return {
             teams,

@@ -5,7 +5,6 @@ import MatchOddBookmaker from './MatchOddBookmaker';
 import FancyComp from './fancy';
 import { useParams } from 'react-router-dom';
 import RacingBet from './RacingBet/racingbet';
-import { useRacingDetailsById } from '../../../../Framework/greyHound';
 
 
 
@@ -50,7 +49,7 @@ const EventPanel: React.FC = () => {
               (bookMaker||[])?.length ? <MatchOddBookmaker title="Bookmaker" data={bookMaker} updatedTime={data?.updateTime}/>: ""
             }
             {
-              sport === "cricket" ?            <FancyComp/>
+              sport === "cricket" ?  <FancyComp/>
               :""
             }
             

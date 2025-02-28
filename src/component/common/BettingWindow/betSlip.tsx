@@ -193,13 +193,9 @@ const BetSlip: React.FC = () => {
         
             // Determine display date
             let displayDate;
-            if (isToday(eventDate)) {
-                displayDate = "Today";
-            } else if (isTomorrow(eventDate)) {
-                displayDate = "Tomorrow";
-            } else {
+           
                 displayDate = format(eventDate, "dd/MM/yyyy"); // Keep original date format
-            }
+            
         
             return {
                 teams,
@@ -210,7 +206,8 @@ const BetSlip: React.FC = () => {
   // Helper function to place a bet
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
-    const eventInfo = extractSportsDetails(((data?.market||[])[0])?.gametitle)
+    const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
+    const eventInfo = extractSportsDetails(checkCurrentBet?.title)
      
     const now = new Date();
     const bettingData = {
