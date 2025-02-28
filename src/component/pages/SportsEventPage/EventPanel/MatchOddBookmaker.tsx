@@ -32,10 +32,9 @@ interface Props {
 }
 
 const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
-  const { betOdds} = useUI();
+  const { betOdds,betWindow,setBetWindow} = useUI();
   const [prevData, setPrevData] = useState<DataItem[]>([]);
   const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
-  const[betWindow,setBetWindow] = useState('')
   // Helper function to compare previous and current data
   const getBlinkFields = (
     currentData: DataItem[],

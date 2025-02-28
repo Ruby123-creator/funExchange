@@ -7,8 +7,7 @@ import { CiStopwatch } from "react-icons/ci";
 
 const FancyComp: React.FC = () => {
   const { sport, eventId }: any = useParams();
-  const { setMatchedBets, betOdds } = useUI();
-    const[betWindow,setBetWindow] = useState('')
+  const { setMatchedBets, betOdds,betWindow,setBetWindow } = useUI();
  
   const { data } = useCricketFancyData(eventId);
   return (
