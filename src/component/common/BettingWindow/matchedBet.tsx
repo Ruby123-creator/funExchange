@@ -63,7 +63,7 @@ const MatchedBets : React.FC<Props> = ({render}) => {
               <tbody>
                 {(data||[]).map((bet:any, index:number) => (
                   <tr
-                    key={index}
+                    key={"currentBets"+index}
                     className="border-b border-gray-200 hover:bg-gray-50 text-xs"
                   >
                     <td className="p-2">{bet.nation}</td>

@@ -1,22 +1,20 @@
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { Product } from '../types/Product';
 import { API_ENDPOINTS } from './utils/api-endpoints';
 import { useParams } from 'react-router-dom';
 
 // Function to fetch products
-const fetchCricketFixture = async (sportsName:string|undefined) => {
+const fetchSportFixture = async (sportsName:string|undefined) => {
   const response = await axios.get(`${API_ENDPOINTS.SPORTS_MATCHES}/${sportsName}matches`);
   return response.data;
 };
 
 // React Query Hook
-export const useCricketFixture = (sportsName:string|undefined) => {
+export const useSportFixture = (sportsName:string|undefined) => {
   return useQuery({
-    queryKey: ['cricketFixture',sportsName], // Query Key
-    queryFn:()=>fetchCricketFixture(sportsName), // Query Function
+    queryKey: [`${sportsName}Fixture`,sportsName], // Query Key
+    queryFn:()=>fetchSportFixture(sportsName), // Query Function
     refetchInterval: 1000 * 10, // Cache for 5 minutes
-      // Retry 3 times on failure
     refetchOnWindowFocus: false, // Disable auto-refetch on window focus
   });
 };
@@ -24,10 +22,10 @@ export const useCricketFixture = (sportsName:string|undefined) => {
 
 
 // Fetch Product by ID
-const fetchCricketDetailsById = async ({id,sport}:any) => {
+const fetchSportDetailsById = async ({id,sport}:any) => {
   try {
     const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${sport}/${id}`);
-  return response.data;
+  return response.data||[];
   } catch (error) {
       console.log(error,"ERROR::::::::::::::::::::")
   }
@@ -35,10 +33,10 @@ const fetchCricketDetailsById = async ({id,sport}:any) => {
 };
 
 // React Query Hook
-export const useCricketDetailsById = ({id,sport}:any) => {
+export const useSportDetailsById = ({id,sport}:any) => {
   return useQuery({
-    queryKey: ['cricket-detail', id,sport], // Include `id` for query uniqueness
-    queryFn: () => fetchCricketDetailsById({id,sport}), // Fetch function
+    queryKey: [`${sport||"sport"}-detail`, id,sport], // Include `id` for query uniqueness
+    queryFn: () => fetchSportDetailsById({id,sport}), // Fetch function
     
     retry: 3,  
     refetchInterval:1000,               // Retry on failure
@@ -53,6 +51,7 @@ const fetchCricketFancyData = async (eventId:any,sport:string|undefined) => {
       const response = await axios.get(`${API_ENDPOINTS.CRICKET_FANCY_DATA}/${eventId}`);
       return response.data;
     }
+    return [];
     
   } catch (error) {
     console.log(error,"ERROR::::::::::")

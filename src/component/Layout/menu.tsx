@@ -26,7 +26,7 @@ const HeaderMenu = () => {
         </a>
         {(headerMenu || []).map((item, i) => {
           return (
-            <span key={`header${i}`}>
+            <span key={`menu${i}`}>
               <button
                 onClick={(e) => {
                   if (isLogin) {
@@ -50,7 +50,10 @@ const HeaderMenu = () => {
        
         {(mobileHeaderMenu || []).map((item, i) => {
           return (
-            <span className="md:hidden">
+            <span className="md:hidden"
+            key={"mobileMenu"+i}
+
+            >
               <button className="text-xs cursor-pointer uppercase border mr-1 active:border-primary rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9  w-max px-3  py-1  text-text_HeaderDeskNavMenu   "
                onClick={(e) => {
                 if (isLogin) {

@@ -66,7 +66,6 @@ const RacingBet :React.FC<Props> = ({data}) => {
             setPrevData([...(data?.data)]); // Store a new reference to avoid shallow comparison issues
           }
         }, [data]);
-           console.log(betOdds,"oddssssss::::::::::")
   return (
     <div className=" w-full text-selection-none pb-3 lg:pb-0">
     <div className=" px-2 font-helvetica-neue">
@@ -85,7 +84,10 @@ const RacingBet :React.FC<Props> = ({data}) => {
                     (data?.data||[]).map((item: any,i: number)=>{
                         return( (item?.nation && item?.nation !== '-') ?
                         <>
-                            <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
+                            <div 
+                                              key={"RacingBets"+i}
+
+                            className="grid grid-cols-12  border-b border-borderColorOfMarket">
                             <div
                                 className="w-full col-span-4 h-12 grid grid-cols-12 grid-flow-col pl-2.5 md:pl-2 py-0.5">
                                 <div

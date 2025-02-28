@@ -5,7 +5,6 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
         const eventParts = (eventTitle||"").split(" / ");
         const teams = (eventParts[0]||"").split(" v ");
         const dateTime = eventParts[1];
-       console.log(eventParts,eventTitle,"CHECKEDDD::::")
         const [day, month, year] = ((dateTime||"").split(" ")[0]||"").split("/"); // Extract date parts
         const [hours, minutes] = ((dateTime||"").split(" ")[1]||"").split(":"); // Extract time parts
     

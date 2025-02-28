@@ -23,7 +23,10 @@ const CarousalComp: React.FC<CarousalProp> = ({content,className}) =>{
      {
                     (content||[]).map((item: any,i:number)=>{
                         return(
-                            <div>
+                            <div
+                            key={"carousalContent"+i}
+
+                            >
                            <img src={item?.imgPath}
                             className={className}
                             alt={item?.alt} loading="lazy" />

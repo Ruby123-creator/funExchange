@@ -15,10 +15,10 @@ export const useChangePassword = () => {
   return useMutation({
     mutationFn: changePassword, // Function that makes the API call
     onSuccess: (data) => {
-      console.log("Bet placed successfully!", data);
+      console.log("change password successfully!", data);
     },
     onError: (error) => {
-      console.error("Error placing bet:", error);
+      console.error("Error in changing password", error);
     },
   });
 };

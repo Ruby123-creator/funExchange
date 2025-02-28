@@ -72,7 +72,7 @@ const Password = () => {
               setShow: setShowConfirmPassword,
               name: "confirmPassword"
             }].map(({ label, value, setValue, show, setShow, name }, index) => (
-              <div key={index} className="flex flex-col w-full">
+              <div key={"password"+index} className="flex flex-col w-full">
                 <div className="ml-1 text-sm">{label}</div>
                 <div>
               <div className="w-full h-full">

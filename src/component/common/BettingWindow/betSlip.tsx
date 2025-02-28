@@ -4,7 +4,7 @@ import EditStack from "./editStacks";
 import { Modal } from "antd";
 import { CiStopwatch } from "react-icons/ci";
 import { useParams } from "react-router-dom";
-import { useCricketDetailsById, useCricketFancyData } from "../../../Framework/cricketFixture";
+import { useSportDetailsById, useCricketFancyData } from "../../../Framework/sportsData";
 import { fetchIPAdress, useAdminDetails, useIPDetails } from "../../../Framework/login";
 import { checkTimeDifference, extractEventDetails, showToasterMessage } from "../../../Framework/utils/constant";
 import { usePlaceBet } from "../../../Framework/placeBet";
@@ -48,11 +48,10 @@ const BetSlip: React.FC = () => {
        setValue(sport);
      }
     },[sport])
-      const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport:val});
+      const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport:val});
      
   const {data:fancyData} = useCricketFancyData(eventId);
   const { data:ipAddress} = useIPDetails();
-  console.log(ipAddress,"IPAddresss");
   const { mutate: placingBet, isError: error } = usePlaceBet();
   const { data: userData } = useAdminDetails();
   
@@ -63,7 +62,6 @@ const BetSlip: React.FC = () => {
  
    
    const getEventData = () =>{
-    console.log("Bookmaker:::::::::::::::::::::::::::::::::::",betOdds,data,sport)
     let eventData: EventData[] =[]; 
          if(sport === "greyhound_racecard" || sport === "horseRacing_racecard"){
             eventData = data?.data;
@@ -95,10 +93,8 @@ const BetSlip: React.FC = () => {
   const checkBetCondition = (): boolean => {
     
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
-    console.log(checkCurrentBet,betOdds,"reachedd")
 
     if (!userData || !betOdds || !checkCurrentBet) return false;
-    console.log(checkCurrentBet,betOdds,"reachedd")
     // Check user status and balance
     if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum ) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
@@ -114,10 +110,8 @@ const BetSlip: React.FC = () => {
     const currentOdds = parseFloat(checkCurrentBet[`${betOdds?.key}`]);
     const betOddsValue = parseFloat(betOdds.odds);
      const currentsize = parseFloat(checkCurrentBet[`${betOdds?.sizeKey}`])
-     console.log(betOdds?.size,currentsize,"reachedd")
 
    
-    console.log(currentOdds,betOddsValue,"vibuhiii::::")
 
     if(betOdds?.betType === 'session'){
         if(Number(betOdds?.size) !== Number(currentsize)){
@@ -161,7 +155,6 @@ const BetSlip: React.FC = () => {
 // Current timestamp
 
     const isWithin10Second = checkTimeDifference(time);
-    console.log(isWithin10Second,time,"Matchingggggg")
   
     if (!isWithin10Second) {
       showToasterMessage({ messageType: "error", description: "data Timeout!!" });
@@ -218,7 +211,7 @@ const BetSlip: React.FC = () => {
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
     const eventInfo = extractSportsDetails(((data?.market||[])[0])?.gametitle)
-      console.log(extractSportsDetails(((data?.market||[])[0])?.gametitle)?.teams,((data?.match||[])[0])?.gametitle,data?.market,data,"EATTTT")
+     
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
@@ -239,7 +232,6 @@ const BetSlip: React.FC = () => {
       section: sport === "greyhound_racecard"? "greyhound" : sport === "horseRacing_racecard" ? "horserace" : sport,
       bhav: betOdds?.size
     };
-    console.log(bettingData, ipAddress ,"CHECKEDDD::::")
     placingBet(bettingData);
     setMatchedBets({...betOdds,odds:0})
     showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
@@ -249,7 +241,6 @@ const BetSlip: React.FC = () => {
   const handleConfirmBet = () => {
     // Check bet conditions before proceeding
     const canPlaceBet = checkBetCondition();
-     console.log(canPlaceBet,"RUBYYYYY")
     if (!canPlaceBet) {
       return; // Stop if conditions are not met
     }
@@ -405,7 +396,7 @@ const BetSlip: React.FC = () => {
             <div className="grid grid-cols-12 gap-x-1 gap-y-1">
               {stacks.map((val:number, i:number) => (
                 <button
-                  key={i}
+                  key={"stackAmount"+i}
                   className="inline-block leading-normal relative transition duration-150 ease-in-out col-span-4 w-full overflow-hidden border border-primary text-[12px] font-semibold rounded-[4px] bg-bg_Primary text-text_Quaternary text-center py-1.5 cursor-pointer"
                   type="button"
                   onClick={() => handleStackClick(val)}

@@ -11,7 +11,8 @@ const EditStack: React.FC<Props> = ({edit}) => {
     {
       stacks.map((val:any,i:number)=>{
         return(
-          <div className="bg-bg_StakeInput">
+          <div className="bg-bg_StakeInput"                   key={"stackAmount"+i}
+>
             {
                edit ? <input onChange={(e)=>{
                   let updatedStacks = stacks.map((item:any,index:number)=> index === i ? Number(e.target.value):item)

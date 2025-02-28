@@ -1339,30 +1339,6 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@iframe-resizer/child@5.3.3":
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/@iframe-resizer/child/-/child-5.3.3.tgz"
-  integrity sha512-A+avzzQ6R5AaK0RQ/v0sxrN/S7zeS0U7TE/Jcc2Wln0gpVHpkEMHLOYVBAS2ho8ZA6yhbyZeNoDCh3RMtCp14w==
-
-"@iframe-resizer/core@5.3.3":
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/@iframe-resizer/core/-/core-5.3.3.tgz"
-  integrity sha512-DnR8PwoG5Nmv8Xgzop39cIRMeOg3bLsvsApw+LlKqfmN6I8miUAlFXB+vpuYm62l/jWjaQ6r8sTsvBHBof8Esg==
-
-"@iframe-resizer/jquery@5.3.3":
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/@iframe-resizer/jquery/-/jquery-5.3.3.tgz"
-  integrity sha512-hiqD3RmsQ8vUp1YAOse+juw21zBUO8oo1FxL5AhtQ414/7RDtAAgkwQCX48Fl2j8cfTdoHxGcjDwFbWYYOaDsg==
-  dependencies:
-    "@iframe-resizer/core" "5.3.3"
-
-"@iframe-resizer/parent@5.3.3":
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/@iframe-resizer/parent/-/parent-5.3.3.tgz"
-  integrity sha512-iLB3Vf7PbO9RwPAsPz0YZyGNFcqEqG4F2R6xJPLOSvclpgUwuNpkCeF+JtM9K8gYQ8Ox8bxUvEvGLdD0yjak5A==
-  dependencies:
-    "@iframe-resizer/core" "5.3.3"
-
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz"
@@ -5560,15 +5536,6 @@ identity-obj-proxy@^3.0.0:
   integrity sha512-00n6YnVHKrinT9t0d9+5yZC6UBNJANpYEQvL2LlX6Ab9lnmxzIRcEmTPuyGScvl1+jKuCICX1Z0Ab1pPKKdikA==
   dependencies:
     harmony-reflect "^1.4.6"
-
-iframe-resizer@^5.3.3:
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/iframe-resizer/-/iframe-resizer-5.3.3.tgz"
-  integrity sha512-BkLzUECwy7C4rO+HHgH7A9Tmiad/TEwkH5RrPsRBiu5aVxxEAKDB+JYbjAFLrvmMXG3UfJXxza0XKXqVY6b5sQ==
-  dependencies:
-    "@iframe-resizer/child" "5.3.3"
-    "@iframe-resizer/jquery" "5.3.3"
-    "@iframe-resizer/parent" "5.3.3"
 
 ignore@^5.2.0:
   version "5.3.2"

@@ -34,7 +34,8 @@ const CasinoGames:React.FC<Props> = ({items,title}) => {
             style={{scrollBehavior: "smooth"}}>
             <div className="w-full flex gap-[8px] py-1">
               {
-                items.map((item:any)=> <Card img={item?.img}/>)
+                items.map((item:any,i:number)=> <Card img={item?.img}                   key={"CasinoGames"+i}
+/>)
               }
             </div>
         </div>

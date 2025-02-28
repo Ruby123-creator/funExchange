@@ -6,7 +6,7 @@ import InPlayEvents from "../../common/InPlayEvents";
 import UpcomingEvents from "../../common/UpComingEvents";
 import RightDeskSidebar from "../../common/RightDeskSidebar.tsx";
 import { BiFootball, BiSolidCricketBall } from "react-icons/bi";
-import { useCricketFixture } from "../../../Framework/cricketFixture";
+import { useSportFixture } from "../../../Framework/sportsData";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import NoFound from "../../common/NoFound";
 import { IoTennisball } from "react-icons/io5";
@@ -15,7 +15,7 @@ import PageLoader from "../../common/pageLoader";
 
 const SportsDetail: React.FC = () => {
   const { sportsName } = useParams();
-  const { data, isLoading, isError } = useCricketFixture(sportsName);
+  const { data, isLoading, isError } = useSportFixture(sportsName);
 
   const playingEvents = (data || []).filter(
     (item: any) => item?.inPlay === "True"
@@ -90,6 +90,8 @@ const SportsDetail: React.FC = () => {
                   {["In Play", "Competition"].map((item, i) => {
                     return (
                       <div
+                      key={"eventType"+i}
+
                         className="cursor-pointer flex flex-row items-center justify-center"
                         onClick={() => setActive(item)}
                       >

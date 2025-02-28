@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoSettingsOutline } from "react-icons/io5";
 
 import { Outlet, useNavigate, useNavigation } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
@@ -220,25 +221,9 @@ const Header: React.FC = () => {
                       className="relative flex rounded-full gap-1 border border-quaternary hover:opacity-100 w-max font-extrabold items-center justify-center pr-4 pl-3 py-2 bg-bg_Secondary"
                     >
                       <span className=" w-max text-text_LoginTextColor hidden md:block">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="var(--color-quaternary)"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          <path
-                            stroke="none"
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          ></path>
-                          <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-                          <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                        </svg>
+                        <IoSettingsOutline  size={16}                         stroke="var(--color-quaternary)"
+                        />
+                        
                       </span>
                       <span className=" text-xxs text-text_LoginTextColor  md:text-text_LoginTextColor  font-normal font-lato md:font-semibold md:text-xs xs:text-xs ">
                         Account
@@ -283,7 +268,7 @@ const Header: React.FC = () => {
                         onClick={()=>setOpenDrawer(true)}
                       >
                         <span className="text-xs sm:text-base font-semibold bg-transparent">
-                          ₹0
+                          ₹{(data?.Balance||0).toFixed(2)-(data?.Exposure||0).toFixed(2)}
                         </span>
                         <FaRegUserCircle />
 
@@ -305,8 +290,7 @@ const Header: React.FC = () => {
                         height={18}
                         fill="none"
                         color="white"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                       
                       />
                     </span>
                     <span className="text-x lg:text-xxs text-text_LoginHeadercolor lg:text-text_LoginTextColor font-normal font-lato md:font-semibold lg:text-xs md:text-sm xs:text-xs -lg:font-[800]">

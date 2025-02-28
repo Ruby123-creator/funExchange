@@ -17,6 +17,8 @@ const SidebarComp: React.FC = () => {
             (siderbarDrawer||[]).map((item,i)=>{
                  return(
                     <li
+                    key={"sidebar"+i}
+
  className="text-sm cursor-pointer py-4 text-nowrap whitespace-nowrap autoAnimate font-semibold w-full border-b hover:bg-bg_MenuHoverColor hover:scale-[102%]">
  <span className="flex w-full items-center h-full px-6 justify-start gap-3"
  onClick={()=>{

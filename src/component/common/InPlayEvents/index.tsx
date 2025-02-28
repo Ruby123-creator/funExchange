@@ -39,10 +39,12 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                 </div>
                 {
                     events.map((val: any,i: number)=>{
-                        return(<>
+                        return(
 
-                        {
+                        
                             (val?.eventSchedule||[]).length ? <div
+                            key={"scheduledEvents"+i}
+
                             className="bg-bg_Quaternary rounded-b border border-ternary4 border-t-0 border-b-0 shadow-lg">
                             <div className="eventHeadName grid grid-cols-12">
                                 <div
@@ -139,8 +141,8 @@ const InPlayEvents: React.FC<Props> = ({events}) => {
                                
                             </div>
                         </div>:""
-                        }
-                        </>
+                        
+                        
                             
                         )
                     })

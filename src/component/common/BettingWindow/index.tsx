@@ -99,6 +99,7 @@ const BettingWindow: React.FC = () => {
               {["BetSlip", "Open Bets"].map((val, i) => {
                 return (
                   <button
+                  key={`betsbtn${i}`}
                     onClick={() => setToggle(i)}
                     className={`text-xs w-full capitalize whitespace-nowrap rounded p-2 ${
                       i === toggle

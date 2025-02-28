@@ -111,6 +111,8 @@ const LeftDeskSideBar: React.FC<Props> = ({label}) => {
                 matches.map((item,i)=>{
                   return(
 <li
+                  key={"matches"+i}
+
                         className="text-sm cursor-pointer py-4 text-nowrap  whitespace-nowrap autoAnimate font-semibold w-full border-b  hover:bg-bg_MenuHoverColor hover:scale-[102%] ">
                         <span className="flex w-full items-center h-full pl-6 pr-2 justify-between gap-3"><span
                                 className=" font-medium text-start text-text_Ternary  text-wrap">{item?.league}</span><span className="opacity-50">

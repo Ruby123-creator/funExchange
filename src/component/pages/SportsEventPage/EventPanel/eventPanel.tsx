@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { LiveShowComp } from './liveshow'
-import { useCricketDetailsById } from '../../../../Framework/cricketFixture';
+import { useSportDetailsById } from '../../../../Framework/sportsData';
 import MatchOddBookmaker from './MatchOddBookmaker';
 import FancyComp from './fancy';
 import { useParams } from 'react-router-dom';
@@ -25,7 +25,7 @@ const EventPanel: React.FC = () => {
       setValue(sport);
     }
    },[sport])
-     const {data,isLoading,isError} = useCricketDetailsById({id:eventId,sport:val});
+     const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport:val});
     
      
     

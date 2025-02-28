@@ -36,11 +36,11 @@ const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
     <div className="w-full font-helvetica-neue racing-fixture">
         <Tabs defaultActiveKey="0" >
           {(uniqueCountries||[]).map((val:any, index:number) => (
-            <TabPane tab={val?.country} key={index} >
+            <TabPane tab={val?.country} >
                 {
                     (val?.nationArr||[]).map((item:any,i:number)=>{
                         return(
-                            <div className="col-span-12 grid grid-cols-12 bg-bg_Quaternary" key={`events${index}`}>
+                            <div className="col-span-12 grid grid-cols-12 bg-bg_Quaternary" key={`countries${index}`}>
                             <div
                                 className="col-span-6 h-14 lg:col-span-5 grid grid-cols-7 border-t border-borderColorOfMarket ">
                              
@@ -64,7 +64,10 @@ const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
                                     className="w-full h-full flex gap-2 py-2 px-5 flex-wrap">
                                       {
                                         (item?.timing||[]).map((event:any,i:number)=>{
-                                            return <div className='w-[50px] h-[20px] flex items-center justify-center rounded font-medium   text-[12px] bg-bg_HeaderDepositBtnBgColor border-depositBtn text-text_Quaternary cursor-pointer'  onClick={()=>{
+                                            return <div
+                                            key={"time"+i}
+
+                                            className='w-[50px] h-[20px] flex items-center justify-center rounded font-medium   text-[12px] bg-bg_HeaderDepositBtnBgColor border-depositBtn text-text_Quaternary cursor-pointer'  onClick={()=>{
                                               Navigate(`/event-page/${sportsId}/${event?.gameId}`)
                                             }}>{event?.time}</div>
                                         })

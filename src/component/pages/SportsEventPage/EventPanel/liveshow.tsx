@@ -9,7 +9,6 @@ import { RxCross2 } from "react-icons/rx";
 import GeneralRules from '../../../modals/generalRules';
 import MatchedBets from '../../../common/BettingWindow/matchedBet';
 import { useNavigate, useParams } from 'react-router-dom';
-import iFrameResize from "iframe-resizer/js/iframeResizer";
 interface Props{
     data:any;
 }
@@ -19,13 +18,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
     
-    const iframeRef = useRef<HTMLIFrameElement>(null);
-
-    useEffect(() => {
-      if (iframeRef.current) {
-        iFrameResize({ log: false }, iframeRef.current);
-      }
-    }, []);
+    
     const Navigate = useNavigate();
     const extractSportsDetails = (event: string) => {
         if (!event) return null;

@@ -150,7 +150,6 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                       <div
                         className="flex grid md:grid-cols-6 grid-cols-2 grid-flow-row h-full flex-nowrap"
                         onClick={() => {setBetWindow(`${title}${i}`)
-                        console.log(betWindow,`${title}${i}`,"12344")
 
                       }}
                       >

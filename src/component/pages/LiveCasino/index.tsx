@@ -339,7 +339,8 @@ const LiveCasino: React.FC = () => {
                                 className="flex items-center justify-between w-full overflow-x-auto gap-[3px] no-scrollbar mt-2 text-center">
                                 <div className="min-w-full grid grid-rows-3 grid-flow-col  gap-2">
                                   {
-                                    casinoCards.map((item)=><CasinoCard img={item?.img}/>)
+                                    casinoCards.map((item,i)=><CasinoCard img={item?.img}                   key={"casinoCards"+i}
+/>)
                                   }
                                 </div>
                             </div>

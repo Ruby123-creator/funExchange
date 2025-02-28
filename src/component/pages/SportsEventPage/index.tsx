@@ -1,5 +1,5 @@
 import React from "react";
-import { useCricketDetailsById } from "../../../Framework/cricketFixture";
+import { useSportDetailsById } from "../../../Framework/sportsData";
 import { BiFootball, BiSolidCricketBall } from "react-icons/bi";
 import LeftDeskSideBar from "../../common/LeftDeskSidebar";
 import InPlayEvents from "../../common/InPlayEvents";

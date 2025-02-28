@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCricketFancyData } from "../../../../Framework/cricketFixture";
+import { useCricketFancyData } from "../../../../Framework/sportsData";
 import { useUI } from "../../../../context/ui.context";
 import BetSlip from "../../../common/BettingWindow/betSlip";
 import { CiStopwatch } from "react-icons/ci";
@@ -29,7 +29,10 @@ const FancyComp: React.FC = () => {
               {(data?.session || []).map((item: any, i: number) => {
                 return (
                   <>
-                    <div className="grid grid-cols-12  border-b border-borderColorOfMarket">
+                    <div className="grid grid-cols-12  border-b border-borderColorOfMarket"
+                                      key={"session"+i}
+
+                    >
                       <div className="w-full  md:col-span-6  col-span-7 h-12 pl-2.5 md:pl-2 py-0.5 pr-[3px]">
                         <div className=" flex items-start justify-center h-full flex-col">
                           <div className=" w-full flex flex-nowrap gap-x-2">

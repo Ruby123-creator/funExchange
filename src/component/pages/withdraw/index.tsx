@@ -38,6 +38,8 @@ const WithdrawComponent: React.FC = () => {
                   {
                     ["Use New Account","Use Previous Account"].map((val,i)=>{
                       return( <button
+                        key={"account"+i}
+
                         className={`flex items-center justify-center w-full gap-1.5 tracking-wider undefined p-3 text-sm font-semibold   my-2 ${toggle === i ? 'bg-bg_Primary rounded-lg text-text_Quaternary':'text-text_Quinary'}   undefined `}
                         style={{ zIndex: "10" }}
                         onClick={()=>setToggle(i)}

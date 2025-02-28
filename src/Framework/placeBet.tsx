@@ -4,7 +4,7 @@ import { Product } from '../types/Product';
 import { API_ENDPOINTS } from './utils/api-endpoints';
 
 const placingBet = async (data: any) => {
-  const response = await axios.post(`${API_ENDPOINTS.SPORTS_MATCHES}/placebet`, data);
+  const response = await axios.post(`https://silverexch.com/cricket/place_bet_api`, data);
   return response.data;
 };
 

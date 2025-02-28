@@ -17,7 +17,8 @@ import InPlayEvents from "../../common/InPlayEvents";
 import { BiFootball, BiSolidCricketBall } from "react-icons/bi";
 import { IoTennisball } from "react-icons/io5";
 import CasinoProvider from "../../common/casinoProvider";
-import { useCricketFixture } from "../../../Framework/cricketFixture";
+import { useSportFixture } from "../../../Framework/sportsData";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 const PanelComp: React.FC = () => {
    const uiLabel = {
       sidebarIcon:<BiSolidCricketBall fill="var(--color-quaternary)" size={20}/>,
@@ -25,9 +26,9 @@ const PanelComp: React.FC = () => {
        icon: <BiFootball  size={20}/>,
   
     }
-  const { data:cricket, isLoading:loading, isError:error } = useCricketFixture("cricket");
-  const { data:football, isLoading:l, isError:e } = useCricketFixture("soccer");
-  const { data:tennis, isLoading, isError } = useCricketFixture("tennis");
+  const { data:cricket, isLoading:loading, isError:error } = useSportFixture("cricket");
+  const { data:football, isLoading:l, isError:e } = useSportFixture("soccer");
+  const { data:tennis, isLoading, isError } = useSportFixture("tennis");
 
 
     const inPlayEvents =[{
@@ -97,9 +98,12 @@ const PanelComp: React.FC = () => {
         <div className="py-1 px-[2px] w-full">
           <div className="w-full relative h-full z-10 rounded-md overflow-hidden flex flex-col">
           <Carousel autoplay dots={false}>
-  {carousalImages.map((item) => {
+  {carousalImages.map((item,i) => {
     return (
-      <div className=" grid grid-cols-2">
+      <div className=" grid grid-cols-2"
+      key={"banner"+i}
+
+      >
 <div title="QuickButtons-8" className="grid grid-cols-2 gap-2 ">
         <span title="Fishing games" className="px-[3px] py-[3px]">
           <div
@@ -230,39 +234,17 @@ const PanelComp: React.FC = () => {
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M15 6l-6 6l6 6"></path>
-                    </svg>
+                    <FaAngleLeft stroke="var(--color-primary)" size={10}/>
+
+                   
                   </button>
                   <button
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M9 6l6 6l-6 6"></path>
-                    </svg>
+                    <FaAngleRight stroke="var(--color-primary)" size={10}/>
+
+                    
                   </button>
                 </div>
               </div>
@@ -290,39 +272,17 @@ const PanelComp: React.FC = () => {
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M15 6l-6 6l6 6"></path>
-                    </svg>
+                    <FaAngleLeft stroke="var(--color-primary)" size={10}/>
+
+                   
                   </button>
                   <button
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M9 6l6 6l-6 6"></path>
-                    </svg>
+                    <FaAngleRight stroke="var(--color-primary)" size={10}/>
+
+                    
                   </button>
                 </div>
               </div>
@@ -335,7 +295,10 @@ const PanelComp: React.FC = () => {
               <div className="grid grid-rows-3 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px]">
                 {(cardGames || []).map((item, i) => {
                   return (
-                    <div className="flex w-[120px] sm:w-[180px] md:w-[140px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100">
+                    <div
+                    key={"cardGames"+i}
+
+                    className="flex w-[120px] sm:w-[180px] md:w-[140px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100">
                       <div className="w-full bg-transparent flex flex-col transition-all ease-in-out duration-200 relative overflow-hidden rounded-[4px]">
                         <div className="aspect-[1.00] w-[120px] sm:w-[180px] md:w-[140px]">
                           <img
@@ -376,39 +339,17 @@ const PanelComp: React.FC = () => {
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M15 6l-6 6l6 6"></path>
-                    </svg>
+                    <FaAngleLeft stroke="var(--color-primary)" size={10}/>
+
+                   
                   </button>
                   <button
                     className="leading-normal relative overflow-hidden transition duration-150 ease-in-out flex w-[22px] h-[22px] p-1 justify-center items-center gap-[10px] text-text_Primary border bg-bg_Foundation rounded cursor-pointer"
                     type="button"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="var(--color-primary)"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M9 6l6 6l-6 6"></path>
-                    </svg>
+                    <FaAngleRight stroke="var(--color-primary)" size={10}/>
+
+                    
                   </button>
                 </div>
               </div>
@@ -420,7 +361,10 @@ const PanelComp: React.FC = () => {
               <div className="grid grid-rows-2 grid-flow-col gap-y-2 w-max md:w-full gap-x-[6px]">
                 {(popularGames || []).map((item, i) => {
                   return (
-                    <div className="flex w-[112px] sm:w-[120px] md:w-[130px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100">
+                    <div className="flex w-[112px] sm:w-[120px] md:w-[130px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100"
+                    key={"popularGames"+i}
+
+                    >
                       <div className="w-full bg-transparent flex flex-col transition-all ease-in-out duration-200 relative overflow-hidden rounded-[4px]">
                         <div className="w-full h-full">
                           <img
