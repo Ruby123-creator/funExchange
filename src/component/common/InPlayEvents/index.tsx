@@ -5,10 +5,8 @@ import { MdLiveTv } from "react-icons/md";
 import { extractEventDetails } from '../../../Framework/utils/constant';
 import LayBack from '../LayBack';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { useUI } from '../../../context/ui.context';
-import NoFound from '../NoFound';
-import UpcomingEvents from '../UpComingEvents';
+
 interface Props{
     events:any
 }

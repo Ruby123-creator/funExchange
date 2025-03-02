@@ -1,0 +1,109 @@
+{
+    "updateTime": "2025-03-01 23:26:58",
+    "market": [
+        {
+            "marketId": "4.841378181",
+            "gametitle": "LIONS V KNIGHTS\n01/03/2025 16:30:00",
+            "inplay": "True",
+            "events": [
+                {
+                    "RunnerName": "Lions",
+                    "LayPrice1": "340",
+                    "LaySize1": "1",
+                    "LayPrice2": "",
+                    "LaySize2": "",
+                    "LayPrice3": "",
+                    "LaySize3": "",
+                    "BackPrice1": "140",
+                    "BackSize1": "20",
+                    "BackPrice2": "",
+                    "BackSize2": "",
+                    "BackPrice3": "",
+                    "BackSize3": "",
+                    "status": "ACTIVE",
+                    "title": "LIONS V KNIGHTS\n01/03/2025 16:30:00",
+                    "max": "1.00",
+                    "min": 1
+                },
+                {
+                    "RunnerName": "Knights",
+                    "LayPrice1": "1.01",
+                    "LaySize1": "31405.9",
+                    "LayPrice2": "",
+                    "LaySize2": "",
+                    "LayPrice3": "",
+                    "LaySize3": "",
+                    "BackPrice1": "",
+                    "BackSize1": "",
+                    "BackPrice2": "",
+                    "BackSize2": "",
+                    "BackPrice3": "",
+                    "BackSize3": "",
+                    "status": "ACTIVE",
+                    "title": "LIONS V KNIGHTS\n01/03/2025 16:30:00",
+                    "max": "1.00",
+                    "min": 1
+                }
+            ]
+        }
+    ],
+    "teams": [
+        "LIO",
+        "CRR 5.07 RR 14.75",
+        "KNI",
+        ""
+    ],
+    "teamScore": [
+        "148-5 (29.1)",
+        "292-7 (39.0)"
+    ],
+    "scorecards": [
+        "1",
+        "1",
+        "0",
+        "1",
+        "ww",
+        "1"
+    ],
+    "bookmaker": [
+        {
+            "RunnerName": "Lions",
+            "LayPrice1": "",
+            "LaySize1": "",
+            "LayPrice2": "",
+            "LaySize2": "",
+            "LayPrice3": "",
+            "LaySize3": "",
+            "BackPrice1": "",
+            "BackSize1": "",
+            "BackPrice2": "",
+            "BackSize2": "",
+            "BackPrice3": "",
+            "BackSize3": "",
+            "status": "ACTIVE",
+            "title": "LIONS V KNIGHTS\n01/03/2025 16:30:00",
+            "min": "100",
+            "max": "1L"
+        },
+        {
+            "RunnerName": "Knights",
+            "LayPrice1": "1",
+            "LaySize1": "100000",
+            "LayPrice2": "",
+            "LaySize2": "",
+            "LayPrice3": "",
+            "LaySize3": "",
+            "BackPrice1": "0.5",
+            "BackSize1": "100000",
+            "BackPrice2": "",
+            "BackSize2": "",
+            "BackPrice3": "",
+            "BackSize3": "",
+            "status": "ACTIVE",
+            "title": "LIONS V KNIGHTS\n01/03/2025 16:30:00",
+            "min": "100",
+            "max": "1L"
+        }
+    ],
+    "bremakr": ""
+}

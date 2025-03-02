@@ -50,7 +50,7 @@ const items: CollapseProps["items"] = [
 const BettingWindow: React.FC = () => {
   const [toggle, setToggle] = useState(0);
   const [editStack, setEditStack] = useState(false);
-  const {betOdds,isLogin,setLoginModal} = useUI();
+  const {betOdds,isLogin,setLoginModal,isLoginData} = useUI();
   return (
     <div
       title="Menu 2"

@@ -17,16 +17,16 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
        
             displayDate = (dateTime||"").split(" ")[0]; // Ignore events that are neither today nor tomorrow
         
-        if (displayDate) {
+        // if (displayDate) {
             return {
                 team1: teams[0],      // Sri Lanka
                 team2: teams[1],      // Australia
                 date: displayDate,    // Today or Tomorrow
                 time: `${hours}:${minutes}` // HH:MM format
             };
-        }
+        // }
     
-        return null; // Ignore events that are neither today nor tomorrow
+        // return null; // Ignore events that are neither today nor tomorrow
     }
 
 

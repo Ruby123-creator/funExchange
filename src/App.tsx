@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './component/Layout/layout';
 import Home from './component/pages/Home';
@@ -24,9 +24,16 @@ import OpenBets from './component/pages/OpenBets';
 import TimeSetting from './component/pages/Time-Setting';
 import SportsDetail from './component/pages/SportsPage';
 import Chnage_Password from './component/pages/ChangePasword';
+import { useLoginVerificationQuery } from './Framework/login';
+import { useUI } from './context/ui.context';
+import { verify } from 'crypto';
 
 
 const App: React.FC = () => {
+   const {isLoginData} = useUI();
+   const val = JSON.parse(isLoginData||'')
+  const {data} = useLoginVerificationQuery({username:val?.username,uniqid:val?.uniqid});
+
 
   return(<Router>
     <Layout>

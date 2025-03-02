@@ -297,9 +297,10 @@ const Header: React.FC = () => {
                       Log In
                     </span>
                   </button>
-                  <button className="flex rounded-full lg:border lg:border-secondary gap-1 hover:opacity-100 w-max font-extrabold items-center justify-center lg:pr-4 lg:pl-3 py-2 -lg:px-4 bg-bg_Quaternary"
+                  <a  href="https://api.whatsapp.com/send?phone=237694580908" target="_blank" className="flex rounded-full lg:border lg:border-secondary gap-1 hover:opacity-100 w-max font-extrabold items-center justify-center lg:pr-4 lg:pl-3 py-2 -lg:px-4 bg-bg_Quaternary"
                   onClick={()=>{
-                    setIsModalOpen(true);
+
+                    // setIsModalOpen(true);
                   }}
                   >
                     <span className="w-max hidden lg:block">
@@ -312,7 +313,7 @@ const Header: React.FC = () => {
                     <span className="text-x lg:text-xxs text-text_Primary md:text-text_Secondary font-lato md:font-semibold lg:text-xs md:text-sm xs:text-xs">
                       Sign Up
                     </span>
-                  </button>
+                  </a>
                 </div>
               )}
             </div>

@@ -5,12 +5,13 @@ import { FaMobileAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { IoIosCloseCircle } from 'react-icons/io';
 import { IoEyeOutline } from 'react-icons/io5';
+import { useLoginPassword } from '../../Framework/login';
 
 
 
   
 const LoginModal = () => {
-    const {loginModal, setLoginModal} = useUI();
+    const {loginModal, setLoginModal,isLoginData} = useUI();
      const [login,setLogin] = useState("userId");
     const [mobileNo,setMobileNo] = useState('');
     const [password,setPassword] = useState('');
@@ -31,20 +32,23 @@ const LoginModal = () => {
         },
        
       ];
+        const { mutate: loginUser, isError: error } = useLoginPassword();
+        const val = JSON.parse(isLoginData||'')
+      console.log(val?.username,val,"RYBUUUU")
     const handleLogin = (e:any) => {
         e.preventDefault();
         const envMobile = process.env.REACT_APP_MOBILE;
         const envPassword = process.env.REACT_APP_PASSWORD;
         const envUserId = process.env.REACT_APP_USERID;
-        if ((login === 'userId'? envUserId === userId :mobileNo === envMobile) && password === envPassword) {
-            localStorage.setItem('isLogin', 'true');
-           localStorage.setItem('credential',JSON.stringify({
-            mobile:mobileNo,
-            userId:userId,
-            password:password
-           }))
-           window.location.reload();
-
+        if (login === 'userId') {
+            // localStorage.setItem('isLogin', 'true');
+        //    localStorage.setItem('credential',JSON.stringify({
+        //     mobile:mobileNo,
+        //     userId:userId,
+        //     password:password
+        // }))
+        loginUser({UserName:userId,Password:password});
+        //    window.location.reload();
         } else {
           alert("Invalid mobile number or password");
         }

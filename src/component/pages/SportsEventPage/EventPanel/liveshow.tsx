@@ -9,41 +9,37 @@ import { RxCross2 } from "react-icons/rx";
 import GeneralRules from '../../../modals/generalRules';
 import MatchedBets from '../../../common/BettingWindow/matchedBet';
 import { useNavigate, useParams } from 'react-router-dom';
+import { extractEventDetails } from '../../../../Framework/utils/constant';
+import ScoreCard from './scoreCard';
 interface Props{
     data:any;
 }
 export const LiveShowComp: React.FC<Props> = ({data}) => {
-    const [open,setOpen] = useState(true);
+    const [open,setOpen] = useState(false);
     const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
-    
-    
+    const eventDetails = extractEventDetails(data?.gametitle)
+    console.log(eventDetails,data,"tic-tac::::::::::::::::::::")
     const Navigate = useNavigate();
-    const extractSportsDetails = (event: string) => {
-        if (!event) return null;
+  
+    const [expanded, setExpanded] = useState(false);
+
     
-        const [teams, dateTime] = event.split("\n"); // Split teams and date-time
-        if (!dateTime) return null; // Handle invalid input
-    
-        const [dateStr, time] = dateTime.split(" "); // Extract date and time
-        const eventTime = format(parse(time, "HH:mm:ss", new Date()), "HH:mm");
-        // Parse the date string into a Date object
-        const eventDate = parse(dateStr, "dd/MM/yyyy", new Date());
-    
-        // Determine display date
-        let displayDate;
-       
-            displayDate = format(eventDate, "dd/MM/yyyy"); // Keep original date format
-        
-    
-        return {
-            teams,
-            date: displayDate,
-            time: eventTime,
-        };
+  useEffect(() => {
+    // Listen for messages from the iframe
+    const handleMessage = (event:any) => {
+      if (event.data.action === "toggleIframe") {
+        setExpanded((prev) => !prev);
+      }
     };
 
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
   return (
     <>
     <div className="w-full flex items-center justify-start flex-col"
@@ -84,7 +80,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 <span
                     className=" w-full bg-titleGrd flex flex-col text-transparent text-start bg-clip-text font-lato text-sm font-bold">
                         <span
-                        className=" capitalize break-words">{extractSportsDetails(data?.gametitle)?.teams||data?.title}</span>
+                        className=" capitalize break-words">{data?.gametitle ?  `${eventDetails?.team1} v ${eventDetails?.team2}`: data?.title}</span>
                         {
                             data?.race_card ? <span
                             className=" capitalize break-words text-xs">{(data?.race_card||"").split(" ").slice(0,-2).join(" ")}</span>:""
@@ -95,7 +91,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
         <div className=" flex items-center justify-center gap-x-2">
             {
                 (data?.inplay||data?.status === "active") ? "":<span  className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-[12px] font-semibold">
-                {extractSportsDetails(data?.gametitle)?.date} {extractSportsDetails(data?.gametitle)?.time} 
+                {eventDetails?.date} {eventDetails?.time} 
                     </span>
             }
                         {data?.time ? 
@@ -131,20 +127,49 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     {
         active === "live" ?  <div title="Live Score"
         className="  grid grid-cols-1   min-h-[124px]   sm:grid-cols-2 lg:grid-cols-1 sm:gap-x-1 sm:px-0.5 lg:gap-x-0 lg:px-0 w-full  flex-grow">
-        {/* <div className=" col-span-1 w-full h-max">
-            <div className="h-max rounded-sm w-full">
-            <iframe
-        ref={iframeRef}
+        <div className=" col-span-1 w-full h-max">
+        <div className="container mt-3">
+      <div style={{ overflow: "hidden", transition: "height 0.3s ease-in-out" }}>
+        <iframe
+          id="scorecard-iframe"
+          src="https://lmt.ss8055.com/index?Id=52112229&t=d"
+          width="100%"
+          height={expanded ? "400px" : "140px"}
+          frameBorder="0"
+          scrolling="no"
+          style={{
+            border: "1px solid #ccc",
+            transition: "height 0.3s ease-in-out",
+            overflow: "hidden",
+          }}
+        ></iframe>
+      </div>
+    </div>
+   <ScoreCard data={data}/>
+        <div className="h-max rounded-sm w-full cursor-pointer" 
+     role="button" 
+     tabIndex={0} 
+     onClick={() => setExpanded(!expanded)}>         
+        {/* <iframe 
+   src="https://lmt.ss8055.com/index?Id=52112229&amp;t=d" 
+   id="iFrameResizer0" 
+   scrolling="no"
+   style={{ width: "100%", overflow: "hidden" }} 
+   height={expanded ? "600px" : "140px"} 
+   sandbox="allow-scripts allow-same-origin" 
+   allow="fullscreen">
+</iframe> */}
+            {/* <iframe
         src="https://lmt.ss8055.com/index?Id=53562949&t=d"
         id="iFrameResizer2"
         scrolling="no"
         style={{width: "100%",height:"140px",overflow:"auto"}}
 
         className="w-full"
-      ></iframe>
+      ></iframe> */}
        
                     </div>
-        </div> */}
+        </div>
         <div className=" col-span-1 h-full" style={{display: "block"}}>
             {
                 open ?  <div
@@ -165,7 +190,10 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 <div
                     className=" absolute top-0 w-full max-h-[309px] sm:max-h-[144px] lg:max-h-[309px]  overflow-hidden h-[55vw] md:h-[58vw] bg-transparent z-0">
                 </div>
-            </div>:  <button className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out  w-full py-2 text-sm my-2 font-semibold text-center text-text_Quaternary bg-bg_Primary rounded-md cursor-pointer" onClick={()=>{setOpen(true)}} type="button">Watch And Enjoy Live Action...</button>
+            </div>: <div className=' flex gap-2 mx-2'> <button className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out w-[50%] mx-auto py-2 text-sm my-2 font-semibold text-center text-text_Quaternary bg-bg_Primary rounded-md cursor-pointer" onClick={()=>{setOpen(true)}} type="button">Watch Live TV</button>
+            <button className="inline-block  leading-normal relative overflow-hidden  transition duration-150 ease-in-out w-[50%] mx-auto py-2 text-sm my-2 font-semibold text-center text-text_Quaternary bg-bg_Primary rounded-md cursor-pointer" onClick={()=>{setOpen(true)}} type="button">Live Updates</button>
+            
+            </div>
             }
            
            

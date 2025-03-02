@@ -38,7 +38,7 @@ const EventPanel: React.FC = () => {
     <div className="w-full md:mt-[0px]   lg:overflow-auto pt-[130px] lg:pt-0"
     style={{minHeight: "calc(-110px + 100dvh)"}}>
     <div className="no-scrollbar min-h-[calc(100dvh-56px)] md:mb-3">
-          <LiveShowComp data={(data?.market||[])[0]||data}/>
+          <LiveShowComp data={data}/>
          
           {
             (sport === 'horseRacing_racecard' || sport === 'greyhound_racecard') ? <>{(data?.data||[])?.length ? <RacingBet data={data}/>: ""}</>: <>

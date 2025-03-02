@@ -3,7 +3,9 @@ import { createContext, useContext, useMemo, useReducer } from "react";
 const initialState = {
   userData: "Ruby Pal",
   isLogin: typeof window !== 'undefined'
-  ? (localStorage.getItem('isLogin'))
+  ? (localStorage.getItem('isLogin')):null,
+  isLoginData: typeof window !== 'undefined'
+  ? (localStorage.getItem('credentials'))
   : null,
   loginModal:false,
   betOdds:{

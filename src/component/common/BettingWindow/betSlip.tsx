@@ -180,39 +180,17 @@ const BetSlip: React.FC = () => {
       }
 
     }
-     const extractSportsDetails = (event: string) => {
-            if (!event) return null;
-        
-            const [teams, dateTime] = event.split("\n"); // Split teams and date-time
-            if (!dateTime) return null; // Handle invalid input
-        
-            const [dateStr, time] = dateTime.split(" "); // Extract date and time
-            const eventTime = format(parse(time, "HH:mm:ss", new Date()), "HH:mm");
-            // Parse the date string into a Date object
-            const eventDate = parse(dateStr, "dd/MM/yyyy", new Date());
-        
-            // Determine display date
-            let displayDate;
-           
-                displayDate = format(eventDate, "dd/MM/yyyy"); // Keep original date format
-            
-        
-            return {
-                teams,
-                date: displayDate,
-                time: eventTime,
-            };
-        };
+    
   // Helper function to place a bet
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
-    const eventInfo = extractSportsDetails(checkCurrentBet?.title)
+    const eventInfo = extractEventDetails(checkCurrentBet?.title)
      
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
-      eventName: eventInfo?.teams ,
+      eventName: `${eventInfo?.team1} v ${eventInfo?.team2}` ,
       profitloss: betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum,
       betTypes: betOdds?.type,
       amount: sum,
