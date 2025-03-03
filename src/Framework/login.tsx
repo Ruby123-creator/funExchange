@@ -85,6 +85,7 @@ export const useLoginVerificationQuery = (input: { uniqid: string; username: str
     queryKey: ['verify-detail', input?.uniqid, input?.username], // ✅ Avoid passing entire object
     queryFn: () => loginVerify(input!), // ✅ Ensure input is not undefined
     enabled: !!input, // ✅ Only run if input exists
+    refetchInterval: 1000 * 10, // Cache for 5 minutes
     retry: 3, // ✅ Retry on failure
     refetchOnWindowFocus: false, // ✅ No auto-refetch on window focus
   });

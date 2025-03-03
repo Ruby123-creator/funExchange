@@ -33,7 +33,14 @@ const LoginModal = () => {
        
       ];
         const { mutate: loginUser, isError: error } = useLoginPassword();
-        const val = JSON.parse(isLoginData||'')
+        let val:any = {};
+try {
+  val = isLoginData ? JSON.parse(isLoginData) : {};
+} catch (error) {
+  console.error("Error parsing isLoginData:", error);
+  val = {}; // Fallback to an empty object
+}
+        
       console.log(val?.username,val,"RYBUUUU")
     const handleLogin = (e:any) => {
         e.preventDefault();

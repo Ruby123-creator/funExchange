@@ -31,7 +31,15 @@ import { verify } from 'crypto';
 
 const App: React.FC = () => {
    const {isLoginData} = useUI();
-   const val = JSON.parse(isLoginData||'')
+
+   let val:any = {};
+   try {
+     val = isLoginData ? JSON.parse(isLoginData) : {};
+   } catch (error) {
+     console.error("Error parsing isLoginData:", error);
+     val = {}; // Fallback to an empty object
+   }
+   
   const {data} = useLoginVerificationQuery({username:val?.username,uniqid:val?.uniqid});
 
 
