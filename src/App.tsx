@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './component/Layout/layout';
 import Home from './component/pages/Home';
@@ -24,25 +24,42 @@ import OpenBets from './component/pages/OpenBets';
 import TimeSetting from './component/pages/Time-Setting';
 import SportsDetail from './component/pages/SportsPage';
 import Chnage_Password from './component/pages/ChangePasword';
-import { useLoginVerificationQuery } from './Framework/login';
+import { useAdminDetails, useLoginVerificationQuery } from './Framework/login';
 import { useUI } from './context/ui.context';
-import { verify } from 'crypto';
 
 
 const App: React.FC = () => {
-   const {isLoginData} = useUI();
+  const { setLoginData, isLoginAsUser, setUserData } = useUI();
+  const [val, setValue] = useState<{ username?: string; uniqid?: string }>({});
 
-   let val:any = {};
-   try {
-     val = isLoginData ? JSON.parse(isLoginData) : {};
-   } catch (error) {
-     console.error("Error parsing isLoginData:", error);
-     val = {}; // Fallback to an empty object
-   }
-   
-  const {data} = useLoginVerificationQuery({username:val?.username,uniqid:val?.uniqid});
+  const { data: loginData } = useLoginVerificationQuery({
+    username: val?.username || "",
+    uniqid: val?.uniqid || "",
+  });
+const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.username})
+  useEffect(() => {
 
+    if (isLoginAsUser) {
+      try {
+        const storedData = localStorage.getItem("credentials");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          if (parsedData && typeof parsedData === "object") {
+            setValue(parsedData);
+            setLoginData(parsedData);
+          }
+        }
 
+        
+      } catch (error) {
+        console.error("Error parsing credentials from localStorage:", error);
+      }
+    }
+  }, [isLoginAsUser, setLoginData]);
+
+  useEffect(()=>{
+    setUserData(userData);
+  },[userData])
   return(<Router>
     <Layout>
       <Routes>

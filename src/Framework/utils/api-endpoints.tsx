@@ -13,6 +13,8 @@ export const API_ENDPOINTS = {
     GREY_HOUND_RACING:`${url}?filepath=racecard/greyhound/greyhond_race`,
     RACING_DATA:`${url}?filepath`,
     LOGINVERIFICATION:`${url3}single_user_check_api`,
-    LOGIN:`${url3}login_api`
+    LOGIN:`${url3}login_api`,
+    USERDATA: `${url3}users_api`,
+    CHANGE_PASSWORD:`${url3}change_password_api`
    
 }

@@ -24,6 +24,8 @@ import { FaTelegramPlane } from 'react-icons/fa';
 import { BsInstagram } from 'react-icons/bs';
 import {useNavigate } from 'react-router-dom';
 import { useAdminDetails } from '../../Framework/login';
+import { useUI } from '../../context/ui.context';
+import { logOut } from '../../Framework/utils/constant';
 
 interface Props{
     openDrawer:any
@@ -179,8 +181,8 @@ const drawerElement = [
   },
 ]
 const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
-    const {data} = useAdminDetails();
     const Navigate = useNavigate();
+    const {userData} = useUI();
   return (
     <div
                 className="fixed transition-all ease-in-out openDrawerFromRight origin-left top-0 right-0 z-50 w-[70%] max-w-sm h-full  overflow-y-auto bg-bg_Quaternary shadow-lg "
@@ -209,7 +211,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-2">
                                 <span className="uppercase font-normal text-xxs">Balance</span><span
-                                    className=" font-lato text-sm font-medium text-text_Success">₹ {(data?.Balance||0).toFixed(2)}</span>
+                                    className=" font-lato text-sm font-medium text-text_Success">₹ {(userData?.Balance||0).toFixed(2)}</span>
                             </div>
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-1">
@@ -219,7 +221,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                             <div
                                 className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 col-span-1">
                                 <span className="uppercase font-normal text-xxs">Net Exposure</span><span
-                                    className=" font-lato text-sm font-medium text-text_Danger">₹ {(data?.Exposure||0).toFixed(2)}</span>
+                                    className=" font-lato text-sm font-medium text-text_Danger">₹ {((userData?.Exposure||0)>0 ? 0 : (userData?.Exposure||0)).toFixed(2)}</span>
                             </div>
                         </div>
                         <div className="flex col-span-2 items-center justify-center  w-full ">
@@ -260,13 +262,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                                     <div
                                         className="flex transition-all px-0.5 rounded-sm ease-in-out duration-150 hover:bg-bg_Ternary6  active:scale-[99%] items-center justify-start gap-3 w-full py-2 cursor-pointer" onClick={()=>{
                                             if(val?.title === "Sign Out"){
-                                                localStorage.removeItem("isLogin");
-                                                localStorage.removeItem("isLoginAsDemo");
-                                                localStorage.removeItem("isLoginAsUser");
-                                                localStorage.removeItem("credentials");
-
-                                                Navigate('/');
-                                                window.location.reload();
+                                               logOut();
                                             }
                                             Navigate(val?.route)
                                             openDrawer(false);

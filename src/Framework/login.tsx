@@ -1,15 +1,17 @@
 import axios from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { API_ENDPOINTS } from './utils/api-endpoints';
-import { showToasterMessage } from './utils/constant';
+import { logOut, showToasterMessage } from './utils/constant';
 import { verify } from 'crypto';
+import { error } from 'console';
 interface VerifyResponse {
   uniqid: string;
+  flag:boolean
 }
 
 
 const changePassword = async (data: any) => {
-  const response = await axios.post(`${API_ENDPOINTS.SPORTS_MATCHES}/change-password`, data);
+  const response = await axios.post(`${API_ENDPOINTS.CHANGE_PASSWORD}`, data);
   return response.data;
 };
 
@@ -18,6 +20,13 @@ export const useChangePassword = () => {
   return useMutation({
     mutationFn: changePassword, // Function that makes the API call
     onSuccess: (data) => {
+      if(data?.status === "success"){
+        showToasterMessage({messageType:"success",description:data?.message});
+      logOut();
+      }
+      else{
+        showToasterMessage({messageType:"error",description:data?.message});
+      }
       console.log("change password successfully!", data);
     },
     onError: (error) => {
@@ -41,7 +50,7 @@ export const useLoginPassword = () => {
   return useMutation({
     mutationFn: login, // Function that makes the API call
     onSuccess: ({data,userData}) => {
-      const val = { username: userData.UserName, uniqid: data.uniqid };
+      const val = { username: (userData.UserName||'').toLowerCase(), uniqid: data.uniqid  };
       console.log(val,data,userData,"RYBUUUU")
         if(data?.status  === "success"){
           localStorage.setItem('credentials', JSON.stringify(val));
@@ -70,10 +79,11 @@ const loginVerify = async ({ uniqid, username }: { uniqid: string; username: str
   if (!username || !uniqid) throw new Error('Missing parameters');
 
   const response = await axios.get<VerifyResponse>(
-    `${API_ENDPOINTS.LOGINVERIFICATION}?name=${username}&uniqueid=${uniqid}`
+    `${API_ENDPOINTS.LOGINVERIFICATION}?UserName=${username}&uniqueid=${uniqid}`
   );
 
-  if (response.status === 200 && response.data) {
+  if (response.status === 200 && response.data && response?.data?.flag) {
+       logOut();
     return response.data;
   }
 
@@ -108,19 +118,25 @@ export const useIPDetails = () => {
     refetchOnWindowFocus: false, // No auto-refetch on focus
   });
 };
-const fetchUserDetails = async () => {
-    const response = await fetch("/api/userdata.json");
+const fetchUserDetails = async (data:any) => {
+  console.log(data,"GHEEE::::::::::::")
+  if(data?.isLogin){
+    const response = await fetch(`${API_ENDPOINTS.USERDATA}?UserName=${data?.username}`);
     if (!response.ok) {
       throw new Error("Failed to fetch user data");
     }
     return response.json();
+  }
+    else{
+      return {};
+    }
   };
   
   // React Query Hook
-  export const useAdminDetails = () => {
+  export const useAdminDetails = (data:any) => {
     return useQuery({
-      queryKey: ['useDetail-detail'], // Include `id` for query uniqueness
-      queryFn: () => fetchUserDetails(), // Fetch function
+      queryKey: ['userData',data], // Include `id` for query uniqueness
+      queryFn: () => fetchUserDetails(data), // Fetch function
       refetchInterval: 1000 * 10, // Cache for 5 minutes
       retry: 3,                 // Retry on failure
       refetchOnWindowFocus: false, // No auto-refetch on focus

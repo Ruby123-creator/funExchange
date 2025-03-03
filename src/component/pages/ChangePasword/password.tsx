@@ -3,15 +3,17 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { IoEyeOutline } from "react-icons/io5";
 import { showToasterMessage } from "../../../Framework/utils/constant";
 import { useAdminDetails, useChangePassword } from "../../../Framework/login";
+import { useUI } from "../../../context/ui.context";
+const passwordRegex = /^[a-zA-Z0-9]{6,}$/;
 
 const Password = () => {
+  const {userData,loginData} = useUI();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const {data} = useAdminDetails();
   const { mutate: changePassword, isError: error } = useChangePassword();
   const togglePasswordVisibility = (setter: { (value: React.SetStateAction<boolean>): void; (arg0: (prev: any) => boolean): void; }) => {
     setter((prev: any) => !prev);
@@ -24,23 +26,32 @@ const Password = () => {
      
       return;
     }
-    if (oldPassword !== process.env.REACT_APP_PASSWORD) {
-      showToasterMessage({messageType:"error",description:"Incorrect old password!"})
-
-     
-      return;
-    }
     if (newPassword !== confirmPassword) {
       showToasterMessage({messageType:"error",description:"New password and confirm password do not match!"})
 
     
       return;
     }
+    console.log(passwordRegex.test(confirmPassword),"FLAGGSGSG")
+    if(!(passwordRegex.test(confirmPassword))){
+      showToasterMessage({messageType:"error",description:"Password should contain alphanumeric values"})
 
-    showToasterMessage({messageType:"success",description:"Password Changed Successfully"})
+    }
+    // if (oldPassword !== loginData?.password) {
+    //   showToasterMessage({messageType:"error",description:"Incorrect old password!"})
+
+     
+    //   return;
+    // }
+    
+
+    // showToasterMessage({messageType:"success",description:"Password Changed Successfully"})
     const val = {
-      userName: data?.UserName,
-      password:newPassword,
+      UserName: userData?.UserName,
+      newpassword:newPassword,
+      confirmpassword: confirmPassword,
+      currentpassword: oldPassword
+     
     }
      changePassword(val);
   };

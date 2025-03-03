@@ -91,3 +91,12 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
 
         
       }
+
+
+      export const logOut =()=>{
+        localStorage.removeItem("isLogin");
+        localStorage.removeItem("isLoginAsDemo");
+        localStorage.removeItem("credentials");
+        window.location.reload();
+        window.location.href = '/';
+      }

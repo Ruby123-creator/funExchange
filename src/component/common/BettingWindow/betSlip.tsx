@@ -32,7 +32,7 @@ interface UserData {
 }
 
 const BetSlip: React.FC = () => {
-  const { betOdds, stacks ,setMatchedBets} = useUI();
+  const { betOdds, stacks ,setMatchedBets,userData} = useUI();
   const { sport, eventId }: any = useParams();
    const [val,setValue] = useState('');
  
@@ -53,7 +53,6 @@ const BetSlip: React.FC = () => {
   const {data:fancyData} = useCricketFancyData(eventId);
   const { data:ipAddress} = useIPDetails();
   const { mutate: placingBet, isError: error } = usePlaceBet();
-  const { data: userData } = useAdminDetails();
   
   const [sum, setSum] = useState<number>(0);
   const [edit, setEdit] = useState<boolean>(false);
@@ -207,7 +206,7 @@ const BetSlip: React.FC = () => {
       section: sport === "greyhound_racecard"? "greyhound" : sport === "horseRacing_racecard" ? "horserace" : sport,
       bhav: betOdds?.size
     };
-    placingBet(bettingData);
+    placingBet({data:bettingData,sport});
     setMatchedBets({...betOdds,odds:0})
     showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
   };

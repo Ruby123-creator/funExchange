@@ -1,17 +1,16 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
+import { IoIosLogIn } from "react-icons/io";
 
 const initialState = {
-  userData: "Ruby Pal",
+  userData: {},
   isLoginAsDemo: typeof window !== 'undefined'
   ? (localStorage.getItem('isLoginAsDemo')):null,
-  isLoginsUser: (typeof window !== 'undefined'
+  isLoginAsUser: (typeof window !== 'undefined'
     ? (localStorage.getItem('isLogin')):null),
   isLogin: (typeof window !== 'undefined'
   ? (localStorage.getItem('isLogin')):null)||(typeof window !== 'undefined'
     ? (localStorage.getItem('isLoginAsDemo')):null),
-  isLoginData: typeof window !== 'undefined'
-  ? (localStorage.getItem('credentials'))
-  : null,
+  loginData: {},
   loginModal:false,
   betOdds:{
     odds:"",
@@ -46,6 +45,10 @@ function uiReducer(state: any, action: { type: string; data: any }) {
       return {
         ...state, stacks:action.data
       }
+    case "SET_LOGIN_DATA":
+      return{
+         ...state , loginData:action.data
+      }
     default:
       return state; // Ensure the state is returned in case of unknown action type
   }
@@ -55,13 +58,14 @@ function uiReducer(state: any, action: { type: string; data: any }) {
 export function UIProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(uiReducer, initialState);
 
-  const authorize = (data: any) => dispatch({ type: "SET_USER_DATA", data });
   const setLoginModal = (data: any) => dispatch({ type: "SET_LOGIN_MODAL", data });
   const setMatchedBets = (data: any) => dispatch({ type: "SET_MATCHED_BET", data });
   const setStacks = (data: any)=>dispatch({type:"SET_OPEN_STACKS",data});
   const setBetWindow = (data: any)=>dispatch({type:"SET_BET_WINDOW",data});
+  const setLoginData = (data:any)=>dispatch({type:"SET_LOGIN_DATA",data})
+  const setUserData = (data:any)=>dispatch({type:"SET_USER_DATA",data})
 
-  const value = useMemo(() => ({ ...state, authorize,setLoginModal,setMatchedBets,setStacks,setBetWindow }), [state]);
+  const value = useMemo(() => ({ ...state, setUserData,setLoginModal,setMatchedBets,setStacks,setBetWindow,setLoginData }), [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }

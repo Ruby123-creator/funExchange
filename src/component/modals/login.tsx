@@ -16,6 +16,10 @@ const LoginModal = () => {
     const [mobileNo,setMobileNo] = useState('');
     const [password,setPassword] = useState('');
     const [userId,setUserId] = useState('');
+      const [showPassword, setShowPassword] = useState(false);
+      const togglePasswordVisibility = (setter: { (value: React.SetStateAction<boolean>): void; (arg0: (prev: any) => boolean): void; }) => {
+        setter((prev: any) => !prev);
+      };
     const items: MenuProps['items'] = [
         {
           key: '1',
@@ -38,12 +42,7 @@ const LoginModal = () => {
         e.preventDefault();
        
         if (login === 'userId') {
-            // localStorage.setItem('isLogin', 'true');
-        //    localStorage.setItem('credential',JSON.stringify({
-        //     mobile:mobileNo,
-        //     userId:userId,
-        //     password:password
-        // }))
+     
         loginUser({UserName:userId,Password:password});
         //    window.location.reload();
         } else {
@@ -149,7 +148,7 @@ const LoginModal = () => {
                                 <div className="flex w-full items-center py-2 px-2 bg-bg_BgGray rounded-lg border">
                                     <input id="password-input"
                                         className="block focus:outline-none w-full pr-2 rounded-none text-text_Ternary bg-bg_BgGray text-sm xs:text-md"
-                                        placeholder="Password" autoComplete="off" type="password" name="password"
+                                        placeholder="Password" autoComplete="off" type={!showPassword ? "password":"text"} name="password"
                                         value={password} onChange={(e)=>setPassword(e.target.value)} data-nlok-ref-guid="32d7f6e0-ad2d-4ff8-ded5-6a486c5ecae5" />
                                     <div id="norton-idsafe-field-styling-divId" 
                     //                 style="
@@ -166,7 +165,7 @@ const LoginModal = () => {
                     >
                                        
                                     </div>
-                                    <span className="min-h-[30px] flex items-center justify-center">
+                                    <span className="min-h-[30px] flex items-center justify-center" onClick={()=>togglePasswordVisibility(setShowPassword)}>
                                         <IoEyeOutline fill="none" stroke="var(--color-primary)" />
                                        
                                     </span>

@@ -19,13 +19,43 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
-    const eventDetails = extractEventDetails(data?.gametitle)
+    const eventDetails = extractEventDetails((((data?.market||[])[0])?.gametitle))
     console.log(eventDetails,data,"tic-tac::::::::::::::::::::")
     const Navigate = useNavigate();
   
     const [expanded, setExpanded] = useState(false);
 
-    
+    const tVShowandScoreCard = ()=>{
+
+      switch (sport) {
+        case "cricket":
+          return(
+            <ScoreCard data={data}/>
+
+          )
+          case "soccer":
+           return (
+            <div style={{ overflow: "hidden", transition: "height 0.3s ease-in-out" }}>
+            <iframe
+              id="scorecard-iframe"
+              src="https://lmt.ss8055.com/index?Id=52112229&t=d"
+              width="100%"
+              height={expanded ? "400px" : "140px"}
+              frameBorder="0"
+              scrolling="no"
+              style={{
+                border: "1px solid #ccc",
+                transition: "height 0.3s ease-in-out",
+                overflow: "hidden",
+              }}
+            ></iframe>
+          </div>
+           )
+        default:
+
+          break;
+      }
+    }
   useEffect(() => {
     // Listen for messages from the iframe
     const handleMessage = (event:any) => {
@@ -129,23 +159,8 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
         className="  grid grid-cols-1   min-h-[124px]   sm:grid-cols-2 lg:grid-cols-1 sm:gap-x-1 sm:px-0.5 lg:gap-x-0 lg:px-0 w-full  flex-grow">
         <div className=" col-span-1 w-full h-max">
         <div className="container mt-3">
-      <div style={{ overflow: "hidden", transition: "height 0.3s ease-in-out" }}>
-        <iframe
-          id="scorecard-iframe"
-          src="https://lmt.ss8055.com/index?Id=52112229&t=d"
-          width="100%"
-          height={expanded ? "400px" : "140px"}
-          frameBorder="0"
-          scrolling="no"
-          style={{
-            border: "1px solid #ccc",
-            transition: "height 0.3s ease-in-out",
-            overflow: "hidden",
-          }}
-        ></iframe>
-      </div>
+       {tVShowandScoreCard()}
     </div>
-   <ScoreCard data={data}/>
         <div className="h-max rounded-sm w-full cursor-pointer" 
      role="button" 
      tabIndex={0} 

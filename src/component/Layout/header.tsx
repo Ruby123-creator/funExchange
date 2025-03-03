@@ -22,14 +22,13 @@ import { FaRegUserCircle } from "react-icons/fa";
 import SignUp_Modal from "../modals/signup";
 
 const Header: React.FC = () => {
-  const {isLogin,setLoginModal,isLoginAsDemo} = useUI();
+  const {isLogin,setLoginModal,isLoginAsDemo,userData} = useUI();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
   const [mobileDrawer,setMobileDrawer] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-    const {data} = useAdminDetails();
-    const [userData,setUserData] = useState(false);
+   
   const [openDrawer, setOpenDrawer] = useState(false);
   const showDrawer = () => {
     setOpenDrawer(true);
@@ -42,15 +41,7 @@ const Header: React.FC = () => {
  
   // Function to format the date and time using date-fns
 
-  useEffect(()=>{
-    if(typeof window !== "undefined"){
 
-        if(localStorage.getItem('credential')){
-          setUserData(true);
-        }
-       
-    }
-  },[userData])
   // Update the date and time every second
   useEffect(() => {
     const interval = setInterval(() => {
@@ -166,7 +157,7 @@ const Header: React.FC = () => {
                     <div className="flex gap-0.5 text-white/80  text-nowrap whitespace-nowrap">
                       Login as
                       <span className="font-medium text-text_Quaternary">
-                        {isLoginAsDemo ? 'DEMO':data?.UserName }
+                        {isLoginAsDemo ? 'DEMO':userData?.UserName }
                       </span>
                     </div>
                     <div className="flex  gap-0.5 text-white/80  text-nowrap whitespace-nowrap">
@@ -183,8 +174,9 @@ const Header: React.FC = () => {
                     <div className="flex gap-0.5 text-white/80  xl:text-nowrap whitespace-nowrap">
                       Available balance:
                       <span className="font-medium text-text_Quaternary">
-                        ₹ {(data?.Balance||0).toFixed(2)-(data?.Exposure||0).toFixed(2)}
-                      </span>
+                      ₹ {( 
+    (userData?.Balance || 0) - (userData?.Exposure < 0 ? Math.abs(userData?.Exposure || 0) : 0) 
+).toFixed(2)}                      </span>
                     </div>
                   </div>
                   <div
@@ -268,7 +260,9 @@ const Header: React.FC = () => {
                         onClick={()=>setOpenDrawer(true)}
                       >
                         <span className="text-xs sm:text-base font-semibold bg-transparent">
-                          ₹{(data?.Balance||0).toFixed(2)-(data?.Exposure||0).toFixed(2)}
+                          ₹{( 
+    (userData?.Balance || 0) - (userData?.Exposure < 0 ? Math.abs(userData?.Exposure || 0) : 0) 
+).toFixed(2)}
                         </span>
                         <FaRegUserCircle />
 
