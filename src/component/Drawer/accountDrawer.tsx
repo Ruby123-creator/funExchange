@@ -261,6 +261,10 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                                         className="flex transition-all px-0.5 rounded-sm ease-in-out duration-150 hover:bg-bg_Ternary6  active:scale-[99%] items-center justify-start gap-3 w-full py-2 cursor-pointer" onClick={()=>{
                                             if(val?.title === "Sign Out"){
                                                 localStorage.removeItem("isLogin");
+                                                localStorage.removeItem("isLoginAsDemo");
+                                                localStorage.removeItem("isLoginAsUser");
+                                                localStorage.removeItem("credentials");
+
                                                 Navigate('/');
                                                 window.location.reload();
                                             }

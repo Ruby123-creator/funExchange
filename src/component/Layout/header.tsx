@@ -22,7 +22,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import SignUp_Modal from "../modals/signup";
 
 const Header: React.FC = () => {
-  const {isLogin,setLoginModal} = useUI();
+  const {isLogin,setLoginModal,isLoginAsDemo} = useUI();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
@@ -166,7 +166,7 @@ const Header: React.FC = () => {
                     <div className="flex gap-0.5 text-white/80  text-nowrap whitespace-nowrap">
                       Login as
                       <span className="font-medium text-text_Quaternary">
-                        {userData ? data?.UserName :'DEMO'}
+                        {isLoginAsDemo ? 'DEMO':data?.UserName }
                       </span>
                     </div>
                     <div className="flex  gap-0.5 text-white/80  text-nowrap whitespace-nowrap">

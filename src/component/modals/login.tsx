@@ -33,20 +33,10 @@ const LoginModal = () => {
        
       ];
         const { mutate: loginUser, isError: error } = useLoginPassword();
-        let val:any = {};
-try {
-  val = isLoginData ? JSON.parse(isLoginData) : {};
-} catch (error) {
-  console.error("Error parsing isLoginData:", error);
-  val = {}; // Fallback to an empty object
-}
-        
-      console.log(val?.username,val,"RYBUUUU")
+       
     const handleLogin = (e:any) => {
         e.preventDefault();
-        const envMobile = process.env.REACT_APP_MOBILE;
-        const envPassword = process.env.REACT_APP_PASSWORD;
-        const envUserId = process.env.REACT_APP_USERID;
+       
         if (login === 'userId') {
             // localStorage.setItem('isLogin', 'true');
         //    localStorage.setItem('credential',JSON.stringify({
@@ -61,7 +51,7 @@ try {
         }
       };
     const logInWithDemo = () => {
-        localStorage.setItem('isLogin', 'true');
+        localStorage.setItem('isLoginAsDemo', 'true');
         window.location.reload();
         
         // const url = sessionStorage.getItem('url');

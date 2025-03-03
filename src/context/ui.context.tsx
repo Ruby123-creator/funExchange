@@ -2,8 +2,13 @@ import { createContext, useContext, useMemo, useReducer } from "react";
 
 const initialState = {
   userData: "Ruby Pal",
-  isLogin: typeof window !== 'undefined'
-  ? (localStorage.getItem('isLogin')):null,
+  isLoginAsDemo: typeof window !== 'undefined'
+  ? (localStorage.getItem('isLoginAsDemo')):null,
+  isLoginsUser: (typeof window !== 'undefined'
+    ? (localStorage.getItem('isLogin')):null),
+  isLogin: (typeof window !== 'undefined'
+  ? (localStorage.getItem('isLogin')):null)||(typeof window !== 'undefined'
+    ? (localStorage.getItem('isLoginAsDemo')):null),
   isLoginData: typeof window !== 'undefined'
   ? (localStorage.getItem('credentials'))
   : null,
