@@ -29,7 +29,26 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
         // return null; // Ignore events that are neither today nor tomorrow
     }
 
+    export function extractDetails(eventName: String|any) {
+      const teams = ((eventName||"").split('\n')[0]||"").split(' V ');
+  const team1 = teams[0];
+  const team2 = teams[1];
 
+  // Extracting date and time
+  const dateTime = (eventName||"").split('\n')[1];
+  const date = (dateTime||"").split(' ')[0];
+  const time = (dateTime||"").split(' ')[1];
+      // if (displayDate) {
+          return {
+              team1,      // Sri Lanka
+              team2,      // Australia
+              date,    // Today or Tomorrow
+              time, // HH:MM format
+          };
+      // }
+  
+      // return null; // Ignore events that are neither today nor tomorrow
+  }
 
 
     export const getFormattedDateTime = (val: string) => {

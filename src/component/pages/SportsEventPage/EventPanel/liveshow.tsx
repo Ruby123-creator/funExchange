@@ -9,7 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import GeneralRules from '../../../modals/generalRules';
 import MatchedBets from '../../../common/BettingWindow/matchedBet';
 import { useNavigate, useParams } from 'react-router-dom';
-import { extractEventDetails } from '../../../../Framework/utils/constant';
+import { extractDetails, extractEventDetails } from '../../../../Framework/utils/constant';
 import ScoreCard from './scoreCard';
 interface Props{
     data:any;
@@ -19,8 +19,8 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
-    const eventDetails = extractEventDetails((((data?.market||[])[0])?.gametitle))
-    console.log(eventDetails,data,"tic-tac::::::::::::::::::::")
+    const eventDetails = extractDetails((((data?.market||[])[0])?.gametitle))
+    console.log(eventDetails,data?.market,extractDetails(((data?.market||[])[0])?.gametitle),"tic-tac::::::::::::::::::::")
     const Navigate = useNavigate();
   
     const [expanded, setExpanded] = useState(false);
@@ -110,7 +110,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 <span
                     className=" w-full bg-titleGrd flex flex-col text-transparent text-start bg-clip-text font-lato text-sm font-bold">
                         <span
-                        className=" capitalize break-words">{data?.gametitle ?  `${eventDetails?.team1} v ${eventDetails?.team2}`: data?.title}</span>
+                        className=" capitalize break-words">{data?.title ?  data?.title :`${eventDetails?.team1} v ${eventDetails?.team2}`}</span>
                         {
                             data?.race_card ? <span
                             className=" capitalize break-words text-xs">{(data?.race_card||"").split(" ").slice(0,-2).join(" ")}</span>:""
