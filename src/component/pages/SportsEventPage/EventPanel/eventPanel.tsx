@@ -28,7 +28,7 @@ const EventPanel: React.FC = () => {
      const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport:val});
     
      
-    //  if (isLoading) return <PageLoader/>;
+     if (isLoading) return <PageLoader/>;
     //  if (isError) return <p>Error fetching data</p>;
      
      const matchOdds = (((data?.market||[])[0])?.events);
