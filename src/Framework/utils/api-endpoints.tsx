@@ -15,6 +15,9 @@ export const API_ENDPOINTS = {
     LOGINVERIFICATION:`${url3}single_user_check_api`,
     LOGIN:`${url3}login_api`,
     USERDATA: `${url3}users_api`,
-    CHANGE_PASSWORD:`${url3}change_password_api`
+    CHANGE_PASSWORD:`${url3}change_password_api`,
+    CURRENTBETS:`${url3}unsetteledbet_api`,
+    ALLBETS:`${url3}bet_history_api`,
+    ACCOUNT_STATEMENT: `${url3}account_statement_api`
    
 }

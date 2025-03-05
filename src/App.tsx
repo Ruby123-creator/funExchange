@@ -85,6 +85,8 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
          <Route path='/change-password' element={<Chnage_Password/>}/>
 
          <Route path='/open-bets' element={<OpenBets/>}/>
+         <Route path='/declare-bets' element={<OpenBets/>}/>
+
          <Route path='/settings' element={<TimeSetting/>}/>
       </Routes>
     </Layout>

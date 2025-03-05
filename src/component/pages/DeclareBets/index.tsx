@@ -5,7 +5,7 @@ import RightDeskSidebar from '../../common/RightDeskSidebar.tsx'
 import MatchedBets from '../../common/BettingWindow/matchedBet'
 import { DatePicker, DatePickerProps, Select } from 'antd'
 import { CiSearch } from "react-icons/ci";
-import { useCurrentBetsData } from '../../../Framework/placeBet'
+import { useAllBetsData } from '../../../Framework/placeBet'
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 };
@@ -16,8 +16,8 @@ const onChange1 = (value: string) => {
 const onSearch = (value: string) => {
   console.log('search:', value);
 };
-const OpenBets = () => {
-  const {data} = useCurrentBetsData();
+const DeclareBets = () => {
+    const {data} = useAllBetsData();
 
   return (
     <div className="flex flex-col transition-all lg:pt-[110px] ease-in-out duration-100 pt-[94px]">
@@ -118,4 +118,4 @@ const OpenBets = () => {
   )
 }
 
-export default OpenBets
+export default DeclareBets

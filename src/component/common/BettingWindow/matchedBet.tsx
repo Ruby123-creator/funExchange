@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useCurrentBetsData } from '../../../Framework/placeBet';
 
 interface Props{
-  render?:number
+  render?:number,
+  data?: any;
 }
-const MatchedBets : React.FC<Props> = ({render}) => {
+const MatchedBets : React.FC<Props> = ({render,data}) => {
   const [open,setOpen] = useState(true);
-  const {data} = useCurrentBetsData();
   return (
     
     <div className=" flex flex-col w-full  gap-1">

@@ -70,7 +70,7 @@ const drawerElement = [
         title:"Declare Bets",
         icon: <TbStars stroke="var(--color-iconsColor)" size={20}/>,
         id:22,
-        route:"/open-bets"
+        route:"/declare-bets"
     },
     // {
     //     title:"Betting Profit & Loss",
