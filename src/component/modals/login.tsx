@@ -42,7 +42,7 @@ const LoginModal: React.FC<Props> = () => {
        
     const handleLogin = (e:any) => {
         e.preventDefault();
-       
+
         if (login === 'userId') {
      
         loginUser({UserName:userId,Password:password});

@@ -60,7 +60,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ data={} }) => {
 
           {/* Match Status */}
           <div className="match_status">
-            <span className="commentary">INNING BREAK</span>
+            <span className="commentary"></span>
             <p className="target"></p>
             <div className="score-over">
               <ul></ul>

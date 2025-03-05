@@ -62,7 +62,6 @@ const SportsDetail: React.FC = () => {
         break;
     }
   };
-
   const inPlayEvents = [
     {
       ...pageName(sportsName),

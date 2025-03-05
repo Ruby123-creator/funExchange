@@ -42,17 +42,15 @@ const SportsEventPage: React.FC = () => {
         };
       case "horseRacing_racecard":
         return {
-          sidebarIcon: (
-            <GiHorseHead fill="var(--color-quaternary)" size={20} />
-          ),
+                sidebarIcon:<img alt="horse" src="/icons/white-horse.svg" width={20} height={20}/>,
+          
           sportsName: "Horse Racing",
           icon: <GiHorseHead fill="#8B191B" size={20} />,
         };
       case "greyhound_racecard":
         return {
-          sidebarIcon: (
-            <GiHound fill="var(--color-quaternary)" size={20} />
-          ),
+          sidebarIcon:<img alt="horse" src="/icons/white_greyhound.svg" width={20} height={20}/>,
+
           sportsName: "Greyhound Racing",
           icon: <GiHound fill="#8B191B" size={20} />,
         };

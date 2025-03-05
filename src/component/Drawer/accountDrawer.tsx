@@ -195,7 +195,7 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                         <div className="flex items-center justify-start gap-x-1.5"><span>
                            <FiSmartphone stroke="var(--color-iconsColor)" size={20}/> 
                            </span><span
-                                className="font-lato-bold font-semibold text-sm xs:text-base text-text_Ternary ">DEMO</span>
+                                className="font-lato-bold font-semibold text-sm xs:text-base text-text_Ternary ">{userData?.UserName ? userData?.UserName : "DEMO"}</span>
                         </div>
                        <div className='cursor-pointer' onClick={()=>openDrawer(false)}>
                         <IoCloseOutline size={20}/>

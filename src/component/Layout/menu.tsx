@@ -15,7 +15,6 @@ const HeaderMenu = () => {
   const { isLogin, setLoginModal } = useUI();
   const [active, setActive] = useState("Cricket");
   const pathlocation = (window.location?.pathname||"").split('/');
-
   return (
     <div className="flex flex-col">
       <div className="flex w-full overflow-x-auto no-scrollbar bg-bg_Quaternary p-1 items-start md:items-center md:justify-center">
@@ -30,7 +29,7 @@ const HeaderMenu = () => {
               <button
                 onClick={(e) => {
                   if (isLogin) {
-                    setActive(item?.title);
+                    // setActive(item?.title);
                     Navigate(item?.routing);
                   } else {
                     setLoginModal(true);

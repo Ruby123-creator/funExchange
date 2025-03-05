@@ -55,7 +55,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
         console.error("Error parsing credentials from localStorage:", error);
       }
     }
-  }, [isLoginAsUser, setLoginData]);
+  }, [isLoginAsUser]);
 
   useEffect(()=>{
     setUserData(userData);
@@ -64,7 +64,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sports-page/:sportsName" element={<SportsDetail />} />
+        <Route path="/sports-page/:sportsName" element={<SportsDetail/>} />
         {/* <Route path="/sports-page/Football" element={<Football />} />
         <Route path="/sports-page/Tennis" element={<Tennis />} /> */}
         <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
