@@ -19,8 +19,12 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
     const { sport, eventId }: any = useParams();
     const [active,setActive] = useState('live');
     const [isModalOpen ,setIsModalOpen] = useState(false);
-    const eventDetails = extractDetails((((data?.market||[])[0])?.gametitle))
-    console.log(eventDetails,data?.market,extractDetails(((data?.market||[])[0])?.gametitle),"tic-tac::::::::::::::::::::")
+    const [eventDetails,setEventDetails] = useState<any>({});
+    useEffect(()=>{
+      setEventDetails(extractDetails((((data?.market||[])[0])?.gametitle)))
+
+    },[])
+    console.log(eventDetails,"hasgdjhsgdgshadhg")
     const Navigate = useNavigate();
   
     const [expanded, setExpanded] = useState(false);
@@ -110,7 +114,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 <span
                     className=" w-full bg-titleGrd flex flex-col text-transparent text-start bg-clip-text font-lato text-sm font-bold">
                         <span
-                        className=" capitalize break-words">{data?.title ?  data?.title :`${eventDetails?.team1} v ${eventDetails?.team2}`}</span>
+                        className=" capitalize break-words">{data?.title}</span>
                         {
                             data?.race_card ? <span
                             className=" capitalize break-words text-xs">{(data?.race_card||"").split(" ").slice(0,-2).join(" ")}</span>:""
@@ -118,9 +122,9 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                         </span>
             </div>
         </div>
-        <div className=" flex items-center justify-center gap-x-2">
+        {/* <div className=" flex items-center justify-center gap-x-2">
             {
-                (data?.inplay||data?.status === "active") ? "":<span  className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-[12px] font-semibold">
+                (data?.inplay||data?.status === "active")&&eventDetails?.date ? "":<span  className=" w-full bg-titleGrd text-transparent text-start bg-clip-text font-lato text-[12px] font-semibold">
                 {eventDetails?.date} {eventDetails?.time} 
                     </span>
             }
@@ -132,7 +136,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
 
             <span onClick={()=>setIsModalOpen(true)}>
             <IoInformationCircleOutline stroke="#C10B32" fill="#C10B32" size={20}/>
-            </span></div>
+            </span></div> */}
     </div>
 </div>
     <hr className=" w-full"/>

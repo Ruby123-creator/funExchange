@@ -1,6 +1,6 @@
 import { Card, Tabs } from 'antd';
 import TabPane from 'antd/es/tabs/TabPane';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdLiveTv } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 interface Props{
@@ -28,20 +28,24 @@ const transformRacingData = (data: any) => {
   return Object.values(groupedData);
 };
 const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
-      const uniqueCountries = transformRacingData(data);
+  const [countries,setCountries] = useState<any[]>([])
       const Navigate = useNavigate();
-     
+     useEffect(()=>{
+      const uniqueCountries = transformRacingData(data);
+
+      setCountries(uniqueCountries)
+     },[data])
     return (
         <div className="py-3 px-[6px] w-full">
     <div className="w-full font-helvetica-neue racing-fixture">
-        <Tabs defaultActiveKey="0" >
-          {(uniqueCountries||[]).map((val:any, index:number) => (
-            <TabPane tab={val?.country}  key={'uniqueCountries'+index}>
-                {
+        <Tabs >
+          {(countries||[]).map((val:any, index:number) => (
+            <TabPane tab={val?.country} key={val?.country}>
+            {
                     (val?.nationArr||[]).map((item:any,i:number)=>{
                         return(
-                            <div className="col-span-12 grid grid-cols-12 bg-bg_Quaternary" key={`countries${index}`}>
-                            <div
+<div className="col-span-12 grid grid-cols-12 bg-bg_Quaternary" key={`${val?.country}-${item?.nation}`}>
+<div
                                 className="col-span-6 h-14 lg:col-span-5 grid grid-cols-7 border-t border-borderColorOfMarket ">
                              
 
@@ -65,7 +69,7 @@ const RacingFixture: React.FC<Props> = ({data,sportsId}) => {
                                       {
                                         (item?.timing||[]).map((event:any,i:number)=>{
                                             return <div
-                                            key={"time"+i}
+                                            key={`${item?.nation}-${event?.gameId}-${i}`}
 
                                             className='w-[50px] h-[20px] flex items-center justify-center rounded font-medium   text-[12px] bg-bg_HeaderDepositBtnBgColor border-depositBtn text-text_Quaternary cursor-pointer'  onClick={()=>{
                                               Navigate(`/event-page/${sportsId}/${event?.gameId}`)

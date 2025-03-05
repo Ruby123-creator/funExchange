@@ -60,7 +60,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
   useEffect(()=>{
     setUserData(userData);
   },[userData])
-  return(<Router>
+  return(
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -88,7 +88,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
          <Route path='/settings' element={<TimeSetting/>}/>
       </Routes>
     </Layout>
-  </Router>
+ 
 )};
 
 export default App;

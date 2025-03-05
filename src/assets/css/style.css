@@ -7864,7 +7864,9 @@ input:focus {
 .scaleHorizontallyClose {
     animation: scaleHorizontallyClose .5s ease-in-out
 }
-
+.purpleball{
+    background-color: var(--color-bg-headerDeskNavMenu);
+}
 @keyframes scaleHorizontallyClose {
     0% {
         opacity: 1;
@@ -7912,7 +7914,9 @@ button:active {
 .btn-secondary {
     background-color: var(--color-bg-secondary)
 }
-
+.blueballs{
+    background-color: var(--color-bg-changeAnimationBack);
+}
 @keyframes pulse {
     50% {
         opacity: .5
@@ -13069,4 +13073,29 @@ span.ripple {
       .batsman_svg {
         display: none !important;
       }
+    }
+
+.scoreballs{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+}
+    .balls{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+        color: #fff;
+        font-weight: 700;
+        /* padding: 5px; */
+        font-size: 14px;
+        width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            box-shadow: inset 10px 10px 20px rgba(255, 255, 255, 0.3),
+                        inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+                        10px 10px 30px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite ease-in-out;
     }

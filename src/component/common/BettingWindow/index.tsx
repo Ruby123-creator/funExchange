@@ -50,7 +50,7 @@ const items: CollapseProps["items"] = [
 const BettingWindow: React.FC = () => {
   const [toggle, setToggle] = useState(0);
   const [editStack, setEditStack] = useState(false);
-  const {betOdds,isLogin,setLoginModal,isLoginData} = useUI();
+  const {betOdds,isLogin,setLoginModal,isLoginData, userData} = useUI();
   return (
     <div
       title="Menu 2"
@@ -72,7 +72,7 @@ const BettingWindow: React.FC = () => {
                   <span className="uppercase  font-normal text-xxs">
                     Balance
                   </span>
-                  <span className=" font-lato text-sm">₹ 0.00</span>
+                  <span className=" font-lato text-sm">₹ {(userData?.Balance||0).toFixed(2)}</span>
                 </div>
                 <div className="flex w-full flex-col rounded items-start bg-bg_Ternary8 border px-2 py-1 ">
                   <span className="uppercase  font-normal text-xxs">
@@ -84,7 +84,7 @@ const BettingWindow: React.FC = () => {
                   <span className="uppercase  font-normal text-xxs">
                     Net Exposure
                   </span>
-                  <span className=" font-lato text-sm">₹ 0.00</span>
+                  <span className=" font-lato text-sm">₹ {((userData?.Exposure||0)>0 ? 0 : (userData?.Exposure||0)).toFixed(2)}</span>
                 </div>
               </div>
               <div title="sWalletInfo"></div>

@@ -49,7 +49,7 @@ const BetSlip: React.FC = () => {
      }
     },[sport])
       const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport:val});
-     
+     console.log(userData,"gfdsfdgsdfg");
   const {data:fancyData} = useCricketFancyData(eventId);
   const { data:ipAddress} = useIPDetails();
   const { mutate: placingBet, isError: error } = usePlaceBet();
@@ -94,13 +94,17 @@ const BetSlip: React.FC = () => {
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
 
     if (!userData || !betOdds || !checkCurrentBet) return false;
+    if(!(Object.keys(userData||{})?.length)){
+      showToasterMessage({ messageType: "error", description: "LOGIN WITH REALID" });
+      return false;
+    }
     // Check user status and balance
     if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum ) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
       return false;
     }
-
-    if((sum<Number(betOdds?.min))|| sum>Number(calculateMaxAmount(betOdds?.max))){
+      
+    if((sum<Number(betOdds?.min))|| sum>Number(calculateMaxAmount(betOdds?.max)) || sum<100){
       showToasterMessage({ messageType: "error", description: "INVALID BET AMOUNT" });
       return false;
     }

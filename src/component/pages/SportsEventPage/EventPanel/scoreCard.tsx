@@ -15,8 +15,20 @@ interface ScoreCardProps {
 }
 
 const ScoreCard: React.FC<ScoreCardProps> = ({ data={} }) => {
-  const { teams = [], teamScore = [] } = data;
-
+  const { teams = [], teamScore = [],scorecards=[] } = data;
+   const ballsColor = (val:string) =>{
+   
+    switch(val){
+      case "4":
+        return 'bg-bg_RefreshBtnBg';
+      case "6":
+        return 'purpleball';
+      case "ww":
+        return "bg-bg_Primary";
+      default:
+        return "blueballs";
+    }
+   }
   return (
     <div>
       <div className="container-main">
@@ -53,19 +65,28 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ data={} }) => {
             <div className="score-over">
               <ul></ul>
             </div>
-            <div className="requiredRunRate">
-              <span>
+            <div className="scoreballs">
+              {
+                  (scorecards||[]).map((item:any,i)=>{
+                    return (
+                      <span className={`balls ${ballsColor(item)}`}>
+                      {item}
+                    </span>
+                    )
+                  })
+              }
+              {/* <span>
                 LIO need 293 runs off 234 balls | <span>RRR: 0</span>
-              </span>
+              </span> */}
             </div>
-            <div className="batsman-container">
+            {/* <div className="batsman-container">
               <div>
                 <span>*</span> <span>0 (0)</span>
               </div>
               <div>
                 <span></span> <span>0 (0)</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Team 2 Score */}

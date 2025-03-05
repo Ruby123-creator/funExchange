@@ -1,22 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { UIProvider } from './context/ui.context';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter } from "react-router-dom"; // Import BrowserRouter
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { UIProvider } from "./context/ui.context";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    {/* Remove value prop from UIProvider */}
     <UIProvider>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <BrowserRouter>  {/* Wrap App inside BrowserRouter */}
+          <App />
+        </BrowserRouter>
       </QueryClientProvider>
     </UIProvider>
   </React.StrictMode>

@@ -117,5 +117,5 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
         localStorage.removeItem("isLoginAsDemo");
         localStorage.removeItem("credentials");
         window.location.reload();
-        window.location.href = '/';
+        // window.location.href = '/';
       }

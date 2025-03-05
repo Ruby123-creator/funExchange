@@ -22,7 +22,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import SignUp_Modal from "../modals/signup";
 
 const Header: React.FC = () => {
-  const {isLogin,setLoginModal,isLoginAsDemo,userData} = useUI();
+  const {isLogin,setLoginModal,isLoginAsDemo,userData,loginModal} = useUI();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [search, setSearch] = useState("");
@@ -320,9 +320,11 @@ const Header: React.FC = () => {
   </div>
         
       
-
+  <Modal open={loginModal} footer={null} closeIcon={false}     onCancel={() => setLoginModal(false)}
+      >
+        <LoginModal openModal={setIsModalOpen}/>
+      </Modal>
       
-     <LoginModal/>
       <Modal open={isModalOpen} footer={null} closeIcon={false}     onCancel={() => setIsModalOpen(false)}
       >
         <SignUp_Modal openModal={setIsModalOpen}/>

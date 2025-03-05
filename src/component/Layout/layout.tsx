@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from './footer';
 import Header from './header';
-import { useNavigation } from 'react-router-dom';
+import { useLocation, useNavigation } from 'react-router-dom';
 import PageLoader from '../common/pageLoader';
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,7 +9,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
-
+    const location = useLocation(); // Now it's inside Router
+  
+    useEffect(() => {
+      console.log("Route changed:", location.pathname);
+    }, [location.pathname]);
+  
   useEffect(() => {
     const handleLoad = () => setLoading(false);
   
