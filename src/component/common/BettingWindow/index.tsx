@@ -5,6 +5,7 @@ import BetSlip from "./betSlip";
 import MatchedBets from "./matchedBet";
 import { useUI } from "../../../context/ui.context";
 import EditStack from "./editStacks";
+import { useCurrentBetsData } from "../../../Framework/placeBet";
 
 const items: CollapseProps["items"] = [
   {
@@ -51,6 +52,8 @@ const BettingWindow: React.FC = () => {
   const [toggle, setToggle] = useState(0);
   const [editStack, setEditStack] = useState(false);
   const {betOdds,isLogin,setLoginModal,isLoginData, userData} = useUI();
+  const {data} = useCurrentBetsData();
+
   return (
     <div
       title="Menu 2"
@@ -128,7 +131,7 @@ const BettingWindow: React.FC = () => {
           </div>
           <div className=" w-full flex items-center  gap-1">
             {
-              isLogin ?  (betOdds?.odds&& toggle ===0) ?  <BetSlip/>:<MatchedBets render={0}/> : <h4 className=" text-sm font-lato text-center py-4">Please login to see your open bets.<span
+              isLogin ?  (betOdds?.odds&& toggle ===0) ?  <BetSlip/>:<MatchedBets render={0} data={data}/> : <h4 className=" text-sm font-lato text-center py-4">Please login to see your open bets.<span
               
               onClick={()=>{
                 setLoginModal(true);

@@ -11,6 +11,7 @@ import MatchedBets from '../../../common/BettingWindow/matchedBet';
 import { useNavigate, useParams } from 'react-router-dom';
 import { extractDetails, extractEventDetails } from '../../../../Framework/utils/constant';
 import ScoreCard from './scoreCard';
+import { useCurrentBetsData } from '../../../../Framework/placeBet';
 interface Props{
     data:any;
 }
@@ -24,6 +25,8 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
       setEventDetails(extractDetails((((data?.market||[])[0])?.gametitle)))
 
     },[])
+      const {data:currentBets} = useCurrentBetsData();
+    
     console.log(eventDetails,"hasgdjhsgdgshadhg")
     const Navigate = useNavigate();
   
@@ -153,7 +156,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
                 <button
                 className={`flex items-center justify-center w-full gap-1.5 tracking-wider    py-2.5 uppercase  p-3 text-sm font-semibold ${active === 'bets' ? 'text-text_Primary':'text-text_Quinary'}   font-bold font-lato text-xs`}
                 onClick={()=>setActive('bets')}
-                style={{zIndex: "10"}}>open bets (0)</button>
+                style={{zIndex: "10"}}>open bets ({(currentBets||[])?.length})</button>
             <div className={`w-[48%] absolute z-10 ${active === "live"?'left-0':'right-0'} transition-all ease-in-out bg-bg_Primary rounded-lg h-[2px]`}
                 style={{zIndex: "9", width: "50%", bottom: "0px"}}></div>
         </div>
@@ -217,7 +220,7 @@ export const LiveShowComp: React.FC<Props> = ({data}) => {
            
            
         </div>
-    </div> :<div className=' w-full p-2'> <MatchedBets/></div>
+    </div> :<div className=' w-full p-2'> <MatchedBets render={1} data={currentBets}/></div>
     }
    
 

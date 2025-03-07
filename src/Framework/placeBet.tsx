@@ -80,6 +80,7 @@ const fetchAllAccountStatement = async (data:any) => {
 
 // React Query Hook
 export const useAccountStatementData = (data:any) => {
+  console.log(data,"kinjaruuuu")
   return useQuery({
     queryKey: ['allAccountStatement-detail',data], // Include `id` for query uniqueness
     queryFn: () => fetchAllAccountStatement(data), // Fetch function

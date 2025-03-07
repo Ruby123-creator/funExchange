@@ -30,7 +30,9 @@ import { differenceInSeconds, format, parseISO } from "date-fns";
     }
 
     export function extractDetails(eventName: String|any) {
-      const teams = ((eventName||"").split('\n')[0]||"").split(' V ');
+      console.log(eventName,"eventsss::::::")
+      const val = ((eventName||"").split('\n')[0]||"");
+      const teams = (val||"").includes('-') ? (val||"").split("-") : (val||"").split(" V ");
   const team1 = teams[0];
   const team2 = teams[1];
 

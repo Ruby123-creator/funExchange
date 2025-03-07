@@ -6,7 +6,7 @@ import { CiStopwatch } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import { useSportDetailsById, useCricketFancyData } from "../../../Framework/sportsData";
 import { fetchIPAdress, useAdminDetails, useIPDetails } from "../../../Framework/login";
-import { checkTimeDifference, extractEventDetails, showToasterMessage } from "../../../Framework/utils/constant";
+import { checkTimeDifference, extractDetails, extractEventDetails, showToasterMessage } from "../../../Framework/utils/constant";
 import { usePlaceBet } from "../../../Framework/placeBet";
 import { format, isToday, isTomorrow, parse } from "date-fns";
 
@@ -188,8 +188,8 @@ const BetSlip: React.FC = () => {
   const placeBet = () => {
     if (!userData || !betOdds || !data) return;
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
-    const eventInfo = extractEventDetails(checkCurrentBet?.title)
-     
+    const eventInfo = extractDetails(checkCurrentBet?.title)
+     console.log(eventInfo,"eventsss")
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
@@ -217,6 +217,8 @@ const BetSlip: React.FC = () => {
   
   // Handle bet confirmation
   const handleConfirmBet = () => {
+    if (betProcessed) return; // Prevent multiple triggers while the countdown is running
+
     // Check bet conditions before proceeding
     const canPlaceBet = checkBetCondition();
     if (!canPlaceBet) {

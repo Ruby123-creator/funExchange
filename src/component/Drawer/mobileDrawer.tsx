@@ -8,7 +8,7 @@ interface Props{
 const MobileDrawer:React.FC<Props> = ({setMobileDrawer}) => {
     const navigate = useNavigate();
     const {isLogin,setLoginModal} = useUI();
-    console.log(isLogin,"matchessss")
+    console.log(isLogin,"matchessss::::::::")
   return (
     <div id="leftsidebar" className="fixed top-0 left-0 z-50 w-full h-full  bg-opacity-50 block"
     onClick={(e) => {
