@@ -190,7 +190,7 @@ const BetSlip: React.FC = () => {
     if (!userData || !betOdds || !data) return;
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
     const eventInfo = extractDetails(checkCurrentBet?.title)
-     console.log(eventInfo,"eventsss")
+     console.log(eventInfo,"eventsss","fitnesss")
     const now = new Date();
     const bettingData = {
       userName: userData.UserName,
@@ -234,9 +234,9 @@ const BetSlip: React.FC = () => {
       setTimer((prevTimer) => {
         if (prevTimer <= 0) {
           clearInterval(intervalRef.current!);
-          setBetProcessed(false);
           if(prevTimer === 0){
           const canPlaceBet = checkBetCondition();
+          setBetProcessed(false);
           if (canPlaceBet) {
             placeBet();
 
@@ -430,7 +430,7 @@ const BetSlip: React.FC = () => {
           </button>
           <div className="w-[50%] max-w-[170px] h-max">
             <button
-              disabled={!sum}
+              disabled={!sum||betProcessed}
               onClick={()=>handleConfirmBet()}
               type="button"
               className={`leading-normal overflow-hidden transition duration-150 ease-in-out py-1 relative w-full flex min-h-[46px] px-2.5 rounded-md font-medium border flex-row items-center justify-between ${
