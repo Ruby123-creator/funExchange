@@ -16,6 +16,7 @@ const initialState = {
     odds:"",
     amount:0,
   },
+  activeNav:'/',
   betWindow:'',
   stacks:[100,500,1000,5000,10000,20000,50000,100000,250000,500000,1000000]
 };
@@ -37,6 +38,7 @@ function uiReducer(state: any, action: { type: string; data: any }) {
       return {
         ...state, betOdds:action.data
       }
+    
     case "SET_BET_WINDOW":
       return {
         ...state, betWindow:action.data
@@ -48,6 +50,10 @@ function uiReducer(state: any, action: { type: string; data: any }) {
     case "SET_LOGIN_DATA":
       return{
          ...state , loginData:action.data
+      }
+    case "SET_ACTIVE_NAV":
+      return{
+        ...state, activeNav:action.data
       }
     default:
       return state; // Ensure the state is returned in case of unknown action type
@@ -64,8 +70,8 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
   const setBetWindow = (data: any)=>dispatch({type:"SET_BET_WINDOW",data});
   const setLoginData = (data:any)=>dispatch({type:"SET_LOGIN_DATA",data})
   const setUserData = (data:any)=>dispatch({type:"SET_USER_DATA",data})
-
-  const value = useMemo(() => ({ ...state, setUserData,setLoginModal,setMatchedBets,setStacks,setBetWindow,setLoginData }), [state]);
+  const setActiveNav = (data:any)=>dispatch({type:"SET_ACTIVE_NAV",data})
+  const value = useMemo(() => ({ ...state, setUserData,setLoginModal,setMatchedBets,setStacks,setBetWindow,setLoginData,setActiveNav }), [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }

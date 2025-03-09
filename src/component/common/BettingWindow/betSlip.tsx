@@ -9,6 +9,7 @@ import { fetchIPAdress, useAdminDetails, useIPDetails } from "../../../Framework
 import { checkTimeDifference, extractDetails, extractEventDetails, showToasterMessage } from "../../../Framework/utils/constant";
 import { usePlaceBet } from "../../../Framework/placeBet";
 import { format, isToday, isTomorrow, parse } from "date-fns";
+import { useCurrentBetsData } from "../../../Framework/placeBet";
 
 interface BetOdds {
   betType: string;
@@ -35,7 +36,7 @@ const BetSlip: React.FC = () => {
   const { betOdds, stacks ,setMatchedBets,userData} = useUI();
   const { sport, eventId }: any = useParams();
    const [val,setValue] = useState('');
- 
+   
    useEffect(()=>{
      
      if(sport === 'horseRacing_racecard'){
@@ -99,7 +100,7 @@ const BetSlip: React.FC = () => {
       return false;
     }
     // Check user status and balance
-    if (userData.status === "deactive" || (Number(userData?.Balance)-Number(userData?.Exposure)) < sum ) {
+    if (userData.status === "deactive" || (Number(userData?.Balance)-Number(Math.abs(userData?.Exposure))) < sum ) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
       return false;
     }

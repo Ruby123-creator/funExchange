@@ -12,8 +12,7 @@ const formatText = (text:string) => {
 const HeaderMenu = () => {
   const {sportsName} = useParams();
   const Navigate = useNavigate();
-  const { isLogin, setLoginModal } = useUI();
-  const [active, setActive] = useState("Cricket");
+  const { isLogin, setLoginModal ,activeNav,setActiveNav} = useUI();
   const pathlocation = (window.location?.pathname||"").split('/');
   return (
     <div className="flex flex-col">
@@ -29,14 +28,14 @@ const HeaderMenu = () => {
               <button
                 onClick={(e) => {
                   if (isLogin) {
-                    // setActive(item?.title);
+                    setActiveNav(item?.title);
                     Navigate(item?.routing);
                   } else {
                     setLoginModal(true);
                   }
                 }}
                 className={`text-xs cursor-pointer uppercase mr-1 ${
-                  (item?.title === active) ? "border-primary" : ""
+                  (item?.title === activeNav) ? "border-primary" : ""
                 }  rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9 border w-max px-3 py-1 text-text_HeaderDeskNavMenu hidden md:block`}
               >
                 <span className="font font-lato text-[12px]">
@@ -56,7 +55,7 @@ const HeaderMenu = () => {
               <button className="text-xs cursor-pointer uppercase border mr-1 active:border-primary rounded-full text-nowrap whitespace-nowrap font-semibold bg-bg_Ternary8 hover:bg-bg_Ternary9  w-max px-3  py-1  text-text_HeaderDeskNavMenu   "
                onClick={(e) => {
                 if (isLogin) {
-                  setActive(item?.title);
+                  setActiveNav(item?.title);
                   Navigate(item?.routing);
                 } else {
                   setLoginModal(true);

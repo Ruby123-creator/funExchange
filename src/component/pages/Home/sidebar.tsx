@@ -6,7 +6,7 @@ import { siderbarDrawer } from '../../../Framework/utils/static';
 
 const SidebarComp: React.FC = () => {
     const Navigate = useNavigate();
-    const {isLogin,setLoginModal} = useUI();
+    const {isLogin,setLoginModal,setActiveNav} = useUI();
   
   return (
     <div title="Menu" id="leftDeskSideBar"
@@ -24,6 +24,7 @@ const SidebarComp: React.FC = () => {
  onClick={()=>{
   if(isLogin){
     Navigate(item?.routing);
+    setActiveNav(item?.title);
   }
   else{
   setLoginModal(true);

@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 
-import { Outlet, useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { TbLogin } from "react-icons/tb";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import { PiHandDepositLight } from "react-icons/pi";
-import { IoMenu } from "react-icons/io5";
-import { headerMenu, mobileHeaderMenu } from "../../Framework/utils/static";
-import { format } from "date-fns";
+
 import { Drawer, Modal } from "antd";
 import LoginModal from "../modals/login";
 import AccountDrawer from "../Drawer/accountDrawer";
 import { useUI } from "../../context/ui.context";
 import { getFormattedDateTime } from "../../Framework/utils/constant";
-import { useAdminDetails } from "../../Framework/login";
 import MobileDrawer from "../Drawer/mobileDrawer";
 import HeaderMenu from "./menu";
-import PageLoader from "../common/pageLoader";
 import { FaRegUserCircle } from "react-icons/fa";
 import SignUp_Modal from "../modals/signup";
 
@@ -95,7 +90,7 @@ const Header: React.FC = () => {
     <div className="cursor-pointer flex items-center justify-center bg-white rounded-full py-2 px-5 sm:p-3 shadow-md">
       <img
         src="/assets/images/lion_king.svg"
-        width="124"
+        width="100"
         alt=""
         className="hidden sm:block"
       />

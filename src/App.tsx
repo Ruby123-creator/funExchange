@@ -26,6 +26,7 @@ import SportsDetail from './component/pages/SportsPage';
 import Chnage_Password from './component/pages/ChangePasword';
 import { useAdminDetails, useLoginVerificationQuery } from './Framework/login';
 import { useUI } from './context/ui.context';
+import DeclareBets from './component/pages/DeclareBets';
 
 
 const App: React.FC = () => {
@@ -85,7 +86,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
          <Route path='/change-password' element={<Chnage_Password/>}/>
 
          <Route path='/open-bets' element={<OpenBets/>}/>
-         <Route path='/declare-bets' element={<OpenBets/>}/>
+         <Route path='/declare-bets' element={<DeclareBets/>}/>
 
          <Route path='/settings' element={<TimeSetting/>}/>
       </Routes>
