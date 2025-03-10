@@ -27,6 +27,8 @@ import Chnage_Password from './component/pages/ChangePasword';
 import { useAdminDetails, useLoginVerificationQuery } from './Framework/login';
 import { useUI } from './context/ui.context';
 import DeclareBets from './component/pages/DeclareBets';
+import CasinoGames from './component/pages/casino';
+import AutoLogout from './component/common/autoLogout';
 
 
 const App: React.FC = () => {
@@ -64,16 +66,14 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
   return(
     <Layout>
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/sports-page/:sportsName" element={<SportsDetail/>} />
-        {/* <Route path="/sports-page/Football" element={<Football />} />
-        <Route path="/sports-page/Tennis" element={<Tennis />} /> */}
+       
         <Route path="/sports-page/Horse-Racing" element={<HorseRacing />} />
         <Route path="/sports-page/Greyhound-Racing" element={<GreyHoundRacing />} />
-        <Route path="/casino-lobby/casino" element={<LiveCasino />} />
-        <Route path="/casino-lobby/slot-games" element={<SlotGameLobby />} />
-        <Route path="/casino-lobby/slot-games/Crash" element={<CrashGames />} />
-        <Route path="/casino-lobby/slot-games/Shooting" element={<FishingGames />} />
+        <Route path="/casino-lobby/:casinoType" element={<CasinoGames />} />
+       
         <Route path="/aviator" element={<AviatorComp />} />
         <Route path="/aura" element={<AuraComp />} />
          <Route path='/event-page/:sport/:eventId' element={<SportsEventPage/>}/>

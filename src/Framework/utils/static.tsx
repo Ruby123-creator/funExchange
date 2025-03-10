@@ -61,25 +61,41 @@ export const siderbarDrawer = [
       icon: <img alt="horse" src="/icons/greyhound.svg" width={20} height={20}/>,
     routing: "/sports-page/Greyhound-Racing"
   },
-  {
-    title: "Indian Card Games",
-      icon: <img alt="horse" src="/icons/card.svg" width={20} height={20}/>,
-      routing: "/sports-page/indian-card-games"
-  },
-  {
-    title: "Live Casino",
-      icon: <img alt="horse" src="/icons/casino.svg" width={20} height={20}/>,
-     routing: "/casino-lobby/casino"
-  },
+  // {
+  //   title: "Indian Card Games",
+  //     icon: <img alt="horse" src="/icons/card.svg" width={20} height={20}/>,
+  //     routing: "/sports-page/indian-card-games"
+  // },
   {
     title: "Aviator",
       icon:<img alt="horse" src="/icons/aviator.svg" width={20} height={20}/>,
        routing: "/aviator"
   },
   {
+    title: "Live Casino",
+      icon: <img alt="horse" src="/icons/casino.svg" width={20} height={20}/>,
+     routing: "/casino-lobby/casino"
+  },
+ 
+  {
     title: "Slot Games",
-      icon: <img alt="horse" src="/icons/slot.svg" width={20} height={20}/>,
+      icon: <img alt="slot-games" src="/icons/slot.svg" width={20} height={20}/>,
 routing: "/casino-lobby/slot-games"
+  },
+  {
+    title: "Crash Games",
+      icon: <img src="/icons/aviator.svg" alt="My Icon" width={20} height={20} />,
+routing: "/casino-lobby/crash"
+  },
+  {
+    title: "Fishing",
+      icon: <GiCirclingFish size={20} fill="#c10931"/>,
+routing: "/casino-lobby/shooting"
+  },
+  {
+    title: "Lottery",
+      icon: <img alt="horse" src="/icons/slot.svg" width={20} height={20}/>,
+routing: "/casino-lobby/lottery"
   },
  
   ]
@@ -369,12 +385,14 @@ export const casinoProviders = [{
     { title: "Tennis", routing: "/sports-page/tennis" },
     { title: "Horse Racing", routing: "/sports-page/Horse-Racing" },
     { title: "GreyHound Racing", routing: "/sports-page/Greyhound-Racing" },
-    { title: "Aura", routing: "/aura" },
+    
     { title: "Aviator", routing: "/aviator" },
     { title: "Live Casino", routing: "/casino-lobby/casino" },
     { title: "Slots", routing: "/casino-lobby/slot-games" },
-    { title: "Crash Games", routing: "/casino-lobby/slot-games/Crash" },
-    { title: "Fishing Games", routing: "/casino-lobby/slot-games/Shooting" },
+    { title: "Crash Games", routing: "/casino-lobby/crash" },
+    { title: "Fishing Games", routing: "/casino-lobby/shooting" },
+    { title: "Lottery", routing: "/casino-lobby/lottery" },
+
   ];
 
   export const mobileHeaderMenu = [

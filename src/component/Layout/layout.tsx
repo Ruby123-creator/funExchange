@@ -3,6 +3,7 @@ import Footer from './footer';
 import Header from './header';
 import { useLocation, useNavigation } from 'react-router-dom';
 import PageLoader from '../common/pageLoader';
+import AutoLogout from '../common/autoLogout';
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -28,6 +29,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, []);
   return(
   <>
+      <AutoLogout timeout={180000} /> {/* 3-minute auto logout */}
+
   {
     loading ? <PageLoader/> :<>
      <Header />

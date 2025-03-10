@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from './utils/api-endpoints';
 import { logOut, showToasterMessage } from './utils/constant';
 import { verify } from 'crypto';
 import { error } from 'console';
+import { useUI } from '../context/ui.context';
 interface VerifyResponse {
   uniqid: string;
   flag:boolean
@@ -22,7 +23,8 @@ export const useChangePassword = () => {
     onSuccess: (data) => {
       if(data?.status === "success"){
         showToasterMessage({messageType:"success",description:data?.message});
-      logOut();
+        logOut(data?.UserName);
+
       }
       else{
         showToasterMessage({messageType:"error",description:data?.message});
@@ -82,7 +84,7 @@ const loginVerify = async ({ uniqid, username }: { uniqid: string; username: str
   );
 
   if (response.status === 200 && response.data && response?.data?.flag) {
-       logOut();
+       logOut(username);
     return response.data;
   }
 
@@ -141,3 +143,33 @@ const fetchUserDetails = async (data:any) => {
       refetchOnWindowFocus: false, // No auto-refetch on focus
     });
   };
+
+
+
+
+
+  const signoutUser = async (username:any) => {
+  
+    if(username){
+      const response = await fetch(`${API_ENDPOINTS.USERDATA}?username=${username}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch user data");
+      }
+      return response.json();
+    }
+      else{
+        return {};
+      }
+    };
+    
+    // React Query Hook
+    export const useUserLogout = () => {
+      const {userData} = useUI();
+      return useQuery({
+        queryKey: ['userData',userData?.UserName], // Include `id` for query uniqueness
+        queryFn: () => signoutUser(userData?.UserNamea), // Fetch function
+        
+        retry: 3,                 // Retry on failure
+        refetchOnWindowFocus: false, // No auto-refetch on focus
+      });
+    };

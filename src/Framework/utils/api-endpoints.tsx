@@ -1,5 +1,5 @@
 
-const url1 = 'http://160.30.206.63:3000/get-json'
+
 const url2 = 'https://sonyexch.in/get-json'
 const url3 = 'https://silverexch24.com/'
 const url = url2;
@@ -18,6 +18,8 @@ export const API_ENDPOINTS = {
     CHANGE_PASSWORD:`${url3}change_password_api`,
     CURRENTBETS:`${url3}unsetteledbet_api`,
     ALLBETS:`${url3}bet_history_api`,
-    ACCOUNT_STATEMENT: `${url3}account_statement_api`
+    ACCOUNT_STATEMENT: `${url3}account_statement_api`,
+    QTECH_URL:`${url3}fun_api_qtech`,
+    LOGOUT:`${url3}logout_api`
    
 }
