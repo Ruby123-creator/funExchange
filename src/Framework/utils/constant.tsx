@@ -120,26 +120,30 @@ import axios from "axios";
           const response = await axios.get(`${API_ENDPOINTS.LOGOUT}?username=${username}`);
          if(response?.data?.status === "success"){
           localStorage.removeItem("isLogin");
-          localStorage.removeItem("isLoginAsDemo");
           localStorage.removeItem("credentials");
           console.log(response,"LOGOUT:::::::::::::::::::::")
-          window.location.reload();
-          window.location.href = '/';
           showToasterMessage({messageType:"success",description: response?.data?.message})
-          // return response?.data;
+
+         window.location.reload();
+          window.location.href = '/';
+          
          }
          else{
           showToasterMessage({messageType:"error",description: response?.data?.message})
 
          }
         }
-         
+         else{
+          localStorage.removeItem("isLoginAsDemo");
+          window.location.reload();
+          window.location.href = '/';
+         }
         };
 
       export const logOut =(username:string)=>{
 
       console.log("LOGOUT9999999",username);
           signoutUser(username)
-       
+         
        
       }

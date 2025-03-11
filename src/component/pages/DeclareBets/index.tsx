@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import SidebarComp from '../Home/sidebar'
 import PanelComp from '../Home/panel'
 import RightDeskSidebar from '../../common/RightDeskSidebar.tsx'
@@ -6,7 +6,9 @@ import MatchedBets from '../../common/BettingWindow/matchedBet'
 import { DatePicker, DatePickerProps, Select } from 'antd'
 import { CiSearch } from "react-icons/ci";
 import { useAllBetsData } from '../../../Framework/placeBet'
-
+import { format, subDays } from 'date-fns'
+import { useUI } from '../../../context/ui.context'
+import dayjs from "dayjs";
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 };
 const onChange1 = (value: string) => {
@@ -16,9 +18,38 @@ const onChange1 = (value: string) => {
 const onSearch = (value: string) => {
   console.log('search:', value);
 };
+const getFormattedDate = (daysAgo: number) => format(subDays(new Date(), daysAgo), "yyyy-MM-dd");
 const DeclareBets = () => {
-    const {data} = useAllBetsData();
+ const { userData } = useUI();
+  const [startDate, setStartDate] = useState(getFormattedDate(7));
+  const [endDate, setEndDate] = useState(getFormattedDate(0));
+  const val = {
+    startDate,
+    endDate,
+    userName: userData?.UserName,
+  };
+  const [payload,setPayload]  = useState(val);
 
+
+  
+  
+  const {data} = useAllBetsData(payload);
+
+    console.log(data,"establishh");
+  const fromDate: DatePickerProps["onChange"] = useCallback((date: { toDate: () => string | number | Date; }) => {
+   console.log(date,"shimanuuu")
+    if (date) {
+      setStartDate(format(date.toDate(), "yyyy-MM-dd"));
+    }
+  }, []);
+
+  const EndDate: DatePickerProps["onChange"] = useCallback((date: { toDate: () => string | number | Date; }) => {
+    console.log(date,"shimanuuu")
+     if (date) {
+       setEndDate(format(date.toDate(), "yyyy-MM-dd"));
+     }
+   }, []);
+  console.log(startDate,endDate,"pitaaaaa")
   return (
     <div className="flex flex-col transition-all lg:pt-[110px] ease-in-out duration-100 pt-[94px]">
     <div className="flex items-start justify-start w-full lg:px-12 xl:px-20 xlg:px-24">
@@ -34,7 +65,7 @@ const DeclareBets = () => {
                                                     <div className="react-datepicker__input-container">
                                                         <div
                                                             className="relative w-[100%] rounded-md bg-bg_Lightgray  border focus-within:border-primary">
-                                                               <DatePicker onChange={onChange} className='w-full'/>
+                                                               <DatePicker onChange={fromDate}   value={startDate ? dayjs(startDate) : null} className='w-full'/>
                                                            
                                                         </div>
                                                     </div>
@@ -45,14 +76,26 @@ const DeclareBets = () => {
                                                     <div className="react-datepicker__input-container">
                                                         <div
                                                             className="relative w-[100%] rounded-md bg-bg_Lightgray  border focus-within:border-primary">
-                                                                <DatePicker onChange={onChange} className='w-full'/>
+                                                                <DatePicker onChange={EndDate}   value={endDate ? dayjs(endDate) : null} className='w-full'/>
                                                           
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-span-4'>
+                                        <div
+                                            className="w-[100px] active:scale-95 bg-titleGrd p-1 mx-2 rounded relative right-2 flex sm:items-center justify-center"
+                                            onClick={()=>{
+                                              setPayload({
+                                                startDate,
+                                                endDate,userName: userData?.UserName
+                                              })
+                                            }}
+                                            >
+                                              <CiSearch fill='white' size={20}/>
+                                           
+                                        </div>
+                                        {/* <div className='col-span-4'>
                                         <Select
     placeholder="Select Sport"
     optionFilterProp="label"
@@ -84,12 +127,12 @@ const DeclareBets = () => {
       },
     ]}
   />
-                                        </div>
+                                        </div> */}
     
                                      
                                        
                                     </div>
-                                    <div
+                                    {/* <div
                                             className="text-xs sm:text-sm flex items-center gap-2 justify-start px-5 flex-wrap py-5">
                                             <button
                                                 className="cursor-pointer active:scale-95 rounded-md px-3 border py-1 text-xs sm:text-sm whitespace-nowrap shadow bg-titleGrd font-medium text-text_Quaternary">Last
@@ -98,13 +141,9 @@ const DeclareBets = () => {
                                                 14 Days</button><button
                                                 className="cursor-pointer active:scale-95 rounded-md px-3 border py-1 text-xs sm:text-sm whitespace-nowrap shadow bg-bg_Quaternary text-text_Ternary  font-bold">Last
                                                 28 Days</button>
-                                                <div
-                                            className="w-[100px] active:scale-95 bg-titleGrd p-1 mx-2 rounded relative right-2 flex sm:items-center justify-center">
-                                              <CiSearch fill='white' size={20}/>
-                                           
-                                        </div>
+                                               
    
-                                        </div>
+                                        </div> */}
                                 </div>
                             </div>
                             <MatchedBets render={1} data={data}/>
