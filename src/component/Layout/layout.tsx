@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, []);
   return(
   <>
-      {/* <AutoLogout timeout={180000} />  */}
+      <AutoLogout timeout={180000} /> 
 
   {
     loading ? <PageLoader/> :<>

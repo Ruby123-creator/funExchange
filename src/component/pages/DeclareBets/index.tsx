@@ -9,15 +9,7 @@ import { useAllBetsData } from '../../../Framework/placeBet'
 import { format, subDays } from 'date-fns'
 import { useUI } from '../../../context/ui.context'
 import dayjs from "dayjs";
-const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-};
-const onChange1 = (value: string) => {
-  console.log(`selected ${value}`);
-};
 
-const onSearch = (value: string) => {
-  console.log('search:', value);
-};
 const getFormattedDate = (daysAgo: number) => format(subDays(new Date(), daysAgo), "yyyy-MM-dd");
 const DeclareBets = () => {
  const { userData } = useUI();

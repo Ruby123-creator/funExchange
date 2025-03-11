@@ -48,7 +48,7 @@ export const useCurrentBetsData = () => {
 const fetchAllBetsData = async (data:any) => {
   try {
     const response = await axios.get(`${API_ENDPOINTS.ALLBETS}?from=${data?.startDate}&to=${data?.endDate}&UserName=${data?.userName}`);
-    return response.data?.bets;
+    return response.data;
   } catch (error) {
     console.log(error,"ERROR::::::::::")
   }
