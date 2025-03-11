@@ -81,7 +81,7 @@ const MatchedBets : React.FC<Props> = ({render,data}) => {
                         bet.profitloss >= 0 ? "text-text_Profit" : "text-red-600"
                       }`}
                     >
-                      ₹ {bet.profitloss}
+                     ₹ {(Number(bet.profitloss) || 0).toFixed(2)}
                     </td>
                     <td className="p-2 whitespace-nowrap">
                       {bet.placeDate}

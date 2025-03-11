@@ -265,8 +265,8 @@ const AccountDrawer : React.FC<Props> = ({openDrawer}) => {
                                                 logOut(userData?.UserName);
 
                                             }
-                                            // Navigate(val?.route)
-                                            // openDrawer(false);
+                                            Navigate(val?.route)
+                                            openDrawer(false);
                                             }}>
                                         <span className="w-4 h-auto xs:w-5 text-text_Primary">
                                            {val?.icon}
