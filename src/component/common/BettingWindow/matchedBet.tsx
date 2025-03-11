@@ -78,7 +78,7 @@ const MatchedBets : React.FC<Props> = ({render,data}) => {
                     {
                       render ? <>  <td
                       className={`p-2 font-semibold ${
-                        bet.profitloss >= 0 ? "text-text_Profit" : "text-red-600"
+                        bet.creditType === "debit" ? "text-text_Danger" : "text-text_Profit"
                       }`}
                     >
                      ₹ {(Number(bet.profitloss) || 0).toFixed(2)}
