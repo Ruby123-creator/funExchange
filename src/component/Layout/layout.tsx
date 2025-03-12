@@ -4,12 +4,15 @@ import Header from './header';
 import { useLocation, useNavigation } from 'react-router-dom';
 import PageLoader from '../common/pageLoader';
 import AutoLogout from '../common/autoLogout';
+import { useUI } from '../../context/ui.context';
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const {isLogin} = useUI();
   const [loading, setLoading] = useState(true);
+
     const location = useLocation(); // Now it's inside Router
   
     useEffect(() => {
@@ -29,13 +32,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, []);
   return(
   <>
-      <AutoLogout timeout={180000} /> 
+  {
+    isLogin ?  <AutoLogout timeout={180000} /> :""
+  }
+     
 
   {
     loading ? <PageLoader/> :<>
      <Header />
     <main className='app-bg'>{children}</main>
-    <Footer />
+    {
+      ((location.pathname||"").split("/")||[])[1] !== "casino-lobby" ?     <Footer />
+      :""
+    }
     </>
   }
    

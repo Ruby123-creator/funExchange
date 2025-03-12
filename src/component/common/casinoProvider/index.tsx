@@ -1,7 +1,11 @@
 import React from 'react'
 import { casinoProviders } from '../../../Framework/utils/static'
+import { useNavigate } from 'react-router-dom'
+import { useUI } from '../../../context/ui.context'
 
 const CasinoProvider: React.FC = () => {
+  const {isLogin,setLoginModal} = useUI();
+  const naviagte = useNavigate();
   return (
      <div
                  id="scrollShow"
@@ -20,6 +24,14 @@ const CasinoProvider: React.FC = () => {
                            type="button"
                            title="Yggdrasil"
                            key={`CasinoProvider`+i}
+                           onClick={()=>{
+                            if(isLogin){
+                              naviagte("/casino-lobby/casino")
+                            }
+                            else{
+                              setLoginModal(true);
+                            }
+                            }}
                          >
                            <div
                              title="InPlayAndPopulars"

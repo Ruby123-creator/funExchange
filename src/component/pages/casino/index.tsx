@@ -38,6 +38,8 @@ const CasinoGames = () => {
     >
         
       <div>
+      {
+        data?.url ? <div>
         <iframe
           src={`${data?.url}/games/wl-${getUrlQueries()}/wl.games.${getUrlQueries()}`}
           className=""
@@ -53,6 +55,8 @@ const CasinoGames = () => {
           title="My iFrame"
           
         />
+      </div>:""
+      } 
       </div>
     </div>
   );

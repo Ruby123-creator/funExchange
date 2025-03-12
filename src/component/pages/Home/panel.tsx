@@ -19,7 +19,11 @@ import { IoTennisball } from "react-icons/io5";
 import CasinoProvider from "../../common/casinoProvider";
 import { useSportFixture } from "../../../Framework/sportsData";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useUI } from "../../../context/ui.context";
+import { useNavigate } from "react-router-dom";
 const PanelComp: React.FC = () => {
+  const {isLogin,setLoginModal} = useUI();
+  const naviagte = useNavigate();
    const uiLabel = {
       sidebarIcon:<BiSolidCricketBall fill="var(--color-quaternary)" size={20}/>,
       sportsName: "Football",
@@ -297,7 +301,14 @@ const PanelComp: React.FC = () => {
                   return (
                     <div
                     key={"cardGames"+i}
-
+                    onClick={()=>{
+                      if(isLogin){
+                        naviagte("/casino-lobby/casino")
+                      }
+                      else{
+                        setLoginModal(true);
+                      }
+                      }}
                     className="flex w-[120px] sm:w-[180px] md:w-[140px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100">
                       <div className="w-full bg-transparent flex flex-col transition-all ease-in-out duration-200 relative overflow-hidden rounded-[4px]">
                         <div className="aspect-[1.00] w-[120px] sm:w-[180px] md:w-[140px]">
@@ -363,7 +374,14 @@ const PanelComp: React.FC = () => {
                   return (
                     <div className="flex w-[112px] sm:w-[120px] md:w-[130px] flex-col items-center justify-center cursor-pointer transition-all ease-in-out duration-100"
                     key={"popularGames"+i}
-
+                    onClick={()=>{
+                      if(isLogin){
+                        naviagte("/casino-lobby/casino")
+                      }
+                      else{
+                        setLoginModal(true);
+                      }
+                      }}
                     >
                       <div className="w-full bg-transparent flex flex-col transition-all ease-in-out duration-200 relative overflow-hidden rounded-[4px]">
                         <div className="w-full h-full">
