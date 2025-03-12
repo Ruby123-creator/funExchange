@@ -90,6 +90,12 @@ const drawerElement = [
         id:25,
         route:"/transfer-statement"
     },
+    {
+        title:"Casino Report",
+        icon: <GrDocumentTransfer stroke="var(--color-iconsColor)" size={20}/>,
+        id:25,
+        route:"/casino-report"
+    },
 ]
 },
 // {
