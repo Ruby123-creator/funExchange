@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUI } from "../../../../context/ui.context";
 import LayBack from "../../../common/LayBack";
 import BetSlip from "../../../common/BettingWindow/betSlip";
+import { useCurrentBetsData } from "../../../../Framework/placeBet";
 
 interface DataItem {
   RunnerName: string;
@@ -35,6 +36,26 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
   const { betOdds,betWindow,setBetWindow} = useUI();
   const [prevData, setPrevData] = useState<DataItem[]>([]);
   const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
+    const {data:allBets} = useCurrentBetsData();
+
+    
+    const calculateProfitLoss = (type:string)=>{
+
+      if(type === "session"){
+          return(
+            ((Number(betOdds.size) * (betOdds?.amount))/100).toFixed(2)
+          )
+      }
+      else if( type === "bookmaker"){
+        return(
+          ((Number(betOdds.odds) * (betOdds?.amount))/100).toFixed(2)
+        )  
+      }
+      else{
+         return ( Number(betOdds.odds) * (betOdds?.amount) - (betOdds?.amount)).toFixed(2);  
+      }
+
+    }
   // Helper function to compare previous and current data
   const getBlinkFields = (
     currentData: DataItem[],
@@ -101,6 +122,7 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
       />
     );
   };
+  console.log(allBets,"BetWindow")
   return (
     <div className="w-full text-selection-none pb-3 lg:pb-0">
       <div className="px-2 font-helvetica-neue">
@@ -134,8 +156,10 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
             </div>
           </div>
           <div className="bg-bg_Quaternary rounded-[3px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] py-[1px] cursor-pointer">
-            {(data || []).filter((val:DataItem)=>!((val?.RunnerName||"").includes("1 to 10"))).map((item, i) => (
-              <React.Fragment key={`events${i}`}>
+            {(data || []).filter((val:DataItem)=>!((val?.RunnerName||"").includes("1 to 10"))).map((item, i) => {
+                  const placedBets = (allBets||[]).filter((val:any)=>val?.nation === item?.RunnerName);
+                  console.log(placedBets,item?.RunnerName,"PLACEDBETS");
+              return(<React.Fragment key={`events${i}`}>
                 <div className="col-span-12 grid grid-cols-12 border-b border-borderColorOfMarket">
                   <div className="col-span-6 h-12 lg:col-span-5 grid grid-cols-7">
                     <span
@@ -144,6 +168,32 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     >
                       {item.RunnerName}
                     </span>
+                   
+                    {
+                            (betOdds?.amount && ((title||"").toLowerCase()).includes(betOdds?.betType) ) ?  <div className=" w-full flex items-center text-[10px] md:text-[12px]">
+                        
+                            {
+                              item?.RunnerName === betOdds?.runnerName ? (betOdds?.type === "back" ? <div className=" text-text_Success">
+                               
+                                &nbsp; &gt;&gt;    {calculateProfitLoss(betOdds?.betType) }
+                               </div>:<div className=" text-text_Danger">
+                               
+                               &nbsp; &gt;&gt;   -{calculateProfitLoss(betOdds?.betType)}
+                              </div>) : (
+                                betOdds?.type === "back" ? <div className="text-text_Danger">
+                                &nbsp; &gt;&gt;
+                                -{betOdds?.type === "back" ? betOdds?.amount :calculateProfitLoss(betOdds?.betType)}
+                               
+                                </div>:<div className="text-text_Success">
+                              &nbsp; &gt;&gt;
+                              { betOdds?.amount}
+                             
+                              </div>
+                              )  
+                            }
+                           
+                          </div>: ""
+                          }
                   </div>
                   <span className="col-span-6 h-12 lg:col-span-7 w-full overflow-x-auto no-scrollbar">
                     {(item.status === "ACTIVE"|| item?.status === "OPEN") ? (
@@ -226,8 +276,8 @@ const MatchOddBookmaker: React.FC<Props> = ({ title, data ,updatedTime}) => {
                     </span>
                   </div>
                 ):""}
-              </React.Fragment>
-            ))}
+              </React.Fragment>)
+            })}
           </div>
         </div>
       </div>

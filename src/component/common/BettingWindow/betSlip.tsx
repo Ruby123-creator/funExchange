@@ -88,7 +88,8 @@ const BetSlip: React.FC = () => {
   // const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
    
- 
+  const isPlacingBet = useRef(false); // Track ongoing API request
+
    
   const checkBetCondition = (): boolean => {
     
@@ -187,11 +188,15 @@ const BetSlip: React.FC = () => {
     
   // Helper function to place a bet
   const placeBet = () => {
+    if (isPlacingBet.current) return; // Prevent duplicate API calls
+  isPlacingBet.current = true; // Set flag
     if (!userData || !betOdds || !data) return;
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
     const eventInfo = extractDetails(checkCurrentBet?.title)
      console.log(eventInfo,"eventsss","fitnesss")
     const now = new Date();
+    setBetProcessed(false);
+
     const bettingData = {
       userName: userData.UserName,
       eventName: `${eventInfo?.team1} v ${eventInfo?.team2}` ,
@@ -211,22 +216,28 @@ const BetSlip: React.FC = () => {
       section: sport === "greyhound_racecard"? "greyhound" : sport === "horseRacing_racecard" ? "horserace" : sport,
       bhav: betOdds?.size
     };
-    placingBet({data:bettingData,sport});
-    setMatchedBets({...betOdds,odds:0})
+    placingBet(
+      { data: bettingData, sport },
+      {
+        onSuccess: () => {
+          isPlacingBet.current = false; // Reset flag after success
+        },
+        onError: () => {
+          isPlacingBet.current = false; // Reset flag after failure
+        }
+      }
+    );
+    setMatchedBets({...betOdds,odds:0,amount:0})
     showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
   };
   
   // Handle bet confirmation
   const handleConfirmBet = () => {
-    if (betProcessed) return; // Prevent multiple triggers while the countdown is running
-
-    // Check bet conditions before proceeding
-    const canPlaceBet = checkBetCondition();
-    if (!canPlaceBet) {
-      return; // Stop if conditions are not met
-    }
+    if (betProcessed || isPlacingBet.current) return; // Prevent duplicate triggers
   
-    // Start the countdown and bet processing
+    const canPlaceBet = checkBetCondition();
+    if (!canPlaceBet) return;
+  
     setBetProcessed(true);
     setTimer(2);
   
@@ -234,21 +245,16 @@ const BetSlip: React.FC = () => {
       setTimer((prevTimer) => {
         if (prevTimer <= 0) {
           clearInterval(intervalRef.current!);
-          if(prevTimer === 0){
-          const canPlaceBet = checkBetCondition();
-          setBetProcessed(false);
-          if (canPlaceBet) {
+          if (!isPlacingBet.current) {
             placeBet();
-
           }
-          }
-          // Place the bet only once when the timer reaches 0
           return 0;
         }
         return prevTimer - 1;
       });
     }, 1000);
   };
+  
   const calculateMaxAmount = (val: string | number): number => {
     if (typeof val === "number") {
       return val;

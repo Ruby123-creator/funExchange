@@ -1,19 +1,23 @@
 import axios from 'axios';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from '../types/Product';
 import { API_ENDPOINTS } from './utils/api-endpoints';
 import { useUI } from '../context/ui.context';
 
 const placingBet = async (data: any) => {
-  const response = await axios.post(`https://silverexch24.com/${data?.sport}/place_bet_api`, data?.data);
+  const response = await axios.post(`${API_ENDPOINTS.PLACEBET}${data?.sport}/place_bet_api`, data?.data);
   return response.data;
 };
 
 // React Query Mutation Hook
 export const usePlaceBet = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: placingBet, // Function that makes the API call
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["currentbets-detail"] });
+
       console.log("Bet placed successfully!", data);
     },
     onError: (error) => {
