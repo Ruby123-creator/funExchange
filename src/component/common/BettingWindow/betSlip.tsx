@@ -94,7 +94,7 @@ const BetSlip: React.FC = () => {
   const checkBetCondition = (): boolean => {
     
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
-
+   console.log(checkCurrentBet,"CUrrent")
     if (!userData || !betOdds || !checkCurrentBet) return false;
     if(!(Object.keys(userData||{})?.length)){
       showToasterMessage({ messageType: "error", description: "LOGIN WITH REALID" });
@@ -132,10 +132,12 @@ const BetSlip: React.FC = () => {
           return false;
         }
     }
+
+    
     else{
       if (
         (betOdds.type === "lay" && currentOdds > betOddsValue) ||
-        (betOdds.type === "back" && currentOdds < betOddsValue)
+        (betOdds.type === "back" && currentOdds < betOddsValue) || (checkCurrentBet?.status === "SUSPENDED")
       ) {
         showToasterMessage({ messageType: "error", description: "Odds invalid" });
         return false;

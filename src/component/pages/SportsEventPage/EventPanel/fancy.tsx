@@ -4,11 +4,13 @@ import { useCricketFancyData } from "../../../../Framework/sportsData";
 import { useUI } from "../../../../context/ui.context";
 import BetSlip from "../../../common/BettingWindow/betSlip";
 import { CiStopwatch } from "react-icons/ci";
+import { useCurrentBetsData } from "../../../../Framework/placeBet";
 
 const FancyComp: React.FC = () => {
   const { sport, eventId }: any = useParams();
   const { setMatchedBets, betOdds,betWindow,setBetWindow } = useUI();
- 
+ const {data:currentBets} = useCurrentBetsData();
+
   const { data } = useCricketFancyData(eventId);
   return (
     <div>
@@ -27,6 +29,13 @@ const FancyComp: React.FC = () => {
           <div className=" py-1.5">
             <div className=" bg-bg_Quaternary rounded-[3px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] py-[1px] cursor-pointer">
               {(data?.session || []).map((item: any, i: number) => {
+                console.log(item?.RunnerName, betOdds?.runnerName,"Runner")
+                const placedBets = (currentBets||[]).filter((val:any)=>val?.nation === item?.RunnerName);
+                let totalval = (placedBets||[]).reduce((sum:number,val:any)=>{
+                  return (sum + Number(val?.amount))
+                },0);
+                let total =  (totalval||0) + ((betOdds?.runnerName === item?.RunnerName) ? Number(betOdds?.amount):0);
+                console.log(total,placedBets,currentBets,"checkkk")
                 return (
                   <>
                     <div className="grid grid-cols-12  border-b border-borderColorOfMarket"
@@ -41,12 +50,12 @@ const FancyComp: React.FC = () => {
                             </span>
                           </div>
                           {
-                            (betOdds?.amount && item?.RunnerName === betWindow) ?  <div className=" w-full flex items-center text-[10px] md:text-[12px]">
+                            ( total) ?  <div className=" w-full flex items-center text-[10px] md:text-[12px]">
                             <span className=" from-neutral-600">
                               Max exposure:{" "}
                             </span>
                             <div className=" text-text_Success">
-                              &nbsp; &gt;&gt; {betOdds?.amount}
+                              &nbsp; &gt;&gt; {total}
                             </div>
                           </div>: ""
                           }
