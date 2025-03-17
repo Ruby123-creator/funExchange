@@ -25,6 +25,7 @@ import { useAdminDetails, useLoginVerificationQuery } from './Framework/login';
 import { useUI } from './context/ui.context';
 import DeclareBets from './component/pages/DeclareBets';
 import CasinoGames from './component/pages/casino';
+import CasinoReport from './component/pages/CasinoReport';
 
 
 
@@ -87,7 +88,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
 
          <Route path='/open-bets'  element={<PrivateRoute element={<OpenBets />} />}/>
          <Route path='/declare-bets'  element={<PrivateRoute element={<DeclareBets />} />}/>
-
+         <Route path='/casino-report' element={<PrivateRoute element={<CasinoReport/>}/>}/>
          <Route path='/settings'  element={<PrivateRoute element={<TimeSetting />} />}/>
       </Routes>
     </Layout>
