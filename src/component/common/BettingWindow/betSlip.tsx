@@ -137,7 +137,7 @@ const BetSlip: React.FC = () => {
     else{
       if (
         (betOdds.type === "lay" && currentOdds > betOddsValue) ||
-        (betOdds.type === "back" && currentOdds < betOddsValue) || (checkCurrentBet?.status === "SUSPENDED")
+        (betOdds.type === "back" && currentOdds < betOddsValue) || (checkCurrentBet?.status === "SUSPENDED" || (checkCurrentBet?.status === "Ball Running"))
       ) {
         showToasterMessage({ messageType: "error", description: "Odds invalid" });
         return false;
