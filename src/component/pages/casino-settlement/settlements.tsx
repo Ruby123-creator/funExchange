@@ -53,8 +53,8 @@ return formattedDate;
                     <td className="p-2">{index+1}</td>
                     <td className="p-2"> {casino?.gameId}</td>
 
-                    <td className=" p-2">₹{casino?.amount}</td>
-                    <td className="p-2">₹{casino?.balance}</td>
+                    <td className=" p-2">₹{Number(casino?.amount)*10}</td>
+                    <td className="p-2">₹{Number(casino?.balance)*10}</td>
                     
                    
                     <td className="p-2">{formattedDate(casino?.created)}</td>
