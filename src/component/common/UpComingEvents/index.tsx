@@ -68,13 +68,7 @@ const UpcomingEvents: React.FC<Props> = ({events}) => {
                                                         className="text-text_UpcomingEvents text-[6px] xs:text-[8px] md:text-[10px] font-semibold w-full text-center uppercase">{details?.time}</span></span>
                                                         <span
                                                     id="inPlayTeamName"
-                                                    className="text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100 cursor-pointer" onClick={()=>{ 
-                                                        if(isLogin){
-                                                        Navigate(`/event-page/${val?.sportsId}/${item?.gameId}`);
-                                                       }
-                                                        else{
-                                                            setLoginModal(true)
-                                                        }}}><span
+                                                    className="text-selection-none flex items-center justify-start col-span-5 px-1 relative border-l border-r border-borderColorOfMarket active:scale-[94%] transition-all ease-in-out duration-100 cursor-pointer" ><span
                                                         className="flex flex-col items-center justify-start w-[87%]"><span
                                                             className="text-selection-none w-full flex items-center justify-start"><span
                                                                 className="w-[5px] h-[5px] p-[1px] mr-[2px]"></span><span
