@@ -26,6 +26,7 @@ import { useUI } from './context/ui.context';
 import DeclareBets from './component/pages/DeclareBets';
 import CasinoGames from './component/pages/casino';
 import CasinoReport from './component/pages/CasinoReport';
+import CasinoSettlement from './component/pages/casino-settlement';
 
 
 
@@ -89,6 +90,8 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
          <Route path='/open-bets'  element={<PrivateRoute element={<OpenBets />} />}/>
          <Route path='/declare-bets'  element={<PrivateRoute element={<DeclareBets />} />}/>
          <Route path='/casino-report' element={<PrivateRoute element={<CasinoReport/>}/>}/>
+         <Route path='/casino-settlement' element={<PrivateRoute element={<CasinoSettlement/>}/>}/>
+
          <Route path='/settings'  element={<PrivateRoute element={<TimeSetting />} />}/>
       </Routes>
     </Layout>

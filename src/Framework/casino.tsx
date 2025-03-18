@@ -51,3 +51,33 @@ const fetchQtechUrl = async (user:string) => {
       refetchOnWindowFocus: false,
     });
   };
+
+
+
+  const fetchACasinoSettlement = async (data:any) => {
+    if(data?.userName){
+      try {
+        const response = await axios.get(`${API_ENDPOINTS.CASINO_SETTLEMENT}?from=${data?.startDate}&to=${data?.endDate}&username=${data?.userName}`);
+        return response.data?.transactions;
+      } catch (error) {
+        console.log(error,"ERROR::::::::::")
+      }
+    }
+   return [];
+   
+  };
+  
+  // React Query Hook
+  export const useCasinoSettlement = (data:any) => {
+    console.log(data,"kinjaruuuu")
+    return useQuery({
+      queryKey: ['casinoSettlement-detail',data], // Include `id` for query uniqueness
+      queryFn: () => fetchACasinoSettlement(data), // Fetch function
+      retry: 3,                 // Retry on failure
+      refetchOnWindowFocus: false, // No auto-refetch on focus
+    });
+  };
+
+
+  
+ 

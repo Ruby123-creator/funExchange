@@ -23,7 +23,7 @@ export const API_ENDPOINTS = {
     LOGOUT:`${url3}logout_api`,
     CASINO_HISTORY: `${url3}casino_history_api`,
     SCORECARDS: `${url}?filepath=score_card`,
-
+    CASINO_SETTLEMENT: `${url3}qtech_bet_history_api`,
     PLACEBET:`${url3}`
 
    
@@ -32,3 +32,7 @@ export const API_ENDPOINTS = {
 
 ///bet suspended issue bet placed
 ///mismatched  odds and lay at the time of api hit at the time of loader 
+
+
+
+// gameid, amount*10, balance*10, gamecategory ,type,playerGameroundid, created , roundStatus
