@@ -85,6 +85,7 @@ const BetSlip: React.FC = () => {
 
          return eventData;
    }
+  
   // const eventData = betOdds?.betType === "session" ? fancyData?.session as EventData[] :(betOdds?.betType === "odd" ? ((matchData||[])[0]?.events) as EventData[]:matchData as EventData[]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
    
@@ -194,19 +195,19 @@ const BetSlip: React.FC = () => {
   isPlacingBet.current = true; // Set flag
     if (!userData || !betOdds || !data) return;
     const checkCurrentBet = (getEventData()||[])?.find((item) => (item?.RunnerName === betOdds?.runnerName||item?.nation === betOdds?.runnerName));
-    const eventInfo = extractDetails(checkCurrentBet?.title)
-     console.log(eventInfo,"eventsss","fitnesss")
+    const eventInfo = extractDetails(checkCurrentBet?.title||data?.title)
+     console.log(eventInfo,checkCurrentBet,"eventsss","fitnesss")
     const now = new Date();
     setBetProcessed(false);
 
     const bettingData = {
       userName: userData.UserName,
-      eventName: `${eventInfo?.team1} v ${eventInfo?.team2}` ,
+      eventName: `${eventInfo?.team1} ${eventInfo?.team2 ? `v ${eventInfo?.team2}`:''}` ,
       profitloss: betOdds?.type === "back" ? calculateProfitLoss(betOdds?.betType) : sum,
       betTypes: betOdds?.type,
       amount: sum,
       placeDate: format(now, "yyyy-MM-dd hh:mm:ssa"),
-      MatchDate: eventInfo?.date,
+      MatchDate: eventInfo?.date|| data?.time,
       accountType: "User",
       userRate: betOdds?.odds,
       ip: ipAddress?.ip, // IP address
@@ -222,15 +223,18 @@ const BetSlip: React.FC = () => {
       { data: bettingData, sport },
       {
         onSuccess: () => {
+
           isPlacingBet.current = false; // Reset flag after success
+
         },
         onError: () => {
+
           isPlacingBet.current = false; // Reset flag after failure
+
         }
       }
     );
     setMatchedBets({...betOdds,odds:0,amount:0})
-    showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
   };
   
   // Handle bet confirmation
@@ -285,10 +289,19 @@ const BetSlip: React.FC = () => {
     setSum(Number(e.target.value));
   };
 
-  // Helper function to handle stack button click
-  const handleStackClick = (val: number) => {
-    setSum((prevSum) => Number(prevSum) + val);
-    setMatchedBets({ ...betOdds, amount: sum + val });
+  const handleStackClick = (e: any, val: number) => {
+    e.preventDefault();
+    setSum(val=>sum+val);
+    setSum((prevSum) => {
+      const newSum = Number(prevSum) + val;
+      
+      // Use the latest sum inside setSum callback
+    
+  
+      return newSum;
+    });
+    // setMatchedBets({...betOdds,amount:Number(sum+val)});
+    console.log(betOdds, "MATCHODDS");
   };
 
 
@@ -387,8 +400,7 @@ const BetSlip: React.FC = () => {
                 <button
                   key={"stackAmount"+i}
                   className="inline-block leading-normal relative transition duration-150 ease-in-out col-span-4 w-full overflow-hidden border border-primary text-[12px] font-semibold rounded-[4px] bg-bg_Primary text-text_Quaternary text-center py-1.5 cursor-pointer"
-                  type="button"
-                  onClick={() => handleStackClick(val)}
+                  onClick={(e) => handleStackClick(e,val)}
                 >
                   <span>+ {val}</span>
                 </button>

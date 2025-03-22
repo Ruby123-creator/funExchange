@@ -3,9 +3,21 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from '../types/Product';
 import { API_ENDPOINTS } from './utils/api-endpoints';
 import { useUI } from '../context/ui.context';
+import { showToasterMessage } from './utils/constant';
 
 const placingBet = async (data: any) => {
-  const response = await axios.post(`${API_ENDPOINTS.PLACEBET}${data?.sport}/place_bet_api`, data?.data);
+  let val;
+  if(data?.sport === 'horseRacing_racecard'){
+    val = "horse";
+   }else if(data?.sport === 'greyhound_racecard'){
+     val = "greyhound";
+     
+   }
+   else{
+     val = data?.sport;
+   }
+  console.log(data,"check:::::::::::::")
+  const response = await axios.post(`${API_ENDPOINTS.PLACEBET}${val}/place_bet_api`, data?.data);
   return response.data;
 };
 
@@ -17,10 +29,13 @@ export const usePlaceBet = () => {
     mutationFn: placingBet, // Function that makes the API call
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["currentbets-detail"] });
+      showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
 
       console.log("Bet placed successfully!", data);
     },
     onError: (error) => {
+      showToasterMessage({ messageType: "error", description: "Error Occurred" });
+
       console.error("Error placing bet:", error);
     },
   });
