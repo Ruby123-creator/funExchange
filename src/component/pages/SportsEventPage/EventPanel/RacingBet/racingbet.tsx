@@ -32,8 +32,8 @@ interface DataItem {
 type BlinkState = Record<string, boolean>;
 const RacingBet :React.FC<Props> = ({data}) => {
     
-     const { setMatchedBets, betOdds } = useUI();
-      const [betwindow, setBetWindow] = useState(-1);
+     const { setMatchedBets, betOdds ,betWindow,setBetWindow} = useUI();
+     
 
       const [prevData, setPrevData] = useState<DataItem[]>([]);
         const [blinkFields, setBlinkFields] = useState<BlinkState[]>([]);
@@ -104,14 +104,14 @@ const RacingBet :React.FC<Props> = ({data}) => {
                                     className=" col-span-8 text-center min-h-12 py-[1px] px-[1px]"><span
                                         className="  text-center bg-bg_ballRunning cursor-not-allowed w-full h-full rounded-sm flex text-xs flex-col items-center justify-center capitalize">{item?.result}</span></span>
                             </div> :<div
-                                className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid md:grid-cols-6 grid-cols-2 relative`} onClick={()=>setBetWindow(i)}>
-                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"back" , bg:`bg-bg_betmin md:block none ${blinkFields[i]?.b2_price||blinkFields[i]?.b2_size ? "blink" : ""}`, }} />
-                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"back" , bg:`bg-bg_betback md:block none ${blinkFields[i]?.b1_price||blinkFields[i]?.b1_size ? "blink" : ""}`, }}/>
+                                className={`col-span-8 ${item?.result ? 'cursor-not-allowed':''} relative h-12 grid md:grid-cols-6 grid-cols-2 relative`} onClick={() => {setBetWindow(`fansy${i}`)}}>
+                              {/* <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"back" , bg:`bg-bg_betmin md:block none ${blinkFields[i]?.b2_price||blinkFields[i]?.b2_size ? "blink" : ""}`, }} />
+                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"back" , bg:`bg-bg_betback md:block none ${blinkFields[i]?.b1_price||blinkFields[i]?.b1_size ? "blink" : ""}`, }}/> */}
                               <BettingBtns data={{price:item?.b_price,size:item?.b_size ,runnerName:item?.nation,max:"5k",key:'b_price',min:100,type:"back", bg:`bg-bg_betmin ${blinkFields[i]?.b_price||blinkFields[i]?.b_size ? "blink" : ""}`, }}/>
                               
                               <BettingBtns data={{price:item?.l_price,size:item?.l_size,runnerName:item?.nation,max:"5k",key:'l_price',min:100,type:"lay" , bg:`bg-bg_betlay ${blinkFields[i]?.l_price||blinkFields[i]?.l_size ? "blink" : ""}`,}}/>
-                              <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"lay" , bg:`bg-bg_betmax md:block none ${blinkFields[i]?.l1_price||blinkFields[i]?.l1_size ? "blink" : ""}`, }}/>
-                              <BettingBtns data={{price:"",size:"" ,runnerName:item?.nation,max:"5k",min:100,type:"lay", bg:`bg-bg_betmax md:block none ${blinkFields[i]?.l2_price||blinkFields[i]?.l2_size ? "blink" : ""}`, }}/>
+                              {/* <BettingBtns data={{price:"",size:"",runnerName:item?.nation,max:"5k",min:100,type:"lay" , bg:`bg-bg_betmax md:block none ${blinkFields[i]?.l1_price||blinkFields[i]?.l1_size ? "blink" : ""}`, }}/>
+                              <BettingBtns data={{price:"",size:"" ,runnerName:item?.nation,max:"5k",min:100,type:"lay", bg:`bg-bg_betmax md:block none ${blinkFields[i]?.l2_price||blinkFields[i]?.l2_size ? "blink" : ""}`, }}/> */}
                              
                              
                                    
@@ -121,7 +121,7 @@ const RacingBet :React.FC<Props> = ({data}) => {
                            
                             
                         </div>
-                        {betOdds?.odds && i === betwindow ? (
+                        {betOdds?.odds && `fansy${i}` === betWindow ? (
                     <div className="col-span-12 h-max lg:hidden">
                       <span className=" col-span-12 h-max w-full">
                         <BetSlip />
