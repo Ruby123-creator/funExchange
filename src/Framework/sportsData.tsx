@@ -23,8 +23,18 @@ export const useSportFixture = (sportsName:string|undefined) => {
 
 // Fetch Product by ID
 const fetchSportDetailsById = async ({id,sport}:any) => {
+  let val;
+  if(sport === 'horseRacing_racecard'){
+       val = "racecard"; 
+      }else if(sport === 'greyhound_racecard'){
+        val = "racecard/greyhound";
+        
+      }
+      else{
+        val = sport;
+      }
   try {
-    const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${sport}/${id}`);
+    const response = await axios.get(`${API_ENDPOINTS.MATCHES_DATA}=${val}/${id}`);
   return response.data||[];
   } catch (error) {
       console.log(error,"ERROR::::::::::::::::::::")

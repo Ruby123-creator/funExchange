@@ -38,7 +38,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
      
 
   {
-    loading ? <PageLoader/> :<>
+    loading ? 
+    <PageLoader/>
+     :<>
      <Header />
     <main className='app-bg'>{children}</main>
     {

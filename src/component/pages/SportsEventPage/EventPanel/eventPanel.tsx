@@ -13,19 +13,19 @@ const EventPanel: React.FC = () => {
   const { sport, eventId }: any = useParams();
   const [val,setValue] = useState('');
 
-  useEffect(()=>{
+  // useEffect(()=>{
     
-    if(sport === 'horseRacing_racecard'){
-     setValue("racecard") 
-    }else if(sport === 'greyhound_racecard'){
-      setValue("racecard/greyhound") 
+  //   if(sport === 'horseRacing_racecard'){
+  //    setValue("racecard") 
+  //   }else if(sport === 'greyhound_racecard'){
+  //     setValue("racecard/greyhound") 
       
-    }
-    else{
-      setValue(sport);
-    }
-   },[sport])
-     const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport:val});
+  //   }
+  //   else{
+  //     setValue(sport);
+  //   }
+  //  },[sport])
+     const {data,isLoading,isError} = useSportDetailsById({id:eventId,sport});
     
      
      
