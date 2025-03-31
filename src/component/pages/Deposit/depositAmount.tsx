@@ -1,4 +1,9 @@
+import { Card, Tabs } from 'antd';
+import TabPane from 'antd/es/tabs/TabPane';
 import React, { useState } from 'react'
+import { BsBank2 } from 'react-icons/bs';
+import { GiWallet } from 'react-icons/gi';
+import { IoQrCodeSharp } from 'react-icons/io5';
 
 
 const btns = [300,500,1000,5000,10000,50000]
@@ -14,7 +19,7 @@ const DepositDetails = () => {
   return (
     <form>
     <div className="rounded-lg bg-bg_Quaternary overflow-hidden transition-height  duration-500 ease-in-out h-max px-3 pt-[15px] pb-[20px]">
-      <div className="flex flex-row justify-end items-center w-full">
+      {/* <div className="flex flex-row justify-end items-center w-full">
         <span className="text-base font-lato font-bold leading-5 w-full ">
           Payment Options
         </span>
@@ -60,7 +65,20 @@ const DepositDetails = () => {
       ></div>
       <p className="text-xs md:text-sm font-lato font-normal leading-4">
         *Always start instant payments by submitting amount below.
-      </p>
+      </p> */}
+      <Card style={{ width: "400px", margin: "50px auto" }}>
+      <Tabs defaultActiveKey="1" centered>
+        <TabPane tab={<span><BsBank2  /> Account Details</span>} key="1">
+          {/* <AccountDetails /> */}
+        </TabPane>
+        <TabPane tab={<span><IoQrCodeSharp  /> QR Code Scan</span>} key="2">
+          {/* <QRCodeScanner /> */}
+        </TabPane>
+        <TabPane tab={<span><GiWallet  /> UPI Deposit</span>} key="3">
+          {/* <UPIDeposit /> */}
+        </TabPane>
+      </Tabs>
+    </Card>
     </div>
     <div className="w-full mt-2.5 py-[15px] rounded-lg bg-bg_Quaternary px-3">
       <div className="font-lato font-bold text-text_Ternary text-base leading-5">

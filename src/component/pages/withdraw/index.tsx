@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SidebarComp from "../Home/sidebar";
 import RightDeskSidebar from "../../common/RightDeskSidebar.tsx";
 import BankDetails from "./bankInfo";
+import WithdrawHistory from "./withdrawHistory";
 
 const WithdrawComponent: React.FC = () => {
   const [toggle,setToggle] = useState(0);
@@ -55,7 +56,7 @@ const WithdrawComponent: React.FC = () => {
               </div>
             </div>
             <div className="w-full flex items-center gap-x-2 overflow-x-auto scroll-smooth no-scrollbar whitespace-nowrap cursor-pointer"></div>
-            <BankDetails active={toggle}/>
+            {toggle === 0 ? <BankDetails active={toggle}/>: <WithdrawHistory/>} 
           </div>
         </div>
         <RightDeskSidebar />
