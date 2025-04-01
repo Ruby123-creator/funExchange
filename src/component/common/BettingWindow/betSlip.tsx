@@ -33,7 +33,8 @@ interface UserData {
 }
 
 const BetSlip: React.FC = () => {
-  const { betOdds, stacks ,setMatchedBets,userData} = useUI();
+  const { betOdds, stacks ,setMatchedBets,userData,setStacks} = useUI();
+   const [values, setValues] = useState(stacks)
   const { sport, eventId }: any = useParams();
    const [val,setValue] = useState('');
    
@@ -393,7 +394,25 @@ const BetSlip: React.FC = () => {
         {/* Stack Buttons */}
         <div className="mt-[15px] p-2.5 rounded-md border border-borderColorOfMarket bg-bg_InActivePlaceBtnColor">
           {edit ? (
-            <EditStack edit={edit} />
+           <div className="grid grid-cols-3 gap-2">
+           {
+             (values).map((val:any,i:number)=>{
+               return(
+                 <div className="bg-bg_StakeInput"                   key={"stackAmount"+i}
+       >
+                   <input onChange={(e)=>{
+                         let updatedStacks = values.map((item:any,index:number)=> index === i ? Number(e.target.value):item)
+                         setValues(updatedStacks);
+                        
+       
+                      }} className="block w-full focus:outline-none  rounded py-1.5 bg-bg_StakeInput text-center text-[12px] text-text_Ternary  font-lato border  border-ternary2 focus:border-success shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]" autoComplete="off" type="number" value={val}/>
+           </div>
+               )
+             })
+           }
+          
+           
+          </div>
           ) : (
             <div className="grid grid-cols-12 gap-x-1 gap-y-1">
               {stacks.map((val:number, i:number) => (
@@ -422,13 +441,30 @@ const BetSlip: React.FC = () => {
             >
               MAX
             </button>
-            <button
+            {
+              edit ? <button
               className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] text-text_Quaternary py-2 bg-editStakesGrd cursor-pointer"
               type="button"
-              onClick={() => setEdit(!edit)}
+              onClick={() =>{
+                 setEdit(false)
+               
+                  setStacks(values);
+                
+                }}
             >
-              {!edit ? "EDIT STAKES" : "UPDATE"}
+              UPDATE
+            </button> :<button
+              className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] text-text_Quaternary py-2 bg-editStakesGrd cursor-pointer"
+              type="button"
+              onClick={() =>{
+                 setEdit(true)
+               
+                }}
+            >
+              {"EDIT STAKES"}
             </button>
+            }
+           
             <button
               className="inline-block relative overflow-hidden transition duration-150 ease-in-out col-span-3 w-full text-[10px] font-semibold rounded-[4px] bg-clearBtnGrd text-text_Quaternary leading-4 py-2 cursor-pointer"
               type="button"

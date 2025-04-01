@@ -49,7 +49,7 @@ const WithdrawHistory :React.FC<Props> = ({data=[]}) => {
                   </tbody>
                 </table>
               </div>: <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
-                You have no Matched Bets.
+                No Details Found
               </div>
               }
         </div>

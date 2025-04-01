@@ -19,7 +19,7 @@ const DepositComponent: React.FC = () => {
       <div></div>
       <div className="mx-2">
       <DepositDetails/>
-     <AccountDetails/>
+     {/* <AccountDetails/> */}
       </div>
     </div>
 <RightDeskSidebar/>

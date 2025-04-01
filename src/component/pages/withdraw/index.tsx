@@ -37,7 +37,7 @@ const WithdrawComponent: React.FC = () => {
                   className="relative flex w-[100%] rounded-lg border shadow bg-bg_Quaternary overflow-clip undefined"
                 >
                   {
-                    ["Use New Account","Use Previous Account"].map((val,i)=>{
+                    ["Withdrawal Request","Withdrawal History"].map((val,i)=>{
                       return( <button
                         key={"account"+i}
 
