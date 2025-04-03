@@ -3,22 +3,28 @@ import React, { useEffect, useRef } from 'react'
 const AviatorComp: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-
   useEffect(() => {
       const sendAuthToken = () => {
-        const token = localStorage.getItem("accessToken");
+          const token = localStorage.getItem("accessToken");
 
-        if (token) {
-         
-          window.postMessage({ token }, "https://aviator-flame.vercel.app/"); 
-          console.log("Token sent:", token);
-        }
-      
+          if (token && iframeRef.current) {
+              console.log("🚀 Sending auth token to iframe:", token);
+              iframeRef.current.contentWindow?.postMessage({ token }, "https://aviator-flame.vercel.app");
+          } else {
+              console.warn("⚠️ Token not found or iframe not ready.");
+          }
       };
 
-      // Send the token once the iframe loads
-    sendAuthToken();
-  }, []);
+      // Listen for the iframe `load` event before sending the token
+      const iframe = iframeRef.current;
+      if (iframe) {
+          iframe.addEventListener("load", sendAuthToken);
+      }
+
+      return () => {
+          iframe?.removeEventListener("load", sendAuthToken);
+      };
+  }, [])
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
     <div className="flex items-start justify-start w-full ">
