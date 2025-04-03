@@ -56,7 +56,8 @@ export const useLoginPassword = () => {
       console.log(val,data,userData,"RYBUUUU")
         if(data?.status  === "success"){
           localStorage.setItem('credentials', JSON.stringify(val));
-          localStorage.setItem("accessToken",`${userData?.UserName}$${data?.uniqid}`)
+          
+          localStorage.setItem("accessToken",`${userData?.UserName}$${data?.uniqid}`);
           localStorage.setItem('isLogin', 'true');
           showToasterMessage({messageType:"success",description:data?.message})
            window.location.reload();

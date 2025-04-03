@@ -2,22 +2,22 @@ import React, { useEffect, useRef } from 'react'
 
 const AviatorComp: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const token = localStorage.getItem("accessToken"); // Get the auth token
-  console.log(token,"SIMRAN RAWAT");
+
 
   useEffect(() => {
       const sendAuthToken = () => {
-          const token = localStorage.getItem("accessToken"); // Get the auth token
-          console.log(token,"SIMRAN RAWAT");
-          if (token && iframeRef.current) {
-              iframeRef.current.contentWindow?.postMessage({ token }, "https://aviator-flame.vercel.app/");
-          }
+        const token = localStorage.getItem("accessToken");
+
+        if (token) {
+         
+          window.postMessage({ token }, "https://aviator-flame.vercel.app/"); 
+          console.log("Token sent:", token);
+        }
+      
       };
 
       // Send the token once the iframe loads
-      if (iframeRef.current) {
-          iframeRef.current.onload = sendAuthToken;
-      }
+    sendAuthToken();
   }, []);
   return (
     <div className="flex flex-col  transition-all lg:pt-[110px] ease-in-out duration-100 pt-0">
