@@ -9,7 +9,7 @@ const AviatorComp: React.FC = () => {
 
           if (token && iframeRef.current) {
               console.log("🚀 Sending auth token to iframe:", token);
-              iframeRef.current.contentWindow?.postMessage({ token }, "https://aviator-flame.vercel.app");
+              iframeRef.current.contentWindow?.postMessage({ token }, "*");
           } else {
               console.warn("⚠️ Token not found or iframe not ready.");
           }
