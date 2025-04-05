@@ -13099,3 +13099,14 @@ span.ripple {
                         10px 10px 30px rgba(0, 0, 0, 0.3);
             animation: bounce 2s infinite ease-in-out;
     }
+    .custom-tabs .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+        color: var(--color-primary) !important;
+    }
+    .custom-tabs .ant-tabs-ink-bar {
+        background-color: var(--color-primary) !important; /* Your custom active border color */
+      }
+
+      .custom-tabs .ant-tabs-tab-btn:hover{
+        color: var(--color-primary) !important;
+
+      }

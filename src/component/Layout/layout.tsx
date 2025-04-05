@@ -44,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
      <Header />
     <main className='app-bg'>{children}</main>
     {
-      ((location.pathname||"").split("/")||[])[1] !== "casino-lobby" ?     <Footer />
+      ((location.pathname||"").split("/")||[])[1] !== "casino-lobby" || (location?.pathname !== "/aviator") ?     <Footer />
       :""
     }
     </>

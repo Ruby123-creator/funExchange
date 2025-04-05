@@ -34,7 +34,7 @@ const DepositDetails = () => {
     <form>
     <div className="rounded-lg bg-bg_Quaternary overflow-hidden transition-height  duration-500 ease-in-out h-max">
       
-      <div style={{ margin: "5px auto" }}>
+      <div style={{ margin: "5px auto" }}  className="custom-tabs">
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab={<span><BsBank2  size={30}/> </span>} key="1">
         <div className="w-full flex items-center justify-start gap-y-4 flex-col px-4">

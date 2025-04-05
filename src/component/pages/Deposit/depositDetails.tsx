@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDepositHistory, usePendingTransaction } from '../../../Framework/transfer'
 import { useUI } from '../../../context/ui.context';
-
+import { Tabs } from 'antd';
+const {TabPane} = Tabs;
 const DepositAmount = () => {
      const {userData} = useUI();
        const val =  {
@@ -20,9 +21,13 @@ const DepositAmount = () => {
       const {data:pendingDeposit} = usePendingTransaction(pendingVal);
       console.log(depositHistory,pendingDeposit,"CHECKKKK::::::::")
   return (
-   
-    <div className=" w-full  gap-1 py-5">
-    {
+    
+
+
+    <div className=" w-full  gap-1 px-2">
+      <Tabs defaultActiveKey="1">
+                <TabPane tab={<span> Deposit History</span>} key="1">
+                {
           (depositHistory||[])?.length ?   <div className="overflow-x-auto no-scrollbar">
           <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
             
@@ -72,14 +77,13 @@ const DepositAmount = () => {
             </tbody>
           </table>
         </div>: <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
-          You have no Matched Bets.
+        <span className="text-text_Ternary font-normal text-center"><img src="icons/nofound.svg" alt="No Data" width={400} height={400} />No data found for selected date range...</span>
         </div>
         }
 
-
-
-
-{
+        </TabPane>
+        <TabPane tab={<span>Pending Deposit </span>} key="2" >
+        {
           (pendingDeposit||[])?.length ?   <div className="overflow-x-auto no-scrollbar">
           <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
             
@@ -115,9 +119,16 @@ const DepositAmount = () => {
             </tbody>
           </table>
         </div>: <div className="w-full font-medium text-sm bg-bg_Quaternary rounded px-4  py-3 shadow text-text_Ternary ">
-          You have no Matched Bets.
+        <span className="text-text_Ternary font-normal text-center"><img src="icons/nofound.svg" alt="No Data" width={400} height={400} />No data found for selected date range...</span>
         </div>
         }
+</TabPane>
+</Tabs>
+   
+
+
+
+
   </div>
   )
 }
