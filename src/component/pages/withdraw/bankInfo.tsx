@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import InputComp from "./input";
+import { useWithdrawAmount } from "../../../Framework/transfer";
+import { useUI } from "../../../context/ui.context";
+import { showToasterMessage } from "../../../Framework/utils/constant";
 
 interface Props{
   active:any
 }
 const BankDetails:React.FC<Props> = ({active}) => {
+  const {userData} = useUI();
+  const [holderName,setHolderName] = useState('');
+  const [bankName,setBankName] = useState('');
+  const [accountNumber,setAccountNumber] = useState('');
+  const [confirmAccountNumber,setConfirmAccountNumber] = useState('');
+  const [ifsc,setIfsc] = useState('');
+  const [withdraw,setWithdraw]  = useState('');
+ 
+  const {data,mutate:withdrawVal} = useWithdrawAmount();
+   const withdrawAmount =(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+    e.preventDefault();
+    if(!holderName || !bankName || !accountNumber || !ifsc || !withdraw){
+      return showToasterMessage({messageType:"error" , description:"All the fields are required"});
+    }
 
+    if( accountNumber !== confirmAccountNumber){
+      return showToasterMessage({messageType:"error", description:"Account number and confirm account number mismatched."})
+    }
+    const accountDetails =  {
+      name: userData?.UserName,
+      account_holder_name: holderName,
+      bank_name: bankName,
+      account_number: accountNumber,
+      ifsc: ifsc,
+      withdraw: withdraw
+  }
+      withdrawVal(accountDetails);
+      
+   }
   return (
     <form className="flex flex-col items-start justify-start w-full gap-y-2">
       <div className="rounded-lg bg-bg_Quaternary py-2 px-3.5 pb-5 flex flex-col items-start justify-start w-full gap-y-2 ">
@@ -16,44 +47,60 @@ const BankDetails:React.FC<Props> = ({active}) => {
           <InputComp
             label="Amount"
             prefix={"₹"}
+            type="number"
             suffix={<span>INR</span>}
             placeholders="Enter Amount"
-            value={""}
+            setValue = {setWithdraw}
+            value={withdraw}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
           <InputComp
             label="IFSC Code"
             placeholders="Enter IFSC Code"
-            value={""}
+            setValue = {setIfsc}
+            maxLength ={11}
+            type="text"
+            value={ifsc}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
           <InputComp
             label="Account No"
             placeholders="Enter Account Number"
-            value={""}
+            type="number"
+            maxLength ={12}
+            
+            setValue = {setAccountNumber}
+            value={accountNumber}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
-          {
-            !active ?  <InputComp
+           <InputComp
             label="Confirm Account No"
             placeholders="Enter Account Number"
-            value={""}
+            type="number"
+            maxLength ={12}
+
+            setValue = {setConfirmAccountNumber}
+            value={confirmAccountNumber}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
-          />:""
-          }
+          />
          
           <InputComp
             label="Account Name"
+            type="text"
           
             placeholders="Enter Account Name"
-            value={""}
+            setValue = {setHolderName}
+            value={holderName}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
 
           <InputComp
             label="Bank Name"
+            type="text"
+
             placeholders="Enter Bank Name"
-            value={""}
+            setValue = {setBankName}
+            value={bankName}
             className="  w-full focus:outline-none py-2  bg-bg_BgGray border rounded-lg "
           />
         </div>
@@ -77,7 +124,7 @@ const BankDetails:React.FC<Props> = ({active}) => {
         <span className="text-sm text-textColor font-lato font-[400] leading-5">
           I have read and agree with
           <span className="text-text_Primary underline text-sm font-lato font-[400] leading-4 cursor-pointer">
-            the terms of payment and withdrawal policy.
+           {" "} the terms of payment and withdrawal policy.
           </span>
         </span>
       </div>
@@ -85,7 +132,8 @@ const BankDetails:React.FC<Props> = ({active}) => {
         <button
           disabled={false}
           className=" relative overflow-hidden  transition duration-150 ease-in-out bg-bg_Primary w-full text-text_Quaternary h-10 text-base shadow-lg font-lato rounded-md font-[900] leading-4 disabled:opacity-70 flex gap-x-1 items-center justify-center cursor-pointer"
-          type="submit"
+          type="button"
+          onClick={(e)=>withdrawAmount(e)}
         >
           <span>SUBMIT</span>
         </button>

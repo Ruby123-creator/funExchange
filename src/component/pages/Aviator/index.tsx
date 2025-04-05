@@ -15,7 +15,7 @@ const AviatorComp: React.FC = () => {
   useEffect(()=>{
       const setUrl = ()=>{
         const token = localStorage.getItem('accessToken');
-        const childWebsiteURL = `https://aviator-flame.vercel.app?token=${token}`; 
+        const childWebsiteURL = `https://tonyexch.com?token=${token}`; 
         setIframeSrc(childWebsiteURL);
       }
       setUrl()
