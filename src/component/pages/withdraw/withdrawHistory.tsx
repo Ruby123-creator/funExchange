@@ -41,7 +41,17 @@ const WithdrawHistory :React.FC<Props> = ({data=[]}) => {
   };
   const downloadReceipt = () => {
     const element = document.getElementById('receipt-section'); // wrap your receipt in a div with this id
-    html2pdf().from(element).save();
+    if (!element) return;
+
+    const opt = {
+      margin:       0.5,
+      filename:     'MyCustomReceiptName.pdf', // ✅ Custom file name here
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+  
+    html2pdf().set(opt).from(element).save();
   };
   console.log(withdrawHistory,pendingWithdraw,"CHECK::::::::")
     return (

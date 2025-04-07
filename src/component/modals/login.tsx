@@ -45,8 +45,7 @@ const LoginModal: React.FC<Props> = () => {
 
         if (login === 'userId') {
         loginUser({UserName:userId,Password:password});
-        // setUniqueId(data?.data?.uniqid);
-        //    window.location.reload();
+        
         } else {
           alert("Invalid mobile number or password");
         }
