@@ -60,7 +60,6 @@ const withdrawAmount = async (data: any) => {
       onSuccess: (data) => {
         if(data?.status === "success"){
           showToasterMessage({messageType:"success",description:data?.message});
-          logOut(data?.UserName);
   
         }
         else{
