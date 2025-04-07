@@ -18,6 +18,7 @@ const initialState = {
   },
   activeNav:'/',
   betWindow:'',
+  uniqueId:'',
   stacks:[100,500,1000,5000,10000,20000,50000,100000,250000,500000,1000000]
 };
 
@@ -55,6 +56,11 @@ function uiReducer(state: any, action: { type: string; data: any }) {
       return{
         ...state, activeNav:action.data
       }
+      case "SET_UNIQUIEID":
+        return {
+          ...state, uniqueId:action.data
+        }
+      
     default:
       return state; // Ensure the state is returned in case of unknown action type
   }
@@ -71,7 +77,8 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
   const setLoginData = (data:any)=>dispatch({type:"SET_LOGIN_DATA",data})
   const setUserData = (data:any)=>dispatch({type:"SET_USER_DATA",data})
   const setActiveNav = (data:any)=>dispatch({type:"SET_ACTIVE_NAV",data})
-  const value = useMemo(() => ({ ...state, setUserData,setLoginModal,setMatchedBets,setStacks,setBetWindow,setLoginData,setActiveNav }), [state]);
+  const setUniqueId = (data:any)=>dispatch({type:"SET_UNIQUIEID",data})
+  const value = useMemo(() => ({ ...state, setUserData,setLoginModal,setMatchedBets,setStacks,setBetWindow,setLoginData,setActiveNav,setUniqueId }), [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }

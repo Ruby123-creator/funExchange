@@ -32,7 +32,7 @@ import CasinoSettlement from './component/pages/casino-settlement';
 
 
 const App: React.FC = () => {
-  const { setLoginData, isLoginAsUser, setUserData ,isLogin} = useUI();
+  const { setLoginData, isLoginAsUser, setUserData ,isLogin,setUniqueId} = useUI();
   const [val, setValue] = useState<{ username?: string; uniqid?: string }>({});
   const PrivateRoute = ({ element }:any) => {
     return isLogin ? element : <Navigate to="/" />;
@@ -51,6 +51,7 @@ const {data: userData} = useAdminDetails({isLogin:isLoginAsUser,username:val?.us
           const parsedData = JSON.parse(storedData);
           if (parsedData && typeof parsedData === "object") {
             setValue(parsedData);
+            setUniqueId(parsedData?.uniqid);
             setLoginData(parsedData);
           }
         }

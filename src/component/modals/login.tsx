@@ -38,14 +38,14 @@ const LoginModal: React.FC<Props> = () => {
         },
        
       ];
-        const { mutate: loginUser, isError: error } = useLoginPassword();
+        const {mutateAsync: loginUser, isError: error } = useLoginPassword();
        
     const handleLogin = (e:any) => {
         e.preventDefault();
 
         if (login === 'userId') {
-     
         loginUser({UserName:userId,Password:password});
+        // setUniqueId(data?.data?.uniqid);
         //    window.location.reload();
         } else {
           alert("Invalid mobile number or password");
