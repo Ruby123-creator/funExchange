@@ -41,9 +41,9 @@ const BankDetails:React.FC<Props> = ({active}) => {
     <form className="flex flex-col items-start justify-start w-full gap-y-2">
       <div className="rounded-lg bg-bg_Quaternary py-2 px-3.5 pb-5 flex flex-col items-start justify-start w-full gap-y-2 ">
         <div className="w-full flex items-start justify-start gap-y-[0.5] flex-col">
-          <span className="text-sm mt-1 bg-titleGrd rounded font-roboto shadow-md text-text_Quaternary  px-2 py-1 my-1">
+          {/* <span className="text-sm mt-1 bg-titleGrd rounded font-roboto shadow-md text-text_Quaternary  px-2 py-1 my-1">
             Available to withdrawal : ₹ 0.00{" "}
-          </span>
+          </span> */}
           <InputComp
             label="Amount"
             prefix={"₹"}
@@ -105,7 +105,7 @@ const BankDetails:React.FC<Props> = ({active}) => {
           />
         </div>
       </div>
-      <div className="flex items-start justify-center gap-x-2">
+      {/* <div className="flex items-start justify-center gap-x-2">
         <div className="inline-flex items-center">
           <label
             className="relative flex cursor-pointer items-center rounded-full  bg-bg_Quinary "
@@ -127,7 +127,7 @@ const BankDetails:React.FC<Props> = ({active}) => {
            {" "} the terms of payment and withdrawal policy.
           </span>
         </span>
-      </div>
+      </div> */}
       <div className="w-full h-max">
         <button
           disabled={false}
