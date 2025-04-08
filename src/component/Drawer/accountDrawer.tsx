@@ -74,6 +74,12 @@ const drawerElement = [
         route:"/withdraw"
     },
     {
+        title:"Open Bets",
+        icon: <TbStars stroke="var(--color-iconsColor)" size={20}/>,
+        id:22,
+        route:"/open-bets"
+    },
+    {
         title:"Declare Bets",
         icon: <TbStars stroke="var(--color-iconsColor)" size={20}/>,
         id:22,
