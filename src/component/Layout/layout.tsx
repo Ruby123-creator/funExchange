@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation(); // Now it's inside Router
   
     useEffect(() => {
-      console.log("Route changed:", location.pathname);
+      console.log("Route changed:",location?.pathname !== "/aviator", location.pathname);
     }, [location.pathname]);
   
   useEffect(() => {
@@ -44,7 +44,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
      <Header />
     <main className='app-bg'>{children}</main>
     {
-      ((location.pathname||"").split("/")||[])[1] !== "casino-lobby" || (location?.pathname !== "/aviator") ?     <Footer />
+      ((location.pathname||"").split("/")||[])[1] !== "casino-lobby" || (location?.pathname !== "/aviator") ?    
+      
+      <Footer />
       :""
     }
     </>

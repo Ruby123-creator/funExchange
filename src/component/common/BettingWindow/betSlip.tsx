@@ -253,6 +253,7 @@ const BetSlip: React.FC = () => {
       { data: bettingData, sport },
       {
         onSuccess: () => {
+          
           isPlacingBet.current = false; // Reset flag after success
         },
         onError: () => {

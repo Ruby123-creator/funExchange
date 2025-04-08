@@ -28,10 +28,11 @@ export const usePlaceBet = () => {
   return useMutation({
     mutationFn: placingBet, // Function that makes the API call
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["currentbets-detail"] });
       showToasterMessage({ messageType: "success", description: "Bet placed successfully" });
 
       console.log("Bet placed successfully!", data);
+            queryClient.invalidateQueries({ queryKey: ["currentbets-detail"] });
+
     },
     onError: (error) => {
       showToasterMessage({ messageType: "error", description: "Error Occurred" });
