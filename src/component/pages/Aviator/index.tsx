@@ -37,7 +37,7 @@ const AviatorComp: React.FC = () => {
                 height="800"
                 // style={{height:"800px"}}
                 title="Second Website"
-                className="w-full flex-grow no-scrollbar" allowFullScreen={true}
+                className="w-full flex-grow no-scrollbar aviator" allowFullScreen={true}
                         aria-hidden="true"
             ></iframe>
                  </div>

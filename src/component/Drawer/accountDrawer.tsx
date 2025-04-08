@@ -16,6 +16,7 @@ import { MdOutlineRule } from "react-icons/md";
 import { FaFacebook, FaRegHand } from "react-icons/fa6";
 import { IoIosCheckmarkCircleOutline, IoIosMail, IoLogoWhatsapp } from "react-icons/io";
 import { FiSmartphone } from "react-icons/fi";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 import { MdOutlinePolicy } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -92,7 +93,7 @@ const drawerElement = [
     },
     {
         title:"Casino Report",
-        icon: <GrDocumentTransfer stroke="var(--color-iconsColor)" size={20}/>,
+        icon: <IoDocumentTextOutline stroke="var(--color-iconsColor)" size={20}/>,
         id:25,
         route:"/casino-report"
     },
