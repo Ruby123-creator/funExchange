@@ -55,12 +55,12 @@ const drawerElement = [
     title:"Statements",
     id:2,
     items:[
-        {
-        title:"Transactions",
-        icon: <GrTransaction stroke="var(--color-iconsColor)" size={20}/>,
-        id:21,
-        route:"/transactions"
-    },
+    //     {
+    //     title:"Transactions",
+    //     icon: <GrTransaction stroke="var(--color-iconsColor)" size={20}/>,
+    //     id:21,
+    //     route:"/transactions"
+    // },
     {
         title:"Deposit",
         icon: <img src="/icons/red_deposit.svg"/>,
