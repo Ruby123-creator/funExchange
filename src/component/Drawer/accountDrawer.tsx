@@ -62,10 +62,16 @@ const drawerElement = [
         route:"/transactions"
     },
     {
-        title:"Open Bets",
-        icon: <TbStars stroke="var(--color-iconsColor)" size={20}/>,
+        title:"Deposit",
+        icon: <img src="/icons/red_deposit.svg"/>,
+        id:21,
+        route:"/deposit"
+    },
+    {
+        title:"Withdraw",
+        icon: <img src="/icons/red_withdraw.svg"/>,
         id:22,
-        route:"/open-bets"
+        route:"/withdraw"
     },
     {
         title:"Declare Bets",
