@@ -13112,11 +13112,11 @@ span.ripple {
       }
       .aviator {
         position: absolute;
-        top: 130px; /* default for larger screens */
+        top: 100px; /* default for larger screens */
       }
       
       @media screen and (max-width: 800px) {
         .aviator {
-          top: 90px; /* override for small screens */
+          top: 120px; /* override for small screens */
         }
       }
