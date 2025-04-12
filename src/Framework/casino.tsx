@@ -80,4 +80,3 @@ const fetchQtechUrl = async (user:string) => {
 
 
   
- 

@@ -19,9 +19,7 @@ const WithdrawComponent: React.FC = () => {
           <div className="px-2 pb-2 flex flex-col items-start justify-start gap-y-2 mt-1  md:mt-[0px]">
             
             <div className="text-base text-text_Ternary  font-roboto w-full font-[700] flex flex-col items-start justify-start gap-y-1">
-              <span className="font-lato">
-                Please fill in all required fields*
-              </span>
+             
               <div className=" font-lato text-sm w-full">
                 <div
                   id="step-selectMode"

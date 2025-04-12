@@ -124,9 +124,9 @@ const withdrawAmount = async (data: any) => {
 
   const depositHistory = async (data: any) => {
     const formData = new URLSearchParams();
-  formData.append('name', data.name);
-  formData.append('from_date', data.from_date);
-  formData.append('to_date', data.to_date);
+  formData.append('name', data.userName);
+  formData.append('from_date', data.startDate);
+  formData.append('to_date', data.endDate);
     const response = await axios.post(`${API_ENDPOINTS.DEPOSIT_HISTORY}`, formData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -147,8 +147,12 @@ const withdrawAmount = async (data: any) => {
 
 
   const withdrawHistory = async (data: any) => {
-    
-    const response = await axios.post(`${API_ENDPOINTS.WITHDRAW_HISTORY}`, data);
+      const payload = {
+        to_date: data?.endDate,
+        from_date: data?.startDate,
+        name:data?.userName
+      }
+    const response = await axios.post(`${API_ENDPOINTS.WITHDRAW_HISTORY}`, payload);
     return response.data;
   };
   

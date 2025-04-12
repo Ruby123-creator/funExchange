@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { usePendingTransaction, useWithdrawHistory } from '../../../Framework/transfer'
 import { useUI } from '../../../context/ui.context';
-import { Modal, Tabs } from 'antd';
+import { DatePicker, DatePickerProps, Modal, Tabs } from 'antd';
 import { AiFillPrinter } from "react-icons/ai";
 import { HiOutlineDownload } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import Recepit from './receipt';
 import html2pdf from 'html2pdf.js';
+import { CiSearch } from 'react-icons/ci';
+import dayjs from "dayjs";
+
+import { format, formatDate, subDays } from 'date-fns';
 const {TabPane} = Tabs;
 interface Props{
  data?:any
 }
+const getFormattedDate = (daysAgo: number) => formatDate(subDays(new Date(), daysAgo), "yyyy-MM-dd");
+
 const WithdrawHistory :React.FC<Props> = ({data=[]}) => {
   const {userData} = useUI();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData,setModalData] = useState({});
-   const val =  {
-    "name": userData?.UserName,
-    "from_date": "2025-03-01",
-    "to_date": "2025-04-31"
-  }
+    const [startDate, setStartDate] = useState(getFormattedDate(7));
+     const [endDate, setEndDate] = useState(getFormattedDate(0));
+     const val = {
+       startDate,
+       endDate,
+       userName: userData?.UserName,
+     };
+     const [payload,setPayload]  = useState(val);
   const pendingVal = {
     
       passkey: "051a4e5983c6167cc982058a09230459688c40d7",
@@ -27,7 +36,7 @@ const WithdrawHistory :React.FC<Props> = ({data=[]}) => {
       type: "debit"
     
   }
-  const {data:withdrawHistory} = useWithdrawHistory(val);
+  const {data:withdrawHistory} = useWithdrawHistory(payload);
   const {data:pendingWithdraw} = usePendingTransaction(pendingVal);
 
  
@@ -53,13 +62,68 @@ const WithdrawHistory :React.FC<Props> = ({data=[]}) => {
   
     html2pdf().set(opt).from(element).save();
   };
+   const fromDate: DatePickerProps["onChange"] = useCallback((date: { toDate: () => string | number | Date; }) => {
+       console.log(date,"shimanuuu")
+        if (date) {
+          setStartDate(format(date.toDate(), "yyyy-MM-dd"));
+        }
+      }, []);
+    
+      const EndDate: DatePickerProps["onChange"] = useCallback((date: { toDate: () => string | number | Date; }) => {
+        console.log(date,"shimanuuu")
+         if (date) {
+           setEndDate(format(date.toDate(), "yyyy-MM-dd"));
+         }
+       }, []);
   console.log(withdrawHistory,pendingWithdraw,"CHECK::::::::")
     return (
-      <div className=" w-full  gap-1 px-2 custom-tabs">
+      <div className=" w-full  gap-1 px-2 custom-tabs rounded-lg bg-bg_Quaternary">
       <Tabs defaultActiveKey="1">
                 <TabPane tab={<span> Withdraw History</span>} key="1">
+                <div className="w-full grid grid-cols-12 gap-3 p-3  z-50 font-lato">
+                                        <div className="col-span-8 px-2 flex items-center justify-between">
+                                            <div className="datepicker-container">
+                                                <div className="react-datepicker-wrapper">
+                                                    <div className="react-datepicker__input-container">
+                                                        <div
+                                                            className="relative w-[100%] rounded-md bg-bg_Lightgray  border focus-within:border-primary">
+                                                               <DatePicker onChange={fromDate}   value={startDate ? dayjs(startDate) : null} className='w-full'/>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="datepicker-container">
+                                                <div className="react-datepicker-wrapper">
+                                                    <div className="react-datepicker__input-container">
+                                                        <div
+                                                            className="relative w-[100%] rounded-md bg-bg_Lightgray  border focus-within:border-primary">
+                                                                <DatePicker onChange={EndDate}   value={endDate ? dayjs(endDate) : null} className='w-full'/>
+                                                          
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            className="w-[100px] active:scale-95 bg-titleGrd p-1 mx-2 rounded relative right-2 flex sm:items-center justify-center"
+                                            onClick={()=>{
+                                              setPayload({
+                                                startDate,
+                                                endDate,userName: userData?.UserName
+                                              })
+                                            }}
+                                            >
+                                              <CiSearch fill='white' size={20}/>
+                                           
+                                        </div>
+        
+                                       
+                                    </div>
                 {
           (withdrawHistory||[])?.length ?   <div className="overflow-x-auto no-scrollbar">
+        
+       
           <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
             
             <thead className=" text-text_Quaternary text-xs bg-bg_Secondary">

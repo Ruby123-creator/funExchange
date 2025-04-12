@@ -174,7 +174,8 @@ const Header: React.FC = () => {
 ).toFixed(2)}                      </span>
                     </div>
                   </div>
-                  <div
+                  {
+                    userData?.UserName ? <div
                     id="deposit_withdraw_btn"
                     className=" hidden lg:flex items-center justify-center gap-1"
                   >
@@ -201,7 +202,9 @@ const Header: React.FC = () => {
                         withdraw
                       </span>
                     </button>
-                  </div>
+                  </div>:""
+                  }
+                  
                   <div className=" w-max hidden items-center justify-center gap-1 rounded-full  lg:flex">
                     <button
                       onClick={() => setOpenDrawer(true)}
@@ -236,17 +239,19 @@ const Header: React.FC = () => {
                       </span>
                     </div>
                     <div className=" flex justify-between items-center gap-x-1 h-max lg:hidden">
-                     
-                        <button
-                          type="button"
-                          className=" leading-normal  transition duration-150 ease-in-out overflow-hidden relative active:scale-95 hidden xxs:flex items-center h-fit justify-center bg-bg_Quaternary rounded-full px-3 py-1 sm:px-4 sm:py-1.5 text-text_Primary   text-sm   text-center  cursor-pointer"
-                          onClick={()=>Navigate("/deposit")}
-                        >
-                          <span className="  font-semibold flex flex-row font-lato md:font-normal sm:text-base xs:text-sm">
-                            <span>Deposit</span>
-                          </span>
-                          <span className="shimmer"></span>
-                        </button>
+                     {
+                      userData?.UserName ? <button
+                      type="button"
+                      className=" leading-normal  transition duration-150 ease-in-out overflow-hidden relative active:scale-95 hidden xxs:flex items-center h-fit justify-center bg-bg_Quaternary rounded-full px-3 py-1 sm:px-4 sm:py-1.5 text-text_Primary   text-sm   text-center  cursor-pointer"
+                      onClick={()=>Navigate("/deposit")}
+                    >
+                      <span className="  font-semibold flex flex-row font-lato md:font-normal sm:text-base xs:text-sm">
+                        <span>Deposit</span>
+                      </span>
+                      <span className="shimmer"></span>
+                    </button>:''
+                     }
+                        
                      
                       <button
                         title="Balance"
