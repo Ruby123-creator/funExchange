@@ -113,9 +113,10 @@ const BetSlip: React.FC = () => {
       return false;
     }
     // Check user status and balance
+    console.log(userData,sum,"CHECKING::::::::")
     if (
       userData.status === "deactive" ||
-      Number(userData?.Balance) - Number(Math.abs(userData?.Exposure)) < sum
+      (Number(userData?.Balance)-Number(Math.abs(userData?.Exposure))) < sum
     ) {
       showToasterMessage({ messageType: "error", description: "LOW BALANCE" });
       return false;
@@ -132,7 +133,10 @@ const BetSlip: React.FC = () => {
       });
       return false;
     }
-
+    if(betOdds?.betType === "odd" && Number(betOdds?.odds)>10){
+      showToasterMessage({ messageType: "error", description: "BET ODDS SHOULD BE LESS THAN OR EQUAL TO 10" });
+      return false;
+    }
     // Check odds validity
     const currentOdds = parseFloat(checkCurrentBet[`${betOdds?.key}`]);
     const betOddsValue = parseFloat(betOdds.odds);
